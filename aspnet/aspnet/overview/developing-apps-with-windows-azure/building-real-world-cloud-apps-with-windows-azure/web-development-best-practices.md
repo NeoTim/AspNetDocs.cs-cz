@@ -1,166 +1,166 @@
 ---
 uid: aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/web-development-best-practices
-title: Osvědčené postupy vývoje pro web (vytváření skutečných cloudových aplikací s Azure) | Microsoft Docs
+title: Osvědčené postupy pro vývoj webových aplikací (vytváření cloudových aplikací v reálném světě s Azure) | Dokumenty společnosti Microsoft
 author: MikeWasson
-description: Vytváření reálných cloudových aplikací pomocí Azure je založené na prezentaci vyvinuté Scottem Guthrie. Vysvětluje 13 vzorů a postupů, které mohou...
+description: Cloudová kniha Building Real World S Azure vychází z prezentace vyvinuté Scottem Guthriem. Vysvětluje to 13 vzorů a postupů, které může...
 ms.author: riande
 ms.date: 06/12/2014
 ms.assetid: 52d6c941-2cd9-442f-9872-2c798d6d90cd
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/web-development-best-practices
 msc.type: authoredcontent
 ms.openlocfilehash: dfd8a3ac2328d3f17dfbe36e68b37d181177b0f4
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78583459"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80675997"
 ---
-# <a name="web-development-best-practices-building-real-world-cloud-apps-with-azure"></a>Osvědčené postupy vývoje pro web (vytváření skutečných cloudových aplikací s Azure)
+# <a name="web-development-best-practices-building-real-world-cloud-apps-with-azure"></a>Osvědčené postupy pro vývoj webových aplikací (vytváření reálných cloudových aplikací s Azure)
 
-[Jan Wasson](https://github.com/MikeWasson), [Rick Anderson](https://twitter.com/RickAndMSFT), [Dykstra](https://github.com/tdykstra)
+od [Mike Wasson](https://github.com/MikeWasson), [Rick Anderson](https://twitter.com/RickAndMSFT), Tom [Dykstra](https://github.com/tdykstra)
 
-[Stažení opravy projektu IT](https://code.msdn.microsoft.com/Fix-It-app-for-Building-cdd80df4) nebo [stažení elektronické knihy](https://blogs.msdn.com/b/microsoft_press/archive/2014/07/23/free-ebook-building-cloud-apps-with-microsoft-azure.aspx)
+[Stáhnout Fix It Project](https://code.msdn.microsoft.com/Fix-It-app-for-Building-cdd80df4) nebo [stáhnout E-knihy](https://blogs.msdn.com/b/microsoft_press/archive/2014/07/23/free-ebook-building-cloud-apps-with-microsoft-azure.aspx)
 
-> **Vytváření reálných cloudových aplikací pomocí Azure** je založené na prezentaci vyvinuté Scottem Guthrie. Vysvětluje 13 vzorů a postupů, které vám pomůžou úspěšně vyvíjet webové aplikace pro Cloud. Informace o elektronické příručce najdete v [první kapitole](introduction.md).
+> **Cloudová kniha Building Real World S Azure** vychází z prezentace vyvinuté Scottem Guthriem. Vysvětluje 13 vzorů a postupů, které vám mohou pomoci úspěšně vyvíjet webové aplikace pro cloud. Informace o e-knize najdete [v první kapitole](introduction.md).
 
-První tři vzory byly o nastavení procesu agilního vývoje; zbytek se týká architektury a kódu. Toto je kolekce osvědčených postupů vývoje pro web:
+První tři vzory byly o nastavení agilního vývojového procesu; zbytek je o architektuře a kódu. Tohle je sbírka osvědčených postupů pro vývoj webových aplikací:
 
-- [Bezstavové webové servery](#stateless) za inteligentním nástrojem pro vyrovnávání zatížení.
-- [Vyhněte se stavu relace](#sessionstate) (nebo pokud se k tomu nemůžete vyhnout, používejte distribuovanou mezipaměť místo databáze).
-- [Používejte síť CDN](#cdn) pro statické souborové prostředky (obrázky, skripty) na hraničních počítačích.
-- K zamezení blokování volání [použijte asynchronní podporu rozhraní .NET 4.5](#async) .
+- [Bezstátní webové servery](#stateless) za inteligentní vyrovnávání zatížení.
+- [Vyhněte se stavu relace](#sessionstate) (nebo pokud se mu nemůžete vyhnout, použijte distribuovanou mezipaměť spíše než databázi).
+- [Pomocí sítě CDN](#cdn) můžete ukládat statické datové zdroje souborů do mezipaměti (obrázky, skripty).
+- [Použijte asynchronní podporu rozhraní .NET 4.5,](#async) abyste zabránili blokování volání.
 
-Tyto postupy jsou platné pro veškerý vývoj na webu, ne jenom pro cloudové aplikace, ale jsou obzvláště důležité pro cloudové aplikace. Pracují společně, aby vám pomohly zajistit optimální využití vysoce flexibilního škálování, které nabízí cloudové prostředí. Pokud tyto postupy nedodržujete, při pokusu o škálování aplikace se podíváte na omezení.
+Tyto postupy platí pro veškerý vývoj webových aplikací, nejen pro cloudové aplikace, ale jsou obzvláště důležité pro cloudové aplikace. Spolupracují, aby vám pomohly optimálně využít vysoce flexibilní škálování nabízené cloudovým prostředím. Pokud tyto postupy nedodržujete, narazíte na omezení při pokusu o škálování aplikace.
 
 <a id="stateless"></a>
-## <a name="stateless-web-tier-behind-a-smart-load-balancer"></a>Bezstavová webová vrstva za inteligentním nástrojem pro vyrovnávání zatížení
+## <a name="stateless-web-tier-behind-a-smart-load-balancer"></a>Webová vrstva bez státní příslušnosti za inteligentním vyvažovačem zatížení
 
-*Bezstavová webová úroveň* znamená, že neuložíte žádná data aplikací do paměti webového serveru nebo systému souborů. Zachování stavu vaší webové vrstvy vám umožní poskytovat lepší prostředí pro zákazníky a ušetřit peníze:
+*Bezstavová webová vrstva* znamená, že do paměti webového serveru nebo systému souborů neukládáte žádná data aplikací. Udržování vaší webové úrovně bezstavové umožňuje jak poskytovat lepší zákaznickou zkušenost a ušetřit peníze:
 
-- Pokud je webová vrstva Bezstavová a je umístěná za nástrojem pro vyrovnávání zatížení, můžete rychle reagovat na změny v provozu aplikace tím, že dynamicky přidáte nebo odeberete servery. V cloudovém prostředí, kde platíte jenom za prostředky serveru, pokud je skutečně používáte, což je schopnost reagovat na změny v poptávce se může překládat na obrovských úspor.
-- Bezstavová webová úroveň je v podstatě jednodušší pro horizontální navýšení kapacity aplikace. To vám také umožňuje rychle reagovat na škálování potřeb rychleji a strávit méně peněz při vývoji a testování v rámci procesu.
-- Cloudové servery, jako jsou třeba místní servery, je potřeba opravit a občas spustit; a pokud je webová vrstva Bezstavová, směrování provozu při dočasném výpadku serveru nezpůsobí chyby nebo neočekávané chování.
+- Pokud je webová vrstva bezstavová a je sedět za nástrojů pro vyrovnávání zatížení, můžete rychle reagovat na změny v provozu aplikací dynamickým přidáním nebo odebráním serverů. V cloudovém prostředí, kde platíte pouze za serverové prostředky tak dlouho, dokud je skutečně používáte, může se tato schopnost reagovat na změny v poptávce promítnout do obrovských úspor.
+- Webová vrstva bez stavů je architektonicky mnohem jednodušší škálovat aplikace. To také umožňuje reagovat na škálování potřeb rychleji, a utrácet méně peněz na vývoj a testování v procesu.
+- Cloudové servery, jako jsou místní servery, je třeba občas opravit a restartovat; a pokud je webová vrstva bezstavová, přesměrování provozu při dočasném snížení serveru nezpůsobí chyby nebo neočekávané chování.
 
-Většina reálných aplikací potřebuje uložit stav pro relaci webu. hlavní bod není uložený na webovém serveru. Stav můžete uložit jinými způsoby, například u klienta v souborech cookie nebo mimo procesový Server ve stavu relace ASP.NET pomocí poskytovatele mezipaměti. Soubory můžete ukládat do [úložiště objektů BLOB v Microsoft Azure](unstructured-blob-storage.md) místo do místního systému souborů.
+Většina reálných aplikací je třeba uložit stav pro webovou relaci; hlavním bodem zde není ukládat na webovém serveru. Stav můžete uložit jinými způsoby, například na straně klienta v souborech cookie nebo mimo proces na straně serveru v ASP.NET stavu relace pomocí zprostředkovatele mezipaměti. Soubory můžete ukládat v [úložišti objektů blob Windows Azure](unstructured-blob-storage.md) namísto místního systému souborů.
 
-Příkladem toho, jak snadné je škálování aplikace na webech Windows Azure, pokud je vaše webová úroveň Bezstavová, najdete na kartě **škálování** webu Windows Azure na portálu pro správu:
+Jako příklad toho, jak snadné je škálovat aplikaci na webech Windows Azure, pokud je vaše webová vrstva bezstavová, najdete na kartě **Škálování** pro web Windows Azure na portálu pro správu:
 
-![Karta škálování](web-development-best-practices/_static/image1.png)
+![Karta Změnit velikost](web-development-best-practices/_static/image1.png)
 
-Pokud chcete přidat webové servery, můžete jednoduše přetáhnout posuvník počet instancí vpravo. Nastavte ji na 5 a klikněte na **Uložit**a během pár sekund máte 5 webových serverů v systému Windows Azure, které zpracovávají provoz vašeho webu.
+Chcete-li přidat webové servery, stačí přetáhnout jezdec počtu instancí doprava. Nastavte ji na 5 a klikněte na **Uložit**a během několika sekund máte 5 webových serverů v systému Windows Azure, které zpracovávají provoz vašeho webu.
 
 ![Pět instancí](web-development-best-practices/_static/image2.png)
 
-Můžete tak jednoduše nastavit počet instancí dolů na 3 nebo přejít na 1. Při horizontálním navýšení kapacity začnete okamžitě ukládat peníze, protože se Microsoft Azure účtuje po minutách, ne po hodinách.
+Stejně snadno můžete nastavit odpočítávání instancí na 3 nebo zpět na 1. Když se zpotovíte zpět, začnete okamžitě šetřit peníze, protože Windows Azure se účtuje podle minuty, ne podle hodiny.
 
-Můžete také sdělit službě Windows Azure automatické zvýšení nebo snížení počtu webových serverů na základě využití procesoru. Když v následujícím příkladu využití CPU překročí 60%, počet webových serverů se zmenší na minimálně 2 a pokud využití procesoru překročí 80%, počet webových serverů se zvýší až na 4.
+Můžete také říct Windows Azure, aby automaticky zvyšoval nebo snižoval počet webových serverů na základě využití procesoru. V následujícím příkladu, když využití procesoru klesne pod 60 %, počet webových serverů se sníží na minimálně 2, a pokud využití procesoru klesne nad 80 %, počet webových serverů se zvýší až na maximálně 4.
 
 ![Škálování podle využití procesoru](web-development-best-practices/_static/image3.png)
 
-Nebo co když víte, že váš web bude v pracovní době zaneprázdněný? Můžete říct službě Windows Azure, aby spouštěla více serverů během denní doby a snížila se na jeden server, a to i na noci a víkendy. Následující série snímků obrazovky ukazuje, jak nastavit web tak, aby na jednom serveru spouštěl jeden server za hodinu a 4 servery během pracovní doby od 8 do 5 odp.
+Nebo co když víte, že vaše stránky budou zaneprázdněny pouze během pracovní doby? Windows Azure můžete říct, aby během dne spouštěl více serverů a zmenšoval se na jeden server večery, noci a víkendy. Následující série snímků obrazovky ukazuje, jak nastavit webové stránky pro spuštění jednoho serveru mimo pracovní dobu a 4 servery během pracovní doby od 8:00 do 17:00.
 
 ![Škálování podle plánu](web-development-best-practices/_static/image4.png)
 
 ![Nastavení časů plánu](web-development-best-practices/_static/image5.png)
 
-![Plán Daytime](web-development-best-practices/_static/image6.png)
+![Denní plán](web-development-best-practices/_static/image6.png)
 
-![Plán weeknight](web-development-best-practices/_static/image7.png)
+![Týdenní rozvrh](web-development-best-practices/_static/image7.png)
 
-![Plán víkendu](web-development-best-practices/_static/image8.png)
+![Víkendový plán](web-development-best-practices/_static/image8.png)
 
-To všechno samozřejmě můžete udělat ve skriptech i na portálu.
+A samozřejmě to vše lze provést ve skriptech i na portálu.
 
-Schopnost vaší aplikace při horizontálním navýšení kapacity je ve Windows Azure skoro neomezená, pokud se vyhnete překážkám dynamického přidávání a odebírání virtuálních počítačů, a to tak, že zůstanete bez stavu na webové úrovni.
+Možnost vaší aplikace škálovat je téměř neomezená v systému Windows Azure, pokud se vyhnete překážkám pro dynamické přidávání nebo odebírání virtuálních počítačů serveru tím, že udržujete webovou vrstvu bezstavovou.
 
 <a id="sessionstate"></a>
-## <a name="avoid-session-state"></a>Vyhněte se stavu relace
+## <a name="avoid-session-state"></a>Vyhnout se stavu relace
 
-V reálné cloudové aplikaci není často praktické, aby se zabránilo ukládání určitého stavu pro relaci uživatele, ale některé přístupy mají dopad na výkon a škálovatelnost více než jiných. Pokud je třeba uložit stav, nejlepším řešením je zachovat malý objem a uložit ho do souborů cookie. Pokud to není proveditelné, příští nejlepší řešení je použití stavu relace ASP.NET se zprostředkovatelem pro [distribuovanou mezipaměť v paměti](distributed-caching.md#sessionstate). Nejhorším řešením z hlediska výkonu a škálovatelnosti je použití zprostředkovatele stavu relace zálohovaného databáze.
+Často není praktické v reálné cloudové aplikaci, aby se zabránilo ukládání nějaké formy stavu pro relaci uživatele, ale některé přístupy mají vliv na výkon a škálovatelnost více než ostatní. Pokud máte uložit stav, nejlepším řešením je, aby množství stavu malé a uložit jej do cookies. Pokud to není možné, dalším nejlepším řešením je použít ASP.NET stavu relace s poskytovatelem pro [distribuované mezipaměti v paměti](distributed-caching.md#sessionstate). Nejhorší řešení z hlediska výkonu a škálovatelnosti je použít zprostředkovatele stavu relace podporované databází.
 
 <a id="cdn"></a>
-## <a name="use-a-cdn-to-cache-static-file-assets"></a>Používání sítě CDN k ukládání statických souborových prostředků do mezipaměti
+## <a name="use-a-cdn-to-cache-static-file-assets"></a>Použití sítě CDN k uložení statických datových zdrojů souborů do mezipaměti
 
-CDN je zkratka pro Content Delivery Network. Do poskytovatele CDN poskytujete statické souborové prostředky, jako jsou obrázky a soubory skriptu, a poskytovatel tyto soubory ukládá do mezipaměti v datových centrech po celém světě, aby se do vaší aplikace dostaly relativně rychlá odezva a nízká latence pro ukládání do mezipaměti. hmot. Tím se zrychlí celková doba načítání lokality a snižuje se zatížení webových serverů. Sítě CDN jsou obzvláště důležité, pokud se snažíte oslovit cílovou skupinu, která je geograficky distribuována.
+CDN je zkratka pro Content Delivery Network. Poskytujete statické datové zdroje, jako jsou obrázky a soubory skriptů zprostředkovateli CDN a zprostředkovatel ukládá tyto soubory do mezipaměti v datových centrech po celém světě tak, aby kdekoli lidé přístup k vaší aplikaci, dostanou relativně rychlou odezvu a nízkou latenci pro prostředky uložené v mezipaměti. To urychluje celkovou dobu načítání webu a snižuje zatížení webových serverů. Sítě CDN jsou obzvláště důležité, pokud oslovujete publikum, které je geograficky široce distribuováno.
 
-Microsoft Azure má síť CDN a můžete použít jiné sítě CDN v aplikaci, která běží na Windows Azure nebo v jakémkoli webovém hostitelském prostředí.
+Windows Azure má CDN a další sítě CDN můžete použít v aplikaci, která běží v Systému Windows Azure nebo v jakémkoli webhostingovém prostředí.
 
 <a id="async"></a>
-## <a name="use-net-45s-async-support-to-avoid-blocking-calls"></a>Zabránit zablokování volání pomocí asynchronní podpory .NET 4.5
+## <a name="use-net-45s-async-support-to-avoid-blocking-calls"></a>Pomocí asynchronní podpory rozhraní .NET 4.5 se vyhnete blokování hovorů.
 
-Rozhraní .NET 4,5 rozšířilo programovací jazyky C# a jazyka VB, aby bylo mnohem jednodušší zpracovávat úlohy asynchronně. Výhoda asynchronního programování není pouze pro situace paralelního zpracování, například když chcete aktivovat více volání webové služby současně. Umožňuje také, aby váš webový server při vysokém zatížení prováděl efektivnější a spolehlivější výkon. Pro webový server je k dispozici pouze omezený počet vláken a v případě vysokého zatížení při použití všech vláken musí příchozí požadavky počkat, dokud nebudou uvolněna vlákna. Pokud váš kód aplikace nezpracovává úlohy, jako jsou dotazy databáze a volání webové služby asynchronně, mnoho vláken je zbytečně nevázaně, zatímco server čeká na reakci v/v. Tím se omezí množství provozu, které server může zpracovat za podmínek vysokého zatížení. Při asynchronním programování se vlákna, která čekají na webovou službu nebo databázi, vrátí do služby nové žádosti, dokud nebudou přijata data. V případě zaneprázdněného webového serveru je pak možné zpracovávat stovky nebo tisíce požadavků, které by jinak čekaly na uvolnění vláken.
+.NET 4.5 rozšířené c# a VB programovací jazyky, aby bylo mnohem jednodušší zpracování úloh asynchronně. Výhodou asynchronního programování není pouze pro paralelní zpracování situacích, jako je například když chcete zahájit více volání webové služby současně. Umožňuje také, aby váš webový server fungoval efektivněji a spolehlivěji za podmínek vysokého zatížení. Webový server má k dispozici pouze omezený počet vláken a za podmínek vysokého zatížení, když jsou všechna vlákna používána, příchozí požadavky musí počkat, dokud nebudou vlákna uvolněna. Pokud kód aplikace nezpracovává úlohy, jako jsou databázové dotazy a volání webové služby asynchronně, mnoho podprocesů jsou zbytečně svázané, zatímco server čeká na vstupně-o odpověď. To omezuje objem provozu, který může server zpracovat za podmínek vysokého zatížení. S asynchronní programování, vlákna, která čekají na webovou službu nebo databázi vrátit data jsou uvolněny až do služby nové požadavky, dokud jsou přijata data. Na rušném webovém serveru pak mohou být okamžitě zpracovány stovky nebo tisíce požadavků, které by jinak čekaly na uvolnění vláken.
 
-Jak jste viděli dříve, je stejně snadné snížit počet webových serverů, které zpracovávají váš web, protože je můžete zvýšit. Takže pokud server může dosáhnout větší propustnosti, nepotřebujete tolik z nich a můžete snížit náklady, protože potřebujete méně serverů pro daný objem přenosů, než by bylo možné jinak.
+Jak jste viděli dříve, je to tak snadné snížit počet webových serverů manipulaci s vaší webové stránky, jak je zvýšit. Pokud tedy server může dosáhnout větší propustnosti, nepotřebujete tolik z nich a můžete snížit náklady, protože pro daný objem provozu potřebujete méně serverů, než byste jinak potřebovali.
 
-Podpora asynchronního programovacího modelu .NET 4,5 je součástí ASP.NET 4,5 pro webové formuláře, MVC a webové rozhraní API; v Entity Framework 6 a v [rozhraní Windows Azure Storage API](https://blogs.msdn.com/b/windowsazurestorage/archive/2013/07/12/introducing-storage-client-library-2-1-rc-for-net-and-windows-phone-8.aspx).
+Podpora asynchronního programovacího modelu .NET 4.5 je součástí ASP.NET 4.5 pro webové formuláře, MVC a webové rozhraní API. v rozhraní Entity Framework 6 a v [rozhraní API úložiště Windows Azure](https://blogs.msdn.com/b/windowsazurestorage/archive/2013/07/12/introducing-storage-client-library-2-1-rc-for-net-and-windows-phone-8.aspx).
 
-### <a name="async-support-in-aspnet-45"></a>Asynchronní podpora v ASP.NET 4,5
+### <a name="async-support-in-aspnet-45"></a>Asynchronní podpora v ASP.NET 4.5
 
-V ASP.NET 4,5 se podpora pro asynchronní programování přidala nejen do jazyka, ale také do rozhraní MVC, webových formulářů a webových rozhraní API. Například metoda akce kontroleru ASP.NET MVC přijme data z webového požadavku a předá data do zobrazení, které pak vytvoří HTML, který se odešle do prohlížeče. Metoda Action často potřebuje získat data z databáze nebo webové služby, aby ji bylo možné zobrazit na webové stránce nebo uložit data zadaná na webové stránce. V těchto scénářích je snadné provést asynchronní metodu akce: namísto vrácení objektu *ActionResult* vracíte *&lt;&gt;* a označíte metodu pomocí klíčového slova *Async* . V případě, že se řádek kódu v rámci metody sestaví jako operace, která zahrnuje dobu čekání, označíte ji pomocí klíčového slova await.
+V ASP.NET 4.5 byla přidána podpora asynchronního programování nejen do jazyka, ale také do rozhraní MVC, Web Forms a Web API. Například metoda akce řadiče mvc ASP.NET přijímá data z webového požadavku a předá je zobrazení, které pak vytvoří html, který má být odeslán do prohlížeče. Metoda akce často potřebuje získat data z databáze nebo webové služby, aby je mohla zobrazit na webové stránce nebo uložit data zadaná na webové stránce. V těchto scénářích je snadné, aby metoda akce asynchronní: namísto vrácení *Objekt U akce,* vrátíte *&lt;Task ActionResult&gt; * a označíte metodu *asynchronním* klíčovým slovem. Uvnitř metody, když řádek kódu spustí operaci, která zahrnuje čekací dobu, označíte ji klíčovým slovem await.
 
-Tady je jednoduchá metoda akce, která volá metodu úložiště pro databázový dotaz:
+Zde je jednoduchá metoda akce, která volá metodu úložiště pro databázový dotaz:
 
 [!code-csharp[Main](web-development-best-practices/samples/sample1.cs)]
 
-A zde je stejná metoda, která zpracovává asynchronní volání databáze:
+A tady je stejná metoda, která zpracovává volání databáze asynchronně:
 
 [!code-csharp[Main](web-development-best-practices/samples/sample2.cs?highlight=1,4)]
 
-V části pokrývá kompilátor vygeneruje příslušný asynchronní kód. Když aplikace provede volání `FindTaskByIdAsync`, ASP.NET provede požadavek `FindTask` a potom odvíjí pracovní podproces a zpřístupní ho pro zpracování další žádosti. Po dokončení žádosti o `FindTask` je vlákno restartováno, aby pokračovalo ve zpracování kódu, který se nachází po volání. Během předběžného mezi tím, kdy je zahájena žádost o `FindTask` a vrácení dat, máte k dispozici vlákno, pomocí kterého lze provádět užitečnou práci, která by jinak mohla být vázána na odpověď.
+Pod kryty kompilátor generuje příslušný asynchronní kód. Když aplikace provede volání `FindTaskByIdAsync`, ASP.NET `FindTask` provede požadavek a potom odpojit pracovní vlákno a zpřístupní jej ke zpracování jiného požadavku. Po `FindTask` dokončení požadavku je vlákno restartováno, aby pokračovalo ve zpracování kódu, který přichází po tomto volání. Během mezimezi při `FindTask` zahájení požadavku a při vrácení dat máte k dispozici vlákno pro užitečnou práci, která by jinak byla svázána čekáním na odpověď.
 
-Pro asynchronní kód je k dispozici režie, ale v podmínkách nízkého zatížení je tato režie zanedbatelná, zatímco v podmínkách vysokého zatížení můžete zpracovávat požadavky, které by jinak probíhaly čekání na dostupná vlákna.
+Existuje určitá režie pro asynchronní kód, ale za podmínek nízkého zatížení, že režie je zanedbatelná, zatímco za podmínek vysoké zatížení jste schopni zpracovat požadavky, které by jinak být drženy čekání na dostupná vlákna.
 
-Tento druh asynchronního programování je možné provést od ASP.NET 1,1, ale je obtížné zapisovat, náchylnost k chybám a být obtížné ho ladit. Teď, když jsme zjednodušili kódování pro IT v ASP.NET 4,5, neexistuje žádný důvod, proč to dělat.
+Bylo možné provést tento druh asynchronního programování od ASP.NET 1.1, ale bylo obtížné psát, náchylné k chybám a obtížné ladit. Nyní, když jsme zjednodušili kódování pro to v ASP.NET 4.5, není důvod, aby to už.
 
-### <a name="async-support-in-entity-framework-6"></a>Asynchronní podpora v Entity Framework 6
+### <a name="async-support-in-entity-framework-6"></a>Asynchronní podpora v rámci entity 6
 
-Jako součást asynchronní podpory v 4,5 jsme dodali asynchronní podporu pro volání webové služby, sokety a vstupně-výstupní operace se systémem souborů, ale nejběžnějším vzorem pro webové aplikace je vystavení databáze a naše knihovny dat nepodporovaly asynchronní zpracování. Nyní Entity Framework 6 přidává asynchronní podporu pro přístup k databázi.
+Jako součást asynchronní podpory v 4.5 jsme dodali asynchronní podporu pro volání webových služeb, sokety a vstupně-in souborového systému, ale nejběžnějším vzorem pro webové aplikace je přístup k databázi a naše knihovny dat nepodporovaly asynchronní. Nyní Entity Framework 6 přidává asynchronní podporu pro přístup k databázi.
 
-V Entity Framework 6 všechny metody, které způsobují odeslání dotazu nebo příkazu do databáze, mají asynchronní verze. Zde uvedený příklad ukazuje asynchronní verzi metody *find* .
+V entity Framework 6 všechny metody, které způsobují dotaz nebo příkaz, který má být odeslán do databáze mají asynchronní verze. Příklad zde ukazuje asynchronní verzi *Find* metody.
 
 [!code-csharp[Main](web-development-best-practices/samples/sample3.cs?highlight=8)]
 
-A tato asynchronní podpora funguje nejen pro příkazy INSERT, DELETE, Updates a Simple, ale funguje i s dotazy LINQ:
+A tato asynchronní podpora funguje nejen pro vložení, odstranění, aktualizace a jednoduché nálezy, ale také pracuje s dotazy LINQ:
 
 [!code-csharp[Main](web-development-best-practices/samples/sample4.cs?highlight=7,10)]
 
-K dispozici je `Async` verze metody `ToList`, protože v tomto kódu je metoda, která způsobí odeslání dotazu do databáze. Metody `Where` a `OrderByDescending` pouze konfigurují dotaz, zatímco metoda `ToListAsync` spouští dotaz a ukládá odpověď do `result` proměnné.
+Existuje `Async` verze `ToList` metody, protože v tomto kódu, která je metoda, která způsobí, že dotaz má být odeslán do databáze. Metody `Where` `OrderByDescending` a pouze konfigurovat dotaz, `ToListAsync` zatímco metoda spustí dotaz a `result` uloží odpověď v proměnné.
 
 ## <a name="summary"></a>Souhrn
 
-Osvědčené postupy vývoje pro web, které jsou zde popsané, můžete implementovat v jakémkoli webovém programovacím rozhraní a jakémkoli cloudovém prostředí, ale máme nástroje v ASP.NET a Windows Azure, abychom to usnadnili. Pokud budete postupovat podle těchto vzorů, můžete snadno škálovat svou webovou vrstvu a minimalizovat své náklady, protože každý server bude moci zvládnout více provozu.
+Můžete implementovat osvědčené postupy pro vývoj webových aplikací popsané zde v libovolném rámci webového programování a v jakémkoli cloudovém prostředí, ale máme nástroje v ASP.NET a Windows Azure, které vám to usnadní. Pokud budete postupovat podle těchto vzorů, můžete snadno horizontální navýšení kapacity webové vrstvy a budete minimalizovat své výdaje, protože každý server bude schopen zvládnout větší provoz.
 
-V [Další části](single-sign-on.md) najdete informace o tom, jak Cloud umožňuje použití scénářů jednotného přihlašování.
+[Další kapitola](single-sign-on.md) se zabývá tím, jak cloud umožňuje scénáře jednotného přihlášení.
 
-## <a name="resources"></a>Zdroje
+## <a name="resources"></a>Zdroje a prostředky
 
-Další informace najdete v následujících zdrojích informací.
+Další informace naleznete v následujících zdrojích.
 
-Bezstavové webové servery:
+Bezstátní webové servery:
 
-- [Vzory a postupy Microsoft – pokyny](https://msdn.microsoft.com/library/dn589774.aspx)k automatickému škálování
-- [Zakazuje se spřažení instancí ARR na webech Windows Azure](https://azure.microsoft.com/blog/2013/11/18/disabling-arrs-instance-affinity-in-windows-azure-web-sites/). Příspěvek na blogu od Ereze Benari vysvětluje spřažení relací na webech Windows Azure.
+- [Vzory a postupy společnosti Microsoft – pokyny k automatickému škálování](https://msdn.microsoft.com/library/dn589774.aspx).
+- [Zakázání spřažení instancí ARR ve webech Windows Azure](https://azure.microsoft.com/blog/2013/11/18/disabling-arrs-instance-affinity-in-windows-azure-web-sites/). Příspěvek na blogu od Ereze Benariho vysvětluje spřažení relací ve webech Windows Azure.
 
-CDN:
+Cdn:
 
-- [Failsafe: vytváření škálovatelných, odolných Cloud Services](https://channel9.msdn.com/Series/FailSafe). Devět datových řad podle Ulrich Homann, matolin Mercuri a Simms. Podívejte se na diskuzi CDN ve epizody 3 od 1.1:34:00.
-- [Vzor pro hostování statických obsahu Microsoft Patterns and Practices](https://msdn.microsoft.com/library/dn589776.aspx)
-- [Recenze CDN](http://www.cdnreviews.com/). Přehled mnoha sítě CDN
+- [FailSafe: Vytváření škálovatelných, odolných cloudových služeb](https://channel9.msdn.com/Series/FailSafe). Devítidílný video seriál ulricha Homanna, Marca Mercuriho a Marka Simmse. Podívejte se na diskuzi CDN v epizodě 3 od 1:34:00.
+- [Vzor y microsoft patterns and practices static content hosting pattern pattern](https://msdn.microsoft.com/library/dn589776.aspx)
+- [CDN Recenze](http://www.cdnreviews.com/). Přehled mnoha CDN.
 
 Asynchronní programování:
 
-- [Použití asynchronních metod v ASP.NET MVC 4](../../../../mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4.md). Kurz Rick Anderson.
-- [Asynchronní programování pomocí modifikátoru Async aC# operátoru Await (a Visual Basic)](https://msdn.microsoft.com/library/vstudio/hh191443.aspx). Dokument White Paper MSDN, který vysvětluje použití pro asynchronní programování, jak funguje v ASP.NET 4,5, a jak napsat kód pro implementaci.
-- [Entity Framework asynchronní dotaz a uložení](https://msdn.microsoft.com/data/jj819165)
-- [Jak vytvářet ASP.NET webové aplikace pomocí Async](https://channel9.msdn.com/Events/TechEd/NorthAmerica/2013/DEV-B337#fbid=tgkT4SR_DK7). Prezentace videa podle Rowan Miller. Obsahuje grafickou ukázku způsobu, jakým asynchronní programování může výrazně zvýšit propustnost webového serveru v podmínkách vysokého zatížení.
-- [Failsafe: vytváření škálovatelných, odolných Cloud Services](https://channel9.msdn.com/Series/FailSafe). Devět datových řad podle Ulrich Homann, matolin Mercuri a Simms. Diskuze o dopadu asynchronního programování na škálovatelnost najdete v části epizody 4 a epizody 8.
-- Hodnota [Magic pro použití asynchronních metod v ASP.NET 4,5 plus důležité gotcha](http://www.hanselman.com/blog/TheMagicOfUsingAsynchronousMethodsInASPNET45PlusAnImportantGotcha.aspx). Blogový příspěvek od Scott Hanselman, primárně o použití Async v aplikacích ASP.NET Web Forms.
+- [Použití asynchronních metod v ASP.NET MVC 4](../../../../mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4.md). Režie: Rick Anderson.
+- [Asynchronní programování s asynchronní a Čeká (C# a Visual Basic)](https://msdn.microsoft.com/library/vstudio/hh191443.aspx). Dokument White Paper msdn, který vysvětluje důvody pro asynchronní programování, jak funguje v ASP.NET 4.5 a jak psát kód k jeho implementaci.
+- [Asynchronní dotaz a uložit rozhraní entity Framework](https://msdn.microsoft.com/data/jj819165)
+- [Jak vytvářet ASP.NET webových aplikací pomocí asynchronní](https://channel9.msdn.com/Events/TechEd/NorthAmerica/2013/DEV-B337#fbid=tgkT4SR_DK7). Videoprezentace Rowana Millera. Obsahuje grafickou ukázku toho, jak může asynchronní programování usnadnit dramatické zvýšení propustnosti webového serveru za podmínek vysokého zatížení.
+- [FailSafe: Vytváření škálovatelných, odolných cloudových služeb](https://channel9.msdn.com/Series/FailSafe). Devítidílný video seriál ulricha Homanna, Marca Mercuriho a Marka Simmse. Diskuse o dopadu asynchronního programování na škálovatelnost najdete v epizodě 4 a 8.
+- [Kouzlo použití asynchronních metod v ASP.NET 4,5 plus důležité gotcha](http://www.hanselman.com/blog/TheMagicOfUsingAsynchronousMethodsInASPNET45PlusAnImportantGotcha.aspx). Blogový příspěvek od Scotta Hanselmana, především o použití asynchronní v aplikacích ASP.NET Web Forms.
 
-Další doporučené postupy pro vývoj na webu najdete v následujících zdrojích informací:
+Další osvědčené postupy pro vývoj webových aplikací naleznete v následujících zdrojích:
 
-- [Opravte ukázkové Doporučené postupy pro aplikace](the-fix-it-sample-application.md#bestpractices). Příloha této elektronické knihy obsahuje řadu doporučených postupů, které byly implementovány v aplikaci Fix it.
-- [Kontrolní seznam pro webový vývojář](http://webdevchecklist.com/asp.net)
+- [Oprava ukázkové aplikace - osvědčené postupy](the-fix-it-sample-application.md#bestpractices). V dodatku této e-knihy je uvedena řada osvědčených postupů, které byly implementovány v aplikaci Fix It.
+- [Webový seznam vývojářů](http://webdevchecklist.com/asp.net)
 
 > [!div class="step-by-step"]
 > [Předchozí](continuous-integration-and-continuous-delivery.md)
-> [Další](single-sign-on.md)
+> [další](single-sign-on.md)

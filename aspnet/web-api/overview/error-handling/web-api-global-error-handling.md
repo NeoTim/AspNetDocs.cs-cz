@@ -1,129 +1,129 @@
 ---
 uid: web-api/overview/error-handling/web-api-global-error-handling
-title: Globální zpracování chyb v ASP.NET webového rozhraní API 2 – ASP.NET 4. x
+title: Globální zpracování chyb v rozhraní ASP.NET Web API 2 - ASP.NET 4.x
 author: davidmatson
-description: Přehled globálních zpracování chyb v ASP.NET Web API 2 pro ASP.NET 4. x.
+description: Přehled globálního zpracování chyb v rozhraní ASP.NET Web API 2 pro ASP.NET 4.x.
 ms.author: riande
 ms.date: 02/03/2014
 ms.custom: seoapril2019
 ms.assetid: bffd7863-f63b-4b23-a13c-372b5492e9fb
 msc.legacyurl: /web-api/overview/error-handling/web-api-global-error-handling
 msc.type: authoredcontent
-ms.openlocfilehash: 94f2d6d31d0b37f9bb0077e6258c70a2dfb1918d
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 5ff54d2e4ed881ce927d0a401fb79d9b8bc5b8a1
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78557279"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80675418"
 ---
-# <a name="global-error-handling-in-aspnet-web-api-2"></a>Globální zpracování chyb v ASP.NET webového rozhraní API 2
+# <a name="global-error-handling-in-aspnet-web-api-2"></a>Globální zpracování chyb v ASP.NET webovérozhraní API 2
 
-autorem [David Matson](https://github.com/davidmatson), [Rick Anderson](https://twitter.com/RickAndMSFT)
+podle [David Matson](https://github.com/davidmatson), [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-V tomto tématu najdete přehled globálních zpracování chyb v ASP.NET Web API 2 pro ASP.NET 4. x. Dnes ve webovém rozhraní API neexistuje jednoduchý způsob, jak protokolovat nebo nakládat chyby globálně. Některé neošetřené výjimky lze zpracovat prostřednictvím [filtrů výjimek](exception-handling.md), ale existuje několik případů, kdy filtry výjimek nemůžou zpracovat. Příklad:
+Toto téma obsahuje přehled globálního zpracování chyb v ASP.NET web API 2 pro ASP.NET 4.x. Dnes neexistuje žádný snadný způsob, jak ve webovém rozhraní API protokolovat nebo zpracovávat chyby globálně. Některé neošetřené výjimky mohou být zpracovány pomocí [filtrů výjimek](exception-handling.md), ale existuje řada případů, které filtry výjimek nelze zpracovat. Příklad:
 
-1. Výjimky vyvolané z konstruktorů kontroleru.
-2. Výjimky vyvolané z obslužných rutin zpráv
-3. Během směrování byly vyvolány výjimky.
-4. Výjimky vyvolané při serializaci obsahu odpovědi
+1. Výjimky vyzývané z konstruktorů řadiče.
+2. Výjimky vyzývané z obslužných rutin zpráv.
+3. Výjimky vyvolány během směrování.
+4. Výjimky vyzvaté během serializace obsahu odpovědi.
 
-Chceme poskytnout jednoduchý a konzistentní způsob, jak protokolovat a zpracovávat (kde je to možné) tyto výjimky. 
+Chceme poskytnout jednoduchý a konzistentní způsob, jak protokolovat a zpracovávat (pokud je to možné) tyto výjimky. 
 
-Existují dva hlavní případy pro zpracování výjimek, případ, kdy je možné odeslat chybovou odpověď, a případ, kdy můžeme udělat výjimku, se zaznamená výjimka. Příkladem pro druhý případ je výjimka, která je vyvolána ve středu obsahu odpovědi streamování; v takovém případě je příliš pozdě poslat novou zprávu s odpovědí, protože stavový kód, hlavičky a částečný obsah už jsou v rámci sítě, takže jsme připojení jednoduše přerušili. I když výjimku nejde zpracovat, aby vytvořila novou zprávu odpovědi, pořád podporuje protokolování výjimky. V případech, kdy můžeme zjistit chybu, můžeme vrátit příslušnou chybovou odpověď, jak je znázorněno v následujícím příkladu:
+Existují dva hlavní případy pro zpracování výjimek, případ, kdy jsme schopni odeslat odpověď na chybu a případ, kdy vše, co můžeme udělat, je protokolovat výjimku. Příkladem pro druhý případ je, když je vyvolána výjimka uprostřed obsahu odpovědi streamování; v takovém případě je příliš pozdě na odeslání nové zprávy odpovědi, protože stavový kód, záhlaví a částečný obsah již přešli přes drát, takže jednoduše přerušíme připojení. I když výjimku nelze zpracovat k vytvoření nové zprávy odpovědi, stále podporujeme protokolování výjimky. V případech, kdy můžeme zjistit chybu, můžeme vrátit odpovídající odpověď na chybu, jak je znázorněno v následujícím textu:
 
 [!code-csharp[Main](web-api-global-error-handling/samples/sample1.cs?highlight=6)]
 
 ### <a name="existing-options"></a>Existující možnosti
 
-Kromě [filtrů výjimek](exception-handling.md)se teď dají [obslužné rutiny zpráv](../advanced/http-message-handlers.md) používat dnes ke sledování všech odpovědí na úrovni 500, ale na těchto odpovědích jsou obtížné, protože nemají kontext o původní chybě. Obslužné rutiny zpráv mají také některá z stejných omezení jako filtry výjimek týkajících se případů, které mohou zpracovat. Webové rozhraní API sice má infrastrukturu trasování, která zachycuje chybové stavy. Tato trasovací infrastruktura je určená pro účely diagnostiky a není navržená ani vhodná pro provoz v produkčních prostředích. Globální zpracování výjimek a protokolování by mělo být služby, které mohou běžet během výroby a musí být zapojeny do stávajících řešení monitorování (například [knihovny elmah](https://code.google.com/p/elmah/) ).
+Kromě [filtrů výjimek](exception-handling.md)lze dnes použít [obslužné rutiny zpráv](../advanced/http-message-handlers.md) ke sledování všech odpovědí na úrovni 500, ale zpracování těchto odpovědí je obtížné, protože jim chybí kontext o původní chybě. Obslužné rutiny zpráv mají také některá stejná omezení jako filtry výjimek týkající se případů, které mohou zpracovat. Zatímco webové rozhraní API má trasovací infrastrukturu, která zachycuje chybové stavy, trasovací infrastruktura je pro diagnostické účely a není navržena ani vhodná pro spuštění v produkčním prostředí. Globální zpracování výjimek a protokolování by měly být služby, které mohou být spuštěny během výroby a zapojeny do stávajících monitorovacích řešení (například [ELMAH).](https://code.google.com/p/elmah/)
 
 ### <a name="solution-overview"></a>Přehled řešení
 
- Poskytujeme dvě nové uživatelsky nahraditelné služby, [IExceptionLogger](../releases/whats-new-in-aspnet-web-api-21.md) a IExceptionHandler pro protokolování a zpracování neošetřených výjimek. Služby jsou velmi podobné a mají dvě hlavní rozdíly:
+ Poskytujeme dvě nové uživatelem vyměnitelné [služby, IExceptionLogger](../releases/whats-new-in-aspnet-web-api-21.md) a IExceptionHandler, pro protokolování a zpracování neošetřených výjimek. Služby jsou velmi podobné, se dvěma hlavními rozdíly:
 
-1. Podporujeme registraci více protokolovacích protokolovacích nástrojů, ale jenom jednu obslužnou rutinu výjimky.
-2. Protokolovací nástroje výjimky se vždy zavolají, i když se chystáme připojení přerušit. Obslužné rutiny výjimek se volají pouze v případě, že stále dokážeme zvolit, která odpověď se má odeslat.
+1. Podporujeme registraci více protokolů výjimek, ale pouze jednu obslužnou rutinu výjimky.
+2. Protokolování výjimek se vždy nazývají, i když se chystáme přerušit připojení. Obslužné rutiny výjimek se volí pouze v případě, že si stále můžeme vybrat, kterou zprávu odpovědi máme odeslat.
 
-Obě služby poskytují přístup ke kontextu výjimek, který obsahuje relevantní informace z místa, kde byla výjimka zjištěna, zejména [zprávy HttpRequestMessage](https://msdn.microsoft.com/library/system.net.http.httprequestmessage(v=vs.110).aspx), [HttpRequestContext](https://msdn.microsoft.com/library/system.web.http.controllers.httprequestcontext(v=vs.118).aspx), vyvolaná výjimka a zdroj výjimky (podrobnosti níže).
+Obě služby poskytují přístup k kontextu výjimky obsahující relevantní informace z bodu, kde byla zjištěna [výjimka, zejména HttpRequestMessage](https://msdn.microsoft.com/library/system.net.http.httprequestmessage(v=vs.110).aspx), [HttpRequestContext](https://msdn.microsoft.com/library/system.web.http.controllers.httprequestcontext(v=vs.118).aspx), vyvolána výjimka a zdroj výjimky (podrobnosti níže).
 
 ### <a name="design-principles"></a>Principy návrhu
 
-1. **Žádné neprůlomové změny** Vzhledem k tomu, že se tato funkce přidává v dílčí verzi, jedno důležité omezení, které ovlivňuje řešení, znamená, že nedochází k žádným nepodstatným změnám, a to ani k typu kontraktů nebo chování. Toto omezení vyvolalo nějaké vyčištění, které bychom chtěli udělat v souvislosti s existujícími bloky catch, které zapíná výjimky na 500 odpovědí. Toto dodatečné vyčištění je možné zvážit pro další hlavní vydání. Pokud je to pro vás důležité, můžete na něj hlasovat na [uživatelském hlasu ASP.NET webového rozhraní API](http://aspnet.uservoice.com/forums/147201-asp-net-web-api/suggestions/5451321-add-flag-to-enable-iexceptionlogger-and-iexception).
-2. **Zachování konzistence pomocí konstrukcí webového rozhraní API** Kanál filtru webového rozhraní API je skvělým způsobem, jak zpracovávat problémy zaměřené na průřez a flexibilitu při použití logiky v oboru specifickém pro konkrétní akci, na konkrétního řadiče nebo na globálním rozsahu. Filtry, včetně filtrů výjimek, vždy mají kontexty Action a Controller i v případě, že jsou registrovány v globálním oboru. Tato smlouva dává smysl pro filtry, ale znamená, že filtry výjimek, dokonce i globálně vymezené, nejsou vhodné pro některé případy zpracování výjimek, jako jsou výjimky z obslužných rutin zpráv, kde neexistuje žádná akce nebo kontext kontroleru. Pokud chceme použít flexibilní rozsah poskytovaný filtry pro zpracování výjimek, pořád potřebujeme filtry výjimek. Pokud ale potřebujeme zpracovat výjimku mimo kontext kontroleru, potřebujeme také samostatnou konstrukci pro úplné zpracování globálních chyb (něco bez kontextu kontroleru a omezení kontextu akce).
+1. **Žádné změny** Vzhledem k tomu, že tato funkce je přidávána v dílčí verzi, jedním z důležitých omezení ovlivňujících řešení je, že nedojde k žádným zásadním změnám, a to buď pro zadání smluv, nebo chování. Toto omezení vyloučilo některé vyčištění, které bychom chtěli provést, pokud jde o existující bloky catch, které mění výjimky na 500 odpovědí. Tento další vyčištění je něco, co bychom mohli zvážit pro následné hlavní verze. Pokud je to pro vás důležité, hlasujte o tom na [ASP.NET hlas uživatele webového rozhraní API](http://aspnet.uservoice.com/forums/147201-asp-net-web-api/suggestions/5451321-add-flag-to-enable-iexceptionlogger-and-iexception).
+2. **Zachování konzistence s konstrukcemi webového rozhraní API** Kanál filtrů webového rozhraní API je skvělý způsob, jak zpracovat průřezové obavy s flexibilitou použití logiky v konkrétním rozsahu akce, specifickém pro řadič nebo globálním rozsahu. Filtry, včetně filtrů výjimek, mají vždy kontexty akcí a kontroleru, i když jsou registrovány v globálním oboru. Tato smlouva má smysl pro filtry, ale znamená to, že filtry výjimek, i globálně vymezené filtry, nejsou vhodné pro některé případy zpracování výjimek, jako jsou výjimky z obslužných rutin zpráv, kde neexistuje žádná akce nebo kontext kontroleru. Pokud chceme použít flexibilní obor, který poskytují filtry pro zpracování výjimek, stále potřebujeme filtry výjimek. Ale pokud potřebujeme zpracovat výjimku mimo kontext řadiče, potřebujeme také samostatnou konstrukci pro úplné globální zpracování chyb (něco bez kontextu řadiče a omezení kontextu akce).
 
 ### <a name="when-to-use"></a>Kdy použít
 
-- Protokolovací nástroje jsou řešením pro zobrazení všech neošetřených výjimek zachycených webovým rozhraním API.
-- Obslužné rutiny výjimek představují řešení pro přizpůsobení všech možných odpovědí na neošetřené výjimky zachycené webovým rozhraním API.
-- Filtry výjimek jsou nejjednodušší řešení pro zpracování podmnožiny neošetřených výjimek týkajících se konkrétní akce nebo kontroleru.
+- Protokolovače výjimek jsou řešením pro zobrazení všech neošetřených výjimek zachycených webovým rozhraním API.
+- Obslužné rutiny výjimek jsou řešením pro přizpůsobení všech možných odpovědí na neošetřené výjimky zachycené webovým rozhraním API.
+- Filtry výjimek jsou nejjednodušším řešením pro zpracování podmnožiny neošetřených výjimek souvisejících s určitou akcí nebo řadičem.
 
-### <a name="service-details"></a>Podrobnosti služby
+### <a name="service-details"></a>Podrobnosti o službě
 
- Protokolovací nástroj výjimky a rozhraní obslužných rutin jsou jednoduché asynchronní metody, které přebírají příslušné kontexty: 
+ Rozhraní služby protokolování výjimek a obslužné rutiny jsou jednoduché asynchronní metody s ohledem na příslušné kontexty: 
 
 [!code-csharp[Main](web-api-global-error-handling/samples/sample2.cs)]
 
- Poskytujeme také základní třídy pro obě tato rozhraní. Přepsání základních (synchronizovaných nebo asynchronních) metod se vyžaduje pro protokolování a zpracování v doporučených časech. Pro protokolování `ExceptionLogger` základní třída zaručí, že základní metoda protokolování je volána pouze jednou pro každou výjimku (i v případě, že je později šíří do dalšího zásobníku volání a je znovu zachycena). Základní třída `ExceptionHandler` zavolá metodu zpracování jádra pouze pro výjimky v horní části zásobníku volání a ignoruje staré vnořené bloky catch. (Zjednodušené verze těchto základních tříd jsou uvedené v příloze níže.) `IExceptionLogger` i `IExceptionHandler` přijímají informace o výjimce prostřednictvím `ExceptionContext`.
+ Poskytujeme také základní třídy pro obě tato rozhraní. Přepsání metody jádra (synchronizace nebo asynchronizace) je vše, co je nutné protokolovat nebo zpracovávat v doporučených časech. Pro protokolování `ExceptionLogger` základní třídy zajistí, že základní metoda protokolování je volána pouze jednou pro každou výjimku (i v případě, že později rozšíří dále zásobníku volání a je zachycen znovu). Základní `ExceptionHandler` třída bude volat metodu zpracování jádra pouze pro výjimky v horní části zásobníku volání, ignoruje starší vnořené bloky catch. (Zjednodušené verze těchto základních tříd jsou uvedeny v dodatku níže.) A `IExceptionLogger` `IExceptionHandler` přijímat informace o výjimce `ExceptionContext`prostřednictvím .
 
 [!code-csharp[Main](web-api-global-error-handling/samples/sample3.cs)]
 
-Když rozhraní volá protokolovací nástroj výjimky nebo obslužnou rutinu výjimky, vždy poskytne `Exception` a `Request`. S výjimkou testování částí také vždy poskytne `RequestContext`. V takovém případě se neposkytne `ControllerContext` a `ActionContext` (pouze při volání z bloku catch pro filtry výjimek). Při pokusu o zápis odpovědi bude velmi zřídka poskytovat `Response`(pouze v některých případech služby IIS). Vzhledem k tomu, že některé z těchto vlastností mohou být `null` je až příjemce, aby před přístupem ke členům třídy Exception kontroloval `null`.`CatchBlock` je řetězec, který označuje, který blok catch viděli výjimku. Řetězce bloku catch jsou následující:
+Když framework volá protokolovací protokol výjimek nebo obslužnou rutinu výjimky, bude vždy poskytovat `Exception` a . `Request` S výjimkou testování částí bude také `RequestContext`vždy poskytovat . Bude zřídka poskytovat `ControllerContext` a `ActionContext` a (pouze při volání z bloku catch pro filtry výjimek). To bude velmi zřídka `Response`poskytnout (pouze v určitých případech služby IIS, když uprostřed pokusu o zápis odpovědi). Všimněte si, že vzhledem k tomu, že některé z těchto vlastností může být, `null` že je na spotřebiteli zkontrolovat `null` před přístupem členy třídy výjimek.`CatchBlock` je řetězec označující, který blok catch viděl výjimku. Řetězce bloku catch jsou následující:
 
 - HttpServer (metoda SendAsync)
 - HttpControllerDispatcher (metoda SendAsync)
 - HttpBatchHandler (metoda SendAsync)
-- IExceptionFilter (zpracování kanálu filtru výjimek v metody ExecuteAsync) (ApiController)
-- OWIN hostitel:
+- IExceptionFilter (ApiController zpracovává kanál filtru výjimek v ExecuteAsync)
+- Hostitel OWIN:
 
-    - HttpMessageHandlerAdapter. BufferResponseContentAsync (pro výstup do vyrovnávací paměti)
-    - HttpMessageHandlerAdapter. CopyResponseContentAsync (pro výstup streamování)
+    - HttpMessageHandlerAdapter.BufferResponseContentAsync (pro ukládání výstupu do vyrovnávací paměti)
+    - HttpMessageHandlerAdapter.CopyResponseContentAsync (pro výstup datového proudu)
 - Webový hostitel:
 
-    - HttpControllerHandler. WriteBufferedResponseContentAsync (pro výstup do vyrovnávací paměti)
-    - HttpControllerHandler. WriteStreamedResponseContentAsync (pro výstup streamování)
-    - HttpControllerHandler. WriteErrorResponseContentAsync (selhání při zotavení po chybě v režimu výstupu do vyrovnávací paměti)
+    - HttpControllerHandler.WriteBufferedResponseContentAsync (pro ukládání výstupu do vyrovnávací paměti)
+    - HttpControllerHandler.WriteStreamedResponseContentAsync (pro výstup streamování)
+    - HttpControllerHandler.WriteErrorResponseContentAsync (pro chyby při obnovení chyb y ve výstupním režimu ve vyrovnávací paměti)
 
-Seznam řetězců bloku catch je také k dispozici prostřednictvím statických vlastností jen pro čtení. (Základní řetězec bloku catch je na statickém ExceptionCatchBlocks; zbytek se zobrazí na jedné statické třídě pro OWIN a webový hostitel).`IsTopLevelCatchBlock` je vhodný pro následující vzor zpracování výjimek pouze v horní části zásobníku volání. Namísto zapínání výjimek na 500 odpovědí kdekoli dojde k vnořenému bloku catch, obslužná rutina výjimky může umožnit šíření výjimek, dokud nebudou na hostiteli vidět.
+Seznam řetězců catch block je také k dispozici prostřednictvím statických vlastností jen pro čtení. (Řetězec bloku catch jádra je na statických exceptioncatchbloech; zbytek se zobrazí na jedné statické třídě pro OWIN a webhostingu).`IsTopLevelCatchBlock` Je užitečné pro následující doporučený vzor zpracování výjimek pouze v horní části zásobníku volání. Spíše než soustružení výjimky do 500 odpovědí kdekoli dojde k vnořený blok catch, obslužná rutina výjimky můžete nechat výjimky šířit, dokud se chystá být viděn hostitelem.
 
-Kromě `ExceptionContext`načítá protokolovací nástroj Další informace prostřednictvím úplné `ExceptionLoggerContext`:
+Kromě `ExceptionContext`, logger dostane ještě jednu informaci prostřednictvím plné `ExceptionLoggerContext`:
 
 [!code-csharp[Main](web-api-global-error-handling/samples/sample4.cs)]
 
-Druhá vlastnost, `CanBeHandled`, umožňuje protokolovacímu nástroje identifikovat výjimku, kterou nelze zpracovat. Když bude připojení přerušeno a nebude možné odeslat žádnou novou zprávu odpovědi, budou volány protokolovací nástroje, ale obslužná rutina ***nebude volána*** a protokolovací nástroje mohou tento scénář identifikovat z této vlastnosti.
+Druhá vlastnost `CanBeHandled`, umožňuje protokolovací nástroj k identifikaci výjimky, které nelze zpracovat. Když se připojení má být přerušeno a nelze odeslat žádnou novou zprávu odpovědi, úhozy kláves budou volány, ale obslužná rutina ***nebude*** volána a úhozy kláves mohou identifikovat tento scénář z této vlastnosti.
 
-Vedle `ExceptionContext`obslužná rutina získá jednu vlastnost, která může být nastavena na plný `ExceptionHandlerContext` pro zpracování výjimky:
+Kromě `ExceptionContext`, obslužná rutina získá další `ExceptionHandlerContext` jednu vlastnost, kterou může nastavit na úplné zpracování výjimky:
 
 [!code-csharp[Main](web-api-global-error-handling/samples/sample5.cs)]
 
-Obslužná rutina výjimky označuje, že byla zpracována výjimka nastavením vlastnosti `Result` na výsledek akce (například [ExceptionResult](https://msdn.microsoft.com/library/system.web.http.results.exceptionresult(v=vs.118).aspx), [InternalServerErrorResult](https://msdn.microsoft.com/library/system.web.http.results.internalservererrorresult(v=vs.118).aspx), [StatusCodeResult](https://msdn.microsoft.com/library/system.web.http.results.statuscoderesult(v=vs.118).aspx)nebo vlastní výsledek). Pokud má vlastnost `Result` hodnotu null, výjimka je neošetřená a původní výjimka bude znovu vyvolána.
+Obslužná rutina výjimky označuje, že zpracovala výjimku nastavením `Result` vlastnosti na výsledek akce (například [ExceptionResult](https://msdn.microsoft.com/library/system.web.http.results.exceptionresult(v=vs.118).aspx), [InternalServerErrorResult](https://msdn.microsoft.com/library/system.web.http.results.internalservererrorresult(v=vs.118).aspx), [StatusCodeResult](https://msdn.microsoft.com/library/system.web.http.results.statuscoderesult(v=vs.118).aspx)nebo vlastní výsledek). Pokud `Result` je vlastnost null, výjimka je neošetřené a původní výjimka bude znovu vyvolána.
 
-Pro výjimky v horní části zásobníku volání jsme zavedli dodatečný krok, který zaručí, že odpověď je vhodná pro volající rozhraní API. Pokud se výjimka rozšíří až na hostitele, volající by uvidí žlutou obrazovku smrti nebo jiné reakce na hostitele, což je obvykle HTML a ne obvykle vhodná odpověď na chybu rozhraní API. V těchto případech výsledek začíná mimo null a pouze v případě, že vlastní obslužná rutina výjimky ji nastaví zpět na `null` (neošetřený), bude výjimka rozšířena na hostitele. Nastavení `Result` `null` v takových případech může být užitečné pro dva scénáře:
+Pro výjimky v horní části zásobníku volání jsme udělali další krok, abychom zajistili, že odpověď je vhodná pro volající rozhraní API. Pokud se výjimka rozšíří až na hostitele, volající mu zobrazí žlutou obrazovku smrti nebo nějakou jinou hostitelskou odpověď, která je obvykle HTML a obvykle není vhodnou chybovou odpovědí rozhraní API. V těchto případech Result spustí non-null a pouze v případě, že `null` vlastní obslužná rutina výjimky explicitně nastaví zpět na (neošetřené) bude výjimka šířit do hostitele. Nastavení `Result` `null` v takových případech může být užitečné pro dva scénáře:
 
-1. OWIN hostované webové rozhraní API s vlastními zpracováním výjimek registrovanými před nebo mimo webové rozhraní API.
-2. Místní ladění prostřednictvím prohlížeče, kde žlutá obrazovka smrti je vlastně užitečnou odezvou na neošetřenou výjimku.
+1. OWIN hostované webové rozhraní API s vlastní výjimku zpracování middleware registrované před / mimo web API.
+2. Místní ladění prostřednictvím prohlížeče, kde žlutá obrazovka smrti je ve skutečnosti užitečnou odpovědí na neošetřenou výjimku.
 
-V případě protokolovacích nástrojů výjimek a obslužných rutin výjimek neuděláme nic k obnovení, pokud obslužná rutina nebo obslužná rutina sám vyvolá výjimku. (Jiné než umožnění šíření výjimky, pokud máte lepší přístup, zachovejte zpětnou vazbu na konci této stránky.) Kontrakt pro protokolovací nástroje a obslužné rutiny výjimek je, že by neměly umožnit šíření výjimek do jejich volajících; v opačném případě se výjimka rozšíří jenom na hostitele, což by vedlo k chybě HTML (jako je ASP. Žlutá obrazovka netto), která se odesílá zpátky klientovi (což obvykle není upřednostňovanou možností pro volající rozhraní API, které očekávají JSON nebo XML).
+Pro protokolování výjimek a obslužné rutiny výjimek neděláme nic k obnovení, pokud samotný protokolovací nástroj nebo obslužná rutina vyvolá výjimku. (Kromě toho, že necháte výjimku šířit, zanechte zpětnou vazbu v dolní části této stránky, pokud máte lepší přístup.) Smlouva pro protokolování výjimek a obslužné rutiny je, že by neměly nechat výjimky šířit až do jejich volajících; v opačném případě se výjimka pouze rozšíří, často až k hostiteli, což má za následek chybu HTML (například ASP. NET je žlutá obrazovka) odesílána zpět klientovi (což obvykle není upřednostňovaná možnost pro volající rozhraní API, kteří očekávají JSON nebo XML).
 
 ## <a name="examples"></a>Příklady
 
-### <a name="tracing-exception-logger"></a>Protokolovací nástroj pro trasování výjimek
+### <a name="tracing-exception-logger"></a>Protokolování výjimek trasování
 
-Protokolovací nástroj výjimky níže odesílá data výjimky do konfigurovaných zdrojů trasování (včetně okna výstup ladění v aplikaci Visual Studio).
+Protokolování výjimek níže odesílá data výjimek do nakonfigurovaných zdrojů trasování (včetně výstupního okna ladění v sadě Visual Studio).
 
 [!code-csharp[Main](web-api-global-error-handling/samples/sample6.cs)]
 
 ### <a name="custom-error-message-exception-handler"></a>Obslužná rutina výjimky vlastní chybové zprávy
 
-Následující obrázek vytvoří vlastní chybovou odpověď pro klienty, včetně e-mailové adresy pro kontaktování podpory.
+Obslužná rutina výjimky níže vytváří vlastní odpověď na chybu klientům, včetně e-mailové adresy pro kontaktování podpory.
 
 [!code-csharp[Main](web-api-global-error-handling/samples/sample7.cs)]
 
 ## <a name="registering-exception-filters"></a>Registrace filtrů výjimek
 
-Pokud k vytvoření projektu použijete šablonu projektu webová aplikace ASP.NET MVC 4, vložte svůj konfigurační kód webového rozhraní API do třídy `WebApiConfig` ve složce *App/_Start* :
+Pokud k vytvoření projektu použijete šablonu projektu "ASP.NET MVC 4 Web Application", vložte konfigurační kód webového `WebApiConfig` rozhraní API do třídy do složky *App_Start:*
 
 [!code-csharp[Main](exception-handling/samples/sample7.cs?highlight=5)]
 
-## <a name="appendix-base-class-details"></a>Příloha: podrobnosti základní třídy
+## <a name="appendix-base-class-details"></a>Dodatek: Podrobnosti základní třídy
 
 [!code-csharp[Main](web-api-global-error-handling/samples/sample8.cs)]

@@ -1,42 +1,42 @@
 ---
-uid: aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs
-title: Vytváření vlastních pomocníků HTML (C#) | Microsoft Docs
+uid: mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs
+title: Vytváření vlastních pomocníků HTML (C#) | Dokumenty společnosti Microsoft
 author: microsoft
-description: Cílem tohoto kurzu je Ukázat, jak můžete vytvořit vlastní pomocníky HTML, které můžete použít v zobrazeních MVC. Využívejte si pomocníka HTML...
+description: Cílem tohoto kurzu je ukázat, jak můžete vytvořit vlastní html pomocníky, které můžete použít v zobrazení MVC. Využitím HTML Pomocník ...
 ms.author: riande
 ms.date: 10/07/2008
 ms.assetid: e454c67d-a86e-4119-a858-eb04bbec2dff
 msc.legacyurl: /mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs
 msc.type: authoredcontent
-ms.openlocfilehash: 264ff9850bad397826b45649d52fbfefafc53a01
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 7a2e5a5b42aa5bf267a42fef2fcad7022001ce6f
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78600238"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80675328"
 ---
 # <a name="creating-custom-html-helpers-c"></a>Vytvoření vlastních pomocných rutin HTML (C#)
 
-od [Microsoftu](https://github.com/microsoft)
+podle [společnosti Microsoft](https://github.com/microsoft)
 
 [Stáhnout PDF](https://download.microsoft.com/download/1/1/f/11f721aa-d749-4ed7-bb89-a681b68894e6/ASPNET_MVC_Tutorial_9_CS.pdf)
 
-> Cílem tohoto kurzu je Ukázat, jak můžete vytvořit vlastní pomocníky HTML, které můžete použít v zobrazeních MVC. Díky výhodám pomocníků HTML můžete omezit množství zdlouhavého psaní značek HTML, které je nutné provést, aby bylo možné vytvořit standardní stránku HTML.
+> Cílem tohoto kurzu je ukázat, jak můžete vytvořit vlastní html pomocníky, které můžete použít v zobrazení MVC. Využitím nápovědy HTML můžete snížit množství únavného psaní značek HTML, které je nutné provést, abyste vytvořili standardní stránku HTML.
 
-Cílem tohoto kurzu je Ukázat, jak můžete vytvořit vlastní pomocníky HTML, které můžete použít v zobrazeních MVC. Díky výhodám pomocníků HTML můžete omezit množství zdlouhavého psaní značek HTML, které je nutné provést, aby bylo možné vytvořit standardní stránku HTML.
+Cílem tohoto kurzu je ukázat, jak můžete vytvořit vlastní html pomocníky, které můžete použít v zobrazení MVC. Využitím nápovědy HTML můžete snížit množství únavného psaní značek HTML, které je nutné provést, abyste vytvořili standardní stránku HTML.
 
-V první části tohoto kurzu popíšeme některé z existujících pomocníků HTML, které jsou součástí architektury ASP.NET MVC. Dále popíšeme dvě metody vytváření vlastních pomocných pomocníků HTML: Vysvětlete, jak vytvořit vlastní pomocné pomocníky HTML vytvořením statické metody a vytvořením metody rozšíření.
+V první části tohoto kurzu, jsem popsat některé ze stávajících HTML pomocníků součástí ASP.NET MVC framework. Dále jsem popsat dvě metody vytváření vlastních HTML pomocníků: I vysvětlit, jak vytvořit vlastní HTML pomocníky vytvořením statické metody a vytvořením metody rozšíření.
 
 ## <a name="understanding-html-helpers"></a>Principy pomocníků HTML
 
-Pomocný objekt HTML je pouze metoda, která vrací řetězec. Řetězec může představovat libovolný typ obsahu, který chcete. Například můžete použít pomocníky HTML k vykreslení standardních značek HTML jako `<input>` HTML a značek `<img>`. Můžete také použít pomocníky HTML k vykreslování složitějšího obsahu, jako je například pruh karet nebo tabulka HTML dat databáze.
+Pomocník HTML je pouze metoda, která vrací řetězec. Řetězec může představovat libovolný typ obsahu, který chcete. Můžete například použít pomocné soubory HTML k `<input>` vykreslení standardních značek HTML, jako jsou HTML a `<img>` tagy. Pomocí pomocníků HTML můžete také vykreslit složitější obsah, například proužka tabulátoru nebo tabulka HTML s daty databáze.
 
 Rozhraní ASP.NET MVC obsahuje následující sadu standardních pomocníků HTML (nejedná se o úplný seznam):
 
 - Html.ActionLink()
 - Html.BeginForm()
 - Html.CheckBox()
-- Html.DropDownList()
+- Html.DropdownList()
 - Html.EndForm()
 - Html.Hidden()
 - Html.ListBox()
@@ -45,77 +45,77 @@ Rozhraní ASP.NET MVC obsahuje následující sadu standardních pomocníků HTM
 - Html.TextArea()
 - Html.TextBox()
 
-Zvažte například formulář v seznamu 1. Tento formulář se vykreslí pomocí dvou standardních pomocníků HTML (viz obrázek 1). Tento formulář používá pomocné metody `Html.BeginForm()` a `Html.TextBox()` k vykreslování jednoduchého HTML formuláře.
+Zvažte například formulář v seznamu 1. Tento formulář je vykreslen pomocí dvou standardních pomocníků HTML (viz obrázek 1). Tento formulář `Html.BeginForm()` používá `Html.TextBox()` metody a Helper k vykreslení jednoduchého formuláře HTML.
 
-[Stránka ![vykreslená pomocí pomocníků HTML](creating-custom-html-helpers-cs/_static/image2.png)](creating-custom-html-helpers-cs/_static/image1.png)
+[![Stránka vykreslená pomocí pomocných modulů HTML](creating-custom-html-helpers-cs/_static/image2.png)](creating-custom-html-helpers-cs/_static/image1.png)
 
-**Obrázek 01**: stránka vykreslená pomocí pomocníků HTML ([kliknutím zobrazíte obrázek v plné velikosti](creating-custom-html-helpers-cs/_static/image3.png))
+**Obrázek 01**: Stránka vykreslená pomocí pomocných zařízení HTML[(Klepnutím zobrazíte obrázek v plné velikosti)](creating-custom-html-helpers-cs/_static/image3.png)
 
-**Výpis 1 – `Views\Home\Index.aspx`**
+**Výpis 1 –`Views\Home\Index.aspx`**
 
 [!code-aspx[Main](creating-custom-html-helpers-cs/samples/sample1.aspx)]
 
-Pomocná metoda HTML. BeginForm () se používá k vytvoření počátečních a ukončovacích značek HTML `<form>`. Všimněte si, že metoda `Html.BeginForm()` je volána v rámci příkazu Using. Příkaz using zajišťuje, aby se značka `<form>` na konci bloku using zavřela.
+Metoda Html.BeginForm() Helper se používá k vytvoření `<form>` otevíracích a uzavíracích značek HTML. Všimněte `Html.BeginForm()` si, že metoda je volána v rámci using prohlášení. Příkaz using zajišťuje, `<form>` že značka se zavře na konci bloku using.
 
-Pokud dáváte přednost místo vytvoření bloku using, můžete zavolat pomocnou metodu HTML. EndForm () pro zavření značky `<form>`. Použijte libovolný přístup k vytvoření úvodní a uzavírací značky `<form>`, která se pro vás jeví jako nejužitečnější.
+Pokud dáváte přednost, namísto vytvoření using block, můžete volat Html.EndForm() Helper metoda zavřít `<form>` značku. Použijte podle toho, jaký přístup `<form>` k vytvoření otevírací a uzavírací značky, která se vám bude jevit jako nejintuitivnější.
 
-Pomocné metody `Html.TextBox()` se používají v seznamu 1 k vykreslování značek HTML `<input>`. Pokud v prohlížeči vyberete možnost zdroj zobrazení, zobrazí se v seznamu 2 zdroj HTML. Všimněte si, že zdroj obsahuje standardní značky HTML.
+Pomocné `Html.TextBox()` metody se používají v výpisu 1 k vykreslení značek HTML. `<input>` Pokud vyberete zdroj zobrazení ve vašem prohlížeči, pak se zobrazí zdroj HTML v výpisu 2. Všimněte si, že zdroj obsahuje standardní značky HTML.
 
 > [!IMPORTANT]
-> Všimněte si, že pomocný objekt `Html.TextBox()`-HTML je vykreslen pomocí značek `<%= %>` namísto značek `<% %>`. Pokud nezadáte symbol rovná se, nic se nenačte do prohlížeče.
+> všimněte `Html.TextBox()`si, že pomocník -HTML je vykreslen pomocí `<%= %>` značek namísto `<% %>` značek. Pokud nezahrnete znaménko rovná se, nic se do prohlížeče nezobrazí.
 
-Rozhraní ASP.NET MVC obsahuje malou sadu pomocníků. Nejpravděpodobnější je, že budete muset architekturu MVC zvětšit s vlastními pomocníky HTML. Ve zbývající části tohoto kurzu se naučíte dvě metody vytváření vlastních pomocníků HTML.
+Rozhraní ASP.NET MVC obsahuje malou sadu pomocníků. S největší pravděpodobností budete muset rozšířit architekturu MVC o vlastní pomocné moduly HTML. Ve zbývající části tohoto kurzu se naučíte dvě metody vytváření vlastních pomocníků HTML.
 
-**Výpis 2 – `Index.aspx Source`**
+**Výpis 2 –`Index.aspx Source`**
 
 [!code-aspx[Main](creating-custom-html-helpers-cs/samples/sample2.aspx)]
 
 ### <a name="creating-html-helpers-with-static-methods"></a>Vytváření pomocníků HTML pomocí statických metod
 
-Nejjednodušší způsob, jak vytvořit nový pomocníka v jazyce HTML, je vytvořit statickou metodu, která vrátí řetězec. Představte si například, že se rozhodnete vytvořit nového pomocníka HTML, který vykresluje značku HTML `<label>`. Pomocí třídy v seznamu 2 můžete vykreslit `<label>`.
+Nejjednodušší způsob, jak vytvořit nový pomocník HTML, je vytvořit statickou metodu, která vrátí řetězec. Představte si například, že se rozhodnete vytvořit nový pomocník `<label>` HTML, který vykreslí značku HTML. Třídu v výpisu 2 můžete `<label>` použít k vykreslení .
 
-**Výpis 2 – `Helpers\LabelHelper.cs`**
+**Výpis 2 –`Helpers\LabelHelper.cs`**
 
 [!code-csharp[Main](creating-custom-html-helpers-cs/samples/sample3.cs)]
 
-V seznamu 2 neexistují žádné zvláštní informace o třídě. Metoda `Label()` jednoduše vrátí řetězec.
+Na třídě v seznamu 2 není nic zvláštního. Metoda `Label()` jednoduše vrátí řetězec.
 
-Změněné zobrazení indexu v seznamu 3 používá `LabelHelper` k vykreslení značek `<label>` HTML. Všimněte si, že zobrazení obsahuje direktivu `<%@ imports %>`, která importuje obor názvů `Application1.Helpers`.
+Upravené zobrazení indexu v seznamu `LabelHelper` 3 `<label>` používá k vykreslení značek HTML. Všimněte si, `<%@ imports %>` že zobrazení obsahuje `Application1.Helpers` direktivu, která importuje obor názvů.
 
-**Výpis 2 – `Views\Home\Index2.aspx`**
+**Výpis 2 –`Views\Home\Index2.aspx`**
 
 [!code-aspx[Main](creating-custom-html-helpers-cs/samples/sample4.aspx)]
 
-### <a name="creating-html-helpers-with-extension-methods"></a>Vytváření pomocných pomocných metod HTML s metodami rozšíření
+### <a name="creating-html-helpers-with-extension-methods"></a>Vytváření pomocníků HTML pomocí rozšiřujících metod
 
-Chcete-li vytvořit pomocníky HTML, které fungují stejným způsobem jako standardní pomocníky HTML zahrnuté v rozhraní ASP.NET MVC Framework, je nutné vytvořit rozšiřující metody. Metody rozšíření umožňují přidat nové metody do existující třídy. Při vytváření pomocné metody HTML přidáte nové metody do třídy HtmlHelper reprezentované vlastností HTML zobrazení.
+Pokud chcete vytvořit HTML pomocníky, které fungují stejně jako standardní HTML pomocníky obsažené v ASP.NET mvc framework pak je třeba vytvořit metody rozšíření. Rozšiřující metody umožňují přidat nové metody do existující třídy. Při vytváření metody HTML Helper přidáte nové metody do třídy HtmlHelper reprezentované vlastností Html zobrazení.
 
-Třída v seznamu 3 přidá metodu rozšíření do `HtmlHelper` třídy s názvem `Label()`. Existuje několik věcí, které byste si měli všimnout o této třídě. Nejprve si všimněte, že třída je statická třída. Je nutné definovat metodu rozšíření se statickou třídou.
+Třída v listingu 3 přidá `HtmlHelper` metodu `Label()`rozšíření do třídy s názvem . Existuje několik věcí, které byste si měli všimnout o této třídě. Nejprve si všimněte, že třída je statickou třídou. Je nutné definovat metodu rozšíření se statickou třídou.
 
-Za druhé si všimněte, že první parametr metody `Label()` předchází klíčovým slovem `this`. První parametr metody rozšíření označuje třídu, kterou rozšiřující metoda rozšiřuje.
+Za druhé, všimněte si, že první `Label()` parametr `this`metody předchází klíčové slovo . První parametr metody rozšíření označuje třídu, kterou rozšiřuje metoda rozšíření.
 
-**Výpis 3 – `Helpers\LabelExtensions.cs`**
+**Výpis 3 –`Helpers\LabelExtensions.cs`**
 
 [!code-csharp[Main](creating-custom-html-helpers-cs/samples/sample5.cs)]
 
-Po vytvoření metody rozšíření a sestavení aplikace úspěšně sestavíte metodu rozšíření v aplikaci Visual Studio IntelliSense jako všechny ostatní metody třídy (viz obrázek 2). Jediným rozdílem je, že metody rozšíření se zobrazí se speciálním symbolem vedle sebe (ikona šipky dolů).
+Po vytvoření metody rozšíření a sestavení aplikace úspěšně, metoda rozšíření se zobrazí v aplikaci Visual Studio Intellisense stejně jako všechny ostatní metody třídy (viz obrázek 2). Jediným rozdílem je, že metody rozšíření se zobrazí se speciálním symbolem vedle nich (ikona šipky dolů).
 
-[![pomocí rozšiřující metody HTML. Label ()](creating-custom-html-helpers-cs/_static/image5.png)](creating-custom-html-helpers-cs/_static/image4.png)
+[![Použití metody rozšíření Html.Label()](creating-custom-html-helpers-cs/_static/image5.png)](creating-custom-html-helpers-cs/_static/image4.png)
 
-**Obrázek 02**: použití rozšiřující metody HTML. Label () ([kliknutím zobrazíte obrázek v plné velikosti](creating-custom-html-helpers-cs/_static/image6.png))
+**Obrázek 02**: Použití metody rozšíření Html.Label()[(Klepnutím zobrazíte obrázek v plné velikosti)](creating-custom-html-helpers-cs/_static/image6.png)
 
-Změněné zobrazení indexu v seznamu 4 používá metodu rozšíření HTML. Label () k vykreslení všech značek `<label>`.
+Upravené zobrazení indexu v seznamu 4 používá metodu rozšíření Html.Label() k vykreslení všech jeho `<label>` značek.
 
-**Výpis 4 – `Views\Home\Index3.aspx`**
+**Výpis 4 –`Views\Home\Index3.aspx`**
 
 [!code-aspx[Main](creating-custom-html-helpers-cs/samples/sample6.aspx)]
 
 ## <a name="summary"></a>Souhrn
 
-V tomto kurzu jste se naučili dvě metody vytváření vlastních pomocníků HTML. Nejdříve jste zjistili, jak vytvořit vlastní nápovědu `Label()` HTML vytvořením statické metody, která vrací řetězec. Dále jste zjistili, jak vytvořit vlastní pomocnou metodu `Label()` HTML vytvořením metody rozšíření na `HtmlHelper` třídě.
+V tomto kurzu jste se naučili dvě metody vytváření vlastních pomocníků HTML. Nejprve jste se naučili, jak vytvořit vlastní `Label()` nápovědu HTML vytvořením statické metody, která vrátí řetězec. Dále jste se dozvěděli, `Label()` jak vytvořit vlastní metodu nápovědy HTML vytvořením metody rozšíření ve `HtmlHelper` třídě.
 
-V tomto kurzu se zaměřujeme na sestavování velmi jednoduchých pomocných metod HTML. Mějte na paměti, že pomocný objekt HTML může být tak složitý, jak chcete. Můžete vytvořit pomocníky HTML, které vykreslují bohatý obsah, jako jsou zobrazení stromové struktury, nabídky nebo tabulky dat databáze.
+V tomto tutoriálu jsem se zaměřil na budování velmi jednoduché metody HTML Helper. Uvědomte si, že pomocník HTML může být tak složitý, jak chcete. Můžete vytvářet pomocné soubory HTML, které vykreslují bohatý obsah, jako jsou stromová zobrazení, nabídky nebo tabulky databázových dat.
 
 > [!div class="step-by-step"]
 > [Předchozí](asp-net-mvc-views-overview-cs.md)
-> [Další](using-the-tagbuilder-class-to-build-html-helpers-cs.md)
+> [další](using-the-tagbuilder-class-to-build-html-helpers-cs.md)

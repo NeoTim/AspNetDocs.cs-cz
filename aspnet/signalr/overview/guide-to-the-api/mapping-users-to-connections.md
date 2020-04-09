@@ -1,89 +1,89 @@
 ---
 uid: signalr/overview/guide-to-the-api/mapping-users-to-connections
-title: Mapování uživatelů signalizace na připojení | Microsoft Docs
+title: Mapování uživatelů signalismu na připojení | Dokumenty společnosti Microsoft
 author: bradygaster
-description: V tomto tématu se dozvíte, jak uchovávat informace o uživatelích a jejich připojeních. Saminí Fletcher pomáhá psát toto téma. Verze softwaru používané v tomto tématu...
+description: Toto téma ukazuje, jak uchovávat informace o uživatelích a jejich připojeních. Patrick Fletcher pomohl napsat toto téma. Verze softwaru použité v tomto tématu...
 ms.author: bradyg
 ms.date: 12/30/2014
 ms.assetid: f80c08b1-3f1f-432c-980c-c7b6edeb31b1
 msc.legacyurl: /signalr/overview/guide-to-the-api/mapping-users-to-connections
 msc.type: authoredcontent
 ms.openlocfilehash: d55d40848e1e9d40570850c3552b225235c5e814
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78536776"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80676158"
 ---
 # <a name="mapping-signalr-users-to-connections"></a>Mapování uživatelů knihovny SignalR na připojení
 
-tím, že [FitzMacken](https://github.com/tfitzmac)
+, autor: [Tom FitzMacken](https://github.com/tfitzmac)
 
 [!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
-> V tomto tématu se dozvíte, jak uchovávat informace o uživatelích a jejich připojeních.
+> Toto téma ukazuje, jak uchovávat informace o uživatelích a jejich připojeních.
 >
-> Saminí Fletcher pomáhá psát toto téma.
+> Patrick Fletcher pomohl napsat toto téma.
 >
-> ## <a name="software-versions-used-in-this-topic"></a>Verze softwaru používané v tomto tématu
+> ## <a name="software-versions-used-in-this-topic"></a>Verze softwaru použité v tomto tématu
 >
 >
 > - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
 > - .NET 4.5
-> - Signal – verze 2
+> - SignalR verze 2
 >
 >
 >
 > ## <a name="previous-versions-of-this-topic"></a>Předchozí verze tohoto tématu
 >
-> Informace o dřívějších verzích nástroje Signal najdete v části [Signal – starší verze](../older-versions/index.md).
+> Informace o dřívějších verzích SignalR naleznete v tématu [SignalR Older Versions](../older-versions/index.md).
 >
-> ## <a name="questions-and-comments"></a>Dotazy a komentáře
+> ## <a name="questions-and-comments"></a>Dotazy a připomínky
 >
-> Přečtěte si prosím svůj názor na to, jak se vám tento kurz líbí a co bychom mohli vylepšit v komentářích v dolní části stránky. Pokud máte dotazy, které přímo nesouvisejí s kurzem, můžete je publikovat do [fóra signálu ASP.NET](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) nebo [StackOverflow.com](http://stackoverflow.com/).
+> Prosím, zanechte zpětnou vazbu o tom, jak se vám líbil tento výukový program a co bychom mohli zlepšit v komentářích v dolní části stránky. Máte-li otázky, které nejsou přímo spojeny s tutoriálu, můžete je odeslat do [fóra ASP.NET SignalR](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) nebo [StackOverflow.com](http://stackoverflow.com/).
 
 ## <a name="introduction"></a>Úvod
 
-Každý klient připojující se k centru projde jedinečným identifikátorem připojení. Tuto hodnotu můžete načíst ve vlastnosti `Context.ConnectionId` v kontextu centra. Pokud vaše aplikace potřebuje mapovat uživatele na ID připojení a zachovat toto mapování, můžete použít jednu z následujících možností:
+Každý klient, který se připojuje k rozbočovači, předá jedinečné id připojení. Tuto hodnotu můžete `Context.ConnectionId` načíst ve vlastnosti kontextu centra. Pokud vaše aplikace potřebuje namapovat uživatele na id připojení a zachovat toto mapování, můžete použít jednu z následujících možností:
 
-- [Poskytovatel ID uživatele (Signal 2)](#IUserIdProvider)
-- [Úložiště v paměti](#inmemory), jako je například slovník
-- [Skupina signálů pro každého uživatele](#groups)
-- [Trvalé, externí úložiště](#database), například databázová tabulka nebo Azure Table Storage
+- [Zprostředkovatel ID uživatele (SignalR 2)](#IUserIdProvider)
+- [Úložiště v paměti](#inmemory), například slovník
+- [Skupina SignalR pro každého uživatele](#groups)
+- [Trvalé externí úložiště](#database), například databázová tabulka nebo úložiště tabulek Azure
 
-Každá z těchto implementací je uvedena v tomto tématu. Pomocí metod `OnConnected`, `OnDisconnected`a `OnReconnected` třídy `Hub` můžete sledovat stav připojení uživatele.
+Každá z těchto implementací je uvedena v tomto tématu. Pomocí metody `OnConnected` `OnDisconnected`, `OnReconnected` a metody `Hub` třídy můžete sledovat stav připojení uživatele.
 
-Nejlepší přístup k vaší aplikaci závisí na:
+Nejlepší přístup pro vaši aplikaci závisí na:
 
-- Počet webových serverů, které hostují vaši aplikaci.
-- Bez ohledu na to, zda potřebujete získat seznam aktuálně připojených uživatelů.
-- Bez ohledu na to, jestli je potřeba zachovat informace o skupinách a uživatelích při restartování aplikace nebo serveru.
-- Zda je latence volání externího serveru problémem.
+- Počet webových serverů hostujících vaši aplikaci.
+- Zda potřebujete získat seznam aktuálně připojených uživatelů.
+- Zda potřebujete zachovat informace o skupině a uživateli při restartování aplikace nebo serveru.
+- Zda je problém latence volání externího serveru.
 
-Následující tabulka ukazuje, jaký přístup k těmto hlediskům funguje.
+V následující tabulce je uvedeno, který přístup funguje pro tyto aspekty.
 
-|  | Více než jeden server | Získat seznam aktuálně připojených uživatelů | Uchovat informace po restartování | Optimální výkon |
+|  | Více než jeden server | Získat seznam aktuálně připojených uživatelů | Zachovat informace po restartování | Optimální výkon |
 | --- | --- | --- | --- | --- |
-| Poskytovatel UserID | ![](mapping-users-to-connections/_static/image1.png) |  |  | ![](mapping-users-to-connections/_static/image2.png) |
+| Zprostředkovatel Uživatelské ID | ![](mapping-users-to-connections/_static/image1.png) |  |  | ![](mapping-users-to-connections/_static/image2.png) |
 | V paměti |  | ![](mapping-users-to-connections/_static/image3.png) |  | ![](mapping-users-to-connections/_static/image4.png) |
-| Skupiny s jedním uživatelem | ![](mapping-users-to-connections/_static/image5.png) |  |  | ![](mapping-users-to-connections/_static/image6.png) |
-| Trvalé, externí | ![](mapping-users-to-connections/_static/image7.png) | ![](mapping-users-to-connections/_static/image8.png) | ![](mapping-users-to-connections/_static/image9.png) |  |
+| Skupiny pro jednoho uživatele | ![](mapping-users-to-connections/_static/image5.png) |  |  | ![](mapping-users-to-connections/_static/image6.png) |
+| Trvalé, vnější | ![](mapping-users-to-connections/_static/image7.png) | ![](mapping-users-to-connections/_static/image8.png) | ![](mapping-users-to-connections/_static/image9.png) |  |
 
 <a id="IUserIdProvider"></a>
 
-## <a name="iuserid-provider"></a>Poskytovatel IUserID
+## <a name="iuserid-provider"></a>Zprostředkovatel IUserID
 
-Tato funkce umožňuje uživatelům určit, co je ID uživatele založené na IRequest prostřednictvím nového rozhraní IUserIdProvider.
+Tato funkce umožňuje uživatelům určit, co userId je založena na IRequest prostřednictvím nového rozhraní IUserIdProvider.
 
-**IUserIdProvider**
+**Zprostředkovatel IUserIdProvider**
 
 [!code-csharp[Main](mapping-users-to-connections/samples/sample1.cs)]
 
-Ve výchozím nastavení bude k dispozici implementace, která jako uživatelské jméno používá `IPrincipal.Identity.Name` uživatele. Pokud to chcete změnit, zaregistrujte implementaci `IUserIdProvider` s globálním hostitelem při spuštění aplikace:
+Ve výchozím nastavení bude existovat implementace, která `IPrincipal.Identity.Name` používá jako uživatelské jméno uživatele. Chcete-li to změnit, `IUserIdProvider` zaregistrujte implementaci s globálním hostitelem při spuštění aplikace:
 
 [!code-csharp[Main](mapping-users-to-connections/samples/sample2.cs)]
 
-V rámci centra budete moct posílat zprávy těmto uživatelům pomocí následujícího rozhraní API:
+Z centra budete moci odesílat zprávy těmto uživatelům prostřednictvím následujícího rozhraní API:
 
 **Odeslání zprávy konkrétnímu uživateli**
 
@@ -93,57 +93,57 @@ V rámci centra budete moct posílat zprávy těmto uživatelům pomocí násled
 
 ## <a name="in-memory-storage"></a>Úložiště v paměti
 
-Následující příklady ukazují, jak uchovávat informace o připojení a uživatelích ve slovníku, který je uložený v paměti. Slovník používá `HashSet` k uložení ID připojení. V každém okamžiku může mít uživatel více než jedno připojení k aplikaci signalizace. Například uživatel, který je připojen prostřednictvím více zařízení nebo více než jedna karta prohlížeče, bude mít více než jedno ID připojení.
+Následující příklady ukazují, jak zachovat informace o připojení a uživateli ve slovníku, který je uložen v paměti. Slovník používá k `HashSet` uložení ID připojení. Uživatel může mít kdykoli více než jedno připojení k aplikaci SignalR. Například uživatel, který je připojen prostřednictvím více zařízení nebo více než jednu kartu prohlížeče, by měl více než jedno id připojení.
 
-Pokud se aplikace ukončí, ztratí se všechny informace, ale budou se znovu naplnit, protože uživatelé znovu naváže připojení. Úložiště v paměti nefunguje, pokud vaše prostředí obsahuje více než jeden webový server, protože každý server by měl samostatnou kolekci připojení.
+Pokud se aplikace vypne, dojde ke ztrátě všech informací, ale budou znovu vyplněny, jakmile uživatelé znovu naváže připojení. Úložiště v paměti nefunguje, pokud vaše prostředí obsahuje více než jeden webový server, protože každý server by měl samostatnou kolekci připojení.
 
-První příklad ukazuje třídu, která spravuje mapování uživatelů na připojení. Klíčem pro HashSet – budou uživatelské jméno.
+První příklad ukazuje třídu, která spravuje mapování uživatelů na připojení. Klíč pro HashSet bude jméno uživatele.
 
 [!code-csharp[Main](mapping-users-to-connections/samples/sample4.cs)]
 
-Další příklad ukazuje, jak použít třídu mapování připojení z rozbočovače. Instance třídy je uložena v názvu proměnné `_connections`.
+Následující příklad ukazuje, jak používat třídu mapování připojení z rozbočovače. Instance třídy je uložena v `_connections`názvu proměnné .
 
 [!code-csharp[Main](mapping-users-to-connections/samples/sample5.cs)]
 
 <a id="groups"></a>
 
-## <a name="single-user-groups"></a>Skupiny s jedním uživatelem
+## <a name="single-user-groups"></a>Skupiny pro jednoho uživatele
 
-Můžete vytvořit skupinu pro každého uživatele a poté odeslat zprávu do této skupiny, pokud chcete pouze kontaktovat tohoto uživatele. Název každé skupiny je jméno uživatele. Pokud má uživatel více než jedno připojení, každé ID připojení se přidá do skupiny uživatelů.
+Můžete vytvořit skupinu pro každého uživatele a potom odeslat zprávu do této skupiny, pokud chcete oslovit pouze tohoto uživatele. Název každé skupiny je jméno uživatele. Pokud má uživatel více než jedno připojení, každé id připojení je přidándo skupiny uživatele.
 
-Nemusíte ručně odebrat uživatele ze skupiny, když se uživatel odpojí. Tato akce je automaticky prováděna architekturou Signal.
+Neměli byste ručně odebrat uživatele ze skupiny, když se uživatel odpojí. Tato akce je automaticky provedena rozhraním SignalR.
 
-Následující příklad ukazuje, jak implementovat skupiny s jedním uživatelem.
+Následující příklad ukazuje, jak implementovat skupiny pro jednoho uživatele.
 
 [!code-csharp[Main](mapping-users-to-connections/samples/sample6.cs)]
 
 <a id="database"></a>
 
-## <a name="permanent-external-storage"></a>Trvalé, externí úložiště
+## <a name="permanent-external-storage"></a>Trvalé externí úložiště
 
-V tomto tématu se dozvíte, jak použít databázi nebo úložiště tabulek Azure pro ukládání informací o připojení. Tento přístup funguje, když máte více webových serverů, protože každý webový server může komunikovat se stejným úložištěm dat. Pokud vaše webové servery přestanou pracovat nebo se aplikace restartuje, není volána metoda `OnDisconnected`. Proto je možné, že úložiště dat bude obsahovat záznamy pro ID připojení, která již nejsou platná. Chcete-li vyčistit tyto osamocené záznamy, můžete chtít zrušit platnost všech připojení, která byla vytvořena mimo časový rámec, který je pro vaši aplikaci relevantní. Příklady v této části obsahují hodnotu pro sledování při vytvoření připojení, ale neukazují, jak vyčistit staré záznamy, protože je vhodné to udělat jako proces na pozadí.
+Toto téma ukazuje, jak používat databázi nebo úložiště tabulek Azure pro ukládání informací o připojení. Tento přístup funguje, pokud máte více webových serverů, protože každý webový server může pracovat se stejným úložištěm dat. Pokud vaše webové servery přestanou fungovat `OnDisconnected` nebo se aplikace restartuje, metoda není volána. Proto je možné, že vaše úložiště dat bude mít záznamy pro ID připojení, které již nejsou platné. Chcete-li vyčistit tyto osamocené záznamy, můžete chtít zrušit platnost připojení, které bylo vytvořeno mimo časový rámec, který je relevantní pro vaši aplikaci. Příklady v této části zahrnují hodnotu pro sledování při vytvoření připojení, ale neukazují, jak vyčistit staré záznamy, protože to můžete chtít provést jako proces na pozadí.
 
 ### <a name="database"></a>databáze
 
-Následující příklady ukazují, jak uchovávat informace o připojení a uživatelích v databázi. Můžete použít libovolnou technologii pro přístup k datům; Následující příklad však ukazuje, jak definovat modely pomocí Entity Framework. Tyto modely entit odpovídají tabulkám a polím databáze. Vaše datová struktura se může značně lišit v závislosti na požadavcích vaší aplikace.
+Následující příklady ukazují, jak zachovat informace o připojení a uživateli v databázi. Můžete použít libovolnou technologii přístupu k datům; však v příkladu ukazuje, jak definovat modely pomocí entity Framework. Tyto modely entit odpovídají databázovým tabulkám a polím. Vaše datová struktura se může značně lišit v závislosti na požadavcích vaší aplikace.
 
 První příklad ukazuje, jak definovat entitu uživatele, která může být přidružena k mnoha entitám připojení.
 
 [!code-csharp[Main](mapping-users-to-connections/samples/sample7.cs)]
 
-Pak z centra můžete sledovat stav každého připojení s níže uvedeným kódem.
+Potom z rozbočovače můžete sledovat stav každého připojení s níže uvedeným kódem.
 
 [!code-csharp[Main](mapping-users-to-connections/samples/sample8.cs)]
 
 <a id="azure"></a>
 ### <a name="azure-table-storage"></a>Azure Table Storage
 
-Následující příklad služby Azure Table Storage je podobný jako příklad databáze. Nezahrnuje všechny informace, které byste museli začít s Azure Table Storage Service. Informace najdete v tématu [použití úložiště Table z rozhraní .NET](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-tables/).
+Následující příklad úložiště tabulky Azure je podobný příkladu databáze. Neobsahuje všechny informace, které byste potřebovali, abyste mohli začít se službou Azure Table Storage Service. Další informace naleznete v tématu [Jak používat úložiště tabulky z rozhraní .NET](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-tables/).
 
-Následující příklad ukazuje entitu tabulky pro ukládání informací o připojení. Rozdělí data podle uživatelského jména a identifikují každou entitu podle ID připojení, takže uživatel může mít kdykoli více připojení.
+Následující příklad ukazuje entitu tabulky pro ukládání informací o připojení. Rozdělí data podle uživatelského jména a identifikuje každou entitu podle ID připojení, takže uživatel může mít kdykoli více připojení.
 
 [!code-csharp[Main](mapping-users-to-connections/samples/sample9.cs)]
 
-V centru sledujete stav připojení každého uživatele.
+V rozbočovači můžete sledovat stav připojení jednotlivých uživatelů.
 
 [!code-csharp[Main](mapping-users-to-connections/samples/sample10.cs)]

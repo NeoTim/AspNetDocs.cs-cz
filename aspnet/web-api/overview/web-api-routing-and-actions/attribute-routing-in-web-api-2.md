@@ -1,6 +1,6 @@
 ---
 uid: web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2
-title: Směrování atributů ve webovém rozhraní API 2 pro ASP.NET | Microsoft Docs
+title: Směrování atributů v rozhraní API ASP.NET Web API 2 | Dokumenty společnosti Microsoft
 author: MikeWasson
 description: ''
 ms.author: riande
@@ -8,65 +8,65 @@ ms.date: 01/20/2014
 ms.assetid: 979d6c9f-0129-4e5b-ae56-4507b281b86d
 msc.legacyurl: /web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2
 msc.type: authoredcontent
-ms.openlocfilehash: 7da1805d8a7066e82743dc9bd7e024cc9813ee89
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: bb68fe8e6769619029a3fa039d6f0d6f3303afbe
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78554983"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80675388"
 ---
-# <a name="attribute-routing-in-aspnet-web-api-2"></a>Směrování atributů ve webovém rozhraní API 2 ASP.NET
+# <a name="attribute-routing-in-aspnet-web-api-2"></a>Směrování atributů v ASP.NET webovérozhraní API 2
 
-o [Jan Wasson](https://github.com/MikeWasson)
+podle [Mike Wasson](https://github.com/MikeWasson)
 
-*Směrování* je způsob, jakým webové rozhraní API odpovídá na akci pomocí identifikátoru URI. Webové rozhraní API 2 podporuje nový typ směrování, kterému se říká *Směrování atributů*. Jak název naznačuje, směrování atributů používá atributy k definování tras. Směrování atributů nabízí větší kontrolu nad identifikátory URI ve webovém rozhraní API. Můžete například snadno vytvořit identifikátory URI, které popisují hierarchie prostředků.
+*Směrování* je způsob, jakým webové rozhraní API odpovídá identifikátoru URI akci. Webové rozhraní API 2 podporuje nový typ směrování, nazývaný *směrování atributů*. Jak název napovídá, směrování atributů používá k definování tras atributy. Směrování atributů poskytuje větší kontrolu nad identifikátory URI ve webovém rozhraní API. Můžete například snadno vytvořit identifikátory URI, které popisují hierarchie prostředků.
 
-Dřívější styl směrování s názvem směrování na základě konvence je stále plně podporovaný. Ve skutečnosti můžete obě techniky kombinovat do stejného projektu.
+Dřívější styl směrování, nazývaný směrování založený na konvencích, je stále plně podporován. Ve skutečnosti můžete kombinovat obě techniky ve stejném projektu.
 
-V tomto tématu se dozvíte, jak povolit směrování atributů a popisuje různé možnosti pro směrování atributů. Ucelený kurz, který používá směrování atributů, najdete v tématu [vytvoření REST API s směrováním atributů ve webovém rozhraní API 2](create-a-rest-api-with-attribute-routing.md).
+Toto téma ukazuje, jak povolit směrování atributů a popisuje různé možnosti směrování atributů. Kurz na konci výuky, která používá směrování atributů, najdete [v tématu Vytvoření rozhraní REST API s směrováním atributů ve webovém rozhraní API 2](create-a-rest-api-with-attribute-routing.md).
 
-## <a name="prerequisites"></a>Předpoklady
+## <a name="prerequisites"></a>Požadavky
 
-[Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017) Komunita, edice Professional nebo Enterprise
+[Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017) Verze Společenství, Professional nebo Enterprise
 
-Případně můžete pomocí Správce balíčků NuGet nainstalovat potřebné balíčky. V nabídce **nástroje** v aplikaci Visual Studio vyberte **Správce balíčků NuGet**a pak vyberte **Konzola správce balíčků**. V okně konzoly Správce balíčků zadejte následující příkaz:
+Případně použijte NuGet Správce balíčků k instalaci potřebných balíčků. V nabídce **Nástroje** v sadě Visual Studio vyberte **Položku Správce balíčků NuGet**a potom vyberte **konzolu správce balíčků**. V okně Konzoly správce balíčků zadejte následující příkaz:
 
 `Install-Package Microsoft.AspNet.WebApi.WebHost`
 
 <a id="why"></a>
 ## <a name="why-attribute-routing"></a>Proč směrování atributů?
 
-První vydání webového rozhraní API používalo směrování *založené na konvencích* . V tomto typu směrování definujete jednu nebo více šablon směrování, které jsou v podstatě parametrizované řetězce. Když rozhraní obdrží požadavek, odpovídá identifikátoru URI proti šabloně trasy. (Další informace o směrování založeném na konvencích najdete v tématu [směrování ve webovém rozhraní API ASP.NET](routing-in-aspnet-web-api.md).
+První vydání webového rozhraní API používá směrování *založené na konvencích.* V tomto typu směrování definujete jednu nebo více šablon tras, které jsou v podstatě parametrizované řetězce. Když rozhraní obdrží požadavek, odpovídá identifikátoru URI proti šabloně trasy. Další informace o směrování založeném na konvencích naleznete [v tématu Směrování v ASP.NET webovérozhraní API](routing-in-aspnet-web-api.md).
 
-Jednou z výhod směrování založeného na konvenci je, že šablony jsou definovány na jednom místě a pravidla směrování se používají konzistentně napříč všemi řadiči. Směrování založené na konvenci bohužel obtížně podporuje určité vzory identifikátorů URI, které jsou běžné v rozhraních RESTful API. Například prostředky často obsahují podřízené prostředky: zákazníci mají objednávky, filmy mají aktéry, v knihách jsou autoři a tak dále. Je přirozené vytvořit identifikátory URI, které odráží tyto relace:
+Jednou z výhod směrování na základě konvence je, že šablony jsou definovány na jednom místě a pravidla směrování jsou použity konzistentně ve všech řadičích. Bohužel směrování založené na konvencích ztěžuje podporu určitých vzorů URI, které jsou běžné v restful api. Například zdroje často obsahují podřízené prostředky: Zákazníci mají objednávky, filmy mají herce, knihy mají autory a tak dále. Je přirozené vytvářet identifikátory URI, které odrážejí tyto vztahy:
 
 `/customers/1/orders`
 
-Tento typ identifikátoru URI je obtížné vytvořit pomocí směrování založeného na konvencích. I když je to možné, výsledky se nemůžou škálovat dobře, pokud máte mnoho řadičů nebo typů prostředků.
+Tento typ identifikátoru URI je obtížné vytvořit pomocí směrování založeného na konvencích. I když to lze provést, výsledky nejsou škálovat dobře, pokud máte mnoho řadičů nebo typů prostředků.
 
-Při směrování atributů je jednoduché definovat trasu pro tento identifikátor URI. Jednoduše přidáte atribut do akce kontroleru:
+Při směrování atributů je triviální definovat trasu pro tento identifikátor URI. Jednoduše přidáte atribut do akce kontroleru:
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample1.cs)]
 
-Tady je několik dalších vzorů, které směrování atributů usnadňuje.
+Zde jsou některé další vzory, které atribut směrování usnadňuje.
 
 **Správa verzí rozhraní API**
 
-V tomto příkladu se "/API/v1/Products" směruje na jiný kontroler než "/API/v2/Products".
+V tomto příkladu "/api/v1/products" by být směrovány do jiného řadiče než "/api/v2/products".
 
 `/api/v1/products`
 `/api/v2/products`
 
-**Přetížené segmenty identifikátorů URI**
+**Přetížené segmenty IDENTIFIKÁTORŮ URI**
 
-V tomto příkladu je "1" číslo objednávky, ale "čeká" se mapuje na kolekci.
+V tomto příkladu "1" je číslo objednávky, ale "čekající" mapuje na kolekci.
 
 `/orders/1`
 `/orders/pending`
 
 **Více typů parametrů**
 
-V tomto příkladu je "1" číslo objednávky, ale "2013/06/16" Určuje datum.
+V tomto příkladu je "1" číslo objednávky, ale "2013/06/16" určuje datum.
 
 `/orders/1`
 `/orders/2013/06/16`
@@ -74,200 +74,200 @@ V tomto příkladu je "1" číslo objednávky, ale "2013/06/16" Určuje datum.
 <a id="enable"></a>
 ## <a name="enabling-attribute-routing"></a>Povolení směrování atributů
 
-Chcete-li povolit směrování atributů, zavolejte **MapHttpAttributeRoutes** během konfigurace. Tato metoda rozšíření je definována v třídě **System. Web. http. HttpConfigurationExtensions** .
+Chcete-li povolit směrování atributů, zavolejte **maphttpattributeroutes** během konfigurace. Tato metoda rozšíření je definována ve třídě **System.Web.Http.HttpConfigurationExtensions.**
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample2.cs)]
 
-Směrování atributů se dá kombinovat s směrováním [založeným na konvencích](routing-in-aspnet-web-api.md) . Chcete-li definovat trasy založené na konvencích, zavolejte metodu **MapHttpRoute** .
+Směrování atributů lze kombinovat s [směrováním založeným na konvencích.](routing-in-aspnet-web-api.md) Chcete-li definovat trasy založené na konvencích, zavolejte metodu **MapHttpRoute.**
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample3.cs)]
 
-Další informace o konfiguraci webového rozhraní API najdete v tématu [Konfigurace webového rozhraní API 2 pro ASP.NET](../advanced/configuring-aspnet-web-api.md).
+Další informace o konfiguraci webového rozhraní API naleznete [v tématu Konfigurace ASP.NET webovérozhraní API 2](../advanced/configuring-aspnet-web-api.md).
 
 <a id="config"></a>
-### <a name="note-migrating-from-web-api-1"></a>Poznámka: migrace z webového rozhraní API 1
+### <a name="note-migrating-from-web-api-1"></a>Poznámka: Migrace z webového rozhraní API 1
 
-Před webovým rozhraním API 2 šablony projektu webového rozhraní API vygenerovaly kód takto:
+Před web api 2 šablony projektu webového rozhraní API generované kód, jako je tento:
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample4.cs)]
 
-Pokud je povoleno směrování atributů, bude tento kód generovat výjimku. Pokud upgradujete existující projekt webového rozhraní API tak, aby používal směrování atributů, nezapomeňte aktualizovat konfigurační kód následujícím způsobem:
+Pokud je povoleno směrování atributů, tento kód vyvolá výjimku. Pokud inovujete existující projekt webového rozhraní API tak, aby používal směrování atributů, nezapomeňte aktualizovat tento konfigurační kód na následující:
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample5.cs?highlight=4)]
 
 > [!NOTE]
-> Další informace najdete v tématu [Konfigurace webového rozhraní API s hostováním ASP.NET](../advanced/configuring-aspnet-web-api.md#webhost).
+> Další informace naleznete [v tématu Konfigurace webového rozhraní API pomocí ASP.NET hostování](../advanced/configuring-aspnet-web-api.md#webhost).
 
 <a id="add-routes"></a>
-## <a name="adding-route-attributes"></a>Přidání atributů trasy
+## <a name="adding-route-attributes"></a>Přidání atributů postupu
 
-Tady je příklad trasy definované pomocí atributu:
+Zde je příklad trasy definované pomocí atributu:
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample6.cs)]
 
-Řetězec &quot;Customers/{customerId}/Orders&quot; je šablona identifikátoru URI pro trasu. Webové rozhraní API se pokusí spárovat identifikátor URI žádosti se šablonou. V tomto příkladu jsou "Customers" a "Orders" segmenty literálů a "{customerId}" je parametr proměnné. Následující identifikátory URI by odpovídaly této šabloně:
+Řetězec &quot;zákazníci/{customerId}/orders&quot; je šablona IDENTIFIKÁTORU URI pro trasu. Webové rozhraní API se pokusí porovnat identifikátor URI požadavku se šablonou. V tomto příkladu "zákazníci" a "objednávky" jsou literálové segmenty a "{customerId}" je proměnný parametr. Následující identifikátory URI by odpovídaly této šabloně:
 
 - `http://localhost/customers/1/orders`
 - `http://localhost/customers/bob/orders`
 - `http://localhost/customers/1234-5678/orders`
 
-Můžete omezit porovnání pomocí [omezení](#constraints), která jsou popsána dále v tomto tématu.
+Párování můžete omezit pomocí [omezení popsaných](#constraints)dále v tomto tématu.
 
-Všimněte si, že parametr &quot;{customerId}&quot; v šabloně trasy odpovídá názvu parametru *customerId* v metodě. Když webové rozhraní API vyvolá akci kontroleru, pokusí se vytvořit vazby parametrů trasy. Například pokud je identifikátor URI `http://example.com/customers/1/orders`, webové rozhraní API se pokusí o navázání hodnoty "1" na parametr *customerId* v akci.
+Všimněte &quot;si, že&quot; parametr {customerId} v šabloně postupu odpovídá názvu parametru *CustomerId* v metodě. Když webové rozhraní API vyvolá akci řadiče, pokusí se svázat parametry trasy. Například pokud identifikátor `http://example.com/customers/1/orders`URI je , webové rozhraní API se pokusí svázat hodnotu "1" na *customerId* parametr v akci.
 
 Šablona identifikátoru URI může mít několik parametrů:
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample7.cs)]
 
-Všechny metody kontroleru, které nemají atribut směrování, používají směrování na základě konvence. Tímto způsobem můžete zkombinovat oba typy směrování do stejného projektu.
+Všechny metody kontroleru, které nemají atribut trasy, používají směrování založené na konvencích. Tímto způsobem můžete kombinovat oba typy směrování ve stejném projektu.
 
-## <a name="http-methods"></a>Metody HTTP
+## <a name="http-methods"></a>Metody PROTOKOLU HTTP
 
-Webové rozhraní API také vybere akce založené na metodě HTTP žádosti (GET, POST atd.). Ve výchozím nastavení hledá webové rozhraní API porovnávání bez rozlišení velkých a malých písmen na začátku názvu metody kontroleru. Například metoda kontroleru s názvem `PutCustomers` odpovídá požadavku HTTP PUT.
+Webové rozhraní API také vybírá akce na základě metody HTTP požadavku (GET, POST atd.). Ve výchozím nastavení webové rozhraní API hledá shodu bez rozlišování velkých a malých písmen se začátkem názvu metody řadiče. Například metoda řadiče `PutCustomers` s názvem odpovídá požadavku HTTP PUT.
 
-Tuto konvenci můžete přepsat tak, že upravení metodu s následujícími atributy:
+Tuto konvenci můžete přepsat zdobením metody následujícími atributy:
 
 - **[HttpDelete]**
-- **HttpGet**
-- **[HttpHead]**
+- **[HttpGet]**
+- **To je v pořádku.**
 - **[HttpOptions]**
 - **[HttpPatch]**
-- **HTTPPOST**
+- **[HttpPost]**
 - **[HttpPut]**
 
 Následující příklad mapuje metodu CreateBook na požadavky HTTP POST.
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample8.cs)]
 
-Pro všechny ostatní metody HTTP, včetně nestandardních metod, použijte atribut **AcceptVerbs** , který převezme seznam metod http.
+Pro všechny ostatní metody HTTP, včetně nestandardních metod, použijte atribut **AcceptVerbs,** který přebírá seznam metod HTTP.
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample9.cs)]
 
 <a id="prefixes"></a>
-## <a name="route-prefixes"></a>Předpony tras
+## <a name="route-prefixes"></a>Předpony trasy
 
-Trasy v řadiči jsou často spouštěny se stejnou předponou. Příklad:
+Trasy v kontroleru často začínají stejnou předponou. Příklad:
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample10.cs)]
 
-Společnou předponu pro celý kontroler můžete nastavit pomocí atributu **[RoutePrefix]** :
+Běžnou předponu pro celý řadič můžete nastavit pomocí atributu **[RoutePrefix]:**
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample11.cs)]
 
-K přepsání předpony trasy použijte vlnovku (~) na atributu method:
+K přepsání předpony trasy použijte vlnovku (~) v atributu metody:
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample12.cs)]
 
-Předpona trasy může zahrnovat parametry:
+Předpona trasy může obsahovat parametry:
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample13.cs)]
 
 <a id="constraints"></a>
-## <a name="route-constraints"></a>Omezení trasy
+## <a name="route-constraints"></a>Omezení postupu
 
-Omezení tras vám umožňují omezit způsob párování parametrů v šabloně směrování. Obecná syntaxe je &quot;{Parameter: Constraint}&quot;. Příklad:
+Omezení trasy umožňují omezit způsob, jakým jsou parametry v šabloně trasy spárovány. Obecná syntaxe &quot;je {parameter:constraint}&quot;. Příklad:
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample14.cs)]
 
-V tomto případě se první trasa vybere jenom v případě, že ID &quot;&quot; segmentu identifikátoru URI je celé číslo. V opačném případě bude zvolena Druhá trasa.
+Zde bude vybrána první trasa &quot;pouze&quot; v případě, že segment id identifikátoru URI je celé číslo. V opačném případě bude zvolena druhá trasa.
 
 V následující tabulce jsou uvedena omezení, která jsou podporována.
 
-| Jedinečn | Popis | Příklad |
+| Omezení | Popis | Příklad |
 | --- | --- | --- |
-| Rozšířená | Odpovídá znakům na velká a malá písmena latinky (a – z, A – Z). | {x:alpha} |
+| alpha | Odpovídá velkým nebo velkým písmenům latinky (a-z, A-Z) | {x:alfa} |
 | bool | Odpovídá logické hodnotě. | {x:bool} |
-| datetime | Odpovídá hodnotě **DateTime** . | {x:datetime} |
-| decimal | Odpovídá desítkové hodnotě. | {x:decimal} |
-| double | Odpovídá hodnotě 64, což je hodnota s plovoucí desetinnou čárkou. | {x:double} |
-| float | Odpovídá hodnotě 32, což je hodnota s plovoucí desetinnou čárkou. | {x:float} |
-| guid | Odpovídá hodnotě identifikátoru GUID. | {x:guid} |
-| int | Vyhledá shodu s celočíselnou hodnotou 32. | {x:int} |
-| length | Odpovídá řetězci se zadanou délkou nebo v zadaném rozsahu délek. | {x:Length (6)} {x:Length (1; 20)} |
-| long | Vyhledá shodu s celočíselnou hodnotou 64. | {x:long} |
-| max | Odpovídá celému číslu s maximální hodnotou. | {x:max (10)} |
-| MaxLength | Odpovídá řetězci s maximální délkou. | {x:MaxLength (10)} |
-| min | Odpovídá celému číslu s minimální hodnotou. | {x:min (10)} |
-| minLength | Odpovídá řetězci s minimální délkou. | {x:minLength (10)} |
-| range | Odpovídá celému číslu v rámci rozsahu hodnot. | {x:Range (10, 50)} |
-| regulární | Odpovídá regulárnímu výrazu. | {x:Regex (^ \d{3}-\d{3}-\d{4}$)} |
+| datetime | Odpovídá hodnotě **DateTime.** | {x:datetime} |
+| decimal | Odpovídá desítkové hodnotě. | {x:desítkové} |
+| double | Odpovídá 64bitové hodnotě s plovoucí desetinnou tácek. | {x:double} |
+| float | Odpovídá 32bitové hodnotě s plovoucí desetinnou hodnotou. | {x:float} |
+| Identifikátor guid | Odpovídá hodnotě GUID. | {x:guid} |
+| int | Odpovídá 32bitové celočíselné hodnotě. | {x:int} |
+| length | Odpovídá řetězci se zadanou délkou nebo v zadaném rozsahu délek. | {x:délka(6)} {x:délka (1,20)} |
+| long | Odpovídá 64bitové celočíselné hodnotě. | {x:long} |
+| max | Odpovídá celé číslo s maximální hodnotou. | {x:max(10)} |
+| Maxlength | Odpovídá řetězci s maximální délkou. | {x:maxlength(10)} |
+| min | Odpovídá celé číslo s minimální hodnotou. | {x:min(10)} |
+| Minlength | Odpovídá řetězci s minimální délkou. | {x:minlength(10)} |
+| range | Odpovídá celé číslo v rozsahu hodnot. | {x:rozsah (10,50)} |
+| Regex | Odpovídá regulárnímu výrazu. | {x:regex(^\d{3}-\d{3}-\d{4}_)} |
 
-Všimněte si, že některá omezení, například &quot;minimální&quot;, přijímají argumenty v závorkách. U parametru můžete použít více omezení oddělených dvojtečkou.
+Všimněte si, že některá &quot;omezení, například min&quot;, přijmout argumenty v závorce. Na parametr oddělený dvojtečkou můžete použít více omezení.
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample15.cs)]
 
-### <a name="custom-route-constraints"></a>Vlastní omezení trasy
+### <a name="custom-route-constraints"></a>Vlastní omezení postupu
 
-Můžete vytvořit vlastní omezení trasy implementací rozhraní **IHttpRouteConstraint** . Například následující omezení omezuje parametr na celočíselnou hodnotu, která není nulová.
+Vlastní omezení trasy můžete vytvořit implementací rozhraní **IHttpRouteConstraint.** Například následující omezení omezuje parametr na nenulovou celočíselnou hodnotu.
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample16.cs)]
 
-Následující kód ukazuje, jak toto omezení zaregistrovat:
+Následující kód ukazuje, jak zaregistrovat omezení:
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample17.cs)]
 
-Nyní můžete omezení použít ve svých trasách:
+Nyní můžete použít omezení ve svých trasách:
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample18.cs)]
 
-Můžete také nahradit celou třídu **DefaultInlineConstraintResolver** implementací rozhraní **IInlineConstraintResolver** . Tím se nahradí všechna předdefinovaná omezení, pokud vaše implementace **IInlineConstraintResolver** konkrétně nepřidá.
+Můžete také nahradit celou třídu **DefaultInlineConstraintResolver** implementací rozhraní **IInlineConstraintResolver.** Tím nahradí všechny předdefinované omezení, pokud implementace **IInlineConstraintResolver** konkrétně přidá je.
 
 <a id="optional"></a>
 ## <a name="optional-uri-parameters-and-default-values"></a>Volitelné parametry identifikátoru URI a výchozí hodnoty
 
-Parametr URI můžete nastavit jako volitelný přidáním otazníku do parametru Route. Pokud je parametr trasy volitelný, je nutné definovat výchozí hodnotu parametru metody.
+Parametr URI můžete provést jako volitelný přidáním otazníku k parametru trasy. Pokud je parametr trasy volitelný, musíte definovat výchozí hodnotu parametru metody.
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample19.cs)]
 
-V tomto příkladu `/api/books/locale/1033` a `/api/books/locale` vrací stejný prostředek.
+V tomto `/api/books/locale/1033` příkladu a `/api/books/locale` vrátit stejný prostředek.
 
-Případně můžete zadat výchozí hodnotu v rámci šablony trasy následujícím způsobem:
+Alternativně můžete zadat výchozí hodnotu uvnitř šablony trasy takto:
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample20.cs)]
 
-To je skoro stejné jako v předchozím příkladu, ale existuje mírné rozdíly v chování při použití výchozí hodnoty.
+To je téměř stejný jako v předchozím příkladu, ale je mírný rozdíl chování při použití výchozí hodnoty.
 
-- V prvním příkladu ("{LCID: int?}") je výchozí hodnota 1033 přiřazena přímo k parametru metody, takže parametr bude mít tuto přesnou hodnotu.
-- V druhém příkladu ("{LCID: int = 1033}") je výchozí hodnota "1033" prostřednictvím procesu vytváření vazby modelu. Výchozí model-Binder převede "1033" na číselnou hodnotu 1033. Mohli byste se ale připojit k vlastnímu pořadači modelů, který může dělat něco jiného.
+- V prvním příkladu ("{lcid:int?}"), výchozí hodnota 1033 je přiřazena přímo parametru metody, takže parametr bude mít tuto přesnou hodnotu.
+- V druhém příkladu ("{lcid:int=1033}) prochází výchozí hodnota "1033" procesem vazby modelu. Výchozí pořadač modelu převede "1033" na číselnou hodnotu 1033. Můžete však připojit vlastní pořadač modelu, který by mohl udělat něco jiného.
 
-(Ve většině případů platí, že pokud ve vašem kanálu nemáte vlastní pořadače modelů, budou tyto dva formuláře ekvivalentní.)
+(Ve většině případů, pokud nemáte vlastní model pořadače v kanálu, dva formuláře budou ekvivalentní.)
 
 <a id="route-names"></a>
 ## <a name="route-names"></a>Názvy tras
 
-Ve webovém rozhraní API má každá trasa název. Názvy tras jsou užitečné pro generování odkazů, abyste mohli zahrnout odkaz do odpovědi HTTP.
+Ve webovém rozhraní API má každá trasa název. Názvy tras jsou užitečné pro generování propojení, takže můžete zahrnout odkaz do odpovědi HTTP.
 
-Chcete-li zadat název trasy, nastavte vlastnost **název** u atributu. Následující příklad ukazuje, jak nastavit název trasy a také jak použít název trasy při generování propojení.
+Chcete-li zadat název trasy, nastavte vlastnost **Name** u atributu. Následující příklad ukazuje, jak nastavit název trasy a také jak použít název trasy při generování propojení.
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample21.cs)]
 
 <a id="order"></a>
-## <a name="route-order"></a>Pořadí směrování
+## <a name="route-order"></a>Pořadí postupu
 
-Když se architektura pokusí vyhledat identifikátor URI s trasou, vyhodnotí trasy v určitém pořadí. Chcete-li zadat pořadí, nastavte vlastnost **Order** v atributu Route. Nižší hodnoty jsou vyhodnocovány jako první. Výchozí hodnota pořadí je nula.
+Když se rozhraní pokusí porovnat identifikátor URI s postupem, vyhodnotí trasy v určitém pořadí. Chcete-li zadat pořadí, nastavte vlastnost **Order** v atributu trasy. Nižší hodnoty jsou vyhodnoceny jako první. Výchozí hodnota objednávky je nula.
 
-Tady je způsob, jakým je stanoveno celkové řazení:
+Zde je, jak je určeno celkové pořadí:
 
-1. Porovnejte vlastnost **Order** atributu Route.
-2. Podívejte se na každý segment identifikátoru URI v šabloně trasy. Pro každý segment seřazením následujícím způsobem:
+1. Porovnejte **vlastnost Order** atributu route.
+2. Podívejte se na každý segment identifikátoru URI v šabloně trasy. Pro každý segment postupujte takto:
 
-    1. Segmenty literálu.
-    2. Parametry směrování s omezeními.
+    1. Doslovné segmenty.
+    2. Parametry trasy s omezeními.
     3. Parametry trasy bez omezení.
-    4. Segmenty parametrů se zástupnými znaky s omezeními.
-    5. Segmenty parametrů zástupného znaku bez omezení.
-3. V případě propojení se trasy seřadí podle ordinálního porovnávání řetězců bez rozlišení velkých a malých písmen ([OrdinalIgnoreCase](https://msdn.microsoft.com/library/system.stringcomparer.ordinalignorecase.aspx)) šablony trasy.
+    4. Segmenty parametrů zástupných symbolů s vazbami.
+    5. Segmenty parametrů se zástupnými symboly bez omezení.
+3. V případě nerozhodného spojení jsou trasy seřazeny podle porovnání ordinálních řetězců bez rozlišování velkých a malých písmen ([OrdinalIgnoreCase](https://msdn.microsoft.com/library/system.stringcomparer.ordinalignorecase.aspx)) šablony trasy.
 
-Tady je příklad. Předpokládejme, že definujete následující kontroler:
+Zde je příklad. Předpokládejme, že definujete následující řadič:
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample22.cs)]
 
-Tyto trasy jsou seřazené následujícím způsobem.
+Tyto trasy jsou seřazeny následujícím způsobem.
 
 1. objednávky/podrobnosti
-2. objednávky/{ID}
-3. objednávky/{Customer}
+2. objednávky/{id}
+3. objednávky/{customerName}
 4. objednávky/{\*datum}
-5. objednávky/čeká na vyřízení
+5. objednávky/nevyřízené
 
-Všimněte si, že "Details" je segment literálu a zobrazí se před "{ID}", ale "čeká" se zobrazí jako poslední, protože vlastnost **Order** je 1. (Tento příklad předpokládá, že nejsou k dispozici žádní zákazníci s názvem "Details" nebo "pending". Obecně se pokuste vyhnout dvojznačným trasám. V tomto příkladu je lepší šablonou směrování pro `GetByCustomer` "Customers/{Customer}").
+Všimněte si, že "podrobnosti" je doslovný segment a zobrazí se před "{id}", ale "čekající" se zobrazí jako poslední, protože **Order** vlastnost je 1. (Tento příklad předpokládá, že neexistují žádní zákazníci s názvem "podrobnosti" nebo "čeká na vyřízení". Obecně se snažte vyhnout nejednoznačným trasami. V tomto příkladu `GetByCustomer` je lepší šablonou postupu "customers/{customerName}" )

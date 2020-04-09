@@ -1,8 +1,8 @@
 ---
 uid: signalr/overview/getting-started/tutorial-server-broadcast-with-signalr
-title: 'Kurz: všesměrové vysílání serveru pomocí návěstí 2 | Microsoft Docs'
+title: 'Výuka: Vysílání serveru s SignalR 2 | Dokumenty společnosti Microsoft'
 author: tdykstra
-description: V tomto kurzu se dozvíte, jak vytvořit webovou aplikaci, která používá ASP.NET Signal 2 k poskytování funkcí všesměrového vysílání serveru.
+description: Tento kurz ukazuje, jak vytvořit webovou aplikaci, která používá ASP.NET SignalR 2 poskytovat funkce vysílání serveru.
 ms.author: bradyg
 ms.date: 01/02/2019
 ms.topic: tutorial
@@ -10,493 +10,493 @@ ms.assetid: 1568247f-60b5-4eca-96e0-e661fbb2b273
 msc.legacyurl: /signalr/overview/getting-started/tutorial-server-broadcast-with-signalr
 msc.type: authoredcontent
 ms.openlocfilehash: 14924109fff8db3e537e6bc08b6dc868792ee660
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78536601"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80676095"
 ---
-# <a name="tutorial-server-broadcast-with-signalr-2"></a>Kurz: všesměrové vysílání serveru pomocí Signaler 2
+# <a name="tutorial-server-broadcast-with-signalr-2"></a>Výuka: Vysílání serveru se signálem2
 
 [!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
-V tomto kurzu se dozvíte, jak vytvořit webovou aplikaci, která používá ASP.NET Signal 2 k poskytování funkcí všesměrového vysílání serveru. Všesměrové vysílání serveru znamená, že server spouští komunikaci odesílaná klientům.
+Tento kurz ukazuje, jak vytvořit webovou aplikaci, která používá ASP.NET SignalR 2 poskytovat funkce vysílání serveru. Vysílání serveru znamená, že server spustí komunikaci odeslanou klientům.
 
-Aplikace, kterou vytvoříte v tomto kurzu, simuluje burzovní, což je typický scénář pro funkce všesměrového vysílání serveru. Server pravidelně aktualizuje skladové ceny a vysílá aktualizace všem připojeným klientům. V prohlížeči se čísla a symboly ve sloupcích **změnit** a **%** dynamicky mění v reakci na oznámení ze serveru. Pokud otevřete další prohlížeče na stejné adrese URL, všechny zobrazí stejná data a stejné změny dat současně.
+Aplikace, kterou vytvoříte v tomto kurzu simuluje burzovní burzovní burzovní, typický scénář pro funkce vysílání serveru. Server pravidelně náhodně aktualizuje ceny akcií a vysílá aktualizace všem připojeným klientům. V prohlížeči se čísla a symboly v **change** a **%** sloupcích dynamicky mění v reakci na oznámení ze serveru. Pokud otevřete další prohlížeče na stejnou adresu URL, zobrazí se všechna stejná data a stejné změny dat současně.
 
-![Vytvoření webu](tutorial-server-broadcast-with-signalr/_static/image1.png)
+![Vytvořit web](tutorial-server-broadcast-with-signalr/_static/image1.png)
 
-V tomto kurzu se naučíte:
+V tomto kurzu jste:
 
 > [!div class="checklist"]
 > * Vytvoření projektu
-> * Nastavení serverového kódu
-> * Kontrola kódu serveru
+> * Nastavení kódu serveru
+> * Zkontrolujte kód serveru
 > * Nastavení kódu klienta
-> * Projděte si kód klienta.
+> * Zkontrolujte kód klienta
 > * Testování aplikace
-> * Povolte protokolování
+> * Povolit protokolování
 
 > [!IMPORTANT]
-> Pokud nechcete s postupem sestavování aplikace pracovat, můžete do nového prázdného projektu webové aplikace ASP.NET nainstalovat Signal. ukázkový balíček. Pokud nainstalujete balíček NuGet bez provedení kroků v tomto kurzu, musíte postupovat podle pokynů v souboru *Readme. txt* . Chcete-li spustit balíček, je třeba přidat třídu pro spuštění OWIN, která volá metodu `ConfigureSignalR` v nainstalovaném balíčku. Pokud nepřidáte třídu Startup OWIN, zobrazí se chybová zpráva. Viz část [instalace ukázky StockTicker](#install-the-stockticker-sample) tohoto článku.
+> Pokud nechcete pracovat přes kroky vytváření aplikace, můžete nainstalovat SignalR.Sample balíček v novém projektu Prázdné ASP.NET webová aplikace. Pokud nainstalujete balíček NuGet bez provedení kroků v tomto kurzu, je nutné postupovat podle pokynů v souboru *readme.txt.* Chcete-li spustit balíček, musíte přidat spouštěcí `ConfigureSignalR` třídu OWIN, která volá metodu v nainstalovaném balíčku. Pokud nepřidáte spouštěcí třídu OWIN, zobrazí se chyba. Viz [instalace ukázkové části StockTicker](#install-the-stockticker-sample) v tomto článku.
 
-## <a name="prerequisites"></a>Předpoklady
+## <a name="prerequisites"></a>Požadavky
 
 * Sada [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/) se sadou funkcí **Vývoj pro ASP.NET a web**.
 
 ## <a name="create-the-project"></a>Vytvoření projektu
 
-V této části se dozvíte, jak použít Visual Studio 2017 k vytvoření prázdné webové aplikace v ASP.NET.
+Tato část ukazuje, jak pomocí sady Visual Studio 2017 vytvořit prázdnou ASP.NET webovou aplikaci.
 
-1. V aplikaci Visual Studio vytvořte webovou aplikaci v ASP.NET.
+1. V sadě Visual Studio vytvořte ASP.NET webovou aplikaci.
 
-    ![Vytvoření webu](tutorial-server-broadcast-with-signalr/_static/image2.png)
+    ![Vytvořit web](tutorial-server-broadcast-with-signalr/_static/image2.png)
 
-1. V okně **Nová webová aplikace v ASP.NET – signaler. StockTicker** ponechte vybrané **prázdné** a vyberte **OK**.
+1. V okně **Nová ASP.NET webová aplikace - SignalR.StockTicker** ponechejte **prázdné** vybrané a vyberte **OK**.
 
-## <a name="set-up-the-server-code"></a>Nastavení serverového kódu
+## <a name="set-up-the-server-code"></a>Nastavení kódu serveru
 
 V této části nastavíte kód, který běží na serveru.
 
-### <a name="create-the-stock-class"></a>Vytvoření třídy akcie
+### <a name="create-the-stock-class"></a>Vytvoření třídy Stock
 
-Začnete vytvořením třídy *burzovního* modelu, kterou použijete k ukládání a přenosu informací o zásobách.
+Začnete vytvořením třídy *stock* modelu, kterou použijete k ukládání a přenosu informací o akciích.
 
-1. V **Průzkumník řešení**klikněte pravým tlačítkem myši na projekt a vyberte **Přidat** > **třídu**.
+1. V **Průzkumníku řešení**klepněte pravým tlačítkem myši na projekt a vyberte **přidat** > **třídu**.
 
 1. Pojmenujte třídu *Stock* a přidejte ji do projektu.
 
-1. Nahraďte kód v souboru *Stock.cs* tímto kódem:
+1. Nahraďte kód v *souboru Stock.cs* tímto kódem:
 
     [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample1.cs)]
 
-    Dvě vlastnosti, které nastavíte při vytváření akcií, jsou `Symbol` (například MSFT pro Microsoft) a `Price`. Ostatní vlastnosti závisí na tom, jak a kdy jste nastavili `Price`. Při prvním nastavení `Price`se hodnota rozšíří na `DayOpen`. Po nastavení `Price`aplikace vypočítá hodnoty vlastností `Change` a `PercentChange` na základě rozdílu mezi `Price` a `DayOpen`.
+    Dvě vlastnosti, které nastavíte při `Symbol` vytváření akcií, jsou (například `Price`MSFT pro Microsoft) a . Ostatní vlastnosti závisí na tom, jak a kdy nastavíte `Price`. Při prvním nastavení `Price`se hodnota rozšíří na `DayOpen`. `Price`Poté, když nastavíte , aplikace `Change` `PercentChange` vypočítá hodnoty vlastností `Price` a `DayOpen`na základě rozdílu mezi a .
 
 ### <a name="create-the-stocktickerhub-and-stockticker-classes"></a>Vytvoření tříd StockTickerHub a StockTicker
 
-K řízení interakce mezi klientem a serverem použijete rozhraní API centra signalizace. Třída `StockTickerHub`, která je odvozena od `Hub` Signal třídy, bude zpracovávat přijímání připojení a volání metod od klientů. Také je nutné zachovat skladová data a spustit objekt `Timer`. Objekt `Timer` bude pravidelně spouštět cenové aktualizace nezávisle na připojeních klienta. Tyto funkce nemůžete umístit do `Hub` třídy, protože rozbočovače jsou přechodné. Aplikace vytvoří instanci `Hub` třídy pro každý úkol v centru, jako třeba připojení a volání z klienta na server. Proto mechanismus, který udržuje skladová data, aktualizuje ceny a vysílá, je nutné, aby ceny aktualizací běžely v samostatné třídě. Pojmenujte třídu `StockTicker`.
+K zpracování interakce mezi serverem a klientem budete používat rozhraní API hubu SignalR. Třída, `StockTickerHub` která je odvozena `Hub` od třídy SignalR bude zpracovávat přijímající připojení a volání metod z klientů. Je také nutné udržovat data `Timer` zásob a spustit objekt. Objekt `Timer` bude pravidelně spouštět aktualizace cen nezávisle na připojení klientů. Tyto funkce nelze umístit do `Hub` třídy, protože centra jsou přechodné. Aplikace vytvoří `Hub` instanci třídy pro každou úlohu v rozbočovači, jako jsou připojení a volání z klienta na server. Takže mechanismus, který uchovává data o akciích, aktualizuje ceny a vysílá aktualizace cen, musí být spuštěn v samostatné třídě. Pojmenujete třídu `StockTicker`.
 
-![Všesměrové vysílání z StockTicker](tutorial-server-broadcast-with-signalr/_static/image3.png)
+![Vysílání z StockTicker](tutorial-server-broadcast-with-signalr/_static/image3.png)
 
-Přejete si, aby na serveru běžela jenom jedna instance `StockTicker` třídy, takže budete muset nastavit odkaz z každé instance `StockTickerHub` na instanci `StockTicker` typu singleton. Třída `StockTicker` musí vysílat klientům, protože má uložená data a triggery, ale `StockTicker` není třída `Hub`. Třída `StockTicker` musí získat odkaz na objekt kontextu připojení centra signalizace. Pak může pomocí objektu kontextu připojení vysílače vysílat klientům.
+Chcete spustit pouze jednu instanci `StockTicker` třídy na serveru, takže budete muset `StockTickerHub` nastavit odkaz z `StockTicker` každé instance na instanci singleton. Třída `StockTicker` musí vysílat klientům, protože má skladová data `StockTicker` a aktivuje `Hub` aktualizace, ale není třída. Třída `StockTicker` musí získat odkaz na objekt kontextu připojení signalr hub. Potom můžete použít objekt kontextu připojení SignalR k vysílání klientům.
 
 #### <a name="create-stocktickerhubcs"></a>Vytvořit StockTickerHub.cs
 
-1. V **Průzkumník řešení**klikněte pravým tlačítkem myši na projekt a vyberte **Přidat** > **Nová položka**.
+1. V **Průzkumníku řešení**klepněte pravým tlačítkem myši na projekt a vyberte **přidat** > **novou položku**.
 
-1. V **položce Přidat novou položku-Signal. StockTicker**vyberte **Installed** > **Visual C#**  > **Web** > **signaler** a pak vyberte **Třída centra signalizace (v2)** .
+1. V **přidejte novou položku - SignalR.StockTicker**vyberte **nainstalovaný** > **vizuální C#** > **Web** > **SignalR** a pak vyberte **Třída rozbočovače SignalR (v2)**.
 
 1. Pojmenujte třídu *StockTickerHub* a přidejte ji do projektu.
 
-    Tento krok vytvoří soubor třídy *StockTickerHub.cs* . Současně přidá sadu souborů skriptu a odkazy na sestavení, které podporuje signalizaci do projektu.
+    Tento krok vytvoří soubor *třídy StockTickerHub.cs.* Současně přidá sadu souborů skriptů a odkazy na sestavení, které podporují SignalR do projektu.
 
-1. Nahraďte kód v souboru *StockTickerHub.cs* tímto kódem:
+1. Nahraďte kód v *souboru StockTickerHub.cs* tímto kódem:
 
     [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample2.cs)]
 
 1. Uložte soubor.
 
-Aplikace používá třídu [centra](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.hub(v=vs.111).aspx) k definování metod, které mohou klienti volat na serveru. Definujete jednu metodu: `GetAllStocks()`. Když se klient poprvé připojí k serveru, zavolá tuto metodu, aby získal seznam všech populací s jejich aktuálními cenami. Metoda může běžet synchronně a vracet `IEnumerable<Stock>`, protože vrací data z paměti.
+Aplikace používá třídu [Hub](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.hub(v=vs.111).aspx) k definování metod, které mohou klienti volat na serveru. Definujete jednu metodu: `GetAllStocks()`. Když se klient zpočátku připojí k serveru, zavolá tuto metodu, aby získal seznam všech akcií s aktuálními cenami. Metoda může být spuštěna synchronně a vrátit, `IEnumerable<Stock>` protože vrací data z paměti.
 
-Pokud metoda musela získat data pomocí něčeho, co by vyžadovala čekání, jako je vyhledávání databáze nebo volání webové služby, zadejte `Task<IEnumerable<Stock>>` jako návratovou hodnotu pro povolení asynchronního zpracování. Další informace najdete v tématu [Průvodce rozhraním API pro centra ASP.NET signálu – Server – kdy se má provést asynchronní spuštění](../guide-to-the-api/hubs-api-guide-server.md#asyncmethods).
+Pokud metoda měla získat data tím, že dělá něco, co by znamenalo čekání, jako `Task<IEnumerable<Stock>>` je vyhledávání databáze nebo volání webové služby, byste zadat jako vrácenou hodnotu povolit asynchronní zpracování. Další informace naleznete [v tématu ASP.NET SignalR Hubs API Guide - Server - Při spuštění asynchronně](../guide-to-the-api/hubs-api-guide-server.md#asyncmethods).
 
-Atribut `HubName` určuje, jak bude aplikace odkazovat na centrum v kódu JavaScriptu na klientovi. Výchozí název v klientovi Pokud tento atribut nepoužíváte, je camelCase verze názvu třídy, který v tomto případě by byl `stockTickerHub`.
+Atribut `HubName` určuje, jak bude aplikace odkazovat na hub v kódu JavaScriptu na straně klienta. Výchozí název na straně klienta, pokud tento atribut nepoužíváte, je camelCase verze názvu `stockTickerHub`třídy, která by v tomto případě byla .
 
-Jak uvidíte později při vytváření `StockTicker` třídy, aplikace vytvoří instanci typu Singleton této třídy ve své statické vlastnosti `Instance`. Tato instance typu Singleton `StockTicker` je v paměti bez ohledu na počet klientů, kteří se připojují nebo odpojí. Tato instance je to, co metoda `GetAllStocks()` používá k vrácení aktuálních informací o zásobách.
+Jak uvidíte později při `StockTicker` vytváření třídy, aplikace vytvoří singleton instanci této třídy v jeho statické `Instance` vlastnosti. Tato instance singleton `StockTicker` je v paměti bez ohledu na to, kolik klientů se připojí nebo odpojí. Tato instance je `GetAllStocks()` to, co metoda používá k vrácení aktuální informace o zásobách.
 
-#### <a name="create-stocktickercs"></a>Create StockTicker.cs
+#### <a name="create-stocktickercs"></a>Vytvořit StockTicker.cs
 
-1. V **Průzkumník řešení**klikněte pravým tlačítkem myši na projekt a vyberte **Přidat** > **třídu**.
+1. V **Průzkumníku řešení**klepněte pravým tlačítkem myši na projekt a vyberte **přidat** > **třídu**.
 
 1. Pojmenujte třídu *StockTicker* a přidejte ji do projektu.
 
-1. Nahraďte kód v souboru *StockTicker.cs* tímto kódem:
+1. Nahraďte kód v *souboru StockTicker.cs* tímto kódem:
 
     [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample3.cs)]
 
-Vzhledem k tomu, že všechna vlákna budou spouštět stejnou instanci StockTicker kódu, musí být třída StockTicker bezpečná pro přístup z více vláken.
+Vzhledem k tomu, že všechna vlákna budou spuštěna ve stejné instanci kódu StockTicker, musí být třída StockTicker bezpečná pro přístup z více vláken.
 
-### <a name="examine-the-server-code"></a>Kontrola kódu serveru
+### <a name="examine-the-server-code"></a>Zkontrolujte kód serveru
 
-Pokud prohlížíte kód serveru, pomůže vám pochopit, jak aplikace funguje.
+Pokud zkontrolujete kód serveru, pomůže vám to pochopit, jak aplikace funguje.
 
-#### <a name="storing-the-singleton-instance-in-a-static-field"></a>Ukládání instance singleton do statického pole
+#### <a name="storing-the-singleton-instance-in-a-static-field"></a>Uložení instance singletonu do statického pole
 
-Kód inicializuje pole static `_instance`, které vrátí vlastnost `Instance` s instancí třídy. Vzhledem k tomu, že konstruktor je privátní, je jedinou instancí třídy, kterou může aplikace vytvořit. Aplikace používá [opožděnou inicializaci](/dotnet/framework/performance/lazy-initialization) pro pole `_instance`. Není z důvodů výkonu. Je potřeba se ujistit, že vytváření instancí je bezpečné pro přístup z více vláken.
+Kód inicializuje statické `_instance` pole, které `Instance` podporuje vlastnost s instancí třídy. Protože konstruktor je soukromý, je to jediná instance třídy, kterou může aplikace vytvořit. Aplikace používá [opožděné inicializace](/dotnet/framework/performance/lazy-initialization) pro `_instance` pole. Není to z důvodů výkonu. Je to ujistěte se, že vytvoření instance je bezpečné pro přístup z více vláken.
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample4.cs)]
 
-Pokaždé, když se klient připojí k serveru, nová instance třídy StockTickerHub spuštěné v samostatném vlákně získá instanci StockTicker singleton z vlastnosti `StockTicker.Instance` static, jak jste viděli dříve ve třídě `StockTickerHub`.
+Pokaždé, když se klient připojí k serveru, nová instance třídy StockTickerHub spuštěné v samostatném `StockTicker.Instance` vlákně získá instanci `StockTickerHub` singleton StockTicker ze statické vlastnosti, jak jste viděli dříve ve třídě.
 
-#### <a name="storing-stock-data-in-a-concurrentdictionary"></a>Ukládání uložených dat v ConcurrentDictionary
+#### <a name="storing-stock-data-in-a-concurrentdictionary"></a>Ukládání skladových dat v concurrentdictionary
 
-Konstruktor inicializuje kolekci `_stocks` s některými ukázkovými datovými daty a `GetAllStocks` vrátí tyto akcie. Jak bylo uvedeno dříve, tato kolekce populací je vrácena `StockTickerHub.GetAllStocks`, což je metoda serveru ve třídě `Hub`, kterou mohou klienti volat.
+Konstruktor inicializuje `_stocks` kolekci s některými `GetAllStocks` ukázkovými skladovými daty a vrátí zásoby. Jak jste viděli dříve, tato kolekce `StockTickerHub.GetAllStocks`zásob je vrácena `Hub` , což je serverová metoda ve třídě, kterou mohou klienti volat.
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample5.cs)]
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample6.cs)]
 
-Kolekce akcie je definována jako [ConcurrentDictionary](https://msdn.microsoft.com/library/dd287191.aspx) typ pro bezpečnost vlákna. Jako alternativu můžete použít objekt [Dictionary](https://msdn.microsoft.com/library/xfhwa508.aspx) a explicitně zamknout slovník při provádění změn v něm.
+Kolekce zásob je definována jako [concurrentdictionary](https://msdn.microsoft.com/library/dd287191.aspx) typ pro bezpečnost podprocesu. Jako alternativu můžete použít [Dictionary](https://msdn.microsoft.com/library/xfhwa508.aspx) objekt a explicitně zamknout slovník při provádění změn v něm.
 
-Pro tuto ukázkovou aplikaci je to v pořádku, pokud ukládáte data aplikace do paměti a ztratíte data, když aplikace odstraní instanci `StockTicker`. V reálné aplikaci byste měli pracovat s back-end datovým úložištěm, jako je databáze.
+Pro tuto ukázkovou aplikaci je v pořádku ukládat data aplikace do paměti `StockTicker` a ztratit data, když aplikace nakládá s instancí. V reálné aplikaci byste pracovat s úložiště dat back-end jako databáze.
 
 #### <a name="periodically-updating-stock-prices"></a>Pravidelná aktualizace cen akcií
 
-Konstruktor spustí objekt `Timer`, který pravidelně volá metody, které aktualizují skladové ceny náhodným základem.
+Konstruktor spustí `Timer` objekt, který pravidelně volá metody, které aktualizují ceny akcií nanáhodném základě.
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample7.cs)]
 
- `Timer` volá `UpdateStockPrices`, která předá hodnotu null v parametru State. Před aktualizací cen aplikace převezme zámek na objekt `_updateStockPricesLock`. Kód zkontroluje, jestli už jiný podproces aktualizuje ceny, a pak na každý Sklad v seznamu zavolá `TryUpdateStockPrice`. `TryUpdateStockPrice` metoda rozhoduje o tom, jestli se má změnit cena akcií, a kolik se má změnit. Pokud se změní cena akcií, aplikace zavolá `BroadcastStockPrice`, aby vysílaly na všech připojených klientech změnu ceny akcií.
+ `Timer`volání `UpdateStockPrices`, která předává hodnotu null v parametru stavu. Před aktualizací cen aplikace zamyká `_updateStockPricesLock` objekt. Kód zkontroluje, zda jiné vlákno již aktualizuje `TryUpdateStockPrice` ceny a pak volá na každé zásoby v seznamu. Metoda `TryUpdateStockPrice` rozhodne, zda změnit cenu akcií, a kolik ji změnit. Pokud se cena akcií změní, aplikace zavolá `BroadcastStockPrice` k vysílání změny ceny akcií všem připojeným klientům.
 
-Příznak `_updatingStockPrices` označený jako [volatile](https://msdn.microsoft.com/library/x13ttww7.aspx) , aby se zajistilo, že je bezpečný pro přístup z více vláken.
+Příznak `_updatingStockPrices` označený [volatile,](https://msdn.microsoft.com/library/x13ttww7.aspx) aby se ujistil, že je bezpečný pro přístup z více vláken.
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample8.cs)]
 
-V reálné aplikaci by metoda `TryUpdateStockPrice` zavolala webovou službu, aby vyhledala cenu. V tomto kódu aplikace používá generátor náhodných čísel k náhodnému provedení změn.
+V reálné aplikaci `TryUpdateStockPrice` by metoda volala webovou službu, aby vyhledává cenu. V tomto kódu aplikace používá generátor náhodných čísel k náhodným změnám.
 
-#### <a name="getting-the-signalr-context-so-that-the-stockticker-class-can-broadcast-to-clients"></a>Získání kontextu signálu, aby třída StockTicker mohla vysílat klientům
+#### <a name="getting-the-signalr-context-so-that-the-stockticker-class-can-broadcast-to-clients"></a>Získání kontextu SignalR tak, aby třída StockTicker může vysílat klientům
 
-Vzhledem k tomu, že změny ceny pocházejí zde v objektu `StockTicker`, je objekt, který musí volat metodu `updateStockPrice` na všech připojených klientech. Ve třídě `Hub` máte rozhraní API pro volání metod klienta, ale `StockTicker` nejsou odvozeny od třídy `Hub` a nemají odkaz na žádný objekt `Hub`. Pro všesměrové vysílání pro připojené klienty musí třída `StockTicker` získat kontextovou instanci signálu pro `StockTickerHub` třídu a použít ji pro volání metod v klientech.
+Vzhledem k tomu, že `StockTicker` změny cen pocházejí zde v objektu, je to objekt, který potřebuje volat metodu `updateStockPrice` na všechny připojené klienty. Ve `Hub` třídě máte rozhraní API pro volání `StockTicker` klientských metod, `Hub` ale není odvozeno z třídy a nemá odkaz na žádný `Hub` objekt. Chcete-li vysílat do `StockTicker` připojených klientů, třída musí `StockTickerHub` získat instance kontextu SignalR pro třídu a použít ji k volání metod na klienty.
 
-Kód získá odkaz na kontext signalizace při vytvoření instance třídy singleton, předá tento odkaz na konstruktor a konstruktor ho vloží do vlastnosti `Clients`.
+Kód získá odkaz na kontext SignalR při vytvoření instance třídy singleton, předá tento odkaz na `Clients` konstruktoru a konstruktor jej vloží do vlastnosti.
 
-Existují dva důvody, proč chcete kontext získat pouze jednou: získání kontextu je nákladná úloha a když aplikace zachová zamýšlené pořadí zpráv odesílaných klientovi.
+Existují dva důvody, proč chcete získat kontext pouze jednou: získání kontextu je nákladný úkol a získání jednou zajistí, že aplikace zachová zamýšlené pořadí zpráv odeslaných klientům.
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample9.cs)]
 
-Získání vlastnosti `Clients` kontextu a jeho vložení do vlastnosti `StockTickerClient` umožňuje napsat kód pro volání klientských metod, které vypadají stejně jako ve třídě `Hub`. Chcete-li například vysílat do všech klientů, můžete zapisovat `Clients.All.updateStockPrice(stock)`.
+Získání `Clients` vlastnost kontextu a jeho vložení `StockTickerClient` do vlastnosti umožňuje psát kód pro volání klientských `Hub` metod, které vypadají stejně jako ve třídě. Chcete-li například vysílat všem `Clients.All.updateStockPrice(stock)`klientům, můžete psát .
 
-Metoda `updateStockPrice`, kterou voláte v `BroadcastStockPrice`, ještě neexistuje. Později ji přidáte při psaní kódu, který běží na klientovi. Na `updateStockPrice` tady můžete odkazovat, protože `Clients.All` je dynamická, což znamená, že aplikace vyhodnotí výraz za běhu. Když se spustí toto volání metody, odesílatel pošle do klienta název metody a hodnotu parametru. Pokud má klient metodu s názvem `updateStockPrice`, aplikace tuto metodu zavolá a předá jí hodnotu parametru.
+Metoda, `updateStockPrice` kterou voláte, `BroadcastStockPrice` ještě neexistuje. Přidáte jej později při psaní kódu, který běží na straně klienta. Můžete odkazovat `updateStockPrice` zde, protože `Clients.All` je dynamický, což znamená, že aplikace vyhodnotí výraz za běhu. Při spuštění tohoto volání metody SignalR odešle název metody a hodnotu parametru klientovi `updateStockPrice`a pokud má klient metodu s názvem , aplikace zavolá tuto metodu a předá jí hodnotu parametru.
 
-`Clients.All` znamená odeslání všem klientům. Signalizace nabízí další možnosti určení klientů nebo skupin klientů, které se mají odeslat. Další informace najdete v tématu [HubConnectionContext](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.hubs.hubconnectioncontext(v=vs.111).aspx).
+`Clients.All`znamená poslat všem klientům. SignalR poskytuje další možnosti určit, které klienty nebo skupiny klientů chcete odeslat. Další informace naleznete v tématu [HubConnectionContext](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.hubs.hubconnectioncontext(v=vs.111).aspx).
 
-### <a name="register-the-signalr-route"></a>Registrace trasy signalizace
+### <a name="register-the-signalr-route"></a>Registrace trasy SignalR
 
-Server musí znát, která adresa URL má zachytit a směrovat na signál. K tomu přidejte třídu pro spuštění OWIN:
+Server potřebuje vědět, která adresa URL zachytit a přímo signalr. Chcete-li to provést, přidejte spouštěcí třídu OWIN:
 
-1. V **Průzkumník řešení**klikněte pravým tlačítkem myši na projekt a vyberte **Přidat** > **Nová položka**.
+1. V **Průzkumníku řešení**klepněte pravým tlačítkem myši na projekt a vyberte **přidat** > **novou položku**.
 
-1. V **položce Přidat novou položku-Signal. StockTicker** vyberte **nainstalované** > **Visual C#**  > **Web** a pak vyberte **třídu pro spuštění Owin**.
+1. V **pole Přidat novou položku - SignalR.StockTicker** vyberte **nainstalovaný** > **visual c#** > **web** a pak vyberte **OWIN Startup Class**.
 
-1. Pojmenujte *spouštěcí* třídu a vyberte **OK**.
+1. Pojmenujte položku *Spuštění* a vyberte **ok**.
 
-1. Nahraďte výchozí kód v souboru *Startup.cs* tímto kódem:
+1. Nahraďte výchozí kód v *souboru Startup.cs* tímto kódem:
 
     [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample10.cs)]
 
-Nyní jste dokončili nastavování kódu serveru. V další části nastavíte klienta.
+Nyní jste dokončili nastavení kódu serveru. V další části nastavíte klienta.
 
 ## <a name="set-up-the-client-code"></a>Nastavení kódu klienta
 
-V této části nastavíte kód, který se spouští na klientovi.
+V této části nastavíte kód, který běží na straně klienta.
 
 ### <a name="create-the-html-page-and-javascript-file"></a>Vytvoření stránky HTML a souboru JavaScriptu
 
-Na stránce HTML se zobrazí data a soubor JavaScriptu bude organizovat data.
+Stránka HTML zobrazí data a soubor JavaScript uvede data.
 
-#### <a name="create-stocktickerhtml"></a>Create StockTicker.html
+#### <a name="create-stocktickerhtml"></a>Vytvořit stockticker.html
 
 Nejprve přidáte klienta HTML.
 
-1. V **Průzkumník řešení**klikněte pravým tlačítkem myši na projekt a vyberte **Přidat** > **stránku HTML**.
+1. V **Průzkumníku řešení**klepněte pravým tlačítkem myši na projekt a vyberte **přidat** > **stránku HTML**.
 
 1. Pojmenujte soubor *StockTicker* a vyberte **OK**.
 
-1. Nahraďte výchozí kód v souboru *StockTicker. html* tímto kódem:
+1. Nahraďte výchozí kód v souboru *StockTicker.html* tímto kódem:
 
     [!code-html[Main](tutorial-server-broadcast-with-signalr/samples/sample11.html?highlight=40-43)]
 
-    KÓD HTML vytvoří tabulku s pěti sloupci, řádkem záhlaví a datovým řádkem s jedinou buňkou, která zahrnuje všechny pět sloupců. Řádek dat zobrazuje "načítání..." při každém spuštění aplikace. JavaScriptový kód odstraní tento řádek a přidá ho do svých řádků s uloženými daty načtenými ze serveru.
+    Html vytvoří tabulku s pěti sloupci, řádek záhlaví a datový řádek s jednou buňkou, která pokrývá všech pět sloupců. Na řádku dat se zobrazuje "načítání..." chvíli při spuštění aplikace. Kód JavaScriptu tento řádek odstraní a přidá na jeho místo řádky s daty zásob načtenými ze serveru.
 
-    Značky skriptu určují:
+    Značky skriptů určují:
 
     * Soubor skriptu jQuery.
 
-    * Základní soubor skriptu nástroje Signaler.
+    * Základní skript SignalR.
 
-    * Soubor skriptu proxy signalizace.
+    * Soubor skriptu proxy SignalR.
 
     * Soubor skriptu StockTicker, který vytvoříte později.
 
-    Aplikace dynamicky generuje soubor skriptu proxy serverů signalizace. Určuje adresu URL "/SignalR/Hubs" a definuje metody proxy pro metody ve třídě hub, v tomto případě pro `StockTickerHub.GetAllStocks`. Pokud budete chtít, můžete tento soubor JavaScriptu vygenerovat ručně pomocí [nástrojů pro signalizaci](http://nuget.org/packages/Microsoft.AspNet.SignalR.Utils/). Nezapomeňte zakázat dynamické vytváření souborů ve volání metody `MapHubs`.
+    Aplikace dynamicky generuje soubor skriptu proxy signalr. Určuje adresu URL "/signalr/hubs" a definuje metody proxy pro metody na hub `StockTickerHub.GetAllStocks`třídy, v tomto případě pro . Pokud chcete, můžete tento soubor JavaScript vygenerovat ručně pomocí [signalr utilities](http://nuget.org/packages/Microsoft.AspNet.SignalR.Utils/). Nezapomeňte zakázat dynamické vytváření souborů `MapHubs` ve volání metody.
 
-1. V **Průzkumník řešení**rozbalte položku **skripty**.
+1. V **Průzkumníku řešení**rozbalte **položku Skripty**.
 
-    Knihovny skriptů pro jQuery a Signal jsou viditelné v projektu.
+    Skriptknihovny pro jQuery a SignalR jsou viditelné v projektu.
 
     > [!IMPORTANT]
-    > Správce balíčků nainstaluje novější verzi skriptů nástroje Signal.
+    > Správce balíčků nainstaluje novější verzi skriptů SignalR.
 
-1. Aktualizujte odkazy na skripty v bloku kódu tak, aby odpovídaly verzím souborů skriptu v projektu.
+1. Aktualizujte odkazy na skripty v bloku kódu tak, aby odpovídaly verzím souborů skriptů v projektu.
 
-1. V **Průzkumník řešení**klikněte pravým tlačítkem na *StockTicker. html*a pak vyberte **nastavit jako úvodní stránku**.
+1. V **Průzkumníku řešení**klepněte pravým tlačítkem myši na *soubor StockTicker.html*a pak vyberte **příkaz Nastavit jako úvodní stránku**.
 
-#### <a name="create-stocktickerjs"></a>Create StockTicker.js
+#### <a name="create-stocktickerjs"></a>Vytvořit soubor StockTicker.js
 
 Nyní vytvořte soubor JavaScriptu.
 
-1. V **Průzkumník řešení**klikněte pravým tlačítkem myši na projekt a vyberte **Přidat** > **soubor JavaScriptu**.
+1. V **Průzkumníku řešení**klepněte pravým tlačítkem myši na projekt a vyberte **přidat** > **soubor JavaScript .**
 
 1. Pojmenujte soubor *StockTicker* a vyberte **OK**.
 
-1. Přidejte tento kód do souboru *StockTicker. js* :
+1. Přidejte tento kód do souboru *StockTicker.js:*
 
     [!code-javascript[Main](tutorial-server-broadcast-with-signalr/samples/sample12.js)]
 
-### <a name="examine-the-client-code"></a>Projděte si kód klienta.
+### <a name="examine-the-client-code"></a>Zkontrolujte kód klienta
 
-Pokud prohlížíte kód klienta, pomůže vám se dozvědět, jak kód klienta komunikuje s kódem serveru, aby aplikace fungovala.
+Pokud zkontrolujete kód klienta, pomůže vám zjistit, jak klientský kód spolupracuje s kódem serveru, aby aplikace fungovala.
 
-#### <a name="starting-the-connection"></a>Spouští se připojení.
+#### <a name="starting-the-connection"></a>Spuštění připojení
 
-`$.connection` odkazuje na proxy signálů. Kód získá odkaz na proxy pro třídu `StockTickerHub` a vloží jej do proměnné `ticker`. Název proxy je název, který byl nastaven atributem `HubName`:
+`$.connection`odkazuje na proxy servery SignalR. Kód získá odkaz na proxy `StockTickerHub` pro třídu a `ticker` vloží jej do proměnné. Název proxy serveru je název, `HubName` který byl nastaven atributem:
 
 [!code-javascript[Main](tutorial-server-broadcast-with-signalr/samples/sample13.js)]
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample14.cs)]
 
-Po definování všech proměnných a funkcí se poslední řádek kódu v souboru inicializuje připojením k signalizaci voláním funkce Signal `start`. Funkce `start` provádí asynchronní a vrací [odložený objekt jQuery](http://api.jquery.com/category/deferred-object/). Můžete zavolat funkci Hotovo pro určení funkce, která má být volána, když aplikace dokončí asynchronní akci.
+Po definování všech proměnných a funkcí poslední řádek kódu v souboru inicializuje připojení `start` SignalR voláním funkce SignalR. Funkce `start` se spustí asynchronně a vrátí [jQuery Odložené objektu](http://api.jquery.com/category/deferred-object/). Můžete volat hotovou funkci a určit funkci, která má být volána, když aplikace dokončí asynchronní akci.
 
 [!code-javascript[Main](tutorial-server-broadcast-with-signalr/samples/sample15.js)]
 
-#### <a name="getting-all-the-stocks"></a>Získávání všech populací
+#### <a name="getting-all-the-stocks"></a>Získání všech zásob
 
-Funkce `init` volá funkci `getAllStocks` na serveru a používá informace, které server vrátí k aktualizaci skladové tabulky. Všimněte si, že ve výchozím nastavení je nutné použít camelCasing na straně klienta, i když název metody je Pascal-použita na serveru. Pravidlo camelCasing se vztahuje pouze na metody, nikoli na objekty. Například odkazujete na `stock.Symbol` a `stock.Price`, nikoli `stock.symbol` nebo `stock.price`.
+Funkce `init` volá `getAllStocks` funkci na serveru a používá informace, které server vrátí k aktualizaci burzovní tabulky. Všimněte si, že ve výchozím nastavení je třeba použít camelCasing na straně klienta, i když název metody je pascal-cased na serveru. Pravidlo camelCasing se vztahuje pouze na metody, nikoli na objekty. Například odkazujete `stock.Symbol` na `stock.Price`a `stock.symbol` `stock.price`, not nebo .
 
 [!code-javascript[Main](tutorial-server-broadcast-with-signalr/samples/sample16.js)]
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample17.cs)]
 
-V metodě `init` aplikace vytvoří HTML pro řádek tabulky pro každý burzovní objekt přijatý ze serveru voláním `formatStock` k formátování vlastností objektu `stock` a následným voláním `supplant` k nahrazení zástupných symbolů v `rowTemplate` proměnné s hodnotami vlastností objektu `stock`. Výsledný kód HTML se pak připojí k uložené tabulce.
+V `init` metodě aplikace vytvoří HTML pro řádek tabulky pro každý skladový objekt přijatý `formatStock` ze serveru voláním do formátu `rowTemplate` vlastností `stock` `stock` objektu a pak voláním `supplant` nahradit zástupné symboly v proměnné hodnotami vlastností objektu. Výsledný kód HTML je pak připojen k burzovní tabulce.
 
 > [!NOTE]
-> Zavoláte `init` tím, že ho předáte do jako `callback` funkce, která se spustí po dokončení asynchronní funkce `start`. Pokud jste po volání `start`zavolali `init` jako samostatný příkaz jazyka JavaScript, funkce by nebyla úspěšná, protože by běžela okamžitě bez čekání na dokončení funkce Start pro dokončení navázání připojení. V takovém případě se funkce `init` pokusí zavolat funkci `getAllStocks` předtím, než aplikace naváže připojení k serveru.
+> Volání `init` předáním jako `callback` funkce, která se spustí po `start` dokončení asynchronní funkce. Pokud jste `init` po volání `start`volali jako samostatný příkaz JavaScript , funkce by se nezdaří, protože by se spustila okamžitě, aniž by čekala na dokončení počáteční funkce připojení. V takovém případě `init` by se funkce `getAllStocks` pokusila volat funkci předtím, než aplikace naváže připojení k serveru.
 
 #### <a name="getting-updated-stock-prices"></a>Získání aktualizovaných cen akcií
 
-Když server změní cenu akcií, zavolá `updateStockPrice` v připojených klientech. Aplikace přidá funkci do vlastnosti klient `stockTicker`ového proxy serveru, aby byla dostupná pro volání ze serveru.
+Když server změní cenu akcie, zavolá `updateStockPrice` na připojené klienty. Aplikace přidá funkci do vlastnosti `stockTicker` klienta proxy serveru, aby byla k dispozici pro volání ze serveru.
 
 [!code-javascript[Main](tutorial-server-broadcast-with-signalr/samples/sample18.js)]
 
-Funkce `updateStockPrice` formátuje burzovní objekt přijatý ze serveru do řádku tabulky stejným způsobem jako ve funkci `init`. Místo připojení řádku k tabulce najde aktuální řádek v tabulce a nahradí ho novým řádkem.
+Funkce `updateStockPrice` formátuje skladový objekt přijatý ze serveru do řádku tabulky `init` stejným způsobem jako ve funkci. Místo připojení řádku k tabulce najde aktuální řádek akcie v tabulce a nahradí tento řádek novým.
 
 ## <a name="test-the-application"></a>Testování aplikace
 
-Aplikaci můžete otestovat a ujistit se, že funguje. Zobrazí se všechna okna prohlížeče s živými zásobami, kde se pohybuje ceny akcií.
+Aplikaci můžete otestovat, abyste se ujistili, že funguje. Zobrazí se ve všech oknech prohlížeče, kde se zobrazí tabulka živých akcií s kolísavými cenami akcií.
 
-1. Na panelu nástrojů zapněte **ladění skriptů** a pak výběrem tlačítka Přehrát spusťte aplikaci v režimu ladění.
+1. Na panelu nástrojů zapněte ladění **skriptů** a pak vyberte tlačítko přehrát pro spuštění aplikace v režimu ladění.
 
-    ![Snímek obrazovky uživatele, který zapíná režim ladění a vybere možnost Přehrát.](tutorial-server-broadcast-with-signalr/_static/image4.png)
+    ![Snímek obrazovky s uživatelem, který zapne režim ladění a vybere možnost Přehrát.](tutorial-server-broadcast-with-signalr/_static/image4.png)
 
-    Otevře se okno prohlížeče, ve kterém se zobrazí **tabulka živé akcie**. V tabulce se zpočátku zobrazuje "načítání...". Po krátké době aplikace zobrazuje počáteční skladová data a pak se ceny akcií začnou měnit.
+    Otevře se okno prohlížeče s živou **skladovou tabulkou**. Tabulka zásob zpočátku zobrazuje "loading..." line, pak, po krátké době, aplikace zobrazí počáteční údaje o akciích, a pak ceny akcií začnou měnit.
 
-1. Zkopírujte adresu URL z prohlížeče, otevřete dva další prohlížeče a vložte adresy URL do adresních úseček.
+1. Zkopírujte adresu URL z prohlížeče, otevřete dva další prohlížeče a vložte adresy URL do panelů adresaí.
 
-    Počáteční zobrazovací displej je stejný jako první prohlížeč a změny probíhají současně.
+    Počáteční zobrazení zásob je stejné jako první prohlížeč a změny se dějí současně.
 
-1. Zavřete všechny prohlížeče, otevřete nový prohlížeč a přejdete na stejnou adresu URL.
+1. Zavřete všechny prohlížeče, otevřete nový prohlížeč a přejděte na stejnou adresu URL.
 
-    Objekt typu Singleton StockTicker pokračuje v běhu na serveru. **Tabulka živých zásob** uvádí, že zásoby se pořád mění. Počáteční tabulka se nezobrazuje s nulovými hodnotami změny.
+    StockTicker singleton objekt pokračoval v běhu na serveru. **Tabulka živých akcií** ukazuje, že zásoby se nadále mění. Nevidíte počáteční tabulku s nulovými změnami.
 
 1. Zavřete prohlížeč.
 
-## <a name="enable-logging"></a>Povolte protokolování
+## <a name="enable-logging"></a>Povolit protokolování
 
-Signál má vestavěnou funkci protokolování, kterou můžete na klientovi povolit, aby při řešení potíží mohl pomoci. V této části povolíte protokolování a uvidíte příklady, které ukazují, jak protokoly říkají, které z následujících signálů přenosových metod používá:
+SignalR má vestavěnou funkci protokolování, kterou můžete povolit na straně klienta na pomoc při řešení potíží. V této části povolíte protokolování a zobrazí tepříklady, které ukazují, jak protokoly zjistit, které z následujících metod přenosu SignalR používá:
 
-* [WebSockets](http://en.wikipedia.org/wiki/WebSocket), které podporuje služba IIS 8 a aktuální prohlížeče.
+* [WebSockets](http://en.wikipedia.org/wiki/WebSocket), podporované službou IIS 8 a aktuálními prohlížeči.
 
-* [Události odeslané serverem](http://en.wikipedia.org/wiki/Server-sent_events), které podporují jiné prohlížeče než Internet Explorer.
+* [Události odeslané serverem](http://en.wikipedia.org/wiki/Server-sent_events)podporované jinými prohlížeči než internet explorer.
 
-* [Trvale rámec](http://en.wikipedia.org/wiki/Comet_(programming)#Hidden_iframe), který podporuje Internet Explorer.
+* [Forever frame](http://en.wikipedia.org/wiki/Comet_(programming)#Hidden_iframe), podporovaný aplikací Internet Explorer.
 
-* [Dlouhé cyklické dotazování AJAX](http://en.wikipedia.org/wiki/Comet_(programming)#Ajax_with_long_polling), podporované všemi prohlížeči
+* [Ajax dlouhé dotazování](http://en.wikipedia.org/wiki/Comet_(programming)#Ajax_with_long_polling), podporované všemi prohlížeči.
 
-Pro jakékoli dané připojení vybírá signál nejlepší metodu přenosu, kterou podporuje server i klientská podpora.
+Pro dané připojení SignalR zvolí nejlepší způsob přenosu, který server i klient podporují.
 
-1. Otevřete *StockTicker. js*.
+1. Otevřete *soubor StockTicker.js*.
 
-1. Přidejte tento zvýrazněný řádek kódu, chcete-li povolit protokolování bezprostředně před kódem, který inicializuje připojení na konci souboru:
+1. Přidejte tento zvýrazněný řádek kódu, který povolí protokolování bezprostředně před kódem, který inicializuje připojení na konci souboru:
 
     [!code-javascript[Main](tutorial-server-broadcast-with-signalr/samples/sample19.js?highlight=2)]
 
-1. Stisknutím klávesy **F5** spusťte projekt.
+1. Spuštění projektu stisknutím **klávesy F5.**
 
-1. Otevřete okno vývojářské nástroje v prohlížeči a vyberte konzolu, abyste zobrazili protokoly. Možná budete muset aktualizovat stránku, aby se zobrazily protokoly signalizace vyjednávat přenosovou metodou pro nové připojení.
+1. Otevřete okno vývojářských nástrojů prohlížeče a vyberte konzolu, chcete-li protokoly zobrazit. Bude pravděpodobně nutné aktualizovat stránku zobrazíte protokoly SignalR vyjednávání způsob přenosu pro nové připojení.
 
-    * Pokud používáte Internet Explorer 10 v systému Windows 8 (IIS 8), je přenosová metoda **WebSockets**.
+    * Pokud používáte aplikaci Internet Explorer 10 v systému Windows 8 (IIS 8), je způsob přenosu **WebSockets**.
 
-    * Pokud používáte Internet Explorer 10 v systému Windows 7 (IIS 7,5), je přenosová metoda **IFRAME**.
+    * Pokud používáte aplikaci Internet Explorer 10 v systému Windows 7 (IIS 7.5), je způsob přenosu **iframe**.
 
-    * Pokud používáte Firefox 19 v systému Windows 8 (IIS 8), je přenosová metoda **WebSockets**.
+    * Pokud používáte Firefox 19 ve Windows 8 (IIS 8), je způsob přenosu **WebSockets**.
 
         > [!TIP]
-        > V prohlížeči Firefox nainstalujte doplněk Firebug a získejte okno konzoly.
+        > Ve Firefoxu nainstalujte doplněk Firebug, abyste získali okno konzoly.
 
-    * Pokud používáte Firefox 19 v systému Windows 7 (IIS 7,5), přenosová metoda je události **odesílané serverem** .
+    * Pokud používáte Firefox 19 v systému Windows 7 (IIS 7.5), způsob přenosu je **událost mizející serverem.**
 
 ## <a name="install-the-stockticker-sample"></a>Instalace ukázky StockTicker
 
-[Microsoft. ASPNET. signaler. Sample](http://nuget.org/packages/microsoft.aspnet.signalr.sample) nainstaluje aplikaci StockTicker. Balíček NuGet zahrnuje více funkcí, než je zjednodušená verze, kterou jste vytvořili úplně od začátku. V této části kurzu nainstalujete balíček NuGet a zkontrolujete nové funkce a kód, který je implementuje.
+[Microsoft.AspNet.SignalR.Sample](http://nuget.org/packages/microsoft.aspnet.signalr.sample) nainstaluje aplikaci StockTicker. Balíček NuGet obsahuje více funkcí než zjednodušená verze, kterou jste vytvořili od začátku. V této části kurzu nainstalujete balíček NuGet a zkontrolujte nové funkce a kód, který je implementuje.
 
 > [!IMPORTANT]
-> Pokud balíček nainstalujete bez provedení předchozích kroků tohoto kurzu, musíte do svého projektu přidat třídu pro spuštění OWIN. Tento krok popisuje tento soubor Readme. txt pro balíček NuGet.
+> Pokud nainstalujete balíček bez provedení předchozíkroky tohoto kurzu, je nutné přidat spouštěcí třídy OWIN do projektu. Tento soubor readme.txt pro balíček NuGet vysvětluje tento krok.
 
-### <a name="install-the-signalrsample-nuget-package"></a>Instalace nástroje Signal. Sample NuGet Package
+### <a name="install-the-signalrsample-nuget-package"></a>Instalace balíčku SignalR.Sample NuGet
 
-1. V **Průzkumník řešení**klikněte pravým tlačítkem na projekt a vyberte **Spravovat balíčky NuGet**.
+1. V **Průzkumníku řešení**klepněte pravým tlačítkem myši na projekt a vyberte **příkaz Spravovat balíčky NuGet**.
 
-1. Ve **Správci balíčků NuGet: Signal. StockTicker**, vyberte **Procházet**.
+1. Ve **správci balíčků NuGet: SignalR.StockTicker**vyberte **Procházet**.
 
-1. Ze **zdroje balíčku**vyberte možnost **NuGet.org**.
+1. Ve **zdroji balíčku**vyberte **nuget.org**.
 
-1. Do vyhledávacího pole zadejte *Signal. Sample* a vyberte **Microsoft. ASPNET. signaler. Sample** > **install**.
+1. Do vyhledávacího pole zadejte *položku SignalR.Sample* a vyberte **položku Microsoft.AspNet.SignalR.Sample** > **Install**.
 
-1. V **Průzkumník řešení**rozbalte složku *Signal. Sample* .
+1. V **Průzkumníku řešení**rozbalte složku *SignalR.Sample.*
 
-    Instalace nástroje Signal. vzorový balíček vytvořil složku a její obsah.
+    Instalace balíčku SignalR.Sample vytvořila složku a její obsah.
 
-1. Ve složce *Signal. Sample* klikněte pravým tlačítkem na *StockTicker. html*a pak vyberte **nastavit jako úvodní stránku**.
+1. Ve složce *SignalR.Sample* klepněte pravým tlačítkem myši na *soubor StockTicker.html*a pak vyberte **příkaz Nastavit jako úvodní stránku**.
 
     > [!NOTE]
-    > Instalace nástroje Signal. vzorový balíček NuGet může změnit verzi jQuery, kterou máte ve složce *Scripts* . Nový soubor *StockTicker. html* , který balíček nainstaluje do nástroje *Signal. vzorová* složka bude synchronizována s verzí jQuery, kterou balíček nainstaluje, ale pokud chcete znovu spustit původní soubor *StockTicker. html* , bude pravděpodobně nutné nejprve aktualizovat odkaz jQuery ve značce Script.
+    > Instalace balíčku SignalR.Sample NuGet může změnit verzi jQuery, kterou máte ve složce *Skripty.* Nový soubor *StockTicker.html,* který balíček nainstaluje do složky *SignalR.Sample,* bude synchronizován s verzí jQuery, kterou balíček nainstaluje, ale pokud chcete znovu spustit původní soubor *StockTicker.html,* budete muset nejprve aktualizovat odkaz jQuery ve značce skriptu.
 
 ### <a name="run-the-application"></a>Spuštění aplikace
 
- Tabulka, kterou jste viděli v první aplikaci, měla užitečné funkce. Celá burzovní aplikace na více datových cyklech zobrazuje nové funkce: vodorovné posuvné okno, které zobrazuje burzovní data a zásoby, které mění barvu při jejich zvyšování a poklesu.
+ Tabulka, kterou jste viděli v první aplikaci, měla užitečné funkce. Plná burzovní aplikace zobrazuje nové funkce: vodorovně rolovací okno, které zobrazuje údaje o zásobách a zásoby, které mění barvu, když stoupají a klesají.
 
-1. Stisknutím klávesy **F5** spusťte aplikaci.
+1. Stisknutím **klávesy F5** aplikaci spusťte.
 
-     Při prvním spuštění aplikace je "trh" "zavřený" a zobrazí se statická tabulka a okno se značkami, které se neposunují.
+     Při prvním spuštění aplikace je "trh" "zavřený" a zobrazí se statická tabulka a okno, které se neposouvá.
 
-1. Vyberte **otevřít trh**.
+1. Vyberte **možnost Otevřít trh**.
 
-    ![Snímek obrazovky živého ticku](tutorial-server-broadcast-with-signalr/_static/image5.png)
+    ![Snímek obrazovky s živým telegrafem](tutorial-server-broadcast-with-signalr/_static/image5.png)
 
-    * Pole se seznamem **živých akcií** se začne posouvat vodorovně a server začne pravidelně vysílat změny cen akcií na náhodném základě.
+    * Pole **Live Stock Ticker** se začne posouvat vodorovně a server začne náhodně vysílat změny cen akcií.
 
-    * Pokaždé, když se změní cena na zásobě, aplikace aktualizuje **tabulku Live Stock** a **živý**burzovní modul.
+    * Pokaždé, když se změní cena akcií, aplikace aktualizuje **tabulku živých akcií** i **službu Live Stock Ticker**.
 
-    * Když je cenová změna zásob kladná, aplikace zobrazí akcie se zeleným pozadím.
+    * Když je změna ceny akcie kladná, aplikace zobrazí akcie se zeleným pozadím.
 
-    * Když je změna záporná, aplikace zobrazí burzovní skladem s červeným pozadím.
+    * Když je změna záporná, aplikace zobrazí akcie s červeným pozadím.
 
-1. Vyberte možnost **Zavřít trh**.
+1. Vyberte **Zavřít trh**.
 
-    * Zastaví se aktualizace tabulky.
+    * Aktualizace tabulky se zastaví.
 
-    * Tato značka zastaví rolování.
+    * Ticker přestane posouvání.
 
-1. Vyberte **obnovit**.
+1. Vyberte **Resetovat**.
 
-    * Všechna skladová data se resetují.
+    * Všechna skladová data jsou resetována.
 
-    * Aplikace obnoví počáteční stav předtím, než se změny cen spustí.
+    * Aplikace obnoví počáteční stav před zahájením změn cen.
 
-1. Zkopírujte adresu URL z prohlížeče, otevřete dva další prohlížeče a vložte adresy URL do adresních úseček.
+1. Zkopírujte adresu URL z prohlížeče, otevřete dva další prohlížeče a vložte adresy URL do panelů adresaí.
 
-1. Stejná data se v každém prohlížeči zobrazují v současné době dynamicky.
+1. V každém prohlížeči se dynamicky aktualizují stejná data současně.
 
-1. Když vyberete kterýkoli z ovládacích prvků, všechny prohlížeče budou reagovat stejně jako ve stejnou dobu.
+1. Když vyberete některý z ovládacích prvků, všechny prohlížeče reagují stejným způsobem současně.
 
-### <a name="live-stock-ticker-display"></a>Živý displej se zobrazením akcií
+### <a name="live-stock-ticker-display"></a>Živý burzovní displej
 
-**Živý burzovní** displej je neuspořádaný seznam prvku `<div>` formátovaného na jeden řádek pomocí stylů CSS. Aplikace inicializuje a aktualizuje pro něj stejný způsob jako tabulka: nahrazením zástupných symbolů v řetězci šablony `<li>` a dynamickém přidáním `<li>` prvků do `<ul>` elementu. Aplikace zahrnuje posouvání pomocí funkce jQuery `animate` pro změnu levého okraje seznamu neuspořádaného v rámci `<div>`.
+Zobrazení **Live Stock Ticker** je neuspořádaný seznam v `<div>` prvku formátovaném do jednoho řádku styly CSS. Aplikace inicializuje a aktualizuje ticker stejným způsobem jako tabulka: nahrazením `<li>` zástupných symbolů `<li>` v řetězci šablony a dynamickým přidáním prvků do `<ul>` prvku. Aplikace zahrnuje posouvání pomocí funkce `animate` jQuery, která mění okraj vlevo od `<div>`neuspořádaného seznamu v rámci .
 
-#### <a name="signalrsample-stocktickerhtml"></a>Signale. Sample StockTicker. html
+#### <a name="signalrsample-stocktickerhtml"></a>SignalR.Sample StockTicker.html
 
-Burzovní kód HTML s taktem:
+Html kód burzovního poletoru:
 
 [!code-html[Main](tutorial-server-broadcast-with-signalr/samples/sample20.html)]
 
-#### <a name="signalrsample-stocktickercss"></a>Signal. Sample StockTicker. CSS
+#### <a name="signalrsample-stocktickercss"></a>SignalR.Sample StockTicker.css
 
-Burzovní kód pro vystavení akcií:
+Burzovní kód CSS:
 
 [!code-html[Main](tutorial-server-broadcast-with-signalr/samples/sample21.html)]
 
-#### <a name="signalrsample-signalrstocktickerjs"></a>Signalizace. Ukázka signálu. StockTicker. js
+#### <a name="signalrsample-signalrstocktickerjs"></a>SignalR.Sample SignalR.StockTicker.js
 
-Kód jQuery, který usnadňuje posunutí:
+JQuery kód, který dělá to posun:
 
 [!code-javascript[Main](tutorial-server-broadcast-with-signalr/samples/sample22.js)]
 
-### <a name="additional-methods-on-the-server-that-the-client-can-call"></a>Další metody na serveru, který může klient volat
+### <a name="additional-methods-on-the-server-that-the-client-can-call"></a>Další metody na serveru, které může klient volat
 
-Pro přidání flexibility do aplikace jsou k dispozici další metody, které může aplikace volat.
+Chcete-li aplikaci zvýšit flexibilitu, existují další metody, které může aplikace volat.
 
-#### <a name="signalrsample-stocktickerhubcs"></a>Signál. Sample StockTickerHub.cs
+#### <a name="signalrsample-stocktickerhubcs"></a>SignalR.Sample StockTickerHub.cs
 
 Třída `StockTickerHub` definuje čtyři další metody, které může klient volat:
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample23.cs)]
 
-Aplikace volá `OpenMarket`, `CloseMarket`a `Reset` v reakci na tlačítka v horní části stránky. Ukazují vzor jednoho klienta, který aktivuje změnu stavu okamžitě šířenou pro všechny klienty. Každá z těchto metod volá metodu ve třídě `StockTicker`, která způsobuje změnu stavu trhu a pak vysílá nový stav.
+Aplikace volá `OpenMarket` `CloseMarket`, `Reset` a v reakci na tlačítka v horní části stránky. Ukazují vzor jednoho klienta, který aktivuje změnu stavu, která je okamžitě rozšířena na všechny klienty. Každá z těchto metod volá `StockTicker` metodu ve třídě, která způsobuje změnu stavu trhu a poté vysílá nový stav.
 
-#### <a name="signalrsample-stocktickercs"></a>Signál. Sample StockTicker.cs
+#### <a name="signalrsample-stocktickercs"></a>SignalR.Sample StockTicker.cs
 
-Ve třídě `StockTicker` aplikace udržuje stav trhu s vlastností `MarketState`, která vrací `MarketState` hodnotu výčtu:
+Ve `StockTicker` třídě aplikace udržuje stav trhu s vlastností, `MarketState` která `MarketState` vrací hodnotu výčtu:
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample24.cs)]
 
-Každá z metod, které mění stav trhu, je v bloku zámku, protože třída `StockTicker` musí být bezpečná pro přístup z více vláken:
+Každá z metod, které mění stav trhu, tak `StockTicker` činí uvnitř bloku zámku, protože třída musí být bezpečná pro přístup z více vláken:
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample25.cs)]
 
-Chcete-li zajistit, aby byl tento kód bezpečný pro přístup z více vláken, `_marketState` pole, které vrátí vlastnost `MarketState` určenou `volatile`:
+Chcete-li se ujistit, že `_marketState` tento kód `MarketState` je `volatile`bezpečný pro přístup z více vláken, pole, které podporuje vlastnost určenou :
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample26.cs)]
 
-Metody `BroadcastMarketStateChange` a `BroadcastMarketReset` jsou podobné metodě BroadcastStockPrice, kterou jste již viděli, s výjimkou volání různých metod definovaných v klientovi:
+Metody `BroadcastMarketStateChange` `BroadcastMarketReset` a jsou podobné metodě BroadcastStockPrice, kterou jste již viděli, s výjimkou volání různých metod definovaných na straně klienta:
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample27.cs)]
 
 ### <a name="additional-functions-on-the-client-that-the-server-can-call"></a>Další funkce v klientovi, které může server volat
 
-Funkce `updateStockPrice` nyní zpracovává tabulku i zobrazení značek a používá `jQuery.Color` k blikání červené a zelené barvy.
+Funkce `updateStockPrice` nyní zpracovává tabulku i ticker displej a `jQuery.Color` používá k blikání červené a zelené barvy.
 
-Nové funkce v nástroji *Signal. StockTicker. js* povolují a zakazují tlačítka na základě stavu trhu. Také zastavují nebo spouštějí automatické **posouvání akcií.** Vzhledem k tomu, že se do `ticker.client`přidávají mnoho funkcí, aplikace k jejich přidání používá [funkci jQuery Extended](http://api.jquery.com/jQuery.extend/) .
+Nové funkce v *Souboru SignalR.StockTicker.js* povolit a zakázat tlačítka na základě stavu trhu. Oni také zastavit nebo spustit **Live Stock Ticker** horizontální rolování. Vzhledem k tomu, `ticker.client`že mnoho funkcí jsou přidávány do aplikace používá [jQuery rozšířit funkci](http://api.jquery.com/jQuery.extend/) přidat.
 
 [!code-javascript[Main](tutorial-server-broadcast-with-signalr/samples/sample28.js)]
 
 ### <a name="additional-client-setup-after-establishing-the-connection"></a>Další nastavení klienta po navázání připojení
 
-Poté, co klient připojení naváže, provede další práci:
+Poté, co klient naváže připojení, má některé další práce provést:
 
-* Zjistěte, jestli je trh otevřený nebo zavřený pro volání příslušné `marketOpened` nebo `marketClosed` funkce.
+* Zjistěte, zda je trh otevřený nebo `marketOpened` `marketClosed` uzavřený, abyste zavolali příslušnou nebo funkci.
 
 * Připojte volání metody serveru k tlačítkům.
 
 [!code-javascript[Main](tutorial-server-broadcast-with-signalr/samples/sample29.js)]
 
-Metody serveru nejsou kabelové až do tlačítek, dokud aplikace nevytvoří připojení. To znamená, že kód nemůže volat metody serveru předtím, než budou k dispozici.
+Metody serveru nejsou připojeny k tlačítkům až poté, co aplikace naváže připojení. Je to tak, že kód nemůže volat metody serveru dříve, než jsou k dispozici.
 
 ## <a name="additional-resources"></a>Další zdroje
 
-V tomto kurzu jste se naučili, jak programovat aplikaci pro signalizaci, která vysílá zprávy ze serveru do všech připojených klientů. Nyní můžete zprávy pravidelně vysílat a reagovat na oznámení od libovolného klienta. Koncept instance s více vlákny můžete použít k údržbě stavu serveru ve scénářích hraní online her pro více hráčů. Příklad najdete v tématu [hry pro sestřelení na základě signalizace](https://github.com/NTaylorMullen/ShootR).
+V tomto kurzu jste se naučili, jak naprogramovat aplikaci SignalR, která vysílá zprávy ze serveru všem připojeným klientům. Nyní můžete vysílat zprávy v pravidelných intervalech a v reakci na oznámení od libovolného klienta. Koncept vícevláknové instance singleton uchovávat stav serveru ve scénářích online her pro více hráčů. Viz [například hra ShootR založená na SignalR](https://github.com/NTaylorMullen/ShootR).
 
-Kurzy, které ukazují scénáře komunikace peer-to-peer, najdete v tématu [Začínáme s nástrojem pro signalizaci](introduction-to-signalr.md) a [aktualizací v reálném čase pomocí nástroje signaler](tutorial-high-frequency-realtime-with-signalr.md).
+Kurzy, které zobrazují scénáře komunikace mezi dvěma účastníky, naleznete [v tématu Začínáme s SignalR](introduction-to-signalr.md) a [Aktualizace v reálném čase s SignalR](tutorial-high-frequency-realtime-with-signalr.md).
 
-Další informace o signalizaci naleznete v následujících zdrojích informací:
+Další informace o SignalR naleznete v následujících zdrojích:
 
-* [ASP.NET signál](../../index.md)
-* [Projekt signálu](http://signalr.net/)
-* [GitHub a ukázky signálů](https://github.com/SignalR/SignalR)
-* [Wiki signálu](https://github.com/SignalR/SignalR/wiki)
+* [ASP.NET SignalR](../../index.md)
+* [Projekt SignalR](http://signalr.net/)
+* [SignalR GitHub a ukázky](https://github.com/SignalR/SignalR)
+* [SignalR Wiki](https://github.com/SignalR/SignalR/wiki)
 
 ## <a name="next-steps"></a>Další kroky
 
-V tomto kurzu se naučíte:
+V tomto kurzu jste:
 
 > [!div class="checklist"]
-> * Projekt se vytvořil.
-> * Nastavení serverového kódu
-> * Zkontrolovali jste kód serveru.
+> * Byl vytvořen projekt
+> * Nastavení kódu serveru
+> * Zkontrolovánkód serveru
 > * Nastavení kódu klienta
-> * Prověření klientského kódu
+> * Zkontrolován kód klienta
 > * Otestování aplikace
 > * Povolené protokolování
 
-V dalším článku se dozvíte, jak vytvořit webovou aplikaci v reálném čase, která používá signál ASP.NET 2.
+Přejdete k dalšímu článku a dozvíte se, jak vytvořit webovou aplikaci v reálném čase, která používá ASP.NET SignalR 2.
 > [!div class="nextstepaction"]
-> [Vytvoření webové aplikace v reálném čase pomocí signalizace](real-time-web-applications-with-signalr.md)
+> [Vytvoření webové aplikace v reálném čase s SignalR](real-time-web-applications-with-signalr.md)

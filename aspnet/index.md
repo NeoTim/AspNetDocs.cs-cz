@@ -8,10 +8,10 @@ title: Dokumentace k ASP.NET
 ms.date: 08/24/2018
 description: Informace o tom, jak vyvíjet standardní a webové aplikace ASP.NET Získejte dokumentaci, ukázkový kód, výukové kurzy a další materiály.
 ms.openlocfilehash: 6309704444d60d42d49c3a8f1683045dc503e761
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78616422"
 ---
 <!-- markdownlint-disable MD033 -->
@@ -20,14 +20,14 @@ ms.locfileid: "78616422"
         <h1>Dokumentace k ASP.NET</h1>
         <ul class="pivots">
             <li>
-                <a href="#core">ASP.NET Core</a>
+                <a href="#core">ASP.NET jádro</a>
                 <ul id="core">
                     <li>
                         <a href="#core_overview">Přehled</a>
                         <ul id="core_overview" class="cardsC">
                             <li>
                                 <div class="container intro">
-                                    <p>ASP.NET Core je open source rozhraní .NET Framework pro různé platformy pro vytváření moderních cloudových webových aplikací v systémech Windows, Mac nebo Linux.</p>
+                                    <p>ASP.NET Core je open source a multiplatformní .NET framework pro vytváření moderních cloudových webových aplikací na Windows, Mac nebo Linux.</p>
                                     <p><a href="https://docs.microsoft.com/aspnet/core/choose-aspnet-framework" data-raw-source="[Learn the benefits of both ASP.NET Core and ASP.NET](https://docs.microsoft.com/aspnet/core/choose-aspnet-framework)">Přečtěte si o výhodách rozhraní ASP.NET Core a ASP.NET</a> a vyberte si z nich to, které je pro vás nejvhodnější.</p>
                                 </div>
                             </li>
@@ -153,7 +153,7 @@ ms.locfileid: "78616422"
                         </ul>
                     </li>
                     <li>
-                        <a href="#core_tutorials">Kurzy</a>
+                        <a href="#core_tutorials">Návody</a>
                         <ul id="core_tutorials" class="cardsZ">
                             <li>
                                 <div class="container intro">
@@ -405,7 +405,7 @@ ms.locfileid: "78616422"
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Reálný čas</h3>
-                                                    <p>Naučte se sestavovat aplikaci Chat pomocí ASP.NET Signal 2 a sady Visual Studio.</p>
+                                                    <p>Naučte se, jak vytvořit chatovací aplikaci pomocí ASP.NET SignalR 2 a Visual Studio.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -439,7 +439,7 @@ ms.locfileid: "78616422"
                         </ul>
                     </li>
                     <li>
-                        <a href="#aspnet_framework">Architektury</a>
+                        <a href="#aspnet_framework">Rámců</a>
                         <ul id="aspnet_framework" class="cardsC">
                             <li>
                                 <div class="container intro">
@@ -457,7 +457,7 @@ ms.locfileid: "78616422"
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Webové formuláře</h3>
+                                                    <h3>webové formuláře</h3>
                                                     <p>Vytvářejte dynamické weby ve známém modelu založeném na událostech, který podporuje přetahování.</p>
                                                 </div>
                                             </div>
@@ -568,7 +568,7 @@ ms.locfileid: "78616422"
                         </ul>
                     </li>
                     <li>
-                        <a href="#aspnet_tutorials">Kurzy</a>
+                        <a href="#aspnet_tutorials">Návody</a>
                         <ul id="aspnet_tutorials" class="cardsZ">
                             <li>
                                 <div class="container intro">
@@ -605,7 +605,7 @@ ms.locfileid: "78616422"
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Začínáme s rozhraním ASP.NET Web API 2</h3>
+                                                    <h3>Začínáme s webovým rozhraním API technologie ASP.NET 2</h3>
                                                     <p>V této řadě kurzů se seznámíte se základy vytváření webových rozhraní API s využitím webového rozhraní API technologie ASP.NET 2 a sady Visual Studio.</p>
                                                 </div>
                                             </div>

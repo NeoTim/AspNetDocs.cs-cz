@@ -1,26 +1,26 @@
 ---
 uid: webhooks/diagnostics/logging
-title: Protokolování webhooků ASP.NET | Microsoft Docs
+title: ASP.NET Protokolování WebHooks | Dokumenty společnosti Microsoft
 author: rick-anderson
-description: Postup při protokolování webhooků ASP.NET
+description: Jak se přihlásit ASP.NET WebHooks.
 ms.author: riande
 ms.date: 01/17/2012
 ms.assetid: f71bc442-5f80-481b-a32c-a0ec18dee9d6
-ms.openlocfilehash: a05b32c4a8f9577bcf6170bd19a9e440b1aeb75b
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 350732acbd3a73bddb8f8b20dcd50c225d89be82
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78547878"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80675348"
 ---
-# <a name="aspnet-webhooks-logging"></a>Protokolování webhooků ASP.NET
+# <a name="aspnet-webhooks-logging"></a>protokolování ASP.NET WebHooks
 
-Microsoft ASP.NET webhooků používá protokolování jako způsob, jakým se hlásí problémy a problémy. Ve výchozím nastavení jsou protokoly zapisovány pomocí [System. Diagnostics. Trace](https://msdn.microsoft.com/library/system.diagnostics.trace) , kde je lze spravovaných pomocí [posluchačů trasování](https://msdn.microsoft.com/library/system.diagnostics.tracelistener.aspx) jako jakýkoli jiný datový proud protokolu.
+Microsoft ASP.NET WebHooks používá protokolování jako způsob hlášení problémů a problémů. Ve výchozím nastavení protokoly jsou zapsány pomocí [System.Diagnostics.Trace,](https://msdn.microsoft.com/library/system.diagnostics.trace) kde mohou být manged pomocí [naslouchací procesy trasování](https://msdn.microsoft.com/library/system.diagnostics.tracelistener.aspx) jako jakýkoli jiný datový proud protokolu.
 
-Když nasadíte webovou aplikaci jako webovou aplikaci Azure, protokoly se automaticky vybírají a dají se spravovat společně s jakýmkoli jiným protokolováním [System. Diagnostics. Trace](https://msdn.microsoft.com/library/system.diagnostics.trace) . Podrobnosti najdete [v tématu Povolení protokolování diagnostiky pro webové aplikace v Azure App Service](https://azure.microsoft.com/documentation/articles/web-sites-enable-diagnostic-log/)
+Při nasazování webové aplikace jako Azure Web App, protokoly jsou automaticky zvedl a lze spravovat společně s jakýmkoli jiným [System.Diagnostics.Trace](https://msdn.microsoft.com/library/system.diagnostics.trace) protokolování. Podrobnosti najdete v tématu [Povolení protokolování diagnostiky pro webové aplikace ve službě Azure App Service.](https://azure.microsoft.com/documentation/articles/web-sites-enable-diagnostic-log/)
 
-Kromě toho je možné protokoly získat přímo ze sady Visual Studio, jak je popsáno v tématu [řešení potíží s webovou aplikací v Azure App Service pomocí sady Visual Studio](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-troubleshoot-visual-studio/#webserverlogs).
+Kromě toho protokoly lze získat přímo z vnitřní Visual Studio, jak je popsáno v [Řešení potíží s webovou aplikací ve službě Azure App Service pomocí Sady Visual Studio](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-troubleshoot-visual-studio/#webserverlogs).
 
 ## <a name="redirecting-logs"></a>Přesměrování protokolů
 
-Místo psaní protokolů do [System. Diagnostics. Trace](https://msdn.microsoft.com/library/system.diagnostics.trace)je možné poskytnout alternativní implementaci protokolování, která se může protokolovat přímo do Správce protokolů, jako je [Log4Net](http://logging.apache.org/log4net/) a [nLOG](http://nlog-project.org/). Jednoduše Poskytněte implementaci [ILogger](https://github.com/aspnet/AspNetWebHooks/blob/master/src/Microsoft.AspNet.WebHooks.Common/Diagnostics/ILogger.cs) a zaregistrujte ji s modulem injektáže závislosti dle vašeho výběru a vystaví se Microsoft ASP.NET webhookech. Podrobnosti najdete [v článku vkládání závislostí ve webovém rozhraní API 2 ASP.NET](https://www.asp.net/web-api/overview/advanced/dependency-injection) .
+Namísto zápisu protokolů do [System.Diagnostics.Trace](https://msdn.microsoft.com/library/system.diagnostics.trace), je možné poskytnout alternativní implementaci protokolování, která se může přihlásit přímo do správce protokolu, jako je [Log4Net](http://logging.apache.org/log4net/) a [NLog](http://nlog-project.org/). Jednoduše poskytněte implementaci [ILogger](https://github.com/aspnet/AspNetWebHooks/blob/master/src/Microsoft.AspNet.WebHooks.Common/Diagnostics/ILogger.cs) a zaregistrujte jej pomocí vstřikovaného stroje závislostí podle vašeho výběru a bude vyzvednut společností Microsoft ASP.NET WebHooks. Podrobnosti naleznete [v tématu Vkládání závislostí v ASP.NET webové rozhraní API 2.](https://www.asp.net/web-api/overview/advanced/dependency-injection)
