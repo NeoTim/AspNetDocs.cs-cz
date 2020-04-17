@@ -1,27 +1,27 @@
 ---
 uid: web-forms/videos/sql-2005/what-is-a-database
-title: Co je databáze? | Dokumenty Microsoft
-author: microsoft
-description: 'Tento Úvod popisuje otázky a terminologii SQL Server začátečníky potřebují vytvářet a spravovat databáze, například: co je databáze SQL Server? Jak...'
+title: Co je databáze? | Dokumentace Microsoftu
+author: rick-anderson
+description: 'Tento úvod zahrnuje otázky a terminologie SQL Server začátečníci potřebují vytvářet a spravovat databáze, například: Co je databáze SQL Server? Jak...'
 ms.author: riande
 ms.date: 03/29/2006
 ms.assetid: 560d2455-ce08-4b2a-900d-7e9ccf82e048
 msc.legacyurl: /web-forms/videos/sql-2005/what-is-a-database
 msc.type: video
-ms.openlocfilehash: 019383897daeb7d8885ea4b9c3609e7f8ef9f827
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: ae7cdc3bfb84bcbf1846a825fd2e41f8c49de1f4
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78637135"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543194"
 ---
 # <a name="what-is-a-database"></a>Co je databáze?
 
-od [Microsoftu](https://github.com/microsoft)
+podle [společnosti Microsoft](https://github.com/microsoft)
 
-Tento Úvod popisuje otázky a terminologii SQL Server začátečníky potřebují vytvářet a spravovat databáze, například: co je databáze SQL Server? Jak se SQL Server databáze liší od excelové tabulky? Co SQL Server databází na mém webu nebo v aplikacích softwaru? SQL Server Express relace Visual Studio Express? Jaké mají význam "ADO.NET"?
+Tento úvod zahrnuje otázky a terminologie SQL Server začátečníci potřebují vytvářet a spravovat databáze, například: Co je databáze SQL Server? Jak se databáze SERVERU SQL Server liší od excelové tabulky? Co dělají databáze SERVERU SQL Server v mých webových stránkách nebo softwarových aplikacích? Jaký je vztah SQL Server Express k aplikaci Visual Studio Express? Co znamenají pojmy jako "ADO.NET"?
 
-[&#9654;Přehrát video (28 minut)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/what-is-a-database)
+[&#9654; Podívejte se na video (28 minut)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/what-is-a-database)
 
 > [!div class="step-by-step"]
-> [Next](understanding-database-tables-and-records.md)
+> [Další](understanding-database-tables-and-records.md)

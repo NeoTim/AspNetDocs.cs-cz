@@ -1,113 +1,113 @@
 ---
 uid: mvc/overview/older-versions-1/views/passing-data-to-view-master-pages-vb
-title: Předávání dat pro zobrazení stránek předlohy (VB) | Microsoft Docs
-author: microsoft
-description: Cílem tohoto kurzu je vysvětlit, jak můžete předat data z kontroleru na stránku zobrazení předlohy. Prověříme dvě strategie předávání dat do zobrazení m...
+title: Předávání dat do zobrazení stránek předlohy (VB) | Dokumenty společnosti Microsoft
+author: rick-anderson
+description: Cílem tohoto kurzu je vysvětlit, jak můžete předat data z řadiče na stránku předlohy zobrazení. Zkoumáme dvě strategie pro předávání dat do zobrazení m...
 ms.author: riande
 ms.date: 10/16/2008
 ms.assetid: 37a1ebae-8773-408f-8645-d21da7ff9ae1
 msc.legacyurl: /mvc/overview/older-versions-1/views/passing-data-to-view-master-pages-vb
 msc.type: authoredcontent
-ms.openlocfilehash: 9f768f47557adedc43cebfa2c092014bba5842de
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: ef65541a5f2297414f923e2f8108a14de67531e5
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78600105"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542466"
 ---
 # <a name="passing-data-to-view-master-pages-vb"></a>Předání dat stránkám předlohy pro zobrazení (VB)
 
-od [Microsoftu](https://github.com/microsoft)
+podle [společnosti Microsoft](https://github.com/microsoft)
 
 [Stáhnout PDF](https://download.microsoft.com/download/e/f/3/ef3f2ff6-7424-48f7-bdaa-180ef64c3490/ASPNET_MVC_Tutorial_13_VB.pdf)
 
-> Cílem tohoto kurzu je vysvětlit, jak můžete předat data z kontroleru na stránku zobrazení předlohy. Prověříme dvě strategie předávání dat na stránku zobrazení předlohy. Nejdřív se podíváme na jednoduché řešení, které vede k obtížné údržbě aplikace. V dalším kroku prověříme mnohem lepší řešení, které vyžaduje trochu pokročilejší práci, ale má za následek mnohem udržovatelnější aplikaci.
+> Cílem tohoto kurzu je vysvětlit, jak můžete předat data z řadiče na stránku předlohy zobrazení. Zkoumáme dvě strategie pro předávání dat na stránku předlohy zobrazení. Nejprve diskutujeme o jednoduché řešení, které má za následek aplikace, která je obtížné udržovat. Dále zkoumáme mnohem lepší řešení, které vyžaduje trochu více počáteční práce, ale výsledkem je mnohem více udržovatelné aplikace.
 
-## <a name="passing-data-to-view-master-pages"></a>Předávání dat pro zobrazení stránek předlohy
+## <a name="passing-data-to-view-master-pages"></a>Předávání dat do zobrazení stránek předlohy
 
-Cílem tohoto kurzu je vysvětlit, jak můžete předat data z kontroleru na stránku zobrazení předlohy. Prověříme dvě strategie předávání dat na stránku zobrazení předlohy. Nejdřív se podíváme na jednoduché řešení, které vede k obtížné údržbě aplikace. V dalším kroku prověříme mnohem lepší řešení, které vyžaduje trochu pokročilejší práci, ale má za následek mnohem udržovatelnější aplikaci.
+Cílem tohoto kurzu je vysvětlit, jak můžete předat data z řadiče na stránku předlohy zobrazení. Zkoumáme dvě strategie pro předávání dat na stránku předlohy zobrazení. Nejprve diskutujeme o jednoduché řešení, které má za následek aplikace, která je obtížné udržovat. Dále zkoumáme mnohem lepší řešení, které vyžaduje trochu více počáteční práce, ale výsledkem je mnohem více udržovatelné aplikace.
 
 ### <a name="the-problem"></a>Problém
 
-Představte si, že vytváříte aplikaci filmové databáze a chcete zobrazit seznam kategorií filmů na každé stránce aplikace (viz obrázek 1). Představte si, že seznam kategorií filmů je uložený v databázové tabulce. V takovém případě by měla smysl načíst kategorie z databáze a vykreslovat seznam kategorií filmů v rámci zobrazení stránky předlohy.
+Představte si, že vytváříte aplikaci pro databázi filmů a chcete zobrazit seznam kategorií filmů na každé stránce aplikace (viz obrázek 1). Představte si navíc, že seznam kategorií filmů je uložen v databázové tabulce. V takovém případě by mělo smysl načíst kategorie z databáze a vykreslit seznam kategorií filmů v rámci stránky předlohy zobrazení.
 
-[![zobrazení kategorií filmů na stránce zobrazení předlohy](passing-data-to-view-master-pages-vb/_static/image2.png)](passing-data-to-view-master-pages-vb/_static/image1.png)
+[![Zobrazení kategorií filmů na vzorové stránce zobrazení](passing-data-to-view-master-pages-vb/_static/image2.png)](passing-data-to-view-master-pages-vb/_static/image1.png)
 
-**Obrázek 01**: zobrazení kategorií filmů na stránce předlohy zobrazení ([kliknutím zobrazíte obrázek v plné velikosti](passing-data-to-view-master-pages-vb/_static/image3.png))
+**Obrázek 01**: Zobrazení kategorií filmů na vzorové stránce zobrazení[(Obrázek v plné velikosti zobrazíte klepnutím)](passing-data-to-view-master-pages-vb/_static/image3.png)
 
-Tady je problém. Jak načíst seznam kategorií videí na stránce předlohy? Nachází se na metody třídy modelu přímo na stránce předlohy. Jinými slovy, sestává z toho, že je nutné zahrnout kód pro načítání dat z databáze přímo na stránce předlohy. Obcházení řadičů MVC pro přístup k databázi by však narušilo čisté oddělení potíží, které je jednou z hlavních výhod sestavení aplikace MVC.
+Tady je problém. Jak načtete seznam kategorií filmů na stránce předlohy? Je lákavé volat metody tříd modelu přímo na stránce předlohy. Jinými slovy je lákavé zahrnout kód pro načítání dat z databáze přímo na stránce předlohy. Vynechání řadiče MVC pro přístup k databázi by však porušovat čisté oddělení obavy, které je jednou z hlavních výhod vytváření aplikace MVC.
 
-V aplikaci MVC chcete mít veškerou interakci mezi zobrazeními MVC a modelem MVC, aby je bylo možné zpracovat pomocí řadičů MVC. Toto oddělení obav má za následek udržovatelnější, přizpůsobitelnou a testovatelné aplikaci.
+V aplikaci MVC chcete, aby všechny interakce mezi zobrazeními MVC a modelem MVC byly zpracovány řadiči MVC. Toto oddělení obav vede k více udržovatelné, adaptabilní a testovatelné aplikace.
 
-V aplikaci MVC jsou všechna data předaná do zobrazení – včetně hlavní stránky zobrazení – by měla být předána zobrazením pomocí akce kontroleru. Data by se měla předat dál tím, že se budou používat data zobrazení. Ve zbývající části tohoto kurzu prohlížíme dvě metody předávání dat zobrazení na stránku zobrazení předlohy.
+V aplikaci MVC by měla být všechna data předaná zobrazení – včetně stránky předlohy zobrazení – předána zobrazení akcí kontroleru. Kromě toho by měly být předány údaje s využitím dat zobrazení. Ve zbývající části tohoto kurzu zkoumám dvě metody předávání dat zobrazení na stránku předlohy zobrazení.
 
 ### <a name="the-simple-solution"></a>Jednoduché řešení
 
-Pojďme začít s nejjednodušším řešením pro předávání dat zobrazení z kontroleru na stránku zobrazení předlohy. Nejjednodušším řešením je předat data zobrazení stránky předlohy v každé a každé akci kontroleru.
+Začněme nejjednodušším řešením předávání dat zobrazení z řadiče na stránku předlohy zobrazení. Nejjednodušším řešením je předat data zobrazení pro stránku předlohy v každé akci kontroleru.
 
-Vezměte v úvahu kontroler v seznamu 1. Zpřístupňuje dvě akce s názvem `Index()` a `Details()`. Metoda `Index()` akce vrátí všechny filmy v tabulce databáze filmů. Metoda `Details()` akce vrátí každý film v konkrétní kategorii videa.
+Zvažte řadič v výpisu 1. Zveřejňuje dvě akce `Index()` s `Details()`názvem a . Metoda `Index()` akce vrátí každý film v databázové tabulce Filmy. Metoda `Details()` akce vrátí každý film v určité kategorii filmu.
 
-**Výpis 1 – `Controllers\HomeController.vb`**
+**Výpis 1 –`Controllers\HomeController.vb`**
 
 [!code-vb[Main](passing-data-to-view-master-pages-vb/samples/sample1.vb)]
 
-Všimněte si, že `Index()` i `Details()` akce přidávají dvě položky k zobrazení dat. Akce `Index()` přidává dva klíče: kategorie a filmy. Klíč kategorie představuje seznam kategorií filmů zobrazených na stránce zobrazení předlohy. Klíč filmů představuje seznam filmů zobrazených na stránce zobrazení indexu.
+Všimněte si, že `Index()` akce a `Details()` akce přidat dvě položky pro zobrazení dat. Akce `Index()` přidá dvě klávesy: kategorie a filmy. Klíč kategorie představuje seznam kategorií filmů zobrazených na stránce předlohy zobrazení. Klíč filmy představuje seznam filmů zobrazených na stránce zobrazení rejstříku.
 
-Akce `Details()` také přidá dva klíče s názvem kategorie a filmy. Klíč kategorie, jednou znovu, představuje seznam kategorií filmů zobrazených na stránce předloha zobrazení. Klíč filmy představuje seznam filmů v určité kategorii zobrazené na stránce zobrazení podrobností (viz obrázek 2).
+Akce `Details()` také přidá dvě klávesy s názvem kategorie a filmy. Klíč kategorie opět představuje seznam kategorií filmů zobrazených na stránce předlohy zobrazení. Klíč filmy představuje seznam filmů v určité kategorii zobrazený na stránce zobrazení podrobností (viz obrázek 2).
 
-[![zobrazení podrobností](passing-data-to-view-master-pages-vb/_static/image5.png)](passing-data-to-view-master-pages-vb/_static/image4.png)
+[![Zobrazení Podrobnosti](passing-data-to-view-master-pages-vb/_static/image5.png)](passing-data-to-view-master-pages-vb/_static/image4.png)
 
-**Obrázek 02**: zobrazení podrobností ([kliknutím zobrazíte obrázek v plné velikosti](passing-data-to-view-master-pages-vb/_static/image6.png))
+**Obrázek 02**: Zobrazení podrobností[(Kliknutím zobrazíte obrázek v plné velikosti)](passing-data-to-view-master-pages-vb/_static/image6.png)
 
-Zobrazení index je obsaženo v seznamu 2. Jednoduše projde seznam filmů reprezentovaných položkou filmy v zobrazení dat.
+Zobrazení Rejstřík je obsaženo v seznamu 2. Jednoduše iteruje seznam filmů reprezentovaných položkou filmů v zobrazení dat.
 
-**Výpis 2 – `Views\Home\Index.aspx`**
+**Výpis 2 –`Views\Home\Index.aspx`**
 
 [!code-aspx[Main](passing-data-to-view-master-pages-vb/samples/sample2.aspx)]
 
-Stránka zobrazení předlohy je obsažena v seznamu 3. Stránka Zobrazit předloha prochází a vykresluje všechny kategorie videí reprezentované položkou Categories z zobrazení dat.
+Stránka předlohy zobrazení je obsažena v seznamu 3. Stránka předlohy zobrazení itetuje a vykresluje všechny kategorie filmů reprezentované položkou kategorií z dat ze zobrazení.
 
-**Výpis 3 – `Views\Shared\Site.master`**
+**Výpis 3 –`Views\Shared\Site.master`**
 
 [!code-aspx[Main](passing-data-to-view-master-pages-vb/samples/sample3.aspx)]
 
-Všechna data jsou předána do zobrazení a stránka zobrazení předlohy prostřednictvím zobrazení dat. To je správný způsob, jak předat data do stránky předlohy.
+Všechna data jsou předána zobrazení a stránku předlohy zobrazení prostřednictvím dat zobrazení. To je správný způsob předání dat na stránku předlohy.
 
-Co je to u tohoto řešení špatné? Problémem je to, že toto řešení porušuje zásadu SUCHÉho (princip "Neopakuj se"). Každá akce kontroleru musí pro zobrazení dat přidat stejný seznam kategorií videí. Pokud máte v aplikaci duplicitní kód, je vaše aplikace mnohem obtížnější udržovat, přizpůsobit a upravit.
+Takže, co je špatného na tomto řešení? Problém je v tom, že toto řešení porušuje princip DRY (Don't Repeat Yourself). Každá akce řadiče musí přidat stejný seznam kategorií filmů, aby bylo možné zobrazit data. Duplicitní kód v aplikaci je vaše aplikace mnohem obtížnější udržovat, přizpůsobovat a upravovat.
 
 ### <a name="the-good-solution"></a>Dobré řešení
 
-V této části prověříme alternativní a lepší řešení pro předávání dat z akce kontroleru na stránku zobrazení předlohy. Místo přidávání kategorií filmů pro hlavní stránku v každé akci kontroleru přidáváme kategorie videa do zobrazení dat jenom jednou. Všechna data zobrazení, která jsou používána stránkou předlohy zobrazení, se přidají do kontroleru aplikací.
+V této části zkontrolujeme alternativní a lepší řešení předávání dat z akce kontroleru na stránku předlohy zobrazení. Namísto přidání kategorií filmů pro stránku předlohy v každé akci kontroleru přidáme kategorie filmů do dat zobrazení pouze jednou. Všechna data zobrazení používaná stránkou předlohy zobrazení jsou přidána do řadiče aplikace.
 
-Třída ApplicationController je obsažena v seznamu 4.
+Třída ApplicationController je obsažena v výpisu 4.
 
-Třída ApplicationController je obsažena v seznamu 4.
+Třída ApplicationController je obsažena v výpisu 4.
 
-**Výpis 4 – `Controllers\ApplicationController.vb`**
+**Výpis 4 –`Controllers\ApplicationController.vb`**
 
 [!code-vb[Main](passing-data-to-view-master-pages-vb/samples/sample4.vb)]
 
-Existují tři věci, které byste si měli všimnout o řadiči aplikace v seznamu 4. Nejprve si všimněte, že třída dědí ze základní třídy System. Web. Mvc. Controller. Kontroler aplikací je třída kontroleru.
+Existují tři věci, které byste si měli všimnout o řadiči aplikace v seznamu 4. Nejprve si všimněte, že třída dědí ze základní třídy System.Web.Mvc.Controller. Řadič aplikace je třída řadiče.
 
-Za druhé Všimněte si, že třída kontroleru aplikace je třída MustInherit. Třída MustInherit je třída, která musí být implementována konkrétní třídou. Vzhledem k tomu, že je řadič aplikace třída MustInherit, nelze vyvolat žádné metody definované ve třídě přímo. Pokud se pokusíte třídu aplikace vyvolat přímo, zobrazí se chybová zpráva, že se nepovedlo najít prostředek.
+Za druhé všimněte si, že třída řadiče aplikace je MustInherit třídy. Třída MustInherit je třída, která musí být implementována konkrétní třídou. Vzhledem k tomu, že řadič aplikace je třída MustInherit, nelze vyvolat žádné metody definované ve třídě přímo. Pokud se pokusíte vyvolat třídu Aplikace přímo, zobrazí se chybová zpráva Prostředek nelze najít.
 
-Třetí, Všimněte si, že kontroler aplikací obsahuje konstruktor, který přidá seznam kategorií videí pro zobrazení dat. Každá třída kontroleru, která dědí z kontroleru aplikace, volá automaticky konstruktor řadiče aplikace. Pokaždé, když zavoláte jakoukoli akci na jakémkoli řadiči, který dědí z kontroleru aplikace, jsou kategorie filmů zahrnuty do automaticky zobrazených dat.
+Za třetí všimněte si, že řadič aplikace obsahuje konstruktor, který přidá seznam kategorií filmu pro zobrazení dat. Každá třída kontroleru, která dědí z řadiče aplikace, volá konstruktor aplikačního kontroléru automaticky. Kdykoli zavoláte jakoukoli akci na libovolném řadiči, který dědí z řadiče aplikace, kategorie filmů se automaticky zahrnou do dat zobrazení.
 
-Kontroler filmů v výpisu 5 dědí z řadiče aplikace.
+Řadič Filmy v seznamu 5 dědí z řadiče aplikace.
 
-**Výpis 5 – `Controllers\MoviesController.vb`**
+**Výpis 5 –`Controllers\MoviesController.vb`**
 
 [!code-vb[Main](passing-data-to-view-master-pages-vb/samples/sample5.vb)]
 
-Kontroler filmů, stejně jako u domovského kontroleru popsaných v předchozí části, zpřístupňuje dvě metody akcí s názvem `Index()` a `Details()`. Všimněte si, že seznam kategorií filmů zobrazených pomocí hlavní stránky zobrazení není přidaný k zobrazení dat v metodě `Index()` ani `Details()`. Vzhledem k tomu, že kontroler filmů dědí z kontroleru aplikace, je k automatickému zobrazení dat přidána seznam kategorií filmů.
+Řadič Filmy, stejně jako domácí řadič popisovaný v předchozí `Index()` části, zveřejňuje dvě metody akce s názvem a `Details()`. Všimněte si, že seznam kategorií filmů zobrazených na stránce předlohy zobrazení není přidán k zobrazení dat v metodě `Index()` nebo. `Details()` Vzhledem k tomu, že řadič Filmy dědí z řadiče aplikace, přidá se seznam kategorií filmů, aby se data automaticky zobrazila.
 
-Všimněte si, že toto řešení pro přidání dat zobrazení pro zobrazení hlavní stránky nebrání v rozporu s SUCHou (princip "Neopakuj se") principem. Kód pro přidání seznamu kategorií videí pro zobrazení dat je obsažen pouze v jednom umístění: konstruktor pro řadič aplikace.
+Všimněte si, že toto řešení pro přidání dat zobrazení pro stránku předlohy zobrazení neporušuje princip DRY (Neopakujte sami). Kód pro přidání seznamu kategorií filmů pro zobrazení dat je obsažen pouze v jednom umístění: konstruktor pro řadič aplikace.
 
 ### <a name="summary"></a>Souhrn
 
-V tomto kurzu jsme probrali dva přístupy k předávání dat zobrazení z kontroleru na stránku zobrazení Předloha. Nejprve jsme prozkoumali jednoduchý, ale obtížně zachováme přístup. V první části jsme probrali, jak můžete přidat data zobrazení pro stránku předlohy zobrazení v každé akci kontroleru v aplikaci. Dospěli jsme k závěru, že se jedná o špatný přístup, protože je v rozporu s SUCHou (princip "Neopakuj se") principem.
+V tomto kurzu jsme diskutovali o dvou přístupech k předávání dat zobrazení z řadiče na stránku předlohy zobrazení. Nejprve jsme zkoumali jednoduchý, ale obtížně udržovatelné přístup. V první části jsme probrali, jak můžete přidat data zobrazení pro stránku předlohy zobrazení v každé akci kontroleru ve vaší aplikaci. Dospěli jsme k závěru, že to byl špatný přístup, protože porušuje zásadu DRY (Don't Repeat Yourself).
 
-Dále jsme prozkoumali mnohem lepší strategii pro přidávání dat vyžadovaných stránkou předlohy zobrazení k zobrazení dat. Místo přidávání dat zobrazení v jednotlivých a všech akcích kontroléru jsme přidali data zobrazení pouze jednou v rámci kontroleru aplikace. Tímto způsobem se můžete vyhnout duplicitnímu kódu při předávání dat na stránku zobrazení předlohy v aplikaci ASP.NET MVC.
+Dále jsme zkoumali mnohem lepší strategii pro přidávání dat vyžadované stránkou předlohy zobrazení pro zobrazení dat. Namísto přidání dat zobrazení v každé akci kontrolora jsme data zobrazení přidali pouze jednou v rámci řadiče aplikace. Tímto způsobem se můžete vyhnout duplicitní kód při předávání dat na stránku předlohy zobrazení v aplikaci ASP.NET MVC.
 
 > [!div class="step-by-step"]
 > [Předchozí](creating-page-layouts-with-view-master-pages-vb.md)

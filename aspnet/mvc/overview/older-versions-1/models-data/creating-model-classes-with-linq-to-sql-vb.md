@@ -1,188 +1,188 @@
 ---
 uid: mvc/overview/older-versions-1/models-data/creating-model-classes-with-linq-to-sql-vb
-title: Vytváření tříd modelu pomocí LINQ to SQL (VB) | Microsoft Docs
-author: microsoft
-description: Cílem tohoto kurzu je vysvětlit jednu metodu vytváření tříd modelů pro aplikaci ASP.NET MVC. V tomto kurzu se naučíte sestavit model c...
+title: Vytváření tříd modelu s LINQ na SQL (VB) | Dokumenty společnosti Microsoft
+author: rick-anderson
+description: Cílem tohoto kurzu je vysvětlit jednu metodu vytváření tříd modelu pro ASP.NET aplikace MVC. V tomto kurzu se naučíte, jak vytvořit model c...
 ms.author: riande
 ms.date: 10/07/2008
 ms.assetid: a4a25a75-d71f-4509-98b4-df72e748985a
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/creating-model-classes-with-linq-to-sql-vb
 msc.type: authoredcontent
-ms.openlocfilehash: 88a5f1037d93ef3bdc95bf60b6005ebb254ab440
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 1a6133227eedc8934af7bf872532ca667b97d0f8
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78581268"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542700"
 ---
 # <a name="creating-model-classes-with-linq-to-sql-vb"></a>Vytvoření tříd modelu pomocí LINQ to SQL (VB)
 
-od [Microsoftu](https://github.com/microsoft)
+podle [společnosti Microsoft](https://github.com/microsoft)
 
 [Stáhnout PDF](https://download.microsoft.com/download/1/1/f/11f721aa-d749-4ed7-bb89-a681b68894e6/ASPNET_MVC_Tutorial_10_VB.pdf)
 
-> Cílem tohoto kurzu je vysvětlit jednu metodu vytváření tříd modelů pro aplikaci ASP.NET MVC. V tomto kurzu se naučíte, jak sestavovat třídy modelů a provádět přístup k databázím díky využití LINQ to SQL Microsoftu.
+> Cílem tohoto kurzu je vysvětlit jednu metodu vytváření tříd modelu pro ASP.NET aplikace MVC. V tomto kurzu se dozvíte, jak vytvářet třídy modelu a provádět přístup k databázi s využitím microsoft linq na SQL.
 
-Cílem tohoto kurzu je vysvětlit jednu metodu vytváření tříd modelů pro aplikaci ASP.NET MVC. V tomto kurzu se naučíte, jak sestavovat třídy modelů a provádět přístup k databázím díky využití LINQ to SQL Microsoftu.
+Cílem tohoto kurzu je vysvětlit jednu metodu vytváření tříd modelu pro ASP.NET aplikace MVC. V tomto kurzu se dozvíte, jak vytvářet třídy modelu a provádět přístup k databázi s využitím microsoft linq na SQL.
 
-V tomto kurzu sestavíme základní aplikaci video Database. Začneme vytvořením aplikace filmové databáze nejrychleji a nejjednodušší možností. Veškerý přístup k datům provádíme přímo z našich akcí kontroleru.
+V tomto kurzu vytvoříme základní databázovou aplikaci Movie. Začneme tím, že vytvoříme databázovou aplikaci Movie nejrychlejším a nejjednodušším možným způsobem. Veškerý přístup k našim datům provádíme přímo z akcí našeho správce.
 
-V dalším kroku se naučíte používat vzor úložiště. Použití vzoru úložiště vyžaduje trochu více práce. Výhodou toho, jak tento model obdržíte, je však, že umožňuje sestavovat aplikace, které lze upravit a lze je snadno testovat.
+Dále se dozvíte, jak používat vzor úložiště. Použití vzoru úložiště vyžaduje trochu více práce. Výhodou přijetí tohoto vzoru je však to, že umožňuje vytvářet aplikace, které jsou adaptabilní na změnu a lze je snadno otestovat.
 
-## <a name="what-is-a-model-class"></a>Co je třída modelu?
+## <a name="what-is-a-model-class"></a>Co je modelová třída?
 
-Model MVC obsahuje veškerou aplikační logiku, která není obsažena v zobrazení MVC nebo řadiči MVC. Konkrétně model MVC obsahuje všechny vaše aplikace a logiku přístupu k datům.
+Model MVC obsahuje veškerou aplikační logiku, která není obsažena v zobrazení MVC nebo mvc řadiči. Zejména model MVC obsahuje všechny vaše obchodní aplikace a logiku přístupu k datům.
 
-K implementaci logiky přístupu k datům můžete použít celou řadu různých technologií. Můžete například sestavit třídy pro přístup k datům pomocí tříd Microsoft Entity Framework, NHibernate, Subsonic nebo ADO.NET.
+K implementaci logiky přístupu k datům můžete použít celou řadu různých technologií. Můžete například vytvořit třídy přístupu k datům pomocí microsoft entity framework, NHibernate, Subsonic nebo ADO.NET třídy.
 
-V tomto kurzu používám LINQ to SQL k dotazování a aktualizaci databáze. LINQ to SQL poskytuje velmi snadnou metodu interakce s databází Microsoft SQL Server. Je ale důležité pochopit, že rozhraní ASP.NET MVC není vázané na LINQ to SQL jakýmkoli způsobem. ASP.NET MVC je kompatibilní se všemi technologiemi pro přístup k datům.
+V tomto kurzu používám LINQ na SQL k dotazování a aktualizaci databáze. LINQ to SQL poskytuje velmi snadný způsob interakce s databází serveru Microsoft SQL Server. Je však důležité si uvědomit, že ASP.NET MVC framework není vázána na LINQ sql v žádném případě. ASP.NET MVC je kompatibilní s jakoukoli technologií přístupu k datům.
 
 ## <a name="create-a-movie-database"></a>Vytvoření filmové databáze
 
-V tomto kurzu – pro ilustraci, jak můžete sestavovat třídy modelu – sestavíme jednoduchou aplikaci filmové databáze. Prvním krokem je vytvoření nové databáze. V okně Průzkumník řešení klikněte pravým tlačítkem na složku data\_aplikace a vyberte možnost nabídky **Přidat, nová položka**. Vyberte šablonu databáze SQL Server, přiřaďte jí název MoviesDB. mdf a klikněte na tlačítko **Přidat** (viz obrázek 1).
+V tomto kurzu – aby bylo možné ilustrovat, jak můžete vytvářet třídy modelu -- vytvoříme jednoduchou databázovou aplikaci Movie. Prvním krokem je vytvoření nové databáze. Klepněte pravým\_tlačítkem myši na složku Data aplikace v okně Průzkumník řešení a vyberte možnost nabídky **Přidat, Novou položku**. Vyberte šablonu databáze serveru SQL Server, pojmenujte ji MoviesDB.mdf a klikněte na tlačítko **Přidat** (viz obrázek 1).
 
-[![přidávání nové databáze SQL Server](creating-model-classes-with-linq-to-sql-vb/_static/image2.png)](creating-model-classes-with-linq-to-sql-vb/_static/image1.png)
+[![Přidání nové databáze serveru SQL Server](creating-model-classes-with-linq-to-sql-vb/_static/image2.png)](creating-model-classes-with-linq-to-sql-vb/_static/image1.png)
 
-**Obrázek 01**: Přidání nové databáze SQL Server ([kliknutím zobrazíte obrázek v plné velikosti](creating-model-classes-with-linq-to-sql-vb/_static/image3.png))
+**Obrázek 01**: Přidání nové databáze serveru SQL Server[(Klepnutím zobrazíte obrázek v plné velikosti)](creating-model-classes-with-linq-to-sql-vb/_static/image3.png)
 
-Po vytvoření nové databáze můžete databázi otevřít dvojitým kliknutím na soubor MoviesDB. mdf ve složce App\_data. Dvojím kliknutím na soubor MoviesDB. mdf se otevře okno Průzkumník serveru (viz obrázek 2).
+Po vytvoření nové databáze můžete databázi otevřít poklepáním na soubor MoviesDB.mdf ve složce Data aplikace.\_ Poklepáním na soubor MoviesDB.mdf se otevře okno Průzkumník serveru (viz obrázek 2).
 
-|   | Okno Průzkumník serveru se nazývá okno Průzkumník databáze při použití aplikace Visual Web Developer. |
+|   | Okno Průzkumníkserveru se při použití aplikace Visual Web Developer nazývá okno Průzkumník databáze. |
 |---|----------------------------------------------------------------------------------------------------|
 |   |                                                                                                    |
 
-[![pomocí okna Průzkumník serveru](creating-model-classes-with-linq-to-sql-vb/_static/image5.png)](creating-model-classes-with-linq-to-sql-vb/_static/image4.png)
+[![Použití okna Průzkumníka serveru](creating-model-classes-with-linq-to-sql-vb/_static/image5.png)](creating-model-classes-with-linq-to-sql-vb/_static/image4.png)
 
-**Obrázek 02**: použití okna Průzkumník serveru ([obrázek pro celou velikost zobrazíte kliknutím](creating-model-classes-with-linq-to-sql-vb/_static/image6.png))
+**Obrázek 02**: Použití okna Průzkumníkserveru[(Klepnutím zobrazíte obrázek v plné velikosti)](creating-model-classes-with-linq-to-sql-vb/_static/image6.png)
 
-Musíme do naší databáze přidat jednu tabulku, která představuje naše filmy. Klikněte pravým tlačítkem na složku tabulky a vyberte možnost nabídky **Přidat novou tabulku**. Výběr této možnosti nabídky otevře Návrháře tabulky (viz obrázek 3).
+Musíme do naší databáze přidat jednu tabulku, která reprezentuje naše filmy. Klepněte pravým tlačítkem myši na složku Tabulky a vyberte možnost nabídky **Přidat novou tabulku**. Výběrem této možnosti nabídky se otevře Návrhář tabulek (viz obrázek 3).
 
-[![pomocí okna Průzkumník serveru](creating-model-classes-with-linq-to-sql-vb/_static/image8.png)](creating-model-classes-with-linq-to-sql-vb/_static/image7.png)
+[![Použití okna Průzkumníka serveru](creating-model-classes-with-linq-to-sql-vb/_static/image8.png)](creating-model-classes-with-linq-to-sql-vb/_static/image7.png)
 
-**Obrázek 03**: Návrhář tabulky ([kliknutím zobrazíte obrázek v plné velikosti](creating-model-classes-with-linq-to-sql-vb/_static/image9.png))
+**Obrázek 03**: Návrhář tabulky[(Kliknutím zobrazíte obrázek v plné velikosti)](creating-model-classes-with-linq-to-sql-vb/_static/image9.png)
 
 Do tabulky databáze musíme přidat následující sloupce:
 
-| **Název sloupce** | **Datový typ** | **Povoluje hodnoty null.** |
+| **Název sloupce** | **Typ dat** | **Povolit hodnoty Null** |
 | --- | --- | --- |
 | ID | Int | False |
-| Název | Nvarchar(200) | False |
+| Nadpis | Nvarchar(200) | False |
 | Ředitel | Nvarchar(50) | False |
 
-Ve sloupci ID musíte udělat dvě speciální věci. Nejprve je třeba označit sloupec ID jako sloupec primárního klíče tak, že vyberete sloupec v Návrháři tabulky a kliknete na ikonu klíče. LINQ to SQL vyžaduje, abyste při vkládání nebo aktualizaci databáze určili sloupce primárního klíče.
+Musíte udělat dvě zvláštní věci do sloupce Id. Nejprve je třeba označit sloupec Id jako sloupec primárního klíče tak, že vyberete sloupec v Návrháři tabulek a kliknete na ikonu klíče. LINQ to SQL vyžaduje zadání sloupců primárního klíče při provádění vložení nebo aktualizace proti databázi.
 
-Dále je nutné označit sloupec ID jako sloupec identity přiřazením hodnoty Ano k vlastnosti **identity identity** (viz obrázek 3). Sloupec identity je sloupec, který je automaticky přiřazen k novému číslu pokaždé, když do tabulky přidáte nový řádek dat.
+Dále je třeba označit sloupec ID jako sloupec Identity přiřazením hodnoty Ano **vlastnosti Je identita** (viz obrázek 3). Sloupec Identita je sloupec, kterému je automaticky přiřazeno nové číslo při každém přidání nového řádku dat do tabulky.
 
-Po provedení těchto změn tabulku uložte s názvem tblMovie. Tabulku můžete uložit kliknutím na tlačítko Uložit.
+Po provedeném provádění těchto změn uložte tabulku s názvem tblMovie. Tabulku můžete uložit kliknutím na tlačítko Uložit.
 
-## <a name="create-linq-to-sql-classes"></a>Vytváření tříd LINQ to SQL
+## <a name="create-linq-to-sql-classes"></a>Vytvořit třídy LINQ na SQL
 
-Náš model MVC bude obsahovat LINQ to SQL třídy, které reprezentují tabulku databáze tblMovie. Nejjednodušší způsob, jak vytvořit tyto LINQ to SQL třídy, je kliknout pravým tlačítkem myši na složku modely, vybrat položku **Přidat, nová položka**, vybrat šablonu LINQ to SQL třídy, přidělit třídy název Movie. dbml a kliknout na tlačítko **Přidat** (viz obrázek 4).
+Náš model MVC bude obsahovat třídy LINQ to SQL, které představují databázovou tabulku tblMovie. Nejjednodušší způsob, jak vytvořit tyto třídy LINQ na SQL, je kliknout pravým tlačítkem myši na složku Modely, vybrat **možnost Přidat, Nová položka**, vybrat šablonu LINQ do tříd SQL, dát třídám název Movie.dbml a kliknout na tlačítko **Přidat** (viz obrázek 4).
 
-[![vytváření tříd LINQ to SQL](creating-model-classes-with-linq-to-sql-vb/_static/image11.png)](creating-model-classes-with-linq-to-sql-vb/_static/image10.png)
+[![Vytváření tříd LINQ na SQL](creating-model-classes-with-linq-to-sql-vb/_static/image11.png)](creating-model-classes-with-linq-to-sql-vb/_static/image10.png)
 
-**Obrázek 04**: vytváření tříd LINQ to SQL ([kliknutím zobrazíte obrázek v plné velikosti](creating-model-classes-with-linq-to-sql-vb/_static/image12.png))
+**Obrázek 04**: Vytvoření tříd LINQ na SQL[(Klepnutím zobrazíte obrázek v plné velikosti)](creating-model-classes-with-linq-to-sql-vb/_static/image12.png)
 
-Ihned po vytvoření třídy video LINQ to SQL se zobrazí Návrhář relací objektů. Tabulky databáze můžete přetáhnout z okna Průzkumník serveru do Návrhář relací objektů a vytvořit LINQ to SQL třídy, které reprezentují konkrétní databázové tabulky. Na Návrhář relací objektů musíme přidat tabulku databáze tblMovie (viz obrázek 4).
+Ihned po vytvoření movie LINQ na SQL třídy, objekt relační návrhář se zobrazí. Databázové tabulky můžete přetáhnout z okna Průzkumníka serveru do návrháře relačních objektů a vytvořit tak LINQ na třídy SQL, které představují konkrétní databázové tabulky. Musíme přidat databázovou tabulku tblMovie do objektu Relační designer (viz obrázek 4).
 
-[![používání Návrhář relací objektů](creating-model-classes-with-linq-to-sql-vb/_static/image14.png)](creating-model-classes-with-linq-to-sql-vb/_static/image13.png)
+[![Použití relačního návrháře objektu](creating-model-classes-with-linq-to-sql-vb/_static/image14.png)](creating-model-classes-with-linq-to-sql-vb/_static/image13.png)
 
-**Obrázek 05**: použití Návrhář relací objektů ([kliknutím zobrazíte obrázek v plné velikosti](creating-model-classes-with-linq-to-sql-vb/_static/image15.png))
+**Obrázek 05**: Použití návrháře relačních objektů[(Klepnutím zobrazíte obrázek v plné velikosti)](creating-model-classes-with-linq-to-sql-vb/_static/image15.png)
 
-Ve výchozím nastavení Návrhář relací objektů vytvoří třídu se stejným názvem, jako má databázová tabulka, kterou jste přetáhli do návrháře. Nechce ale volat naši třídu tblMovie. Proto klikněte v návrháři na název třídy a změňte název třídy na video.
+Ve výchozím nastavení vytvoří návrhář relační objekttřídy třídy se stejným názvem jako databázová tabulka, kterou přetáhnete do návrháře. Nechceme však volat naše třídy tblMovie. Proto klepněte na název třídy v návrháři a změňte název třídy na Film.
 
-Nakonec nezapomeňte kliknout na tlačítko **Uložit** (Obrázek diskety) a uložit LINQ to SQL třídy. V opačném případě LINQ to SQL třídy nebudou vygenerovány Návrhář relací objektů.
+Nakonec nezapomeňte kliknout na tlačítko **Uložit** (obrázek diskety) pro uložení LINQ do tříd SQL. V opačném případě linq na SQL třídy nebudou generovány objektrelační návrháře.
 
-## <a name="using-linq-to-sql-in-a-controller-action"></a>Použití LINQ to SQL v akci kontroleru
+## <a name="using-linq-to-sql-in-a-controller-action"></a>Použití LINQ na SQL v akci řadiče
 
-Teď, když máme naše LINQ to SQL třídy, můžeme tyto třídy použít k načtení dat z databáze. V této části se dozvíte, jak použít třídy LINQ to SQL přímo v rámci akce kontroleru. Zobrazí se seznam filmů z tabulky tblMovies Database v zobrazení MVC.
+Nyní, když máme naše LINQ na SQL třídy, můžeme použít tyto třídy k načtení dat z databáze. V této části se dozvíte, jak používat linq na SQL třídy přímo v rámci akce kontroleru. Zobrazíme seznam filmů z tabulky databáze tblMovies v zobrazení MVC.
 
-Nejdřív je potřeba upravit třídu HomeController. Tuto třídu lze najít ve složce Controllers aplikace. Upravte třídu tak, aby vypadala jako třída v seznamu 1.
+Nejprve je třeba upravit HomeController třídy. Tuto třídu najdete ve složce Řadiče vaší aplikace. Upravte třídu tak, aby vypadala jako třída v seznamu 1.
 
-**Výpis 1 – `Controllers\HomeController.vb`**
+**Výpis 1 –`Controllers\HomeController.vb`**
 
 [!code-vb[Main](creating-model-classes-with-linq-to-sql-vb/samples/sample1.vb)]
 
-Akce index () v výpisu 1 používá třídu LINQ to SQL DataContext (MovieDataContext), která představuje databázi MoviesDB. Třída MoveDataContext byla vygenerována Návrhář relací objektů sady Visual Studio.
+Akce Index() v výpisu 1 používá třídu LINQ to SQL DataContext (MovieDataContext) k reprezentaci databáze MoviesDB. Třída MoveDataContext byla generována návrhářem relačních objektů visual studia.
 
-Dotaz LINQ se provede proti kontextu DataContext, aby se načetly všechny filmy z tabulky databáze tblMovies. Seznam filmů je přiřazen místní proměnné s názvem filmy. Nakonec se seznam filmů předává do zobrazení prostřednictvím zobrazení dat.
+Dotaz LINQ se provádí proti DataContext načíst všechny filmy z tblMovies databázové tabulky. Seznam filmů je přiřazen k místní proměnné s názvem filmy. Nakonec je seznam filmů předán zobrazení prostřednictvím dat zobrazení.
 
-Aby se zobrazovaly filmy, dál je potřeba upravit zobrazení indexu. Zobrazení indexu můžete najít ve složce Views\Home\. Aktualizujte zobrazení indexu tak, aby vypadalo jako zobrazení v seznamu 2.
+Aby bylo možné zobrazit filmy, dále je třeba upravit zobrazení indexu. Zobrazení rejstříku najdete ve složce Zobrazení\Domů\. Aktualizujte zobrazení rejstříku tak, aby vypadalo jako zobrazení v seznamu 2.
 
-**Výpis 2 – `Views\Home\Index.aspx`**
+**Výpis 2 –`Views\Home\Index.aspx`**
 
 [!code-aspx[Main](creating-model-classes-with-linq-to-sql-vb/samples/sample2.aspx)]
 
-Všimněte si, že upravené zobrazení indexu obsahuje direktivu &lt;% @ import oboru názvů&gt; v horní části zobrazení. Tato direktiva importuje obor názvů MvcApplication1. Tento obor názvů potřebujeme, aby bylo možné pracovat s třídami modelů – zejména se třídou filmu v zobrazení.
+Všimněte si, že &lt;upravené zobrazení indexu&gt; obsahuje direktivu %@ oboru názvů importu % v horní části zobrazení. Tato směrnice importuje obor názvů MvcApplication1. Potřebujeme tento obor názvů, abychom mohli pracovat s třídami modelu – zejména s třídou Movie – v zobrazení.
 
-Zobrazení v seznamu 2 obsahuje pro každou smyčku, která prochází všemi položkami reprezentovanými vlastností ViewData. model. Hodnota vlastnosti title se zobrazí pro každý film.
+Zobrazení v výpisu 2 obsahuje for each smyčky, která iterates přes všechny položky reprezentované ViewData.Model vlastnost. Hodnota Title vlastnost se zobrazí pro každý film.
 
-Všimněte si, že hodnota vlastnosti ViewData. model je přetypování na IEnumerable. To je nezbytné, aby bylo možné projít obsah ViewData. model. Další možností je vytvořit zobrazení silného typu. Když vytvoříte zobrazení silného typu, převedete vlastnost ViewData. model na konkrétní typ v rámci třídy zobrazení kódu na pozadí.
+Všimněte si, že hodnota ViewData.Model vlastnost je přetypován do IEnumerable. To je nezbytné pro smyčku prostřednictvím obsahu ViewData.Model. Další možností je vytvoření zobrazení silného typu. Když vytvoříte zobrazení silného typu, přetypovat ViewData.Model vlastnost na určitý typ v zobrazení kód na pozadí třídy.
 
-Pokud aplikaci spustíte po úpravě třídy HomeController a zobrazení indexu, zobrazí se prázdná stránka. Zobrazí se prázdná stránka, protože v tabulce databáze tblMovies nejsou žádné filmové záznamy.
+Pokud spustíte aplikaci po úpravě třídy HomeController a zobrazení indexu, zobrazí se prázdná stránka. Zobrazí se prázdná stránka, protože v databázové tabulce tblMovies nejsou žádné filmové záznamy.
 
-Chcete-li přidat záznamy do tabulky databáze tblMovies, klikněte pravým tlačítkem myši na tabulku databáze tblMovies v okně Průzkumník serveru (okno Průzkumník databáze v aplikaci Visual Web Developer) a vyberte možnost nabídky **Zobrazit data tabulky**. Záznamy filmů můžete vložit pomocí mřížky, která se zobrazí (viz obrázek 5).
+Chcete-li přidat záznamy do tabulky databáze TBLMovies, klepněte pravým tlačítkem myši na databázovou tabulku tblMovies v okně Průzkumník serveru (okno Průzkumníkdatabáze v aplikaci Visual Web Developer) a vyberte možnost nabídky **Zobrazit data tabulky**. Filmové záznamy můžete vložit pomocí mřížky, která se zobrazí (viz obrázek 5).
 
-[![vkládání filmů](creating-model-classes-with-linq-to-sql-vb/_static/image17.png)](creating-model-classes-with-linq-to-sql-vb/_static/image16.png)
+[![Vkládání filmů](creating-model-classes-with-linq-to-sql-vb/_static/image17.png)](creating-model-classes-with-linq-to-sql-vb/_static/image16.png)
 
-**Obrázek 6**: vkládání filmů ([kliknutím zobrazíte obrázek v plné velikosti](creating-model-classes-with-linq-to-sql-vb/_static/image18.png))
+**Obrázek 06**: Vkládání[filmů(Kliknutím zobrazíte obrázek v plné velikosti)](creating-model-classes-with-linq-to-sql-vb/_static/image18.png)
 
-Po přidání záznamů databáze do tabulky tblMovies a spuštění aplikace uvidíte stránku na obrázku 7. Všechny záznamy z filmové databáze se zobrazí v seznamu s odrážkami.
+Po přidání některých databázových záznamů do tabulky tblMovies a spuštění aplikace se zobrazí stránka na obrázku 7. Všechny záznamy filmové databáze jsou zobrazeny v seznamu s odrážkami.
 
-[![zobrazení filmů pomocí zobrazení indexu](creating-model-classes-with-linq-to-sql-vb/_static/image20.png)](creating-model-classes-with-linq-to-sql-vb/_static/image19.png)
+[![Zobrazení filmů v zobrazení Rejstřík](creating-model-classes-with-linq-to-sql-vb/_static/image20.png)](creating-model-classes-with-linq-to-sql-vb/_static/image19.png)
 
-**Obrázek 07**: zobrazení filmů pomocí zobrazení indexu ([kliknutím zobrazíte obrázek v plné velikosti](creating-model-classes-with-linq-to-sql-vb/_static/image21.png))
+**Obrázek 07**: Zobrazení filmů v zobrazení rejstříku(Kliknutím[zobrazíte obrázek v plné velikosti)](creating-model-classes-with-linq-to-sql-vb/_static/image21.png)
 
 ## <a name="using-the-repository-pattern"></a>Použití vzoru úložiště
 
-V předchozí části jsme použili LINQ to SQL třídy přímo v rámci akce kontroleru. Třídu MovieDataContext jsme použili přímo z akce řadiče indexu (). V případě jednoduché aplikace není v tomto případě nic špatné. Ale práce přímo s LINQ to SQL v třídě Controller vytvoří problémy, když potřebujete vytvořit složitější aplikaci.
+V předchozí části jsme použili LINQ na SQL třídy přímo v rámci akce kontroleru. Použili jsme Třída MovieDataContext přímo z akce řadiče Index(). Není nic špatného na tom, že v případě jednoduché aplikace. Práce přímo s LINQ na SQL ve třídě řadiče však vytváří problémy, když potřebujete vytvořit složitější aplikaci.
 
-Použití LINQ to SQL v rámci třídy Controller ztěžuje přepínání technologií pro přístup k datům v budoucnu. Například se můžete rozhodnout, že budete používat Microsoft LINQ to SQL k používání Microsoft Entity Framework jako technologie pro přístup k datům. V takovém případě byste museli přepsat každý kontroler, který přistupuje k databázi v rámci aplikace.
+Použití LINQ sql v rámci třídy řadiče ztěžuje přepínání technologií přístupu k datům v budoucnu. Můžete se například rozhodnout přejít z používání microsoft linq na SQL na using Microsoft Entity Framework jako technologie přístupu k datům. V takovém případě budete muset přepsat každý řadič, který přistupuje k databázi v rámci vaší aplikace.
 
-Použití LINQ to SQL v rámci třídy Controller také ztěžuje vytváření testů jednotek pro vaši aplikaci. V normálním případě nechcete při provádění testů jednotek pracovat s databází. Chcete použít testy jednotek k otestování logiky aplikace a nikoli databázového serveru.
+Použití LINQ sql v rámci třídy řadiče také ztěžuje sestavení testů částí pro vaši aplikaci. Za normálních okolností nechcete pracovat s databází při provádění testů částí. Chcete použít testy částí k testování aplikační logiky a nikoli databázového serveru.
 
-Aby bylo možné vytvořit aplikaci MVC, která je více přizpůsobitelná na budoucí změnu a kterou lze snadněji testovat, měli byste zvážit použití vzoru úložiště. Při použití vzoru úložiště vytvoříte samostatnou třídu úložiště, která bude obsahovat veškerou logiku přístupu k databázi.
+Chcete-li vytvořit aplikaci MVC, která je více přizpůsobitelná budoucím změnám a kterou lze snadněji testovat, měli byste zvážit použití vzoru úložiště. Při použití vzoru úložiště vytvoříte samostatnou třídu úložiště, která obsahuje všechny logiky přístupu k databázi.
 
-Při vytváření třídy úložiště vytvoříte rozhraní, které představuje všechny metody používané třídou úložiště. V rámci řadičů napíšete kód pro rozhraní místo úložiště. Tímto způsobem můžete v budoucnu implementovat úložiště pomocí různých technologií pro přístup k datům.
+Při vytváření třídy úložiště vytvoříte rozhraní, které představuje všechny metody používané třídou úložiště. V rámci řadiče, napíšete kód proti rozhraní namísto úložiště. Tímto způsobem můžete implementovat úložiště pomocí různých technologií přístupu k datům v budoucnu.
 
-Rozhraní v seznamu 3 má název IMovieRepository a představuje jednu metodu s názvem ListAll ().
+Rozhraní v listingu 3 má název IMovieRepository a představuje jedinou metodu s názvem ListAll().
 
-**Výpis 3 – `Models\IMovieRepository.vb`**
+**Výpis 3 –`Models\IMovieRepository.vb`**
 
 [!code-vb[Main](creating-model-classes-with-linq-to-sql-vb/samples/sample3.vb)]
 
-Třída úložiště v výpisu 4 implementuje rozhraní IMovieRepository. Všimněte si, že obsahuje metodu s názvem ListAll (), která odpovídá metodě vyžadované rozhraním IMovieRepository.
+Třída úložiště v listingu 4 implementuje rozhraní IMovieRepository. Všimněte si, že obsahuje metodu s názvem ListAll(), která odpovídá metodě vyžadované rozhraním IMovieRepository.
 
-**Výpis 4 – `Models\MovieRepository.vb`**
+**Výpis 4 –`Models\MovieRepository.vb`**
 
 [!code-vb[Main](creating-model-classes-with-linq-to-sql-vb/samples/sample4.vb)]
 
-Nakonec třída MoviesController v seznamu 5 používá vzor úložiště. Již nepoužívá LINQ to SQL třídy přímo.
+Nakonec Třída MoviesController v výpisu 5 používá vzor úložiště. Již používá linq na SQL třídy přímo.
 
-**Výpis 5 – `Controllers\MoviesController.vb`**
+**Výpis 5 –`Controllers\MoviesController.vb`**
 
 [!code-vb[Main](creating-model-classes-with-linq-to-sql-vb/samples/sample5.vb)]
 
-Všimněte si, že třída MoviesController v seznamu 5 má dva konstruktory. První konstruktor, konstruktor bez parametrů, je volána, když je aplikace spuštěna. Tento konstruktor vytvoří instanci třídy MovieRepository a předá ji druhému konstruktoru.
+Všimněte si, že Třída MoviesController v výpisu 5 má dva konstruktory. První konstruktor, konstruktor bez parametrů, je volána při spuštění aplikace. Tento konstruktor vytvoří instanci třídy MovieRepository a předá ji druhému konstruktoru.
 
-Druhý konstruktor má jeden parametr: parametr IMovieRepository. Tento konstruktor jednoduše přiřadí hodnotu parametru poli na úrovni třídy s názvem \_úložiště.
+Druhý konstruktor má jeden parametr: parametr IMovieRepository. Tento konstruktor jednoduše přiřadí hodnotu parametru poli \_na úrovni třídy s názvem úložiště.
 
-Třída MoviesController využívá vzor návrhu softwaru, který se nazývá vzor vkládání závislostí. Konkrétně používá něco s názvem vkládání závislostí konstruktoru. Další informace o tomto vzoru si můžete přečíst v následujícím článku: Martin Fowlera:
+Třída MoviesController využívá návrhový vzor softwaru nazývaný vzor vkládání závislostí. Zejména používá něco, co nazývá vkládání závislostí konstruktoru. Můžete si přečíst více o tomto vzoru čtením následujícího článku Martin Fowler:
 
 [http://martinfowler.com/articles/injection.html](http://martinfowler.com/articles/injection.html)
 
-Všimněte si, že veškerý kód ve třídě MoviesController (s výjimkou prvního konstruktoru) spolupracuje s rozhraním IMovieRepository namísto skutečné třídy MovieRepository. Kód komunikuje s abstraktním rozhraním namísto konkrétní implementace rozhraní.
+Všimněte si, že veškerý kód ve třídě MoviesController (s výjimkou prvního konstruktoru) interaguje s rozhraním IMovieRepository namísto skutečné třídy MovieRepository. Kód spolupracuje s abstraktní rozhraní namísto konkrétní implementace rozhraní.
 
-Chcete-li upravit technologii pro přístup k datům, kterou používá aplikace, můžete jednoduše implementovat rozhraní IMovieRepository se třídou, která používá jinou technologii přístupu k databázi. Můžete například vytvořit třídu EntityFrameworkMovieRepository nebo třídu SubSonicMovieRepository. Vzhledem k tomu, že třída Controller je naprogramována na rozhraní, můžete předat novou implementaci IMovieRepository do třídy kontroleru a třída bude i nadále fungovat.
+Pokud chcete upravit technologii přístupu k datům používanou aplikací, můžete jednoduše implementovat rozhraní IMovieRepository s třídou, která používá alternativní technologii přístupu k databázi. Můžete například vytvořit třídu EntityFrameworkMovieRepository nebo třídu SubSonicMovieRepository. Vzhledem k tomu, že třída kontroleru je naprogramována proti rozhraní, můžete předat novou implementaci IMovieRepository do třídy kontroleru a třída bude pokračovat v práci.
 
-Kromě toho, pokud chcete otestovat třídu MoviesController, můžete předat falešné třídy úložiště filmu do MoviesController. Můžete implementovat třídu IMovieRepository s třídou, která nemá ve skutečnosti přístup k databázi, ale obsahuje všechny požadované metody rozhraní IMovieRepository. Tímto způsobem můžete jednotkové testování třídy MoviesController bez skutečného přístupu ke skutečné databázi.
+Kromě toho pokud chcete otestovat Třídu MoviesController, můžete předat třídu úložiště falešných filmů do MoviesController. Třídu IMovieRepository můžete implementovat s třídou, která ve skutečnosti nemá přístup k databázi, ale obsahuje všechny požadované metody rozhraní IMovieRepository. Tímto způsobem můžete testování částí MoviesController třídy bez skutečně přístup k reálné databázi.
 
 ## <a name="summary"></a>Souhrn
 
-Cílem tohoto kurzu je předvést, jak můžete vytvořit třídy modelu MVC s využitím Microsoft LINQ to SQL. Prozkoumali jsme dvě strategie pro zobrazení databázových dat v aplikaci ASP.NET MVC. Nejprve jsme vytvořili třídy LINQ to SQL a použili třídy přímo v rámci akce kontroleru. Použití tříd LINQ to SQL v rámci kontroleru umožňuje rychle a snadno zobrazit databázová data v aplikaci MVC.
+Cílem tohoto kurzu bylo ukázat, jak můžete vytvořit třídy modelu MVC s využitím microsoft linq na SQL. Zkoumali jsme dvě strategie pro zobrazení databázových dat v ASP.NET aplikaci MVC. Nejprve jsme vytvořili linq na SQL třídy a používá třídy přímo v rámci akce kontroleru. Použití tříd LINQ to SQL v rámci řadiče umožňuje rychlé a snadné zobrazení databázových dat v aplikaci MVC.
 
-V dalším kroku jsme prozkoumali trochu obtížnější, ale s omezenou další virtuousou cestu k zobrazování databázových dat. Využili jsme výhod vzoru úložiště a umístili jsme veškerou logiku přístupu k databázím do samostatné třídy úložiště. V našem řadiči jsme napsali veškerý náš kód na rozhraní místo konkrétní třídy. Výhodou vzoru úložiště je, že nám umožňuje snadno měnit technologie přístupu k databázím v budoucnu a umožňuje nám snadno testovat naše třídy kontroleru.
+Dále jsme prozkoumali o něco obtížnější, ale rozhodně ctnostnější cestu pro zobrazení dat databáze. Využili jsme vzor úložiště a umístili všechny naše logiky přístupu k databázi do samostatné třídy úložiště. V našem řadiči jsme napsali všechny naše kód proti rozhraní namísto konkrétní třídy. Výhodou vzoru úložiště je, že nám umožňuje v budoucnu snadno měnit technologie přístupu k databázi a umožňuje nám snadno testovat naše třídy kontrolerů.
 
 > [!div class="step-by-step"]
 > [Předchozí](creating-model-classes-with-the-entity-framework-vb.md)
-> [Další](displaying-a-table-of-database-data-vb.md)
+> [další](displaying-a-table-of-database-data-vb.md)

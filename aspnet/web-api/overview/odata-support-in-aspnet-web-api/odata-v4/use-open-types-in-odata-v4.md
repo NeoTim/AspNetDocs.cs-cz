@@ -1,67 +1,67 @@
 ---
 uid: web-api/overview/odata-support-in-aspnet-web-api/odata-v4/use-open-types-in-odata-v4
-title: Otevřené typy v OData V4 s webovým rozhraním API ASP.NET | Microsoft Docs
-author: microsoft
-description: V OData v4 je otevřený typ strukturovaný typ, který obsahuje dynamické vlastnosti, kromě jakýchkoli vlastností, které jsou deklarovány v definici typu. Otevřít...
+title: Otevřít typy v OData v4 s ASP.NET web API | Dokumenty společnosti Microsoft
+author: rick-anderson
+description: V OData v4 otevřený typ je strukturovaný typ, který obsahuje dynamické vlastnosti, kromě všech vlastností, které jsou deklarovány v definici typu. Otevřít...
 ms.author: riande
 ms.date: 09/15/2014
 ms.assetid: f25f5ac5-4800-4950-abe5-c97750a27fc6
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/odata-v4/use-open-types-in-odata-v4
 msc.type: authoredcontent
-ms.openlocfilehash: 950442c071bf50d2c8c1588971f13f85c4891436
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: d63c96df6614896b3b67eef94a8907e528572567
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78622176"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543727"
 ---
-# <a name="open-types-in-odata-v4-with-aspnet-web-api"></a>Otevřené typy v OData V4 s webovým rozhraním API ASP.NET
+# <a name="open-types-in-odata-v4-with-aspnet-web-api"></a>Otevřít typy v OData v4 s ASP.NET Web API
 
-od [Microsoftu](https://github.com/microsoft)
+podle [společnosti Microsoft](https://github.com/microsoft)
 
-> V OData v4 je *otevřený typ* strukturovaný typ, který obsahuje dynamické vlastnosti, kromě jakýchkoli vlastností, které jsou deklarovány v definici typu. Otevřené typy umožňují přidat flexibilitu pro vaše datové modely. V tomto kurzu se dozvíte, jak používat otevřené typy v ASP.NET webového rozhraní API OData.
+> V OData v4 otevřený *typ* je strukturovaný typ, který obsahuje dynamické vlastnosti, kromě všech vlastností, které jsou deklarovány v definici typu. Otevřené typy umožňují přidat flexibilitu datových modelů. Tento kurz ukazuje, jak používat otevřené typy v ASP.NET web API OData.
 > 
-> V tomto kurzu se předpokládá, že už víte, jak ve webovém rozhraní API ASP.NET vytvořit koncový bod OData. Pokud ne, začněte načtením a nejprve [vytvořte koncový bod OData v4](create-an-odata-v4-endpoint.md) .
+> Tento kurz předpokládá, že již víte, jak vytvořit koncový bod OData v ASP.NET webovérozhraní API. Pokud ne, začněte nejprve [čtením Vytvořit koncový bod OData v4.](create-an-odata-v4-endpoint.md)
 > 
-> ## <a name="software-versions-used-in-the-tutorial"></a>Verze softwaru použité v tomto kurzu
+> ## <a name="software-versions-used-in-the-tutorial"></a>Verze softwaru použité v kurzu
 > 
 > 
-> - Webové rozhraní API OData 5,3
+> - Webové rozhraní API OData 5.3
 > - OData v4
 
-Nejdřív některé terminologie OData:
+Za prvé, některé OData terminologie:
 
-- Typ entity: strukturovaný typ s klíčem.
-- Komplexní typ: strukturovaný typ bez klíče.
-- Typ otevřeného typu: typ s dynamickými vlastnostmi. Je možné otevřít oba typy entit a komplexní typy.
+- Typ entity: Strukturovaný typ s klíčem.
+- Komplexní typ: Strukturovaný typ bez klíče.
+- Otevřený typ: Typ s dynamickými vlastnostmi. Typy entit i složité typy mohou být otevřené.
 
-Hodnotou dynamické vlastnosti může být primitivní typ, komplexní typ nebo Výčtový typ. nebo kolekci některého z těchto typů. Další informace o otevřených typech najdete v tématu [specifikace OData v4](http://www.odata.org/documentation/odata-version-4-0/).
+Hodnota dynamické vlastnosti může být primitivní typ, komplexní typ nebo typ výčtu; nebo sbírku některého z těchto typů. Další informace o otevřených typech naleznete ve [specifikaci OData v4](http://www.odata.org/documentation/odata-version-4-0/).
 
 ## <a name="install-the-web-odata-libraries"></a>Instalace webových knihoven OData
 
-Pomocí Správce balíčků NuGet nainstalujte nejnovější knihovny Web API OData. V okně konzoly Správce balíčků:
+Pomocí Správce balíčků NuGet nainstalujte nejnovější knihovny OData webového rozhraní API. Z okna Konzoly správce balíčků:
 
 [!code-console[Main](use-open-types-in-odata-v4/samples/sample1.cmd)]
 
 ## <a name="define-the-clr-types"></a>Definování typů CLR
 
-Začněte tím, že definujete modely EDM jako typy CLR.
+Začněte definováním modelů EDM jako typů CLR.
 
 [!code-csharp[Main](use-open-types-in-odata-v4/samples/sample2.cs)]
 
-Při vytvoření model EDM (Entity Data Model) (EDM),
+Při vytvoření datového modelu entity (EDM)
 
-- `Category` je typ výčtu.
-- `Address` je komplexní typ. (Nemá klíč, takže se nejedná o typ entity.)
-- `Customer` je typ entity. (Obsahuje klíč.)
-- `Press` je otevřený komplexní typ.
-- `Book` je otevřený typ entity.
+- `Category`je typ výčtu.
+- `Address`je komplexní typ. (Nemá klíč, takže se nejedná o typ entity.)
+- `Customer`je typ entity. (Má klíč.)
+- `Press`je otevřený komplexní typ.
+- `Book`je otevřený typ entity.
 
-Chcete-li vytvořit otevřený typ, musí mít typ CLR vlastnost typu `IDictionary<string, object>`, která obsahuje dynamické vlastnosti.
+Chcete-li vytvořit otevřený typ, musí mít typ `IDictionary<string, object>`CLR vlastnost typu , která obsahuje dynamické vlastnosti.
 
 ## <a name="build-the-edm-model"></a>Sestavení modelu EDM
 
-Použijete-li **ODataConventionModelBuilder** k vytvoření EDM, `Press` a `Book` jsou automaticky přidány jako otevřené typy, a to na základě přítomnosti vlastnosti `IDictionary<string, object>`.
+Pokud použijete **ODataConventionModelBuilder** k vytvoření `Press` `Book` EDM a jsou automaticky přidány jako `IDictionary<string, object>` otevřené typy, na základě přítomnosti vlastnosti.
 
 [!code-csharp[Main](use-open-types-in-odata-v4/samples/sample3.cs)]
 
@@ -69,55 +69,55 @@ Můžete také vytvořit EDM explicitně pomocí **ODataModelBuilder**.
 
 [!code-csharp[Main](use-open-types-in-odata-v4/samples/sample4.cs)]
 
-## <a name="add-an-odata-controller"></a>Přidat kontroler OData
+## <a name="add-an-odata-controller"></a>Přidání řadiče OData
 
-Dále přidejte kontroler OData. Pro účely tohoto kurzu budeme používat zjednodušený kontroler, který podporuje jenom požadavky GET a POST a používá seznam v paměti k ukládání entit.
+Dále přidejte řadič OData. Pro účely tohoto kurzu použijeme zjednodušený řadič, který podporuje pouze požadavky GET a POST a používá seznam v paměti k ukládání entit.
 
 [!code-csharp[Main](use-open-types-in-odata-v4/samples/sample5.cs)]
 
-Všimněte si, že první instance `Book` nemá žádné dynamické vlastnosti. Druhá instance `Book` má následující dynamické vlastnosti:
+Všimněte si, že první `Book` instance nemá žádné dynamické vlastnosti. Druhá `Book` instance má následující dynamické vlastnosti:
 
-- "Publikováno": primitivní typ
-- "Autoři": kolekce primitivních typů
-- "OtherCategories": kolekce typů výčtu.
+- "Publikováno": Primitivní typ
+- "Autoři": Kolekce primitivních typů
+- "OtherCategories": Kolekce typů výčtu.
 
-Vlastnost `Press` této instance `Book` má také následující dynamické vlastnosti:
+`Press` Vlastnost této `Book` instance má také následující dynamické vlastnosti:
 
-- "Blog": primitivní typ
-- "Adresa": komplexní typ
+- "Blog": Primitivní typ
+- "Adresa": Komplexní typ
 
-## <a name="query-the-metadata"></a>Dotazování na metadata
+## <a name="query-the-metadata"></a>Dotaz na metadata
 
-K získání dokumentu metadat OData odešlete požadavek GET na `~/$metadata`. Text odpovědi by měl vypadat nějak takto:
+Chcete-li získat dokument metadat OData, `~/$metadata`odešlete požadavek GET společnosti . Tělo odpovědi by mělo vypadat podobně jako toto:
 
 [!code-xml[Main](use-open-types-in-odata-v4/samples/sample6.xml?highlight=5,21)]
 
-V dokumentu metadat vidíte, že:
+Z dokumentu metadat vidíte, že:
 
-- U typů `Book` a `Press` je hodnota atributu `OpenType` true. Typy `Customer` a `Address` nemají tento atribut.
-- Typ entity `Book` obsahuje tři deklarované vlastnosti: ISBN, title a Press. Metadata OData neobsahují vlastnost `Book.Properties` z třídy CLR.
-- Podobně `Press` komplexní typ obsahuje pouze dvě deklarované vlastnosti: název a kategorie. Metadata neobsahují vlastnost `Press.DynamicProperties` z třídy CLR.
+- `Book` Pro `Press` a typy je hodnota `OpenType` atributu true. A `Customer` `Address` typy nemají tento atribut.
+- Typ `Book` entity má tři deklarované vlastnosti: ISBN, Title a Press. Metadata OData nezahrnuje `Book.Properties` vlastnost z třídy CLR.
+- Podobně `Press` komplexní typ má pouze dvě deklarované vlastnosti: Name a Category. Metadata nezahrnuje `Press.DynamicProperties` vlastnost z clr třídy.
 
-## <a name="query-an-entity"></a>Dotazování entity
+## <a name="query-an-entity"></a>Dotaz na entitu
 
-Pokud chcete získat knihu se symbolem ISBN rovnající se "978-0-7356-7942-9", odešlete požadavek GET na `~/Books('978-0-7356-7942-9')`. Tělo odpovědi by mělo vypadat podobně jako následující. (Odsazené tak, aby se čitelnější.)
+Chcete-li získat knihu s ISBN rovná "978-0-7356-7942-9", pošlete žádost GET na `~/Books('978-0-7356-7942-9')`. Tělo odpovědi by mělo vypadat podobně jako následující. (Odsazeno, aby bylo čitelnější.)
 
 [!code-console[Main](use-open-types-in-odata-v4/samples/sample7.cmd?highlight=8-13,15-23)]
 
-Všimněte si, že dynamické vlastnosti jsou zahrnuty jako vložené s deklarovanými vlastnostmi.
+Všimněte si, že dynamické vlastnosti jsou zahrnuty v souladu s deklarované vlastnosti.
 
-## <a name="post-an-entity"></a>PUBLIKOVÁNÍ entity
+## <a name="post-an-entity"></a>ZAÚČTOVAT entitu
 
-Chcete-li přidat entitu knihy, odešlete požadavek POST na `~/Books`. Klient může v datové části požadavku nastavit dynamické vlastnosti.
+Chcete-li přidat entitu Kniha, odešlete požadavek POST společnosti `~/Books`. Klient může nastavit dynamické vlastnosti v datové části požadavku.
 
-Tady je příklad žádosti. Poznamenejte si vlastnosti Price a Publikováno.
+Zde je příklad požadavku. Všimněte si vlastností "Cena" a "Publikováno".
 
 [!code-console[Main](use-open-types-in-odata-v4/samples/sample8.cmd?highlight=10)]
 
-Pokud nastavíte zarážku v metodě kontroleru, vidíte, že webové rozhraní API přidalo tyto vlastnosti do slovníku `Properties`.
+Pokud nastavíte zarážku v metodě řadiče, uvidíte, že webové rozhraní API přidalo tyto vlastnosti do slovníku. `Properties`
 
 ![](use-open-types-in-odata-v4/_static/image1.png)
 
-## <a name="additional-resources"></a>Další prostředky
+## <a name="additional-resources"></a>Další zdroje
 
 [Ukázka otevřeného typu OData](http://aspnet.codeplex.com/sourcecontrol/latest#Samples/WebApi/OData/v4/ODataOpenTypeSample/ReadMe.txt)

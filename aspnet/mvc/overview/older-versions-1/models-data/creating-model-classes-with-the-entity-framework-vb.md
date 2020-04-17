@@ -1,85 +1,85 @@
 ---
 uid: mvc/overview/older-versions-1/models-data/creating-model-classes-with-the-entity-framework-vb
-title: Vytváření tříd modelu pomocí Entity Framework (VB) | Microsoft Docs
-author: microsoft
-description: V tomto kurzu se naučíte používat ASP.NET MVC s Microsoft Entity Framework. Naučíte se, jak pomocí Průvodce entitou vytvořit ADO.NET entitu da...
+title: Vytváření modelových tříd pomocí entity frameworku (VB) | Dokumenty společnosti Microsoft
+author: rick-anderson
+description: V tomto kurzu se dozvíte, jak používat ASP.NET MVC s Microsoft Entity Framework. Dozvíte se, jak pomocí Průvodce entitou vytvořit ADO.NET entity Da...
 ms.author: riande
 ms.date: 01/27/2009
 ms.assetid: ff8322c9-12f3-4e24-aba6-a38046b9bb0d
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/creating-model-classes-with-the-entity-framework-vb
 msc.type: authoredcontent
-ms.openlocfilehash: f6c896c6f5f6d898ac6f99d5998fb29cb73bcb10
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: cdba91969a6ed9c02965999bbc48d5c5cdea140d
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78543328"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542648"
 ---
 # <a name="creating-model-classes-with-the-entity-framework-vb"></a>Vytvoření tříd modelu v sadě Entity Framework (VB)
 
-od [Microsoftu](https://github.com/microsoft)
+podle [společnosti Microsoft](https://github.com/microsoft)
 
-> V tomto kurzu se naučíte používat ASP.NET MVC s Microsoft Entity Framework. Naučíte se, jak pomocí Průvodce entitou vytvořit model EDM (Entity Data Model) ADO.NET. V průběhu tohoto kurzu sestavíme webovou aplikaci, která ukazuje, jak vybírat, vkládat, aktualizovat a odstraňovat databázová data pomocí Entity Framework.
+> V tomto kurzu se dozvíte, jak používat ASP.NET MVC s Microsoft Entity Framework. Dozvíte se, jak pomocí Průvodce entitami vytvořit ADO.NET datového modelu entity. V průběhu tohoto kurzu vytvoříme webovou aplikaci, která ukazuje, jak vybrat, vložit, aktualizovat a odstranit data databáze pomocí entity frameworku.
 
-Cílem tohoto kurzu je vysvětlit, jak můžete při sestavování aplikace ASP.NET MVC vytvořit třídy přístupu k datům pomocí Microsoft Entity Framework. V tomto kurzu se nepředpokládá žádné předchozí znalosti služby Microsoft Entity Framework. Na konci tohoto kurzu budete rozumět tomu, jak použít Entity Framework k výběru, vkládání, aktualizaci a odstraňování záznamů databáze.
+Cílem tohoto kurzu je vysvětlit, jak můžete vytvořit třídy přístupu k datům pomocí microsoft entity framework při vytváření ASP.NET aplikace MVC. Tento kurz nepředpokládá žádné předchozí znalosti rozhraní Microsoft Entity Framework. Na konci tohoto kurzu pochopíte, jak pomocí entity Framework vybrat, vložit, aktualizovat a odstranit záznamy databáze.
 
-Microsoft Entity Framework je nástroj pro mapování relačních objektů (O/RM), který umožňuje vygenerovat vrstvu přístupu k datům automaticky z databáze. Entity Framework vám umožní vyhnout se zdlouhavé práci na vytváření tříd přístupu k datům ručně.
+Microsoft Entity Framework je nástroj pro relační mapování objektů (O/RM), který umožňuje automaticky generovat vrstvu přístupu k datům z databáze. Entity Framework umožňuje vyhnout se únavné práci vytváření tříd přístupu k datům ručně.
 
 > [!NOTE] 
 > 
-> Mezi ASP.NET MVC a Microsoft Entity Framework neexistuje žádné nezbytné připojení. Existuje několik alternativ Entity Framework, které můžete použít s ASP.NET MVC. Můžete například sestavit třídy MVC modelu pomocí jiných nástrojů pro/RM, jako je například Microsoft LINQ to SQL, NHibernate nebo Subsonic.
+> Neexistuje žádné základní spojení mezi ASP.NET MVC a Microsoft Entity Framework. Existuje několik alternativ k entity framework, který můžete použít s ASP.NET MVC. Můžete například vytvořit třídy modelu MVC pomocí jiných nástrojů O/RM, jako je Microsoft LINQ na SQL, NHibernate nebo SubSonic.
 
-Pro ilustraci, jak můžete používat Microsoft Entity Framework s ASP.NET MVC, vytvoříme jednoduchou ukázkovou aplikaci. Vytvoříme aplikaci filmové databáze, která vám umožní zobrazit a upravit záznamy filmové databáze.
+Abychom ilustrovali, jak můžete použít microsoft entity framework s ASP.NET MVC, vytvoříme jednoduchou ukázkovou aplikaci. Vytvoříme aplikaci Movie Database, která vám umožní zobrazit a upravit záznamy filmové databáze.
 
-V tomto kurzu se předpokládá, že máte Visual Studio 2008 nebo Visual Web Developer 2008 s aktualizací Service Pack 1. Aby bylo možné použít Entity Framework, potřebujete aktualizaci Service Pack 1. Aktualizaci Visual Studio 2008 Service Pack 1 nebo Visual Web Developer s aktualizací Service Pack 1 si můžete stáhnout z následující adresy:
+Tento kurz předpokládá, že máte Visual Studio 2008 nebo Visual Web Developer 2008 s aktualizací Service Pack 1. K použití entity Frameworku potřebujete aktualizaci Service Pack 1. Aktualizaci Visual Studio 2008 Service Pack 1 nebo Visual Web Developer s aktualizací Service Pack 1 si můžete stáhnout z následující adresy:
 
 > [https://www.asp.net/downloads/](https://www.asp.net/downloads)
 
-## <a name="creating-the-movie-sample-database"></a>Vytvoření ukázkové databáze filmů
+## <a name="creating-the-movie-sample-database"></a>Vytvoření ukázkové databáze filmu
 
-Aplikace filmové databáze používá databázovou tabulku s názvem filmy, která obsahuje následující sloupce:
+Aplikace Movie Database používá databázovou tabulku s názvem Filmy, která obsahuje následující sloupce:
 
-| Název sloupce | Typ dat | Chcete povoluje hodnoty null? | Je primární klíč? |
+| Název sloupce | Typ dat | Povolit nulls? | Je primární klíč? |
 | --- | --- | --- | --- |
 | ID | int | False | True |
-| Název | nvarchar (100) | False | False |
-| Ředitel | nvarchar (100) | False | False |
+| Nadpis | nvarchar(100) | False | False |
+| Ředitel | nvarchar(100) | False | False |
 
-Tuto tabulku můžete přidat do projektu ASP.NET MVC pomocí následujících kroků:
+Tuto tabulku můžete přidat do projektu ASP.NET MVC následujícím postupem:
 
-1. V okně Průzkumník řešení klikněte pravým tlačítkem na složku data\_aplikace a vyberte možnost nabídky **Přidat, nová položka.**
-2. V dialogovém okně **Přidat novou položku** vyberte **SQL Server databáze**, pojmenujte databázi MoviesDB. mdf a klikněte na tlačítko **Přidat** .
-3. Dvojím kliknutím na soubor MoviesDB. mdf otevřete okno Průzkumník serveru/Průzkumník databáze.
-4. Rozbalte připojení k databázi MoviesDB. mdf, klikněte pravým tlačítkem myši na složku tabulky a vyberte možnost nabídky **Přidat novou tabulku**.
-5. V Návrháři tabulky přidejte sloupce ID, název a režisér.
-6. Klikněte na tlačítko **Uložit** (má ikonu na disketě) a uložte novou tabulku s názvem filmy.
+1. Klikněte pravým\_tlačítkem myši na složku Data aplikace v okně Průzkumník řešení a vyberte možnost nabídky **Přidat, nová položka.**
+2. V dialogovém okně **Přidat novou položku** vyberte **databázi serveru SQL Server**, pojmenujte databázi název MoviesDB.mdf a klepněte na tlačítko **Přidat.**
+3. Poklepáním na soubor MoviesDB.mdf otevřete okno Průzkumník serveru/Průzkumník databáze.
+4. Rozbalte databázové připojení MoviesDB.mdf, klepněte pravým tlačítkem myši na složku Tabulky a vyberte možnost nabídky **Přidat novou tabulku**.
+5. V Návrháři tabulek přidejte sloupce Id, Title a Director.
+6. Kliknutím na tlačítko **Uložit** (obsahuje ikonu diskety) uložte novou tabulku s názvem Filmy.
 
-Po vytvoření databázové tabulky filmů byste měli do tabulky přidat ukázková data. Klikněte pravým tlačítkem myši na tabulku filmy a vyberte možnost nabídky **Zobrazit data tabulky**. Do mřížky, která se zobrazí, můžete zadat falešné filmové údaje.
+Po vytvoření databázové tabulky Filmy byste měli do tabulky přidat několik ukázkových dat. Klepněte pravým tlačítkem myši na tabulku Filmy a vyberte možnost nabídky **Zobrazit data tabulky**. Do mřížky, která se zobrazí, můžete zadat falešná data o filmu.
 
-## <a name="creating-the-adonet-entity-data-model"></a>Vytváření model EDM (Entity Data Model) ADO.NET
+## <a name="creating-the-adonet-entity-data-model"></a>Vytvoření datového modelu entity ADO.NET
 
-Aby bylo možné použít Entity Framework, je nutné vytvořit model EDM (Entity Data Model). Můžete využít výhod *průvodce model EDM (Entity Data Model)* sady Visual Studio k automatickému vygenerování model EDM (Entity Data Model) z databáze.
+Chcete-li použít entity Framework, musíte vytvořit datový model entity. Můžete využít *Průvodce modelem datového modelu entity* sady Visual Studio k automatickému generování datového modelu entity z databáze.
 
 Postupujte následovně:
 
-1. V okně Průzkumník řešení klikněte pravým tlačítkem na složku modely a vyberte možnost nabídky **Přidat, nová položka**.
-2. V dialogovém okně **Přidat novou položku** vyberte kategorii dat (viz obrázek 1).
-3. Vyberte šablonu **model EDM (Entity Data Model) ADO.NET** , zadejte model EDM (Entity Data Model) název MoviesDBModel. edmx a klikněte na tlačítko **Přidat** . Kliknutím na tlačítko **Přidat** spustíte Průvodce datovým modelem.
-4. V kroku **zvolit obsah modelu** vyberte možnost **Generovat z databáze** a klikněte na tlačítko **Další** (viz obrázek 2).
-5. V kroku **Zvolte datové připojení** vyberte připojení k databázi MoviesDB. mdf, zadejte název nastavení připojení entity MoviesDBEntities a klikněte na tlačítko **Další** (viz obrázek 3).
-6. V kroku **Zvolte databázové objekty** vyberte tabulku video databáze a klikněte na tlačítko **Dokončit** (viz obrázek 4).
+1. Klepněte pravým tlačítkem myši na složku Modely v okně Průzkumník řešení a vyberte možnost nabídky **Přidat, novou položku**.
+2. V dialogovém okně **Přidat novou položku** vyberte kategorii Data (viz obrázek 1).
+3. Vyberte šablonu **ADO.NET datového modelu entity,** přiřazujte datovému modelu entity název MoviesDBModel.edmx a klepněte na tlačítko **Přidat.** Kliknutím na tlačítko **Přidat** se spustí Průvodce datovým modelem.
+4. V kroku **Zvolit obsah modelu** zvolte **volbu Generovat z databáze** a klepněte na tlačítko **Další** (viz obrázek 2).
+5. V kroku **Zvolit datové připojení** vyberte databázové připojení MoviesDB.mdf, zadejte název nastavení připojení entit MoviesDBEntities a klepněte na tlačítko **Další** (viz obrázek 3).
+6. V kroku **Zvolit databázové objekty** vyberte databázovou tabulku Film a klepněte na tlačítko **Dokončit** (viz obrázek 4).
 
-Po dokončení tohoto postupu se otevře Návrhář ADO.NET model EDM (Entity Data Model) (Entity Designer).
+Po dokončení těchto kroků se otevře návrhář ADO.NET entity data modelu (Návrhář entit).
 
-**Obrázek 1 – Vytvoření nového model EDM (Entity Data Model)**
+**Obrázek 1 – Vytvoření nového datového modelu entity**
 
 ![clip_image002](creating-model-classes-with-the-entity-framework-vb/_static/image1.jpg)
 
-**Obrázek 2 – krok výběr obsahu modelu**
+**Obrázek 2 – Zvolte krok obsahu modelu**
 
 ![clip_image004](creating-model-classes-with-the-entity-framework-vb/_static/image2.jpg)
 
-**Obrázek 3 – Výběr datového připojení**
+**Obrázek 3 – Vyberte si datové připojení**
 
 ![clip_image006](creating-model-classes-with-the-entity-framework-vb/_static/image3.jpg)
 
@@ -87,126 +87,126 @@ Po dokončení tohoto postupu se otevře Návrhář ADO.NET model EDM (Entity Da
 
 ![clip_image008](creating-model-classes-with-the-entity-framework-vb/_static/image4.jpg)
 
-## <a name="modifying-the-adonet-entity-data-model"></a>Úprava model EDM (Entity Data Model) ADO.NET
+## <a name="modifying-the-adonet-entity-data-model"></a>Úprava datového modelu ADO.NET entity
 
-Po vytvoření model EDM (Entity Data Model) můžete model upravit tím, že využijete výhod Entity Designer (viz obrázek 5). Entity Designer můžete kdykoli otevřít tak, že dvakrát kliknete na soubor MoviesDBModel. edmx obsažený ve složce modely v Průzkumník řešení okně.
+Po vytvoření datového modelu entity můžete model upravit využitím návrháře entit (viz obrázek 5). Návrhář entit můžete kdykoli otevřít poklepáním na soubor MoviesDBModel.edmx obsažený ve složce Modely v okně Průzkumník řešení.
 
-**Obrázek 5 – Návrhář model EDM (Entity Data Model) ADO.NET**
+**Obrázek 5 – návrhář ADO.NET entity modelu dat**
 
 ![clip_image010](creating-model-classes-with-the-entity-framework-vb/_static/image5.jpg)
 
-Můžete například použít Entity Designer ke změně názvů tříd, které generuje Průvodce daty modelu entity. Průvodce vytvořil novou třídu pro přístup k datům s názvem filmy. Jinými slovy, průvodce přiřadil třídu stejný název jako databázová tabulka. Vzhledem k tomu, že tuto třídu použijeme k reprezentování konkrétní instance videa, doporučujeme přejmenovat třídu z filmů na video.
+Pomocí Návrháře entit můžete například změnit názvy tříd, které generuje Průvodce daty modelu entity. Průvodce vytvořil novou třídu přístupu k datům s názvem Filmy. Jinými slovy, Průvodce dal třídě stejný název jako tabulka databáze. Vzhledem k tomu, že tuto třídu použijeme k reprezentaci konkrétní instance filmu, měli bychom třídu přejmenovat z filmy na film.
 
-Pokud chcete přejmenovat třídu entity, můžete dvakrát kliknout na název třídy v Entity Designer a zadat nový název (viz obrázek 6). Případně můžete název entity v okno Vlastnosti změnit po výběru entity v Entity Designer.
+Pokud chcete třídu entity přejmenovat, můžete poklepat na název třídy v Návrháři entit a zadat nový název (viz obrázek 6). Případně můžete změnit název entity v okně Vlastnosti po výběru entity v Návrháři entit.
 
 **Obrázek 6 – Změna názvu entity**
 
 ![clip_image012](creating-model-classes-with-the-entity-framework-vb/_static/image6.jpg)
 
-Po provedení úprav nezapomeňte uložit model EDM (Entity Data Model) kliknutím na tlačítko Uložit (ikona na disketě). Na pozadí Entity Designer vygeneruje sadu Visual Basicch tříd .NET. Tyto třídy můžete zobrazit otevřením souboru MoviesDBModel. Designer. vb z okna Průzkumník řešení.
+Nezapomeňte datový model entity uložit po provedení změny kliknutím na tlačítko Uložit (ikona diskety). Na pozadí návrhářentgeneruje sadu tříd .NET jazyka Visual Basic. Tyto třídy můžete zobrazit otevřením souboru MoviesDBModel.Designer.vb z okna Průzkumníka řešení.
 
-Neměňte kód v souboru Designer. vb, protože změny budou při příštím použití Entity Designer přepsány. Pokud chcete roztáhnout funkce tříd entit definovaných v souboru Designer. vb, můžete v samostatných souborech vytvořit *částečné třídy* .
+Neupravujte kód v souboru Designer.vb, protože změny budou přepsány při příštím použití Návrháře entit. Pokud chcete rozšířit funkce tříd entit definovaných v souboru Designer.vb, můžete vytvořit *částečné třídy* v samostatných souborech.
 
-#### <a name="selecting-database-records-with-the-entity-framework"></a>Výběr záznamů databáze pomocí Entity Framework
+#### <a name="selecting-database-records-with-the-entity-framework"></a>Výběr záznamů databáze pomocí entity frameworku
 
-Pojďme začít sestavovat naši aplikaci pro filmové databáze vytvořením stránky, která zobrazuje seznam filmových záznamů. U domovského kontroleru v výpisu 1 se zveřejňuje akce s názvem index (). Akce index () vrátí všechny záznamy filmů z tabulky filmové databáze tím, že využije Entity Framework.
+Začněme vytvářet aplikaci Movie Database vytvořením stránky, která zobrazuje seznam filmových záznamů. Domácí kontroler v výpisu 1 zpřístupňuje akci s názvem Index(). Akce Index() vrátí všechny filmové záznamy z tabulky databáze Film s využitím entity frameworku.
 
-**Výpis 1 – Controllers\HomeController.vb**
+**Výpis 1 – Řadiče\HomeController.vb**
 
 [!code-vb[Main](creating-model-classes-with-the-entity-framework-vb/samples/sample1.vb)]
 
-Všimněte si, že kontroler v seznamu 1 obsahuje konstruktor. Konstruktor inicializuje pole na úrovni třídy s názvem \_DB. Pole \_dB představuje databázové entity vygenerované Microsoft Entity Framework. Pole \_DB je instancí třídy MoviesDBEntities, která byla vygenerována Entity Designer.
+Všimněte si, že řadič v výpisu 1 obsahuje konstruktor. Konstruktor inicializuje pole na úrovni \_třídy s názvem db. Pole \_db představuje databázové entity generované rozhraním Microsoft Entity Framework. Pole \_db je instancí třídy MoviesDBEntities, která byla generována Návrhářem entit.
 
-Pole \_DB se používá v rámci akce index () k načtení záznamů z tabulky databáze filmů. Výraz \_DB. MovieSet představuje všechny záznamy z databázové tabulky filmů. Metoda ToList – () slouží k převodu sady filmů do obecné kolekce objektů filmů: list (of Movie).
+Pole \_db se používá v rámci akce Index() k načtení záznamů z databázové tabulky Filmy. Výraz \_db. MovieSet představuje všechny záznamy z tabulky databáze Filmy. ToList() Metoda se používá k převodu sadu filmů do obecné kolekce Movie objekty: List( Of Movie).
 
-Filmové záznamy se načítají pomocí LINQ to Entities. Akce index () v seznamu 1 používá *syntaxi metody* LINQ k načtení sady záznamů databáze. Pokud dáváte přednost, můžete místo toho použít *syntaxi dotazu* LINQ. Následující dva příkazy dělají stejnou věc:
+Filmové záznamy jsou načteny pomocí LINQ entity. Akce Index() v výpisu 1 používá *syntaxi metody* LINQ k načtení sady databázových záznamů. Pokud chcete, můžete místo toho použít *syntaxi dotazu* LINQ. Následující dva příkazy udělat totéž:
 
 [!code-vb[Main](creating-model-classes-with-the-entity-framework-vb/samples/sample2.vb)]
 
-Použijte jakoukoli syntaxi syntaxe LINQ – syntaxi metody nebo syntaxi dotazů, které najdete nejvíc intuitivní. Mezi oběma přístupy nedochází k žádnému rozdílu ve výkonu – jediným rozdílem je styl.
+Použijte podle toho, která syntaxe LINQ – syntaxe metody nebo syntaxe dotazu – která je pro vás nejintuitivnější. Neexistuje žádný rozdíl ve výkonu mezi těmito dvěma přístupy - jediný rozdíl je styl.
 
-Zobrazení v seznamu 2 slouží k zobrazení záznamů filmů.
+Zobrazení v seznamu 2 se používá k zobrazení filmových záznamů.
 
-**Výpis 2 – Views\Home\Index.aspx**
+**Výpis 2 – Zobrazení\Domů\Index.aspx**
 
 [!code-aspx[Main](creating-model-classes-with-the-entity-framework-vb/samples/sample3.aspx)]
 
-Zobrazení v seznamu 2 obsahuje **pro každou** smyčku, která projde každým záznamem videa a zobrazí hodnoty vlastnosti název a ředitele záznamu videa. Všimněte si, že se vedle každého záznamu zobrazuje odkaz upravit a odstranit. Kromě toho se v dolní části zobrazení zobrazí odkaz Přidat film (viz obrázek 7).
+Zobrazení v seznamu 2 obsahuje **smyčku For Each,** která itetuje jednotlivými filmovými záznamy a zobrazuje hodnoty vlastností Název a Režie filmového záznamu. Všimněte si, že se vedle každého záznamu zobrazí odkaz Upravit a odstranit. V dolní části zobrazení se navíc zobrazí odkaz Přidat film (viz obrázek 7).
 
-**Obrázek 7 – zobrazení indexu**
+**Obrázek 7 – Zobrazení indexu**
 
 ![clip_image014](creating-model-classes-with-the-entity-framework-vb/_static/image7.jpg)
 
-Zobrazení index je typu *zobrazení*. Zobrazení index má &lt;direktiva% @ Page%&gt;, která obsahuje atribut inherits. Atribut Inherits přetypování vlastnost ViewData. model na obecný seznam objektů filmových objektů se silnými typy – na seznam (film).
+Zobrazení Rejstřík je *zadané zobrazení*. Zobrazení rejstříku &lt;obsahuje direktivu %@ Page %,&gt; která obsahuje atribut Inherits. Atribut Inherits přetypuje vlastnost ViewData.Model na kolekci silně zadaný obecný seznam objektů Movie – a List(Of Movie).
 
-## <a name="inserting-database-records-with-the-entity-framework"></a>Vkládání záznamů databáze pomocí Entity Framework
+## <a name="inserting-database-records-with-the-entity-framework"></a>Vkládání databázových záznamů pomocí entity frameworku
 
-Entity Framework můžete použít k usnadnění vkládání nových záznamů do databázové tabulky. Výpis 3 obsahuje dvě nové akce přidané do třídy domovského kontroleru, které můžete použít k vložení nových záznamů do tabulky filmové databáze.
+Pomocí entity frameworku můžete usnadnit vkládání nových záznamů do databázové tabulky. Výpis 3 obsahuje dvě nové akce přidané do třídy Domácí kontrolor, které můžete použít k vložení nových záznamů do tabulky Databáze filmu.
 
-**Výpis 3 – Controllers\HomeController.vb (Přidání metod)**
+**Výpis 3 – Controllers\HomeController.vb (Přidat metody)**
 
 [!code-vb[Main](creating-model-classes-with-the-entity-framework-vb/samples/sample4.vb)]
 
-První akce Přidat () jednoduše vrátí zobrazení. Zobrazení obsahuje formulář pro přidání nového záznamu filmové databáze (viz obrázek 8). Při odeslání formuláře je vyvolána druhá akce Přidat ().
+První add() akce jednoduše vrátí zobrazení. Zobrazení obsahuje formulář pro přidání nového záznamu filmové databáze (viz obrázek 8). Při odeslání formuláře je vyvolána druhá akce Add().
 
-Všimněte si, že druhá akce Přidat () je upravena pomocí atributu AcceptVerbs. Tuto akci lze vyvolat pouze při provádění operace HTTP POST. Jinými slovy, tuto akci lze vyvolat pouze při publikování formuláře HTML.
+Všimněte si, že druhá akce Add() je dekorována atributem AcceptVerbs. Tuto akci lze vyvolat pouze při provádění operace HTTP POST. Jinými slovy, tuto akci lze vyvolat pouze při zaúčtování formuláře HTML.
 
-Druhá akce Přidat () vytvoří novou instanci třídy Entity Framework Movie s použitím metody ASP.NET MVC TryUpdateModel (). Metoda TryUpdateModel () převezme pole v Podoběcollection předané do metody Add () a přiřadí hodnoty těchto polí formuláře HTML do třídy video.
+Druhá akce Add() vytvoří novou instanci třídy Entity Framework Movie pomocí metody ASP.NET MVC TryUpdateModel(). Metoda TryUpdateModel() přebírá pole v kolekci formulářů předaná metodě Add() a přiřazuje hodnoty těchto polí formuláře HTML třídě Movie.
 
-Při použití Entity Framework je nutné při použití metod TryUpdateModel nebo UpdateModel pro aktualizaci vlastností třídy entity uvést "bílý seznam vlastností".
+Při použití entity framework, musíte zadat "bílý seznam" vlastností při použití TryUpdateModel nebo UpdateModel metody aktualizovat vlastnosti třídy entity.
 
-V dalším kroku akce Přidat () provede určité jednoduché ověření formuláře. Akce ověří, že vlastnosti title a Director mají hodnoty. Pokud dojde k chybě ověřování, do ModelState se přidá chybová zpráva o ověření.
+V dalším kroku add() akce provede některé jednoduché ověření formuláře. Akce ověří, zda vlastnosti Title i Director mají hodnoty. Pokud dojde k chybě ověření, je do stavu ModelState přidána chybová zpráva ověření.
 
-Pokud nedošlo k chybám ověření, přidá se do tabulky video Database nový záznam filmu s použitím Entity Framework. Nový záznam se přidá do databáze s následujícími dvěma řádky kódu:
+Pokud nejsou žádné chyby ověření pak nový záznam filmu je přidán do tabulky databáze Filmy pomocí entity frameworku. Nový záznam je přidán do databáze s následujícími dvěma řádky kódu:
 
 [!code-vb[Main](creating-model-classes-with-the-entity-framework-vb/samples/sample5.vb)]
 
-První řádek kódu přidá novou entitu video do sady filmů sledovaných pomocí Entity Framework. Druhý řádek kódu uloží veškeré změny, které byly provedeny u filmů sledovaných zpět do podkladové databáze.
+První řádek kódu přidá novou entitu Movie do sady filmů sledovaných rozhraním Entity Framework. Druhý řádek kódu ukládá všechny změny, které byly provedeny ve filmech sledovaných zpět do podkladové databáze.
 
-**Obrázek 8 – zobrazení přidat**
+**Obrázek 8 – Zobrazení sčítání**
 
 ![clip_image016](creating-model-classes-with-the-entity-framework-vb/_static/image8.jpg)
 
-## <a name="updating-database-records-with-the-entity-framework"></a>Aktualizace databázových záznamů pomocí Entity Framework
+## <a name="updating-database-records-with-the-entity-framework"></a>Aktualizace záznamů databáze pomocí entity Framework
 
-Můžete použít skoro stejný přístup pro úpravu záznamu databáze s Entity Framework jako metodu, kterou jsme právě následovali za účelem vložení nového záznamu databáze. Výpis 4 obsahuje dvě nové akce kontroleru s názvem Edit (). První akce upravit () vrátí formulář HTML pro úpravu záznamu filmu. Druhá akce Edit () se pokusí aktualizovat databázi.
+Můžete postupovat téměř stejným způsobem upravit záznam databáze s entity framework jako přístup, který jsme právě následovali vložit nový záznam databáze. Výpis 4 obsahuje dvě nové akce řadiče s názvem Edit(). První akce Edit() vrátí formulář HTML pro úpravy záznamu vydědění. Druhá akce Edit() se pokusí aktualizovat databázi.
 
-**Výpis 4 – Controllers\HomeController.vb (upravit metody)**
+**Výpis 4 – Controllers\HomeController.vb (Metody úprav)**
 
 [!code-vb[Main](creating-model-classes-with-the-entity-framework-vb/samples/sample6.vb)]
 
-Druhá akce Edit () začíná načtením záznamu filmu z databáze, která odpovídá ID upravovaného filmu. Následující příkaz LINQ to Entities přiřadí první záznam v databázi, který odpovídá konkrétnímu ID:
+Druhá akce Edit() začíná načtením záznamu filmu z databáze, která odpovídá ID upravovaného filmu. Následující příkaz LINQ entity uchopí první záznam databáze, který odpovídá konkrétnímu ID:
 
 [!code-vb[Main](creating-model-classes-with-the-entity-framework-vb/samples/sample7.vb)]
 
-Dále metoda TryUpdateModel () slouží k přiřazení hodnot polí formuláře HTML k vlastnostem entity video. Všimněte si, že je k dispozici prázdný seznam pro určení přesných vlastností, které se mají aktualizovat.
+Dále tryUpdateModel() metoda se používá k přiřazení hodnoty polí formuláře HTML vlastnosti entity filmu. Všimněte si, že je zadán bílý seznam k určení přesné vlastnosti aktualizovat.
 
-V dalším kroku se provede nějaké jednoduché ověření, které ověří, že vlastnosti názvu a režiséra filmu mají hodnoty. Pokud chybí hodnota vlastnosti, je přidána chybová zpráva ověření do ModelState a ModelState. IsValid vrátí hodnotu false.
+Dále se provádí některé jednoduché ověření k ověření, že název filmu a ředitel vlastnosti mají hodnoty. Pokud některá vlastnost chybí hodnota, pak je přidána chybová zpráva ověření modelstate a ModelState.IsValid vrátí hodnotu false.
 
-Nakonec, pokud nejsou k dispozici žádné chyby ověřování, je podkladová tabulka databáze filmů aktualizována o všechny změny voláním metody SaveChanges ().
+Nakonec pokud neexistují žádné chyby ověření, podkladová tabulka databáze Filmy je aktualizována všemi změnami voláním metody SaveChanges().
 
-Při úpravách záznamů databáze je třeba předat ID upravovaného záznamu do akce kontroleru, která provádí aktualizaci databáze. V opačném případě akce kontroleru nebude informovat o tom, který záznam má být aktualizován v podkladové databázi. Zobrazení pro úpravy obsažené v seznamu 5 obsahuje skryté pole formuláře, které představuje ID upravovaného záznamu databáze.
+Při úpravách záznamů databáze je třeba předat ID upravovaného záznamu akci kontroleru, která provádí aktualizaci databáze. V opačném případě akce kontroleru nebude vědět, který záznam aktualizovat v podkladové databázi. Zobrazení Upravit obsažené v seznamu 5 obsahuje skryté pole formuláře, které představuje ID upravovaného záznamu databáze.
 
-**Výpis 5 – Views\Home\Edit.aspx**
+**Výpis 5 – Zobrazení\Domů\Upravit.aspx**
 
 [!code-aspx[Main](creating-model-classes-with-the-entity-framework-vb/samples/sample8.aspx)]
 
-## <a name="deleting-database-records-with-the-entity-framework"></a>Odstranění záznamů databáze pomocí Entity Framework
+## <a name="deleting-database-records-with-the-entity-framework"></a>Odstranění databázových záznamů pomocí entity Frameworku
 
-Poslední databázová operace, kterou potřebujeme v tomto kurzu řešit, je odstraňování záznamů databáze. K odstranění konkrétního záznamu databáze můžete použít akci kontroleru v výpisu 6.
+Operace konečné databáze, které musíme řešit v tomto kurzu, je odstranění záznamů databáze. Pomocí akce kontroléru v seznamu 6 můžete odstranit určitý záznam databáze.
 
-**Výpis 6--\Controllers\HomeController.vb (akce Odstranit)**
+**Výpis 6 -- \Controllers\HomeController.vb (Akce Odstranit)**
 
 [!code-vb[Main](creating-model-classes-with-the-entity-framework-vb/samples/sample9.vb)]
 
-Akce Odstranit () nejprve načte entitu videa, která odpovídá ID předané akci. Dále je film odstraněn z databáze voláním metody OdstranitObjekt () následovaný metodou SaveChanges (). Nakonec se uživatel přesměruje zpět do zobrazení indexu.
+Akce Delete() nejprve načte entitu Film, která odpovídá ID předané akci. Dále je film odstraněn z databáze voláním metody DeleteObject() následované metodou SaveChanges(). Nakonec je uživatel přesměrován zpět do zobrazení index.
 
 ## <a name="summary"></a>Souhrn
 
-Účelem tohoto kurzu je předvést, jak můžete vytvářet databázové webové aplikace s využitím ASP.NET MVC a Microsoft Entity Framework. Zjistili jste, jak vytvořit aplikaci, která umožňuje výběr, vložení, aktualizaci a odstranění záznamů databáze.
+Účelem tohoto kurzu bylo ukázat, jak můžete vytvářet webové aplikace řízené databází využitím ASP.NET MVC a Microsoft Entity Framework. Zjistili jste, jak vytvořit aplikaci, která umožňuje vybrat, vložit, aktualizovat a odstranit databázové záznamy.
 
-Nejprve jsme probrali, jak můžete pomocí Průvodce model EDM (Entity Data Model) vygenerovat model EDM (Entity Data Model) z aplikace Visual Studio. Dále se naučíte, jak pomocí LINQ to Entities načíst sadu databázových záznamů z databázové tabulky. Nakonec jsme použili Entity Framework k vkládání, aktualizaci a odstraňování záznamů databáze.
+Nejprve jsme probrali, jak můžete použít Průvodce datovým modelem entity ke generování datového modelu entity z aplikace Visual Studio. Dále se dozvíte, jak pomocí LINQ entity načíst sadu databázových záznamů z tabulky databáze. Nakonec jsme použili entity framework vložit, aktualizovat a odstranit záznamy databáze.
 
 > [!div class="step-by-step"]
 > [Předchozí](validation-with-the-data-annotation-validators-cs.md)
-> [Další](creating-model-classes-with-linq-to-sql-vb.md)
+> [další](creating-model-classes-with-linq-to-sql-vb.md)

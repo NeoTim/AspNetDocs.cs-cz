@@ -1,28 +1,28 @@
 ---
 uid: web-forms/videos/sql-2005/manipulating-database-data
-title: Manipulace s daty databáze | Microsoft Docs
-author: microsoft
-description: SQL Server začátečníky se naučí o objektech ADO.NET a o spuštění příkazu SQL z ADO.NET. Prozkoumejte SQL a seznamte se s vložením, aktualizací a odstraněním sta...
+title: Manipulace s daty databáze | Dokumenty společnosti Microsoft
+author: rick-anderson
+description: Sql Server začátečníci se dozvíte o ADO.NET objekty a provádění příkazu SQL z ADO.NET. Prozkoumejte SQL a získejte informace o vložení, aktualizaci a odstranění sta...
 ms.author: riande
 ms.date: 03/29/2006
 ms.assetid: 03a4cdda-480f-43fa-891c-a976633d90ae
 msc.legacyurl: /web-forms/videos/sql-2005/manipulating-database-data
 msc.type: video
-ms.openlocfilehash: 10f9379a27f96ac4acb77af1a6062a42aaecc14f
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 9db4985c07cdcc51cb3c45d811fc44366028a59d
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78618109"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543272"
 ---
 # <a name="manipulating-database-data"></a>Manipulace s databázovými daty
 
-od [Microsoftu](https://github.com/microsoft)
+podle [společnosti Microsoft](https://github.com/microsoft)
 
-SQL Server začátečníky se naučí o objektech ADO.NET a o spuštění příkazu SQL z ADO.NET. Prozkoumejte SQL a seznamte se s příkazy INSERT, Update a DELETE.
+Sql Server začátečníci se dozvíte o ADO.NET objekty a provádění příkazu SQL z ADO.NET. Prozkoumejte sql a seznamte se s příkazy insert, update a delete.
 
-[&#9654;Přehrát video (40 minut)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/manipulating-database-data)
+[&#9654; Podívejte se na video (40 minut)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/manipulating-database-data)
 
 > [!div class="step-by-step"]
 > [Předchozí](designing-relational-database-tables.md)
-> [Další](more-structured-query-language.md)
+> [další](more-structured-query-language.md)

@@ -1,149 +1,149 @@
 ---
 uid: mvc/overview/older-versions-1/contact-manager/iteration-2-make-the-application-look-nice-cs
-title: 'Iterace #2 – nastaví vzhled aplikace jako příjemnéC#() | Microsoft Docs'
-author: microsoft
-description: V této iteraci Vylepšete vzhled aplikace úpravou výchozí stránky předlohy zobrazení ASP.NET MVC a šablony kaskádových stylů.
+title: 'Iterace #2 – aby aplikace vypadala hezky (C#) | Dokumenty společnosti Microsoft'
+author: rick-anderson
+description: V této iteraci vylepšujeme vzhled aplikace úpravou výchozí ASP.NET stránku předlohy zobrazení MVC a kaskádovou šablonu stylů.
 ms.author: riande
 ms.date: 02/20/2009
 ms.assetid: f1173feb-11ee-4017-8f3f-86599ea6ae13
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-2-make-the-application-look-nice-cs
 msc.type: authoredcontent
-ms.openlocfilehash: 246cb4b4668339cc4b7e4e03ea005102c6a2a5c3
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: ee1d7c92524f6cbdb0f2d7facf85b629e0d91318
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78602016"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542440"
 ---
-# <a name="iteration-2--make-the-application-look-nice-c"></a>Iterace #2 – nastaví vzhled aplikace jako příjemnéC#()
+# <a name="iteration-2--make-the-application-look-nice-c"></a>Iterace č. 2 – vylepšení vzhledu aplikace (C#)
 
-od [Microsoftu](https://github.com/microsoft)
+podle [společnosti Microsoft](https://github.com/microsoft)
 
 [Stáhnout kód](iteration-2-make-the-application-look-nice-cs/_static/contactmanager_2_cs1.zip)
 
-> V této iteraci Vylepšete vzhled aplikace úpravou výchozí stránky předlohy zobrazení ASP.NET MVC a šablony kaskádových stylů.
+> V této iteraci vylepšujeme vzhled aplikace úpravou výchozí ASP.NET stránku předlohy zobrazení MVC a kaskádovou šablonu stylů.
 
-## <a name="building-a-contact-management-aspnet-mvc-application-c"></a>Sestavování aplikace pro správu kontaktů ASP.NETC#MVC ()
+## <a name="building-a-contact-management-aspnet-mvc-application-c"></a>Vytvoření aplikace pro správu kontaktů ASP.NET MVC (C#)
 
-V této sérii kurzů sestavíme celou aplikaci pro správu kontaktů od začátku do konce. Aplikace Správce kontaktů umožňuje ukládat kontaktní údaje – jména, telefonní čísla a e-mailové adresy – seznam lidí.
+V této sérii kurzů vytvoříme celou aplikaci pro správu kontaktů od začátku do konce. Aplikace Contact Manager umožňuje ukládat kontaktní informace - jména, telefonní čísla a e-mailové adresy - pro seznam osob.
 
-Aplikaci sestavíme přes několik iterací. U každé iterace doporučujeme aplikaci postupně vylepšit. Cílem tohoto vícenásobného přístupu k iteraci je umožnit pochopení příčiny každé změny.
+Vytvoříme aplikaci přes více iterací. S každou iterací postupně vylepšujeme aplikaci. Cílem tohoto přístupu více iterace je umožnit pochopit důvod pro každou změnu.
 
-- Iterace #1 – Vytvoření aplikace V první iteraci vytvoříme nejjednodušším způsobem správce kontaktů. Přidáváme podporu základních databázových operací: vytváření, čtení, aktualizace a odstraňování (CRUD).
+- Iterace #1 - Vytvořte aplikaci. V první iteraci vytvoříme Správce kontaktů nejjednodušším možným způsobem. Přidáváme podporu pro základní databázové operace: Vytvořit, Číst, Aktualizovat a odstranit (CRUD).
 
-- Iterace #2 – nastaví vzhled aplikace jako příjemné. V této iteraci Vylepšete vzhled aplikace úpravou výchozí stránky předlohy zobrazení ASP.NET MVC a šablony kaskádových stylů.
+- Iterace #2 - Make aplikace vypadat hezky. V této iteraci vylepšujeme vzhled aplikace úpravou výchozí ASP.NET stránku předlohy zobrazení MVC a kaskádovou šablonu stylů.
 
-- Iterace #3 – Přidání ověření formuláře. Třetí iterace přidá základní ověřování formuláře. Uživatelům bráníme v odesílání formuláře bez nutnosti vyplnit požadovaná pole formuláře. Ověřujeme taky e-mailové adresy a telefonní čísla.
+- #3 iterace – přidejte ověření formuláře. Ve třetí iteraci přidáme ověření základního formuláře. Bráníme uživatelům v odesílání formuláře bez vyplnění požadovaných polí formuláře. Ověřujeme také e-mailové adresy a telefonní čísla.
 
-- Iterace #4 – zajistěte, aby byla aplikace volně spojená. V této čtvrté iteraci využijeme několik vzorů návrhu softwaru, které usnadňují údržbu a úpravy aplikace Správce kontaktů. Například refaktorujte naši aplikaci, aby používala vzor úložiště a vzor vkládání závislostí.
+- Iterace #4 - Proveďte aplikaci volně spojená. V této čtvrté iteraci využíváme několik vzorů návrhu softwaru, abychom usnadnili údržbu a úpravu aplikace Správce kontaktů. Například refaktorujeme naši aplikaci tak, aby používala vzor úložiště a vzor vkládání závislostí.
 
-- Iterace #5 – vytvoření testů jednotek. V páté iteraci aplikace usnadňuje údržbu a úpravy přidáním jednotkových testů. Pro naše řadiče a logiku ověřování jsme nastavili třídy datového modelu a testy jednotek.
+- Iterace #5 - vytvořit testy částí. V páté iteraci usnadňujeme údržbu a úpravy naší aplikace přidáním testů částí. Zesměšňujeme naše třídy datových modelů a vytváříme testy částí pro naše řadiče a logiku ověřování.
 
-- Iterace #6 – použití vývoje řízeného testem. V této šesté iteraci přidáme do naší aplikace nové funkce, a to tak, že nejprve zapíšeme testy jednotek a napíšeme kód na testy jednotek. V této iteraci přidáváme skupiny kontaktů.
+- Iterace #6 – použijte vývoj řízený testem. V této šesté iteraci přidáme nové funkce do naší aplikace zápisem testů částí první a psaní kódu proti testování částí. V této iteraci přidáme skupiny kontaktů.
 
-- Iterace #7 – přidání funkce AJAX V sedmé iteraci vylepšit rychlost reakce a výkon naší aplikace přidáním podpory pro AJAX.
+- Iterace #7 - Přidat funkci Ajax. V sedmé iteraci zlepšujeme odezvu a výkon naší aplikace přidáním podpory pro Ajax.
 
 ## <a name="this-iteration"></a>Tato iterace
 
-Cílem této iterace je zlepšit vzhled aplikace Správce kontaktů. V současné době správce kontaktů používá výchozí stránku předlohy zobrazení ASP.NET MVC a šablonu kaskádových stylů (viz obrázek 1). Tyto věci nevypadají špatně, ale nechci, aby správce kontaktů vypadal stejně jako každý jiný web ASP.NET MVC. Chci tyto soubory nahradit vlastními soubory.
+Cílem této iterace je zlepšit vzhled aplikace Správce kontaktů. V současné době správce kontaktů používá výchozí ASP.NET stránku předlohy zobrazení MVC a kaskádovou šablonu stylů (viz obrázek 1). Tyto dont vypadat špatně, ale já nechci, aby Contact Manager vypadat stejně jako každý jiný ASP.NET webových stránkách MVC. Chci tyto soubory nahradit vlastními soubory.
 
-[![dialogového okna Nový projekt](iteration-2-make-the-application-look-nice-cs/_static/image1.jpg)](iteration-2-make-the-application-look-nice-cs/_static/image1.png)
+[![Dialogové okno New Project (Nový projekt)](iteration-2-make-the-application-look-nice-cs/_static/image1.jpg)](iteration-2-make-the-application-look-nice-cs/_static/image1.png)
 
-**Obrázek 01**: výchozí vzhled aplikace ASP.NET MVC ([kliknutím zobrazíte obrázek v plné velikosti](iteration-2-make-the-application-look-nice-cs/_static/image2.png))
+**Obrázek 01**: Výchozí vzhled aplikace mvc ASP.NET[(Klepnutím zobrazíte obrázek v plné velikosti)](iteration-2-make-the-application-look-nice-cs/_static/image2.png)
 
-V této iteraci probereme dva přístupy ke zlepšení vizuálního návrhu naší aplikace. Napřed si ukážeme, jak využít galerii návrhů ASP.NET MVC ke stažení bezplatné šablony návrhu ASP.NET MVC. Galerie návrhů ASP.NET MVC umožňuje vytvořit profesionální webovou aplikaci, aniž by prováděla práci.
+V této iteraci diskutuji o dvou přístupech ke zlepšení vizuálního návrhu naší aplikace. Za prvé, ukážu vám, jak využít ASP.NET Galerie MVC Design ke stažení zdarma ASP.NET mvc design šablony. Galerie ASP.NET MVC Design vám umožní vytvořit profesionální webovou aplikaci bez jakékoli práce.
 
-Rozhodli jste se Nepoužívat šablonu z Galerie návrhů ASP.NET MVC pro aplikaci Správce kontaktů. Místo toho mám vlastní návrh vytvořený firmou Professional design. V druhé části tohoto kurzu vyberu, jak mám pracovat s profesionální návrhovou společností, která vytvoří konečný návrh ASP.NET MVC.
+Rozhodl jsem se nepoužívat šablonu z ASP.NET Galerie MVC Design pro aplikaci Contact Manager. Místo toho jsem měl vlastní design vytvořený profesionální designovou firmou. Ve druhé části tohoto tutoriálu, vysvětlím, jak jsem pracoval s profesionální design společnosti vytvořit finální ASP.NET MVC design.
 
-## <a name="the-aspnet-mvc-design-gallery"></a>Galerie návrhů ASP.NET MVC
+## <a name="the-aspnet-mvc-design-gallery"></a>Galerie designu MVC ASP.NET
 
-Galerie návrhů ASP.NET MVC je bezplatný prostředek poskytovaný společností Microsoft. Galerie ASP.NET MVC se nachází na následující adrese:
+ASP.NET MVC Design Gallery je bezplatný zdroj poskytovaný společností Microsoft. Galerie ASP.NET MVC se nachází na následující adrese:
 
 [https://www.asp.net/mvc/gallery](https://www.asp.net/mvc/gallery)
 
-Galerie návrhů ASP.NET MVC hostuje kolekci bezplatných návrhů webů, které byly vytvořeny speciálně pro použití v projektu ASP.NET MVC. Návrhy jsou odesílány členy komunity. Návštěvníci z Galerie můžou hlasovat o svých oblíbených návrzích (viz obrázek 2).
+ASP.NET MVC Design Gallery hostí sbírku bezplatných návrhů webových stránek, které byly vytvořeny speciálně pro použití v projektu ASP.NET MVC. Návrhy jsou nahrávány členy komunity. Návštěvníci galerie mohou hlasovat pro své oblíbené návrhy (viz obrázek 2).
 
-[![dialogového okna Nový projekt](iteration-2-make-the-application-look-nice-cs/_static/image2.jpg)](iteration-2-make-the-application-look-nice-cs/_static/image3.png)
+[![Dialogové okno New Project (Nový projekt)](iteration-2-make-the-application-look-nice-cs/_static/image2.jpg)](iteration-2-make-the-application-look-nice-cs/_static/image3.png)
 
-**Obrázek 02**: galerie návrhů ASP.NET MVC ([kliknutím zobrazíte obrázek v plné velikosti](iteration-2-make-the-application-look-nice-cs/_static/image4.png))
+**Obrázek 02**: ASP.NET Galerie návrhů MVC[(Kliknutím zobrazíte obrázek v plné velikosti)](iteration-2-make-the-application-look-nice-cs/_static/image4.png)
 
-Při psaní tohoto kurzu je nejoblíbenějším návrhem v galerii návrh s názvem říjen od David Hauser. Tento návrh projektu ASP.NET MVC můžete použít provedením následujících kroků:
+Jak píšu tento výukový program, nejpopulárnější design v galerii je design s názvem října David Hauser. Tento návrh můžete použít pro projekt ASP.NET MVC provedením následujících kroků:
 
-1. Kliknutím na tlačítko **Stáhnout** Stáhněte soubor říjnu. zip do počítače.
-2. Klikněte pravým tlačítkem na stažený soubor. zip a klikněte na tlačítko **odblokování** (viz obrázek 3).
-3. Rozbalte soubor do složky s názvem říjen.
-4. Vyberte všechny soubory ze složky DesignTemplate obsažené ve složce říjen, klikněte pravým tlačítkem na soubory a vyberte možnost nabídka **Kopírovat**.
-5. V okně Visual Studio Průzkumník řešení klikněte pravým tlačítkem na uzel projektu ContactManager a vyberte možnost nabídky **Vložit** (viz obrázek 4).
-6. Vyberte možnost nabídky Visual Studio **Upravit, najít a nahradit, rychlé nahrazení** a nahrazení *[MyProjectName]* pomocí *ContactManager* (viz obrázek 5).
+1. Klepnutím na tlačítko **Stáhnout** stáhněte soubor October.zip do počítače.
+2. Klikněte pravým tlačítkem myši na stažený soubor October.zip a klikněte na tlačítko **Odblokovat** (viz obrázek 3).
+3. Rozbalte soubor do složky s názvem Říjen.
+4. Vyberte všechny soubory ze složky DesignTemplate obsažené ve složce Říjen, klepněte pravým tlačítkem myši na soubory a vyberte možnost nabídky **Kopírovat**.
+5. Klepněte pravým tlačítkem myši na uzel projektu ContactManager v okně Průzkumník řešení sady Visual Studio a vyberte možnost nabídky **Vložit** (viz obrázek 4).
+6. Vyberte možnost nabídky Visual Studio **Upravit, Najít a nahradit, Rychle nahradit** a nahradit *[MyProjectName]* *contactmanagerem* (viz obrázek 5).
 
-[![dialogového okna Nový projekt](iteration-2-make-the-application-look-nice-cs/_static/image3.jpg)](iteration-2-make-the-application-look-nice-cs/_static/image5.png)
+[![Dialogové okno New Project (Nový projekt)](iteration-2-make-the-application-look-nice-cs/_static/image3.jpg)](iteration-2-make-the-application-look-nice-cs/_static/image5.png)
 
-**Obrázek 03**: odblokování souboru staženého z webu ([kliknutím zobrazíte obrázek v plné velikosti](iteration-2-make-the-application-look-nice-cs/_static/image6.png))
+**Obrázek 03**: Odblokování souboru staženého z webu[(Kliknutím zobrazíte obrázek v plné velikosti)](iteration-2-make-the-application-look-nice-cs/_static/image6.png)
 
-[![dialogového okna Nový projekt](iteration-2-make-the-application-look-nice-cs/_static/image4.jpg)](iteration-2-make-the-application-look-nice-cs/_static/image7.png)
+[![Dialogové okno New Project (Nový projekt)](iteration-2-make-the-application-look-nice-cs/_static/image4.jpg)](iteration-2-make-the-application-look-nice-cs/_static/image7.png)
 
-**Obrázek 04**: přepisování souborů v Průzkumník řešení ([kliknutím zobrazíte obrázek v plné velikosti](iteration-2-make-the-application-look-nice-cs/_static/image8.png))
+**Obrázek 04**: Přepsání souborů v Průzkumníku řešení[(Kliknutím zobrazíte obrázek v plné velikosti)](iteration-2-make-the-application-look-nice-cs/_static/image8.png)
 
-[![dialogového okna Nový projekt](iteration-2-make-the-application-look-nice-cs/_static/image5.jpg)](iteration-2-make-the-application-look-nice-cs/_static/image9.png)
+[![Dialogové okno New Project (Nový projekt)](iteration-2-make-the-application-look-nice-cs/_static/image5.jpg)](iteration-2-make-the-application-look-nice-cs/_static/image9.png)
 
-**Obrázek 05**: nahrazení [projectname] pomocí ContactManager ([kliknutím zobrazíte obrázek v plné velikosti](iteration-2-make-the-application-look-nice-cs/_static/image10.png))
+**Obrázek 05**: Nahrazení [Název_projektu] contactmanagerem[(Klepnutím zobrazíte obrázek v plné velikosti)](iteration-2-make-the-application-look-nice-cs/_static/image10.png)
 
-Po dokončení tohoto postupu bude webová aplikace používat nový návrh. Stránka na obrázku 6 znázorňuje vzhled aplikace Contact Manager s návrhem října.
+Po dokončení těchto kroků bude vaše webová aplikace používat nový návrh. Stránka na obrázku 6 znázorňuje vzhled aplikace Správce kontaktů s říjnovým návrhem.
 
-[![dialogového okna Nový projekt](iteration-2-make-the-application-look-nice-cs/_static/image6.jpg)](iteration-2-make-the-application-look-nice-cs/_static/image11.png)
+[![Dialogové okno New Project (Nový projekt)](iteration-2-make-the-application-look-nice-cs/_static/image6.jpg)](iteration-2-make-the-application-look-nice-cs/_static/image11.png)
 
-**Obrázek 06**: ContactManager se šablonou říjen ([kliknutím zobrazíte obrázek v plné velikosti](iteration-2-make-the-application-look-nice-cs/_static/image12.png))
+**Obrázek 06**: ContactManager se šablonou říjen[(Kliknutím zobrazíte obrázek v plné velikosti)](iteration-2-make-the-application-look-nice-cs/_static/image12.png)
 
-## <a name="creating-a-custom-aspnet-mvc-design"></a>Vytvoření vlastního návrhu MVC pro ASP.NET
+## <a name="creating-a-custom-aspnet-mvc-design"></a>Vytvoření vlastního ASP.NET návrhu MVC
 
-Galerie návrhů ASP.NET MVC nabízí dobrý výběr různých stylů návrhu. Galerie poskytuje bezproblémově způsob, jak přizpůsobit vzhled aplikací ASP.NET MVC. A samozřejmě má Galerie velkou výhodu, že je zcela zdarma.
+ASP.NET MVC Design Gallery má dobrý výběr různých stylů designu. Galerie vám poskytuje bezbolestný způsob, jak přizpůsobit vzhled vašich aplikací ASP.NET MVC. A samozřejmě, galerie má velkou výhodu, že je zcela zdarma.
 
-Je ale možné, že budete muset vytvořit naprosto jedinečný návrh webu. V takovém případě má smysl pracovat s návrhovou společností na webu. Rozhodli jste se tento postup využít pro návrh aplikace Správce kontaktů.
+Možná však budete muset vytvořit zcela jedinečný design pro vaše webové stránky. V takovém případě má smysl pracovat s firmou zabývající se navrhováním webových stránek. Rozhodl jsem se přijmout tento přístup pro návrh aplikace Contact Manager.
 
-Jsem správce kontaktů před iterací #1 a projekt odeslal do společnosti pro návrh. Nevlastní sady Visual Studio (Shame na nich!), ale neobsahovaly problém. Mohli byste si zdarma stáhnout Microsoft Visual Web Developer na webu [https://www.asp.net](https://www.asp.net) a otevřít aplikaci Contact Manager v aplikaci Visual Web Developer. Během několika dnů vytvořil návrh na obrázku 7.
+I zip do Contact Manager z iterace #1 a poslal projekt na návrh společnosti. Neměli vlastní Visual Studio (hanba na ně!), Ale to nepředstavovalo problém. Z [https://www.asp.net](https://www.asp.net) webu mohli zdarma stáhnout aplikaci Microsoft Visual Web Developer a otevřít aplikaci Contact Manager v aplikaci Visual Web Developer. Za pár dní, oni produkovali design na obrázku 7.
 
-[![dialogového okna Nový projekt](iteration-2-make-the-application-look-nice-cs/_static/image7.jpg)](iteration-2-make-the-application-look-nice-cs/_static/image13.png)
+[![Dialogové okno New Project (Nový projekt)](iteration-2-make-the-application-look-nice-cs/_static/image7.jpg)](iteration-2-make-the-application-look-nice-cs/_static/image13.png)
 
-**Obrázek 07**: návrh správce kontaktů ASP.NET MVC ([kliknutím zobrazíte obrázek v plné velikosti](iteration-2-make-the-application-look-nice-cs/_static/image14.png))
+**Obrázek 07**: Návrh správce kontaktů ASP.NET MVC[(klepnutím zobrazíte obrázek v plné velikosti)](iteration-2-make-the-application-look-nice-cs/_static/image14.png)
 
-Nový návrh se skládá ze dvou hlavních souborů: nový soubor šablony stylů a nový soubor hlavní stránky zobrazení. Stránka zobrazení předlohy obsahuje rozložení a sdílený obsah pro zobrazení v aplikaci ASP.NET MVC. Například stránka zobrazení předlohy obsahuje záhlaví, navigační karty a zápatí, které se zobrazí na obrázku 7. Přepsal (a) existující stránku předlohy zobrazení Web. Master ve složce Views\Shared novým souborem Web. Master z návrhové společnosti,
+Nový návrh se skládal ze dvou hlavních souborů: nového souboru šablony stylů a nového souboru stránky předlohy zobrazení. Stránka předlohy zobrazení obsahuje rozložení a sdílený obsah pro zobrazení v ASP.NET aplikace MVC. Stránka předlohy zobrazení například obsahuje záhlaví, navigační karty a zápatí, které se zobrazují na obrázku 7. Přepsal jsem existující stránku předlohy zobrazení Site.Master ve složce Zobrazení\Sdílené s novým souborem Site.Master od návrhářské společnosti,
 
-Společnost návrhu také vytvořila novou kaskádovou šablonu stylů a sadu obrázků. Umístil (a) jsem tyto nové soubory do složky obsahu a přepsali jste existující soubor Web. CSS. Veškerý statický obsah byste měli umístit do složky obsahu.
+Návrhářská společnost také vytvořila novou kaskádovou šablonu stylů a sadu obrázků. Umístil jsem tyto nové soubory do složky Obsah a přepsal existující soubor Site.css. Do složky Obsah byste měli umístit veškerý statický obsah.
 
-Všimněte si, že nový návrh správce kontaktů obsahuje obrázky pro úpravy a odstraňování kontaktů. Obrázek upravit a odstranit se zobrazí vedle každého kontaktu v tabulce HTML kontaktů.
+Všimněte si, že nový návrh Správce kontaktů obsahuje obrázky pro úpravy a odstranění kontaktů. Vedle každého kontaktu v tabulce kontaktů html se zobrazí obrázek Upravit a odstranit.
 
-Původně byly tyto odkazy vykresleny pomocí kódu HTML. Pomocník pro ActionLink () podobný tomuto:
+Původně tyto odkazy, které byly vykresleny s HTML. ActionLink() pomocník takhle:
 
 [!code-aspx[Main](iteration-2-make-the-application-look-nice-cs/samples/sample1.aspx)]
 
-Metoda HTML. ActionLink () nepodporuje obrázky (metoda HTML kóduje text odkazu z bezpečnostních důvodů). Proto jsem nahradil volání HTML. ActionLink () voláními na adresu URL. Action () takto:
+Metoda Html.ActionLink() nepodporuje obrázky (metoda HTML z bezpečnostních důvodů kóduje text odkazu). Proto jsem nahradil volání Html.ActionLink() s voláníurl.Action() takto:
 
 [!code-aspx[Main](iteration-2-make-the-application-look-nice-cs/samples/sample2.aspx)]
 
-Metoda HTML. ActionLink () vykresluje celý hypertextový odkaz HTML. Metoda URL. Action () na druhé straně vykresluje pouze adresu URL bez &lt;značku&gt;.
+Metoda Html.ActionLink() vykreslí celý hypertextový odkaz HTML. Url.Action() metoda, na druhé straně, vykreslí &lt;pouze&gt; URL bez značky.
 
-Všimněte si také, že nový návrh zahrnuje vybrané i nevybrané karty. Například na obrázku 8 je vybrána karta **vytvořit nový kontakt** a karta **moje kontakty** není vybrána.
+Všimněte si dále, že nový návrh obsahuje vybrané i nevybrané karty. Například na obrázku 8 je vybrána karta **Vytvořit nový kontakt** a karta Moje **kontakty** není vybraná.
 
-[![dialogového okna Nový projekt](iteration-2-make-the-application-look-nice-cs/_static/image8.jpg)](iteration-2-make-the-application-look-nice-cs/_static/image15.png)
+[![Dialogové okno New Project (Nový projekt)](iteration-2-make-the-application-look-nice-cs/_static/image8.jpg)](iteration-2-make-the-application-look-nice-cs/_static/image15.png)
 
-**Obrázek 08**: vybraná a Nevybraná karta ([kliknutím zobrazíte obrázek v plné velikosti](iteration-2-make-the-application-look-nice-cs/_static/image16.png))
+**Obrázek 08**: Vybrané a nevybrané karty([Kliknutím zobrazíte obrázek v plné velikosti)](iteration-2-make-the-application-look-nice-cs/_static/image16.png)
 
-Pro podporu vykreslování vybraných i nevybraných karet jsem vytvořili vlastní nápovědu HTML s názvem MenuItemHelper. Tato pomocná metoda vykreslí buď &lt;li&gt; značku, nebo &lt;li Class = "vybraná"&gt; značka v závislosti na tom, zda aktuální kontroler a akce odpovídá kontroleru a názvu akce předané do pomocné rutiny. Kód pro MenuItemHelper je obsažen v seznamu 1.
+Pro podporu vykreslování vybraných i nevybraných karet jsem vytvořil vlastní pomocník HTML s názvem MenuItemHelper. Tato pomocná metoda vykreslí buď &lt;značku&gt; li nebo značku &lt;li class="selected"&gt; v závislosti na tom, zda aktuální kontroler a akce odpovídají kontroleru a názvu akce předané pomocni. Kód pro MenuItemHelper je obsažen v výpisu 1.
 
-**Výpis 1 – Helpers\MenuItemHelper.cs**
+**Výpis 1 - Helpers\MenuItemHelper.cs**
 
 [!code-csharp[Main](iteration-2-make-the-application-look-nice-cs/samples/sample3.cs)]
 
-MenuItemHelper používá interně TagBuilder třídu pro &lt;sestavení&gt; značky HTML. Třída TagBuilder je velmi užitečná třída nástrojů, kterou můžete použít vždy, když potřebujete vytvořit novou značku jazyka HTML. Obsahuje metody pro přidávání atributů, přidávání tříd šablon stylů CSS, generování identifikátorů a úpravu značky s vnitřním HTML.
+MenuItemHelper používá tagbuilder třídy interně &lt;&gt; k vytvoření značky li HTML. Třída TagBuilder je velmi užitečná třída nástrojů, kterou můžete použít vždy, když potřebujete vytvořit novou značku HTML. Zahrnuje metody pro přidávání atributů, přidávání tříd CSS, generování ID a úpravu vnitřního HTML značky.
 
 ## <a name="summary"></a>Souhrn
 
-V této iteraci jsme vylepšili vizuální návrh naší aplikace ASP.NET MVC. Nejdřív jste se zavedli do Galerie návrhů ASP.NET MVC. Zjistili jste, jak stáhnout bezplatné šablony návrhu z Galerie návrhů ASP.NET MVC, kterou můžete použít ve svých aplikacích ASP.NET MVC.
+V této iteraci jsme vylepšili vizuální návrh naší aplikace ASP.NET MVC. Nejprve jste byli představeni ASP.NET MVC Design Gallery. Naučili jste se stahovat bezplatné šablony návrhů z ASP.NET MVC Design Gallery, které můžete použít ve svých ASP.NET aplikací MVC.
 
-V dalším kroku jsme probrali, jak můžete vytvořit vlastní návrh úpravou výchozího souboru šablony kaskádových stylů a souboru stránky zobrazení předloh. Abychom mohli podpořit nový návrh, museli jsme v naší aplikaci Správce kontaktů udělat nějaké drobné změny. Přidali jsme například novou nápovědu HTML s názvem MenuItemHelper, která zobrazuje vybrané a nevybrané karty.
+Dále jsme probrali, jak můžete vytvořit vlastní návrh úpravou výchozího souboru šablony stylů a stránkového souboru předlohy. Abychom podpořili nový návrh, museli jsme provést drobné změny v naší aplikaci Contact Manager. Například jsme přidali nový pomocník HTML s názvem MenuItemHelper, který zobrazuje vybrané a nevybrané karty.
 
-V další iteraci vydáme velmi důležitý předmět ověřování. Do naší aplikace přidáváme ověřovací kód, aby uživatel nemohl vytvořit nový kontakt bez nutnosti zadat požadované hodnoty, jako je například jméno a příjmení osoby.
+V další iteraci se zabýváme velmi důležitým tématem ověřování. Do naší aplikace přidáme ověřovací kód, aby uživatel nemohl vytvořit nový kontakt bez zadání požadovaných hodnot, jako je jméno a příjmení osoby.
 
 > [!div class="step-by-step"]
 > [Předchozí](iteration-1-create-the-application-cs.md)
-> [Další](iteration-3-add-form-validation-cs.md)
+> [další](iteration-3-add-form-validation-cs.md)

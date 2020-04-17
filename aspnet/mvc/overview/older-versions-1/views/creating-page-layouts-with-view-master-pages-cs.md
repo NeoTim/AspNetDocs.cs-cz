@@ -1,132 +1,132 @@
 ---
 uid: mvc/overview/older-versions-1/views/creating-page-layouts-with-view-master-pages-cs
-title: Vytváření rozložení stránky pomocí zobrazení stránek předlohy (C#) | Microsoft Docs
-author: microsoft
-description: V tomto kurzu se naučíte, jak vytvořit společné rozložení stránky pro více stránek ve vaší aplikaci tím, že využijete možnosti Zobrazit stránky předlohy. Můžete použít...
+title: Vytváření rozložení stránek pomocí stránek předlohy zobrazení (C#) | Dokumenty společnosti Microsoft
+author: rick-anderson
+description: V tomto kurzu se dozvíte, jak vytvořit společné rozložení stránky pro více stránek v aplikaci s využitím zobrazení stránek předlohy. Můžete použít...
 ms.author: riande
 ms.date: 10/16/2008
 ms.assetid: dff54fcb-68b1-4488-89a2-ca97532d6a4c
 msc.legacyurl: /mvc/overview/older-versions-1/views/creating-page-layouts-with-view-master-pages-cs
 msc.type: authoredcontent
-ms.openlocfilehash: 026e3efb4ebf84016aa0f6a5fda4af549fdadfcb
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: d313e017d7061ae03e8dea79e611d0cf3838297d
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78541214"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542518"
 ---
 # <a name="creating-page-layouts-with-view-master-pages-c"></a>Vytvoření rozložení stránek pomocí stránek předlohy pro zobrazení (C#)
 
-od [Microsoftu](https://github.com/microsoft)
+podle [společnosti Microsoft](https://github.com/microsoft)
 
 [Stáhnout PDF](https://download.microsoft.com/download/e/f/3/ef3f2ff6-7424-48f7-bdaa-180ef64c3490/ASPNET_MVC_Tutorial_12_CS.pdf)
 
-> V tomto kurzu se naučíte, jak vytvořit společné rozložení stránky pro více stránek ve vaší aplikaci tím, že využijete možnosti Zobrazit stránky předlohy. Můžete použít stránku zobrazení předlohy, například k definování rozložení stránky se dvěma sloupci a použít rozložení dvou sloupců pro všechny stránky ve vaší webové aplikaci.
+> V tomto kurzu se dozvíte, jak vytvořit společné rozložení stránky pro více stránek v aplikaci s využitím zobrazení stránek předlohy. Pomocí vzorové stránky zobrazení můžete například definovat rozložení stránky se dvěma sloupci a použít rozložení se dvěma sloupci pro všechny stránky ve webové aplikaci.
 
-## <a name="creating-page-layouts-with-view-master-pages"></a>Vytváření rozložení stránek pomocí stránek předlohy pro zobrazení
+## <a name="creating-page-layouts-with-view-master-pages"></a>Vytváření rozložení stránek pomocí stránek předlohy zobrazení
 
-V tomto kurzu se naučíte, jak vytvořit společné rozložení stránky pro více stránek ve vaší aplikaci tím, že využijete možnosti Zobrazit stránky předlohy. Můžete použít stránku zobrazení předlohy, například k definování rozložení stránky se dvěma sloupci a použít rozložení dvou sloupců pro všechny stránky ve vaší webové aplikaci.
+V tomto kurzu se dozvíte, jak vytvořit společné rozložení stránky pro více stránek v aplikaci s využitím zobrazení stránek předlohy. Pomocí vzorové stránky zobrazení můžete například definovat rozložení stránky se dvěma sloupci a použít rozložení se dvěma sloupci pro všechny stránky ve webové aplikaci.
 
-Můžete také využít výhod zobrazení stránky předloh pro sdílení společného obsahu napříč několika stránkami v aplikaci. Můžete například umístit logo webu, navigační odkazy a reklamy banneru na stránku zobrazení předlohy. Díky tomu budou mít všechny stránky v aplikaci automaticky tento obsah zobrazovat.
+Můžete také využít výhod vzorových stránek zobrazení ke sdílení společného obsahu na více stránkách aplikace. Na příklad můžete umístit logo webu, navigační odkazy a bannerové reklamy na stránku předlohy zobrazení. Tímto způsobem by každá stránka ve vaší aplikaci automaticky zobrazovala tento obsah.
 
-V tomto kurzu se dozvíte, jak vytvořit novou stránku předlohy zobrazení a vytvořit novou stránku zobrazení obsahu založenou na stránce předlohy.
+V tomto kurzu se dozvíte, jak vytvořit novou stránku předlohy zobrazení a vytvořit novou stránku obsahu zobrazení na základě stránky předlohy.
 
-### <a name="creating-a-view-master-page"></a>Vytvoření hlavní stránky zobrazení
+### <a name="creating-a-view-master-page"></a>Vytvoření stránky předlohy zobrazení
 
-Pojďme začít vytvořením hlavní stránky zobrazení, která definuje rozložení se dvěma sloupci. Novou stránku zobrazení předlohy přidáte do projektu MVC kliknutím pravým tlačítkem myši na složku Views\Shared, vybráním možnosti nabídky **Přidat, nová položka**a výběrem šablony **stránky předlohy zobrazení MVC** (viz obrázek 1).
+Začněme vytvořením stránky předlohy zobrazení, která definuje rozložení se dvěma sloupci. Novou stránku předlohy zobrazení přidáte do projektu MVC tak, že kliknete pravým tlačítkem myši na složku Zobrazení\Sdíleno, vyberete možnost Nabídky **Přidat, Nová položka**a vyberete šablonu **předlohy předlohy předlohy zobrazení MVC** (viz obrázek 1).
 
-[![přidávání řídicí stránky zobrazení](creating-page-layouts-with-view-master-pages-cs/_static/image2.png)](creating-page-layouts-with-view-master-pages-cs/_static/image1.png)
+[![Přidání stránky předlohy zobrazení](creating-page-layouts-with-view-master-pages-cs/_static/image2.png)](creating-page-layouts-with-view-master-pages-cs/_static/image1.png)
 
-**Obrázek 01**: Přidání stránky předlohy zobrazení ([kliknutím zobrazíte obrázek v plné velikosti](creating-page-layouts-with-view-master-pages-cs/_static/image3.png))
+**Obrázek 01**: Přidání stránky předlohy zobrazení[(Kliknutím zobrazíte obrázek v plné velikosti)](creating-page-layouts-with-view-master-pages-cs/_static/image3.png)
 
-V aplikaci můžete vytvořit více než jednu vzorovou stránku zobrazení. Každé zobrazení stránky předlohy může definovat jiné rozložení stránky. Například může být vhodné, aby některé stránky měly rozložení se dvěma sloupci a další stránky, které mají rozložení se třemi sloupci.
+V aplikaci můžete vytvořit více než jednu stránku předlohy zobrazení. Každá stránka předlohy zobrazení může definovat jiné rozložení stránky. Můžete například chtít, aby určité stránky měly rozložení se dvěma sloupci a jiné stránky měly rozložení se třemi sloupci.
 
-Stránka zobrazení předlohy vypadá velmi podobně jako standardní zobrazení ASP.NET MVC. Na rozdíl od normálního zobrazení však stránka zobrazení předlohy obsahuje jednu nebo více značek `<asp:ContentPlaceHolder>`. Značky `<contentplaceholder>` slouží k označení oblastí stránky předlohy, které mohou být přepsány na jednotlivých stránkách obsahu.
+Stránka předlohy zobrazení vypadá velmi podobně jako standardní ASP.NET zobrazení MVC. Na rozdíl od normálního zobrazení však stránka `<asp:ContentPlaceHolder>` předlohy zobrazení obsahuje jednu nebo více značek. Značky `<contentplaceholder>` se používají k označení oblastí stránky předlohy, které lze přepsat na jednotlivé stránce obsahu.
 
-Například stránka zobrazení předlohy v seznamu 1 definuje rozložení se dvěma sloupci. Obsahuje dvě `<contentplaceholder>` značky. Jeden `<ContentPlaceHolder>` pro každý sloupec.
+Například stránka předlohy zobrazení v seznamu 1 definuje rozložení se dvěma sloupci. Obsahuje dvě `<contentplaceholder>` značky. Jeden `<ContentPlaceHolder>` pro každý sloupec.
 
-**Výpis 1 – `Views\Shared\Site.master`**
+**Výpis 1 –`Views\Shared\Site.master`**
 
 [!code-aspx[Main](creating-page-layouts-with-view-master-pages-cs/samples/sample1.aspx)]
 
-Tělo stránky předlohy zobrazení v seznamu 1 obsahuje dvě značky `<div>`, které odpovídají dvěma sloupcům. Třída sloupce kaskádová šablona stylů se aplikuje na `<div>` značek. Tato třída je definována v šabloně stylů deklarované v horní části stránky předlohy. Můžete zobrazit náhled, jak se stránka zobrazení předlohy vykreslí přechodem na zobrazení Návrh. Klikněte na kartu Návrh v levém dolním rohu editoru zdrojového kódu (viz obrázek 2).
+Text stránky předlohy zobrazení v `<div>` seznamu 1 obsahuje dvě značky, které odpovídají dvěma sloupcům. Třída sloupce Šablona stylů Kaskádové `<div>` se použije na obě značky. Tato třída je definována v šabloně stylů deklarované v horní části stránky předlohy. Přepnutím do návrhového zobrazení můžete zobrazit náhled, jak bude stránka předlohy zobrazení vykreslena. Klikněte na kartu Návrh v levém dolním rohu editoru zdrojového kódu (viz obrázek 2).
 
-[![zobrazení náhledu stránky předlohy v Návrháři](creating-page-layouts-with-view-master-pages-cs/_static/image5.png)](creating-page-layouts-with-view-master-pages-cs/_static/image4.png)
+[![Náhled stránky předlohy v návrháři](creating-page-layouts-with-view-master-pages-cs/_static/image5.png)](creating-page-layouts-with-view-master-pages-cs/_static/image4.png)
 
-**Obrázek 02**: zobrazení náhledu stránky předlohy v Návrháři ([kliknutím zobrazíte obrázek v plné velikosti](creating-page-layouts-with-view-master-pages-cs/_static/image6.png))
+**Obrázek 02**: Náhled stránky předlohy v návrháři[(Klepnutím zobrazíte obrázek v plné velikosti)](creating-page-layouts-with-view-master-pages-cs/_static/image6.png)
 
-### <a name="creating-a-view-content-page"></a>Vytvoření stránky zobrazení obsahu
+### <a name="creating-a-view-content-page"></a>Vytvoření stránky obsahu zobrazení
 
-Po vytvoření stránky předlohy pro zobrazení můžete vytvořit jednu nebo více stránek obsahu zobrazení na základě stránky zobrazení předlohy. Můžete například vytvořit stránku obsahu zobrazení indexu pro domovskou kartu tak, že kliknete pravým tlačítkem na složku Views\Home, vyberete **Přidat, nová položka**, vyberete šablonu **stránky obsahu zobrazení MVC** , zadáte název index. aspx a kliknete na tlačítko **Přidat** (viz obrázek 3).
+Po vytvoření stránky předlohy zobrazení můžete vytvořit jednu nebo více stránek obsahu zobrazení na základě stránky předlohy zobrazení. Stránku obsahu zobrazení indexu pro domácí řadič můžete například vytvořit tak, že kliknete pravým tlačítkem myši na složku Zobrazení\Domů, vyberete **přidat, novou položku**, vyberete **šablonu Stránky obsahu zobrazení MVC,** zadáte název Index.aspx a kliknete na tlačítko **Přidat** (viz obrázek 3).
 
-[![přidávání stránky zobrazení obsahu](creating-page-layouts-with-view-master-pages-cs/_static/image8.png)](creating-page-layouts-with-view-master-pages-cs/_static/image7.png)
+[![Přidání stránky obsahu zobrazení](creating-page-layouts-with-view-master-pages-cs/_static/image8.png)](creating-page-layouts-with-view-master-pages-cs/_static/image7.png)
 
-**Obrázek 03**: Přidání stránky zobrazení obsahu ([kliknutím zobrazíte obrázek v plné velikosti](creating-page-layouts-with-view-master-pages-cs/_static/image9.png))
+**Obrázek 03**: Přidání stránky obsahu zobrazení[(Kliknutím zobrazíte obrázek v plné velikosti)](creating-page-layouts-with-view-master-pages-cs/_static/image9.png)
 
-Po kliknutí na tlačítko Přidat se zobrazí nové dialogové okno, ve kterém můžete vybrat stránku předlohy pro zobrazení, kterou chcete přidružit k stránce zobrazení obsahu (viz obrázek 4). Můžete přejít na stránku předlohy zobrazení Web. Master, kterou jsme vytvořili v předchozí části.
+Po klepnutí na tlačítko Přidat se zobrazí nový dialog, který umožňuje vybrat stránku předlohy zobrazení, kterou chcete přidružit ke stránce obsahu zobrazení (viz obrázek 4). Můžete přejít na stránku předlohy zobrazení Site.master, kterou jsme vytvořili v předchozí části.
 
-[![výběru stránky předlohy](creating-page-layouts-with-view-master-pages-cs/_static/image11.png)](creating-page-layouts-with-view-master-pages-cs/_static/image10.png)
+[![Výběr stránky předlohy](creating-page-layouts-with-view-master-pages-cs/_static/image11.png)](creating-page-layouts-with-view-master-pages-cs/_static/image10.png)
 
-**Obrázek 04**: Výběr stránky předlohy ([kliknutím zobrazíte obrázek v plné velikosti](creating-page-layouts-with-view-master-pages-cs/_static/image12.png))
+**Obrázek 04**: Výběr stránky předlohy[(Kliknutím zobrazíte obrázek v plné velikosti)](creating-page-layouts-with-view-master-pages-cs/_static/image12.png)
 
-Po vytvoření nové stránky pro zobrazení obsahu na základě hlavní stránky site. Master získáte soubor v seznamu 2.
+Po vytvoření nové stránky obsahu zobrazení založené na vzorové stránce Site.master získáte soubor v seznamu 2.
 
-**Výpis 2 – `Views\Home\Index.aspx`**
+**Výpis 2 –`Views\Home\Index.aspx`**
 
 [!code-aspx[Main](creating-page-layouts-with-view-master-pages-cs/samples/sample2.aspx)]
 
-Všimněte si, že toto zobrazení obsahuje značku `<asp:Content>`, která odpovídá každé z značek `<asp:ContentPlaceHolder>` na stránce zobrazení předlohy. Každá značka `<asp:Content>` obsahuje atribut ContentPlaceHolderID, který odkazuje na konkrétní `<asp:ContentPlaceHolder>`, který Přepisuje.
+Všimněte si, `<asp:Content>` že toto zobrazení obsahuje `<asp:ContentPlaceHolder>` značku, která odpovídá každé značky na stránce předlohy zobrazení. Každá `<asp:Content>` značka obsahuje atribut ContentPlaceHolderID, `<asp:ContentPlaceHolder>` který odkazuje na konkrétní, který přepíše.
 
-Všimněte si, že stránka zobrazení obsahu v seznamu 2 neobsahuje normální otevírání a zavírání značek HTML. Například neobsahuje úvodní a uzavírací `<html>` ani značky `<head>`. Všechny normální značky otevírání a zavírání jsou obsaženy na stránce zobrazení předlohy.
+Všimněte si dále, že stránka zobrazení obsahu v výpisu 2 neobsahuje žádnou z běžných značek HTML pro otevírání a zavírání. Například neobsahuje otevírání a `<html>` zavírání nebo `<head>` značky. Všechny běžné otevírací a uzavírací značky jsou obsaženy na stránce předlohy zobrazení.
 
-Veškerý obsah, který chcete zobrazit na stránce zobrazení obsahu, musí být umístěn v rámci značky `<asp:Content>`. Pokud umístíte libovolný HTML nebo jiný obsah mimo tyto značky, zobrazí se při pokusu o zobrazení stránky chyba.
+Veškerý obsah, který chcete zobrazit na stránce obsahu `<asp:Content>` zobrazení, musí být umístěn do značky. Pokud umístíte jakýkoli obsah HTML nebo jiný obsah mimo tyto značky, zobrazí se při pokusu o zobrazení stránky chyba.
 
-Nemusíte potlačit každou `<asp:ContentPlaceHolder>`ovou značku ze stránky předlohy na stránce zobrazení obsahu. Pokud chcete značku nahradit určitým obsahem, stačí přepsat značku `<asp:ContentPlaceHolder>`.
+Není nutné přepsat každou `<asp:ContentPlaceHolder>` značku ze stránky předlohy na stránce zobrazení obsahu. Značku je třeba přepsat `<asp:ContentPlaceHolder>` pouze v případě, že chcete značku nahradit určitým obsahem.
 
-Například změněné zobrazení indexu v seznamu 3 obsahuje pouze dvě značky `<asp:Content>`. Každá z `<asp:Content>` značek obsahuje nějaký text.
+Například upravené zobrazení indexu v seznamu `<asp:Content>` 3 obsahuje pouze dvě značky. Každá značka `<asp:Content>` obsahuje nějaký text.
 
-**Výpis 3 – `Views\Home\Index.aspx (modified)`**
+**Výpis 3 –`Views\Home\Index.aspx (modified)`**
 
 [!code-aspx[Main](creating-page-layouts-with-view-master-pages-cs/samples/sample3.aspx)]
 
-Po vyžádání zobrazení v seznamu 3 se stránka vykreslí na obrázku 5. Všimněte si, že zobrazení vykresluje stránku se dvěma sloupci. Všimněte si, že obsah ze stránky zobrazení obsahu se sloučí s obsahem ze stránky zobrazení předlohy.
+Když je požadováno zobrazení v seznamu 3, vykreslí stránku na obrázku 5. Všimněte si, že zobrazení vykreslí stránku se dvěma sloupci. Všimněte si dále, že obsah ze stránky obsahu zobrazení je sloučen s obsahem ze stránky předlohy zobrazení
 
-[![stránku obsahu zobrazení indexu](creating-page-layouts-with-view-master-pages-cs/_static/image14.png)](creating-page-layouts-with-view-master-pages-cs/_static/image13.png)
+[![Stránka obsahu zobrazení rejstříku](creating-page-layouts-with-view-master-pages-cs/_static/image14.png)](creating-page-layouts-with-view-master-pages-cs/_static/image13.png)
 
-**Obrázek 05**: stránka zobrazení indexu obsahu ([kliknutím zobrazíte obrázek v plné velikosti](creating-page-layouts-with-view-master-pages-cs/_static/image15.png))
+**Obrázek 05**: Stránka obsahu zobrazení rejstříku[(Kliknutím zobrazíte obrázek v plné velikosti)](creating-page-layouts-with-view-master-pages-cs/_static/image15.png)
 
-### <a name="modifying-view-master-page-content"></a>Změny zobrazení obsahu stránky předlohy
+### <a name="modifying-view-master-page-content"></a>Úprava obsahu stránky předlohy zobrazení
 
-Jedním z problémů, se kterými se setkáte téměř okamžitě při práci se stránkami zobrazení předloh, je problém s úpravou obsahu stránky předlohy zobrazení, když se vyžadují různé stránky obsahu zobrazení. Například chcete, aby každá stránka ve webové aplikaci měla jedinečný název. Název je však deklarován na stránce zobrazení předlohy a nikoli na stránce zobrazení obsahu. Jak si tedy můžete přizpůsobit nadpis stránky pro jednotlivé stránky obsahu zobrazení?
+Jedním z problémů, se kterými se setkáte téměř okamžitě při práci se stránkami předlohy zobrazení, je problém s úpravou obsahu stránky předlohy zobrazení, pokud jsou požadovány různé stránky obsahu zobrazení. Chcete například, aby každá stránka ve webové aplikaci měla jedinečný název. Název je však deklarován na stránce předlohy zobrazení a nikoli na stránce obsahu zobrazení. Jak tedy můžete přizpůsobit název stránky pro každou stránku obsahu zobrazení?
 
-Existují dva způsoby, jak můžete upravit název zobrazený na stránce zobrazení obsahu. Nejprve můžete přiřadit nadpis stránky k atributu title direktivy `<%@ page %>` deklarované v horní části stránky zobrazení obsahu. Například pokud chcete přiřadit nadpis stránky "Super Skvělé web" do zobrazení indexu, můžete do horní části zobrazení indexu zahrnout následující direktivu:
+Název zobrazený na stránce obsahu zobrazení můžete upravit dvěma způsoby. Nejprve můžete přiřadit název stránky k atributu title `<%@ page %>` směrnice deklarované v horní části stránky obsahu zobrazení. Chcete-li například přiřadit zobrazení Rejstříku název stránky "Super velký web", můžete v horní části zobrazení rejstříku zahrnout následující direktivu:
 
 [!code-aspx[Main](creating-page-layouts-with-view-master-pages-cs/samples/sample4.aspx)]
 
-Když se v prohlížeči vykreslí zobrazení indexu, zobrazí se požadovaný nadpis v záhlaví prohlížeče:
+Když je zobrazení Rejstříku vykresleno do prohlížeče, zobrazí se v záhlaví prohlížeče požadovaný název:
 
-[![záhlaví prohlížeče](creating-page-layouts-with-view-master-pages-cs/_static/image17.png)](creating-page-layouts-with-view-master-pages-cs/_static/image16.png)
+[![Záhlaví prohlížeče](creating-page-layouts-with-view-master-pages-cs/_static/image17.png)](creating-page-layouts-with-view-master-pages-cs/_static/image16.png)
 
-Je nutné, aby stránka zobrazení předlohy splňovala podmínky, aby atribut title fungoval. Stránka Zobrazit předloha musí obsahovat značku `<head runat="server">` namísto normální `<head>` značky pro její hlavičku. Pokud značka `<head>` nezahrnuje atribut runat = "Server", nadpis se nezobrazí. Výchozí stránka zobrazit předlohu obsahuje požadovanou značku `<head runat="server">`.
+Existuje jeden důležitý požadavek, který musí stránka předlohy splňovat, aby atribut title fungoval. Stránka předlohy zobrazení `<head runat="server">` musí obsahovat `<head>` značku namísto normální značky pro záhlaví. Pokud `<head>` značka neobsahuje atribut runat="server", název se nezobrazí. Výchozí stránka předlohy `<head runat="server">` zobrazení obsahuje požadovanou značku.
 
-Alternativním přístupem k úpravě obsahu stránky předlohy ze stránky obsahu jednotlivých zobrazení je zabalení oblasti, kterou chcete upravit, ve značce `<asp:ContentPlaceHolder>`. Představte si například, že chcete změnit nejen nadpis, ale také metaznačky, vykreslené stránkou zobrazení předlohy. Stránka zobrazení předlohy v seznamu 4 obsahuje značku `<asp:ContentPlaceHolder>` v rámci své `<head>` značky.
+Alternativním přístupem k úpravě obsahu vzorové stránky z jednotlivých stránek obsahu zobrazení `<asp:ContentPlaceHolder>` je zalomení oblasti, kterou chcete upravit, ve značce. Představte si například, že chcete změnit nejen název, ale také metaznačky vykreslené stránkou předlohy. Stránka zobrazení předlohy v `<asp:ContentPlaceHolder>` seznamu `<head>` 4 obsahuje značku v rámci své značky.
 
-**Výpis 4 – `Views\Shared\Site2.master`**
+**Výpis 4 –`Views\Shared\Site2.master`**
 
 [!code-aspx[Main](creating-page-layouts-with-view-master-pages-cs/samples/sample5.aspx)]
 
-Všimněte si, že značka `<asp:ContentPlaceHolder>` v seznamu 4 obsahuje výchozí obsah: výchozí název a výchozí meta značky. Pokud tuto značku `<asp:ContentPlaceHolder>` nepřepisujete na stránce obsahu individuálního zobrazení, zobrazí se výchozí obsah.
+Všimněte `<asp:ContentPlaceHolder>` si, že značka ve výpisu 4 obsahuje výchozí obsah: výchozí název a výchozí metaznačky. Pokud tuto `<asp:ContentPlaceHolder>` značku nepřepíšete na stránce obsahu v jednotlivých zobrazeních, zobrazí se výchozí obsah.
 
-Stránka zobrazení obsahu v seznamu 5 přepíše značku `<asp:ContentPlaceHolder>`, aby zobrazila vlastní název a vlastní metaznačky.
+Stránka zobrazení obsahu v seznamu `<asp:ContentPlaceHolder>` 5 značku přepíše, aby se zobrazil vlastní název a vlastní metaznačky.
 
-**Výpis 5 – `Views\Home\Index2.aspx`**
+**Výpis 5 –`Views\Home\Index2.aspx`**
 
 [!code-aspx[Main](creating-page-layouts-with-view-master-pages-cs/samples/sample6.aspx)]
 
 ### <a name="summary"></a>Souhrn
 
-V tomto kurzu jste získali základní informace o zobrazení stránek předlohy a zobrazení stránek obsahu. Zjistili jste, jak vytvořit nové stránky předlohy zobrazení a vytvořit zobrazení stránek obsahu na základě nich. Prozkoumali jsme také, jak můžete upravit obsah stránky předlohy zobrazení z konkrétní stránky obsahu zobrazení.
+Tento kurz vám poskytl základní úvod k zobrazení stránek předlohy a zobrazení stránek obsahu. Zjistili jste, jak vytvořit nové stránky předlohy zobrazení a vytvořit na nich stránky obsahu zobrazení. Zkoumali jsme také, jak můžete upravit obsah stránky předlohy zobrazení z konkrétní stránky obsahu zobrazení.
 
 > [!div class="step-by-step"]
 > [Předchozí](using-the-tagbuilder-class-to-build-html-helpers-cs.md)
-> [Další](passing-data-to-view-master-pages-cs.md)
+> [další](passing-data-to-view-master-pages-cs.md)

@@ -1,428 +1,428 @@
 ---
 uid: mvc/overview/older-versions-1/nerddinner/provide-crud-create-read-update-delete-data-form-entry-support
-title: Poskytnutí operace CRUD (vytvoření, čtení, aktualizace, odstranění) podpory zadávání dat na formuláři | Microsoft Docs
-author: microsoft
-description: Krok 5 ukazuje, jak dál využít naši třídu DinnersController, povolením podpory pro úpravy, vytváření a odstraňování večeři i s nimi.
+title: Poskytnout podporu zadávání datových formulářů CRUD (vytvořit, číst, aktualizovat, odstranit) | Dokumenty společnosti Microsoft
+author: rick-anderson
+description: Krok 5 ukazuje, jak se naše DinnersController třídy dále povolením podpory pro úpravy, vytváření a odstranění dinners s ním také.
 ms.author: riande
 ms.date: 07/27/2010
 ms.assetid: bbb976e5-6150-4283-a374-c22fbafe29f5
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/provide-crud-create-read-update-delete-data-form-entry-support
 msc.type: authoredcontent
-ms.openlocfilehash: b3123af9a1477bc496a0d229d628510fc202b6d2
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 2b75a7eda8bce4baa25d92626639f4d904eb363a
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78580554"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542622"
 ---
 # <a name="provide-crud-create-read-update-delete-data-form-entry-support"></a>Zajištění akcí CRUD (Create, Read, Update, Delete) podporujících zápis dat do formuláře
 
-od [Microsoftu](https://github.com/microsoft)
+podle [společnosti Microsoft](https://github.com/microsoft)
 
 [Stáhnout PDF](http://aspnetmvcbook.s3.amazonaws.com/aspnetmvc-nerdinner_v1.pdf)
 
-> Toto je krok 5 bezplatného [kurzu aplikace "NerdDinner"](introducing-the-nerddinner-tutorial.md) , který vás provede procesem vytvoření malé, ale dokončené webové aplikace pomocí ASP.NET MVC 1.
+> Toto je krok 5 zdarma ["NerdDinner" aplikační kurz,](introducing-the-nerddinner-tutorial.md) který prochází, jak vytvořit malé, ale kompletní, webové aplikace pomocí ASP.NET MVC 1.
 > 
-> Krok 5 ukazuje, jak dál využít naši třídu DinnersController, povolením podpory pro úpravy, vytváření a odstraňování večeři i s nimi.
+> Krok 5 ukazuje, jak se naše DinnersController třídy dále povolením podpory pro úpravy, vytváření a odstranění dinners s ním také.
 > 
-> Pokud používáte ASP.NET MVC 3, doporučujeme vám postupovat podle [Začínáme s kurzy pro](../../older-versions/getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3.md) [hudební úložiště](../../older-versions/mvc-music-store/mvc-music-store-part-1.md) MVC 3 nebo MVC.
+> Pokud používáte ASP.NET MVC 3, doporučujeme postupovat podle kurzů [Začínáme s MVC 3](../../older-versions/getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3.md) nebo [MVC Music Store.](../../older-versions/mvc-music-store/mvc-music-store-part-1.md)
 
-## <a name="nerddinner-step-5-create-update-delete-form-scenarios"></a>NerdDinner krok 5: vytvoření, aktualizace, odstranění scénářů formulářů
+## <a name="nerddinner-step-5-create-update-delete-form-scenarios"></a>NerdDinner Krok 5: Vytvořit, aktualizovat, odstranit scénáře formuláře
 
-Představili jsme řadiče a zobrazení a pokryli jsme, jak je používat k implementaci možností výpisu a podrobností pro večeři na webu. Náš další krok bude dál přebírat naši třídu DinnersController a umožní vám podporu pro úpravy, vytváření a odstraňování večeři i s nimi.
+Zavedli jsme řadiče a zobrazení a zabývali jsme se jejich použitím k implementaci funkce výpisu a podrobností pro večeře na webu. Naším dalším krokem bude, aby naše DinnersController třídy dále a umožnit podporu pro úpravy, vytváření a mazání večeře s ním také.
 
-### <a name="urls-handled-by-dinnerscontroller"></a>Adresy URL zpracovávané DinnersController
+### <a name="urls-handled-by-dinnerscontroller"></a>Adresy URL zpracovávané ovladačem DinnersController
 
-Dříve jsme přidali metody akcí pro DinnersController, které implementují podporu dvou adres URL: */Dinners* a */Dinners/Details/[ID]* .
+Dříve jsme přidali metody akce dinnersController, které implementovaly podporu pro dvě adresy URL: */Dinners* and */Dinners/Details/[id]*.
 
-| **Adresa URL** | **OPERACE** | **Účel** |
+| **Adresa URL** | **Sloveso** | **Účel** |
 | --- | --- | --- |
-| */Dinners/* | GET | Zobrazit seznam nadcházejících večeře v HTML |
-| */Dinners/Details/[ID]* | GET | Zobrazí podrobnosti o konkrétní večeři. |
+| */Večeře/* | GET | Zobrazení seznamu HTML nadcházejících večeří. |
+| */Večeře/Podrobnosti/[id]* | GET | Zobrazit podrobnosti o konkrétní večeři. |
 
-Nyní budeme přidávat metody akcí pro implementaci tří dalších adres URL: */Dinners/Edit/[ID]* , */Dinners/Create*a */Dinners/DELETE/[ID]* . Tyto adresy URL umožní podporu úprav stávajících večeře, vytváření nových večeři a odstraňování večeři.
+Nyní přidáme metody akce k implementaci tří dalších adres URL: */Dinners/Edit/[id]*, */Dinners/Create*a */Dinners/Delete/[id]*. Tyto adresy URL umožní podporu pro úpravy existující večeře, vytváření nových večeří a odstranění večeří.
 
-S těmito novými adresami URL budeme podporovat interakce operací HTTP GET a HTTP POST. Požadavky HTTP GET na tyto adresy URL zobrazí úvodní zobrazení HTML dat (formulář naplněný daty o večeři v případě příkazu "Upravit", prázdný tvar v případě příkazu "vytvořit" a obrazovka pro potvrzení odstranění "v případě" odstranění "). Požadavky HTTP POST na tyto adresy URL budou ukládat, aktualizovat nebo odstraňovat data o večeři v našich DinnerRepository (a odtud i do databáze).
+Budeme podporovat jak HTTP GET a HTTP POST slovesa interakce s těmito novými adresami URL. Požadavky HTTP GET na tyto adresy URL zobrazí počáteční zobrazení HTML dat (formulář naplněný daty večeři v případě "upravit", prázdný formulář v případě "vytvořit" a obrazovku potvrzení odstranění v případě "odstranit"). HTTP POST požadavky na tyto adresy URL uloží / aktualizovat / odstranit data večeři v našem DinnerRepository (a odtud do databáze).
 
-| **Adresa URL** | **OPERACE** | **Účel** |
+| **Adresa URL** | **Sloveso** | **Účel** |
 | --- | --- | --- |
-| */Dinners/Edit/[ID]* | GET | Zobrazit Upravitelný formulář HTML vyplněný daty o večeři. |
-| POST | Uloží změny formuláře pro konkrétní večeři do databáze. |
-| */Dinners/Create* | GET | Zobrazí prázdný formulář HTML, který umožňuje uživatelům definovat nové hostiny. |
+| */Dinners/Upravit/[id]* | GET | Zobrazí upravitelný formulář HTML naplněný daty večeři. |
+| POST | Uložte změny formuláře pro konkrétní večeři do databáze. |
+| */Večeře/Vytvořit* | GET | Zobrazí prázdný formulář HTML, který uživatelům umožňuje definovat nové večeře. |
 | POST | Vytvořte novou večeři a uložte ji do databáze. |
-| */Dinners/Delete/[ID]* | GET | Obrazovka pro potvrzení odstranění zobrazení |
+| */Dinners/Delete/[id]* | GET | Zobrazí potvrzovací obrazovku s mazáním. |
 | POST | Odstraní zadanou večeři z databáze. |
 
 ### <a name="edit-support"></a>Upravit podporu
 
-Pojďme začít implementací scénáře "Edit".
+Začněme implementací scénáře "upravit".
 
-#### <a name="the-http-get-edit-action-method"></a>Metoda HTTP-GET Edit Action
+#### <a name="the-http-get-edit-action-method"></a>Metoda akce úprav protokolu HTTP-GET
 
-Začneme implementací chování HTTP "GET" naší metody Upravit akci. Tato metoda bude vyvolána, když je vyžádána adresa URL */Dinners/Edit/[ID]* . Naše implementace bude vypadat takto:
+Začneme implementací http "GET" chování naší metody upravit akci. Tato metoda bude vyvolána při požadavku na adresu URL */Dinners/Edit/[id].* Naše implementace bude vypadat takto:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample1.cs)]
 
-Výše uvedený kód používá DinnerRepository k načtení objektu večeře. Následně vykreslí šablonu zobrazení pomocí objektu večeře. Vzhledem k tomu, že jsme explicitně nepředali název šablony do pomocné metody *zobrazení ()* , použije se výchozí cesta založená na konvenci k vyřešení šablony zobrazení:/views/Dinners/Edit.aspx.
+Výše uvedený kód používá DinnerRepository k načtení Dinner objektu. Potom vykreslí zobrazit šablonu pomocí Dinner objektu. Protože jsme explicitně nepředali název šablony metodě *View(),* použije výchozí cestu založenou na konvencích k vyřešení šablony zobrazení: /Views/Dinners/Edit.aspx.
 
-Teď vytvoříme tuto šablonu zobrazení. To provedete tak, že kliknete pravým tlačítkem myši v rámci metody Edit a vyberete příkaz "přidat zobrazení" v místní nabídce:
+Nyní vytvoříme tuto šablonu zobrazení. Provedeme to kliknutím pravým tlačítkem myši v rámci metody Edit a výběrem příkazu kontextové nabídky "Přidat zobrazení":
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image1.png)
 
-V dialogovém okně Přidat zobrazení oznamujeme, že jako svůj model předáváme objekt večeře do naší šablony zobrazení, a zvolíte možnost automatického generování uživatelského rozhraní šablony pro úpravy:
+V dialogovém okně "Přidat zobrazení" označíme, že předáváme objekt Dinner do naší šablony zobrazení jako jeho model, a zvolíme automatické vytvoření uživatelského příkazu šablonu "Upravit":
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image2.png)
 
-Když klikneme na tlačítko Přidat, Visual Studio přidá nový soubor šablony zobrazení Edit. aspx pro nás v adresáři "\Views\Dinners". Otevře se také nová šablona zobrazení "Edit. aspx" v editoru kódu – naplněná počáteční implementací uživatelského rozhraní, jako je následující:
+Po kliknutí na tlačítko "Přidat" visual studio přidá nový soubor šablony zobrazení "Edit.aspx" pro nás v adresáři "\Views\Dinners". Také otevře novou šablonu zobrazení "Edit.aspx" v editoru kódu - naplněná počáteční implementací uživatelského rozhraní "Upravit", jako je níže:
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image3.png)
 
-Pojďme udělat několik změn ve výchozím vygenerovaném generátoru "Edit" a aktualizovat šablonu zobrazení pro úpravy tak, aby měla následující obsah (což odebere několik vlastností, které nechcete zveřejnit):
+Pojďme provést několik změn ve výchozím "upravit" generování uživatelského rozhraní a aktualizovat upravit zobrazení šablony mít obsah níže (který odstraní několik vlastností nechceme vystavit):
 
 [!code-aspx[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample2.aspx)]
 
-Když aplikaci spustíme a požádáme o adresu URL *"/Dinners/Edit/1"* , zobrazí se následující stránka:
+Když spustíme aplikaci a požádat *o "/Dinners/Edit/1"* URL uvidíme následující stránku:
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image4.png)
 
-Kód HTML generovaný naším zobrazením vypadá níže. Je to standardní HTML – pomocí &lt;formuláře&gt; elementu, který provede odeslání HTTP POST na adresu URL */Dinners/Edit/1* při vložení tlačítka Uložit &lt;input type = "Submit"/&gt;. Jako výstup pro každou upravitelnou vlastnost &lt;vstupní typ HTML = "text"/&gt; element:
+Značky HTML generované naším zobrazením vypadají níže. Jedná se o standardní &lt;&gt; HTML – s prvkem formuláře, který provádí HTTP POST na &lt;adresu URL */Dinners/Edit/1* při stisknutí tlačítka "Uložit" vstupní typ="submit"/&gt; . Pro &lt;každou upravitelnou vlastnost&gt; byl výstupem vstupní ho html type="text"// element:
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image5.png)
 
-#### <a name="htmlbeginform-and-htmltextbox-html-helper-methods"></a>Pomocné metody HTML. BeginForm () a HTML. TextBox ()
+#### <a name="htmlbeginform-and-htmltextbox-html-helper-methods"></a>Html.BeginForm() a Html.TextBox() Html pomocné metody
 
-Naše šablona zobrazení "Edit. aspx" používá několik metod "Pomocník HTML": HTML. ovládací souhrnu ověření (), HTML. BeginForm (), HTML. TextBox () a HTML. ValidationMessage (). Kromě generování značek HTML pro nás poskytují tyto pomocné metody integrovanou manipulaci s chybami a podporu ověřování.
+Naše šablona zobrazení "Edit.aspx" používá několik metod "Html Helper": Html.ValidationSummary(), Html.BeginForm(), Html.TextBox() a Html.ValidationMessage(). Kromě generování značek HTML pro nás tyto pomocné metody poskytují integrovanou podporu zpracování chyb a ověřování.
 
-##### <a name="htmlbeginform-helper-method"></a>Pomocná metoda HTML. BeginForm ()
+##### <a name="htmlbeginform-helper-method"></a>Pomocná metoda Html.BeginForm()
 
-Pomocná metoda HTML. BeginForm () je výstupem&gt; elementu HTML &lt;formuláře v našem kódu. V naší šabloně zobrazení Edit. aspx si všimnete, že C# při použití této metody používáme příkaz using. Otevřená složená závorka indikuje začátek &lt;formuláře&gt; obsahu a pravá složená závorka je to, co označuje konec &lt;formuláře&gt; elementu:
+Html.BeginForm() pomocná metoda je to, co výstup html &lt;prvek formuláře&gt; v naší značky. V naší šabloně zobrazení Edit.aspx si všimnete, že při použití této metody používáme příkaz C# "using". Otevřená složená závorka označuje začátek obsahu &lt;formuláře&gt; a uzavírací &lt;složená&gt; závorka označuje konec elementu /form:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample3.cs)]
 
-Případně, pokud najdete příkaz "using" přístup nepřirozeným způsobem pro nějaký scénář, můžete použít kombinaci HTML. BeginForm () a HTML. EndForm () (která má stejnou věc):
+Případně pokud zjistíte, že "using" příkaz přístup nepřirozené pro scénář, jako je tento, můžete použít Html.BeginForm() a Html.EndForm() kombinace (což dělá totéž):
 
 [!code-aspx[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample4.aspx)]
 
-Volání souboru HTML. BeginForm () bez parametrů způsobí, že by výstupní prvek formuláře, který provede HTTP-POST, na adresu URL aktuálního požadavku. Proto naše zobrazení pro úpravy generuje *akci&lt;formuláře = "/Dinners/Edit/1" Method = "post"&gt;* elementu. Pokud jsme chtěli poslat na jinou adresu URL, můžeme taky předávat explicitní parametry do HTML. BeginForm ().
+Volání Html.BeginForm() bez jakýchkoli parametrů způsobí, že výstup elementu formuláře, který provede HTTP-POST na adresu URL aktuálního požadavku. To je důvod, proč naše zobrazení upravit generuje * &lt;prvek form&gt; action="/Dinners/Edit/1" method="post".* Mohli jsme alternativně předalexplicitní parametry Html.BeginForm(), pokud bychom chtěli psát na jinou adresu URL.
 
-##### <a name="htmltextbox-helper-method"></a>Pomocná metoda HTML. TextBox ()
+##### <a name="htmltextbox-helper-method"></a>Pomocná metoda html.TextBox()
 
-Náš pohled Edit. aspx používá pomocnou metodu HTML. TextBox () pro výstup &lt;vstupní typ = "text"/&gt; prvky:
+Naše zobrazení Edit.aspx používá pomocnou metodu Html.TextBox() k &lt;&gt; výstupu vstupního typu="text"/ elementů:
 
 [!code-aspx[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample5.aspx)]
 
-Výše uvedená metoda HTML. TextBox () přebírá jeden parametr, který se používá k určení atributů ID i názvu &lt;vstupní typ = "text"/&gt; element na výstup a také vlastnost modelu, ze které se má vyplnit hodnota TextBox. Například objekt večeře, který jsme předali do zobrazení pro úpravy, měl hodnotu "název" hodnoty ".NET futures", a proto náš kód HTML. TextBox ("title") volá výstup volání metody: *&lt;Input ID = "title" Name = "title" Type = "text" value = ". NET futures"/&gt;* .
+Výše uvedená metoda Html.TextBox() přebírá jeden parametr – který se používá k &lt;určení atributů id/name vstupního parametru type="text"/&gt; pro výstup, stejně jako vlastnost modelu k naplnění hodnoty textového pole. Například objekt Dinner, který jsme předali zobrazení Pro úpravy, měl hodnotu vlastnosti "Title" ".NET Futures", a tak naše metoda Html.TextBox("Title") metoda volání výstup: * &lt;input id="Title" name="Title" type="text" value=".NET Futures" /&gt;*.
 
-Alternativně můžeme použít první parametr HTML. TextBox () k určení ID/názvu elementu a pak explicitně předat hodnotu, která se má použít jako druhý parametr:
+Alternativně můžeme použít první Parametr Html.TextBox() k určení id/název prvku a pak explicitně předat hodnotu použít jako druhý parametr:
 
 [!code-aspx[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample6.aspx)]
 
-Často chceme pro hodnotu, která je výstupem, provádět vlastní formátování. Statická metoda String. Format () integrovaná do rozhraní .NET je užitečná pro tyto scénáře. Naše šablona zobrazení Edit. aspx používá tuto hodnotu k formátování hodnoty EventDate (která je typu DateTime) tak, aby pro dobu nezobrazovala sekundy:
+Často budeme chtít provést vlastní formátování na hodnotu, která je výstupem. Pro tyto scénáře je užitečná statická metoda String.Format() vestavěná do rozhraní .NET. Naše šablona zobrazení Edit.aspx používá tuto hodnotu EventDate (která je typu DateTime) tak, aby se na čas nezobrazovala sekundy:
 
 [!code-aspx[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample7.aspx)]
 
-Třetí parametr do HTML. TextBox () lze volitelně použít pro výstup dalších atributů HTML. Následující fragment kódu ukazuje, jak vykreslit dodatečnou velikost = "30" a atribut class = "mycssclass" na &lt;vstupní typ = "text"/&gt; element. Všimněte si, jak uvozovací znaky názvu atributu Class pomocí "@" character because "třídy" je rezervované klíčové slovo v C#:
+Třetí parametr html.textbox() lze volitelně použít k vytvoření dalších atributů HTML. Fragment kódu níže ukazuje, jak vykreslit atribut additional size="30" a atribut class="mycssclass" na vstupním &lt;type="text"/&gt; elementu. Všimněte si, jak jsme unikající název@" character because "atributu třídy pomocí "class" je vyhrazené klíčové slovo v C#:
 
 [!code-aspx[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample8.aspx)]
 
-#### <a name="implementing-the-http-post-edit-action-method"></a>Implementace metody akce pro úpravu HTTP-POST
+#### <a name="implementing-the-http-post-edit-action-method"></a>Implementace metody akce úprav protokolu HTTP-POST
 
-Teď je k dispozici verze protokolu HTTP-GET pro naši metodu Edit Action implementovaná. Když uživatel požádá o adresu URL */Dinners/Edit/1* , obdrží stránku HTML, například následující:
+Nyní máme implementovanou http-get verzi naší metody akce úprav. Když uživatel požádá o adresu *URL /Dinners/Edit/1,* obdrží stránku HTML takto:
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image6.png)
 
-Stisknutím tlačítka Save (Uložit) dojde k odeslání příspěvku formuláře na adresu URL */Dinners/Edit/1* a odeslání souboru HTML &lt;vstupní&gt; hodnoty formuláře pomocí příkazu HTTP POST. Pojďme teď implementovat chování HTTP POST metody pro úpravy, která bude zpracovávat večeři.
+Stisknutí tlačítka "Uložit" způsobí, že příspěvek formuláře na adresu URL */Dinners/Edit/1* a odešle hodnoty vstupního &lt;&gt; formuláře HTML pomocí slovesa HTTP POST. Nyní implementujeme chování HTTP POST naší metody upravit akci – která bude zpracovávat ukládání Večeři.
 
-Začneme přidáním přetížené metody Action "Edit" do našich DinnersController s atributem "AcceptVerbs", který indikuje, že zpracovává scénáře HTTP POST:
+Začneme přidáním přetížené metody akce "Upravit" do našeho DinnersController, který má atribut AcceptVerbs, který označuje, že zpracovává scénáře HTTP POST:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample9.cs)]
 
-Pokud je atribut [AcceptVerbs] aplikován na metody reloadd Action, ASP.NET MVC automaticky zpracovává odesílání požadavků na příslušnou metodu akce v závislosti na příchozím příkazu HTTP. Požadavky HTTP POST na adresy URL */Dinners/Edit/[ID]* přejdou na výše uvedenou metodu úprav, zatímco všechny ostatní požadavky HTTP na adresy URL */Dinners/Edit/[ID]* budou přejít na první metodu úprav, kterou jsme implementovali (která neobsahovala atribut `[AcceptVerbs]`).
+Pokud je atribut [AcceptVerbs] použit na přetížené metody akce, ASP.NET MVC automaticky zpracovává odesílání požadavků na příslušnou metodu akce v závislosti na příchozím slovese HTTP. Požadavky HTTP POST na adresy URL */Dinners/Edit/[id]* přejdou na výše uvedenou metodu úprav, zatímco všechny ostatní požadavky http slovesa na adresy URL */Dinners/Edit/[id]* přejdou na první metodu úprav, kterou jsme implementovali (která neměla `[AcceptVerbs]` atribut).
 
-| **Vedlejší téma: Proč odlišit přes příkazy HTTP?** |
+| **Boční téma: Proč rozlišovat pomocí HTTP sloves?** |
 | --- |
-| Můžete se zeptat – proč používáme jednu adresu URL a rozlišujeme její chování prostřednictvím příkazu HTTP? Proč ne pouze dvě samostatné adresy URL ke zpracování načítání a ukládání změn úprav? Například:/Dinners/Edit/[ID] pro zobrazení počátečního formuláře a/Dinners/Save/[ID] pro zpracování příspěvku formuláře pro uložení? Nevýhodou s publikováním dvou oddělených adres URL je, že v případech, kdy pošleme na/Dinners/Save/2, a pak je potřeba znovu zobrazit formulář HTML z důvodu chyby vstupu, koncový uživatel bude mít v adresním řádku prohlížeče adresu URL/Dinners/Save/2 (protože to bylo adresa URL, na kterou je formulář publikovaný). Pokud koncový uživatel zachová tuto znovu stránku do seznamu oblíbených položek prohlížeče nebo ji zkopíruje nebo vloží do přítele, ukončí tím ukládání adresy URL, která v budoucnu nebude fungovat (protože tato adresa URL závisí na hodnotách post). Vyvoláním jedné adresy URL (například:/Dinners/Edit/[ID]) a rozlišením jejich zpracování pomocí příkazu HTTP je bezpečné, aby koncoví uživatelé mohli zaměnit stránku úprav a/nebo adresu URL poslat ostatním. |
+| Můžete se zeptat - proč používáme jednu adresu URL a rozlišujeme její chování pomocí slovesa HTTP? Proč nemít jen dvě samostatné adresy URL pro zpracování načítání a ukládání změn úprav? Příklad: /Dinners/Edit/[id] pro zobrazení počátečního formuláře a /Dinners/Save/[id] pro zpracování příspěvku formuláře k jeho uložení? Nevýhodou publikování dvou samostatných adres URL je, že v případech, kdy jsme psát na /Dinners/Save/2, a pak je třeba znovu zobrazit formulář HTML z důvodu vstupní chyby, koncový uživatel skončí s /Dinners/Save/2 URL v adresním řádku svého prohlížeče (protože to byla adresa URL formulář zaúčtovaný). Pokud koncový uživatel záložky této redisplayed stránky do svého seznamu oblíbených položek prohlížeče, nebo zkopíruje / vloží ADRESU URL a e-maily s přítelem, budou nakonec ukládání URL, která nebude fungovat v budoucnu (protože tato adresa URL závisí na post hodnoty). Vystavením jedné adresy URL (například: /Dinners/Edit/[id]) a diferenciací zpracování pomocí slovesa HTTP je pro koncové uživatele bezpečné záložku upravit stránku a/nebo odeslat adresu URL ostatním. |
 
-#### <a name="retrieving-form-post-values"></a>Načítání hodnot post formuláře
+#### <a name="retrieving-form-post-values"></a>Načítání hodnot příspěvku formuláře
 
-Existuje mnoho způsobů, jak získat přístup k parametrům publikovaných formulářů v rámci metody "Upravit" HTTP POST. Jedním jednoduchým přístupem je pouze použití vlastnosti Request v základní třídě kontroleru pro přístup ke kolekci formulářů a k načtení vystavených hodnot přímo:
+Existuje celá řada způsobů, jak můžeme přistupovat k parametrům zaúčtovaných formulářů v rámci naší metody HTTP POST "Edit". Jeden jednoduchý přístup je stačí použít Request vlastnost na controller základní třídy pro přístup k kolekci formuláře a načíst zaúčtované hodnoty přímo:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample10.cs)]
 
-Výše uvedený přístup je trochu podrobný, ale zejména v případě, že přidáváme logiku zpracování chyb.
+Výše uvedený přístup je trochu podrobný, i když, zejména poté, co přidáme logiku zpracování chyb.
 
-Lepším přístupem k tomuto scénáři je použití integrované pomocné metody *UpdateModel ()* na základní třídě kontroleru. Podporuje aktualizaci vlastností objektu, který předáte pomocí parametrů příchozího formuláře. Používá reflexi k určení názvů vlastností objektu a poté automaticky převede a přiřadí hodnoty na základě vstupních hodnot odeslaných klientem.
+Lepší mů e pro tento scénář je využít integrované *UpdateModel()* pomocné metody na controller základní třídy. Podporuje aktualizaci vlastností objektu, který předáváme pomocí parametrů příchozího formuláře. Používá reflexe k určení názvů vlastností v objektu a pak automaticky převede a přiřadí jim hodnoty na základě vstupních hodnot odeslaných klientem.
 
-Pomocí metody UpdateModel () jsme mohli zjednodušit naši akci HTTP-POST pomocí tohoto kódu:
+Mohli bychom použít UpdateModel() metoda pro zjednodušení naší HTTP-POST Upravit akci pomocí tohoto kódu:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample11.cs)]
 
-Teď můžeme navštívit adresu URL */Dinners/Edit/1* a změnit název naší hostiny:
+Nyní můžeme navštívit adresu URL */Dinners/Edit/1* a změnit název naší večeře:
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image7.png)
 
-Po kliknutí na tlačítko Save (Uložit) provedeme odeslání příspěvku na naši akci úprav a aktualizované hodnoty budou v databázi trvalé. Budeme přesměrováni na adresu URL podrobností pro večeři (zobrazí se nově uložené hodnoty):
+Když klikneme na tlačítko "Uložit", provedeme formulářový příspěvek do naší akce Upravit a aktualizované hodnoty budou v databázi zachovány. Poté budeme přesměrováni na adresu URL podrobností pro večeři (která zobrazí nově uložené hodnoty):
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image8.png)
 
-#### <a name="handling-edit-errors"></a>Zpracování chyb úprav
+#### <a name="handling-edit-errors"></a>Zpracování chyb při úpravách
 
-Naše aktuální implementace HTTP-POST funguje správně – s výjimkou případů, kdy dojde k chybám.
+Naše současná implementace HTTP-POST funguje dobře – s výjimkou případů, kdy se jedná o chyby.
 
-Když uživatel vytvoří chybu v úpravách formuláře, musíme se ujistit, že je formulář znovu zobrazen pomocí informativní chybové zprávy, která je provede k jejich opravě. To zahrnuje případy, kdy koncový uživatel zaúčtuje nesprávný vstup (například: poškozený řetězec data) a také případy, kdy je vstupní formát platný, ale dojde k porušení obchodního pravidla. Pokud dojde k chybám, je třeba zachovat vstupní data, která uživatel původně zadal, aby nemuseli změny znovu plnit ručně. Tento postup by se měl opakovat tolikrát, kolikrát je potřeba, dokud se formulář úspěšně nedokončí.
+Když uživatel provede chybu při úpravách formuláře, musíme se ujistit, že je formulář znovu zobrazen s informativní chybovou zprávou, která je vede k jeho opravě. To zahrnuje případy, kdy koncový uživatel zaúčtuje nesprávný vstup (například: poškozený řetězec data), stejně jako případy, kdy je vstupní formát platný, ale dochází k porušení obchodního pravidla. Pokud dojde k chybám, formulář by měl zachovat vstupní data, která uživatel původně zadal, aby nemusel své změny doplňovat ručně. Tento proces by se měl opakovat tolikrát, kolikrát je to nutné, dokud se formulář úspěšně nedokončí.
 
-ASP.NET MVC obsahuje některé skvělé integrované funkce, které umožňují zpracování chyb a rychlé zobrazení formulářů. Pokud chcete zobrazit tyto funkce v akci, aktualizujte naši metodu Edit Action pomocí následujícího kódu:
+ASP.NET MVC obsahuje některé pěkné vestavěné funkce, které usnadňují manipulaci s chybami a opětovné zobrazení formulářů. Chcete-li tyto funkce zobrazit v akci, aktualizujte naši metodu akce úpravy pomocí následujícího kódu:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample12.cs)]
 
-Výše uvedený kód je podobný naší předchozí implementaci – s tím rozdílem, že nyní zabalíme blok zpracování chyb typu try/catch kolem naší práce. Pokud dojde k výjimce buď při volání metody UpdateModel (), nebo při pokusu o uložení DinnerRepository (což vyvolá výjimku, pokud se objekt večeře, který se snažíte uložit, neplatný z důvodu porušení pravidla v rámci našeho modelu), náš blok zpracování chyb catch bude spustit. V rámci této smyčky se přeskočí všechna porušení pravidel, která existují v objektu večeře, a přidejte je do objektu ModelState (který budeme projednávat za chvíli). Znovu zobrazíme zobrazení.
+Výše uvedený kód je podobný naší předchozí implementaci – kromě toho, že jsme nyní balení try/catch chyba zpracování bloku kolem naší práce. Pokud dojde k výjimce při volání UpdateModel(), nebo při pokusu o uložení DinnerRepository (což vyvolá výjimku, pokud Dinner objekt, který se pokoušíme uložit, je neplatný z důvodu porušení pravidla v rámci našeho modelu), bude spuštěn náš blok zpracování chyb catch. V rámci jsme smyčky přes všechna porušení pravidel, které existují v Dinner objektu a přidat je do ModelState objektu (které budeme diskutovat v nejbližší době). Poté znovu zobrazíme pohled.
 
-Tuto práci si můžete prohlédnout tak, že aplikaci znovu spustíte, upravíte večeři a změníte ji tak, aby měla prázdný název, EventDate "" FALEŠNou "a používala telefonní číslo Spojené království s hodnotou země USA. Po stisknutí tlačítka Uložit v metodě pro úpravu HTTP POST nebude možné uložit večeři (protože jsou k dispozici chyby) a bude formulář znovu zobrazen:
+Chcete-li vidět tuto práci, spusťme aplikaci znovu, upravte večeři a změňte ji tak, aby měla prázdný název, datum události "BOGUS" a použijte telefonní číslo uk s hodnotou země USA. Když stiskneme tlačítko "Uložit", naše metoda úpravy HTTP POST nebude moci uložit večeři (protože tam jsou chyby) a znovu zobrazí formulář:
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image9.png)
 
-Naše aplikace má dáté chybové prostředí. Textové prvky s neplatným vstupem jsou zvýrazněny červeně a koncovým uživatelům se jim zobrazí chybové zprávy o ověřování. Ve formuláři se taky zachovává vstupní data, která uživatel původně zadal – aby se nemuseli nic dělat.
+Naše aplikace má slušnou chybovou zkušenost. Textové prvky s neplatným vstupem jsou zvýrazněny červeně a chybové zprávy ověření jsou zobrazeny koncovému uživateli o nich. Formulář také zachovává vstupní data, která uživatel původně zadal , aby nemusel nic doplňovat.
 
-Jak se můžete zeptat, došlo k tomu? Jak se v textových polích title, EventDate a ContactPhone zvýrazňují červeně a víte, že původně zadané hodnoty uživatele? A jak se v seznamu v horní části zobrazily chybové zprávy? Dobrá zpráva je, že nedošlo k tomu, že je to u sebe Magic, protože jsme použili některé z vestavěných funkcí ASP.NET MVC, které usnadňují scénáře ověřování vstupu a zpracování chyb.
+Jak, můžete se zeptat, k tomu došlo? Jak se textová pole Název, Datum události a ContactPhone zvýrazňují červeně a vědí, že mají vykázat původně zadané uživatelské hodnoty? A jak se chybové zprávy dostaly do seznamu v horní části? Dobrou zprávou je, že k tomu nedošlo kouzlem - spíše to bylo proto, že jsme použili některé z vestavěných funkcí ASP.NET MVC, které usnadňují ověření vstupu a zpracování chyb.
 
-#### <a name="understanding-modelstate-and-the-validation-html-helper-methods"></a>Principy ModelState a pomocných metod ověřování HTML
+#### <a name="understanding-modelstate-and-the-validation-html-helper-methods"></a>Principy modelového stavu a ověřovacích metod nápovědy HTML
 
-Třídy kontroleru mají kolekci vlastností "ModelState", která poskytuje způsob, jak určit, že chyby existují s objektem modelu předaným do zobrazení. Položky chyb v rámci kolekce ModelState identifikují název vlastnosti modelu s problémem (například: "title", "EventDate" nebo "ContactPhone") a umožní zadat uživatelsky přívětivou chybovou zprávu (například: "Nadpis je vyžadován").
+Třídy kontroleru mají kolekci vlastností "ModelState", která poskytuje způsob, jak označit, že existují chyby s objektem modelu předávaným zobrazení. Chybové položky v kolekci ModelState identifikují název vlastnosti modelu s problémem (například:"Název", "EventDate" nebo "ContactPhone") a povolit, aby byla zadána chybová zpráva šetrná k uživateli (například: "Název je povinný").
 
-Pomocná metoda *UpdateModel ()* automaticky naplní kolekci ModelState, pokud při pokusu o přiřazení hodnot formuláře k vlastnostem objektu modelu dojde k chybám. Například vlastnost EventDate objektu večeře je typu DateTime. Pokud se metodě UpdateModel () nepovedlo přiřadit hodnotu řetězce "nefalešně" ve výše uvedeném scénáři, metoda UpdateModel () přidala položku do kolekce ModelState, která indikuje, že u této vlastnosti došlo k chybě přiřazení.
+*UpdateModel()* pomocná metoda automaticky naplní ModelState kolekce při výskytu chyb při pokusu o přiřazení hodnoty formuláře vlastností na objekt modelu. Například naše Vlastnost EventDate objektu Dinner je typu DateTime. Když UpdateModel() metoda nebyla schopna přiřadit hodnotu řetězce "BOGUS" k němu ve výše uvedeném scénáři, UpdateModel() metoda přidána položka do ModelState kolekce označující chybu přiřazení došlo s této vlastnosti.
 
-Vývojáři můžou také napsat kód pro explicitní přidání položek chyb do kolekce ModelState, jako jsme to dělali níže v rámci našeho bloku zpracování chyb "catch", který naplňuje kolekci ModelState položkami na základě porušení aktivních pravidel v Objekt večeře:
+Vývojáři mohou také napsat kód explicitně přidat položky chyb do kolekce ModelState, jako děláme níže v rámci našeho bloku zpracování chyb "catch", který je vyplnění ModelState kolekce s položkami na základě aktivní porušení pravidel v Dinner objektu:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample13.cs)]
 
-#### <a name="html-helper-integration-with-modelstate"></a>Integrace pomocníka HTML s ModelState
+#### <a name="html-helper-integration-with-modelstate"></a>Integrace pomocníka Html s ModelState
 
-Pomocné metody HTML – jako HTML. TextBox () – při vykreslování výstupu kontrolovat kolekci ModelState. Pokud pro položku existuje chyba, vykreslí uživatelem zadanou hodnotu a třídu chyb CSS.
+Pomocné metody HTML - jako Html.TextBox() - zkontrolujte kolekci ModelState při vykreslování výstupu. Pokud pro položku existuje chyba, vykreslují hodnotu zadanou uživatelem a třídu chyb CSS.
 
-Například v našem zobrazení "Edit" používáme pomocnou metodu HTML. TextBox () pro vykreslení EventDate našeho objektu večeře:
+Například v našem zobrazení "Upravit" používáme pomocnou metodu Html.TextBox() k vykreslení EventDate našeho objektu Dinner:
 
 [!code-aspx[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample14.aspx)]
 
-Když bylo zobrazení vykresleno v případě chyby, metoda HTML. TextBox () kontroluje kolekci ModelState, aby zjistila, zda došlo k chybám přidružených k vlastnosti "EventDate" objektu večeře. Když bylo zjištěno, že došlo k chybě při vykreslování odeslaného vstupu uživatele ("FALEŠNá") jako hodnoty a přidána třída chyb CSS do &lt;input type = "TextBox"/&gt; vygenerovaného kódu:
+Při zobrazení byla vykreslena v chybovém scénáři, Html.TextBox() metoda zkontrolovat ModelState kolekce, zda byly nějaké chyby spojené s "EventDate" vlastnost naše Dinner objektu. Když zjistil, že došlo k chybě, vykreslil odeslaný uživatelský vstup ("BOGUS") jako &lt;hodnotu a přidal třídu chyby css do vstupního typu ="textové pole"/&gt; značky, které generoval:
 
 [!code-html[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample15.html)]
 
-Vzhled třídy Error šablon stylů CSS můžete přizpůsobit tak, aby vypadala tak, jak chcete. Výchozí třída chyb CSS – "vstup-ověření-Chyba" – je definována v šabloně stylů *\content\site.CSS* a vypadá takto:
+Můžete přizpůsobit vzhled css error class vypadat však chcete. Výchozí třída chyb css – "input-validation-error" – je definována ve stylu *\content\site.css* a vypadá takto:
 
 [!code-css[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample16.css)]
 
-Toto pravidlo CSS má za následek zvýraznění neplatných vstupních elementů, jako například níže:
+Toto pravidlo CSS je to, co způsobilo, že naše neplatné vstupní prvky byly zvýrazněny jako níže:
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image10.png)
 
-##### <a name="htmlvalidationmessage-helper-method"></a>Pomocná metoda HTML. ValidationMessage ()
+##### <a name="htmlvalidationmessage-helper-method"></a>Html.ValidationMessage() Pomocná metoda
 
-Pomocná metoda HTML. ValidationMessage () se dá použít k vytvoření výstupu chybové zprávy ModelState přidružené ke konkrétní vlastnosti modelu:
+Pomocná metoda Html.ValidationMessage() lze použít k výstupu chybové zprávy ModelState přidružené k určité vlastnosti modelu:
 
 [!code-aspx[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample17.aspx)]
 
-Výše uvedené výstupy kódu: *&lt;span class = "Field-Validation-Error"&gt; hodnota ' falešná ' je neplatná&lt;/span&gt;*
+Výše uvedené výstupy kódu: * &lt;span&gt; class="field-validation-error" Hodnota&lt;"BOGUS" je neplatná /span&gt;*
 
-Pomocná metoda HTML. ValidationMessage () také podporuje druhý parametr, který vývojářům umožňuje potlačit textovou zprávu o chybě, která se zobrazí:
+Pomocná metoda Html.ValidationMessage() také podporuje druhý parametr, který umožňuje vývojářům přepsat chybovou textovou zprávu, která je zobrazena:
 
 [!code-aspx[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample18.aspx)]
 
-Výše uvedené výstupy kódu: *&lt;span class = "Field-Validation-Error"&gt;\*&lt;/span&gt;* namísto výchozího textu chyby, pokud je pro vlastnost EventDate k dispozici chyba.
+Výše uvedené výstupy kódu: * &lt;span&gt;\*&lt;class="field-validation-error" /span&gt; * namísto výchozího textu chyby, když je pro vlastnost EventDate přítomna chyba.
 
-##### <a name="htmlvalidationsummary-helper-method"></a>Html.ValidationSummary() Helper Method
+##### <a name="htmlvalidationsummary-helper-method"></a>Pomocná metoda Html.ValidationSummary()
 
-Pomocná metoda HTML. ovládací souhrnu ověření () se dá použít k vykreslení souhrnné chybové zprávy, která doprovází &lt;ul&gt;&lt;li/&gt;&lt;/ul&gt; seznam všech podrobných chybových zpráv v kolekci ModelState:
+Pomocná metoda Html.ValidationSummary() lze použít k vykreslení souhrnné chybové zprávy, doprovázené &lt;seznamem všech&gt;&lt;&gt;&lt;&gt; podrobných chybových zpráv v kolekci ModelState:
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image11.png)
 
-Pomocná metoda HTML. ovládací souhrnu ověření () přebírá volitelný řetězcový parametr – což definuje souhrnnou chybovou zprávu, která se zobrazí nad seznamem podrobných chyb:
+Pomocná metoda Html.ValidationSummary() přebírá volitelný parametr řetězce , který definuje souhrnnou chybovou zprávu, která se zobrazí nad seznamem podrobných chyb:
 
 [!code-aspx[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample19.aspx)]
 
-Můžete volitelně použít CSS k přepsání toho, co vypadá seznam chyb.
+Volitelně můžete použít CSS přepsat, co seznam chyb vypadá.
 
 #### <a name="using-a-addruleviolations-helper-method"></a>Použití pomocné metody AddRuleViolations
 
-Naše úvodní implementace HTTP-POST použila příkaz foreach v rámci svého bloku catch k cyklickému převzetí služeb při narušení pravidla u objektu večeře a jejich přidání do kolekce ModelState kontroleru:
+Naše počáteční http-post upravit implementace používá foreach prohlášení v rámci jeho catch bloku smyčku přes porušení pravidel objektu Večeři a přidat je do kolekce ModelState řadiče:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample20.cs)]
 
-Tento kód můžeme trochu čističovat přidáním třídy "ControllerHelpers" do projektu NerdDinner a implementovat metodu rozšíření "AddRuleViolations", která do ní přidá pomocnou metodu pro třídu ModelStateDictionary ASP.NET MVC. Tato metoda rozšíření může zapouzdřit logiku potřebnou k naplnění ModelStateDictionary seznamem chyb RuleViolation:
+Můžeme tento kód trochu čistší přidáním třídy "ControllerHelpers" do projektu NerdDinner a implementovat metodu rozšíření "AddRuleViolations" v rámci ní, která přidá pomocnou metodu do třídy ASP.NET MVC ModelStateDictionary. Tato metoda rozšíření můžete zapouzdřit logiku potřebnou k naplnění ModelStateDictionary se seznamem chyb RuleViolation:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample21.cs)]
 
-Pak můžeme aktualizovat metodu akce HTTP-POST pro úpravu, aby tuto metodu rozšíření používal k naplnění kolekce ModelState s porušením pravidla večeře.
+Můžeme pak aktualizovat naši metodu akce úpravy HTTP-POST, abychom použili tuto metodu rozšíření k naplnění kolekce ModelState s našimi porušeními pravidel večeři.
 
-#### <a name="complete-edit-action-method-implementations"></a>Dokončit implementace metody akce úprav
+#### <a name="complete-edit-action-method-implementations"></a>Kompletní implementace metod upravit akci
 
-Následující kód implementuje veškerou logiku řadiče potřebnou pro náš scénář úprav:
+Níže uvedený kód implementuje všechny logiky řadiče nezbytné pro náš scénář upravit:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample22.cs)]
 
-V případě naší implementace úprav je to, že ani naše třída Controller ani naše šablona zobrazení neznají žádné informace o konkrétním ověřování nebo obchodních pravidlech vynucujech modelem večeře. Do našeho modelu můžeme v budoucnu přidat další pravidla a nemusíte dělat žádné změny kódu pro náš kontroler nebo zobrazení, aby je bylo možné podporovat. Díky tomu je tato flexibilita flexibilní, aby bylo možné v budoucnu snadno vyvíjet požadavky na aplikace s minimálními změnami kódu.
+Pěkná věc na naší implementaci úprav je, že ani naše třída Controller, ani naše šablona view nemusí vědět nic o konkrétním ověření nebo obchodních pravidlech vynucených naším modelem večeři. Můžeme přidat další pravidla pro náš model v budoucnu a nemusí provádět žádné změny kódu na náš řadič nebo zobrazení, aby byly podporovány. To nám poskytuje flexibilitu snadno vyvíjet naše požadavky na aplikace v budoucnu s minimálními změnami kódu.
 
 ### <a name="create-support"></a>Vytvořit podporu
 
-Dokončili jsme implementaci "Edit" chování naší třídy DinnersController. Pojďme teď přejít k implementaci podpory "vytvoření", která uživatelům umožní přidávat nové hostiny.
+Dokončili jsme implementaci chování "Upravit" naší DinnersController třídy. Pojďme nyní přesunout na implementaci "Vytvořit" podporu na něm - což umožní uživatelům přidávat nové večeře.
 
-#### <a name="the-http-get-create-action-method"></a>Metoda HTTP-GET Create Action
+#### <a name="the-http-get-create-action-method"></a>Metoda akce create HTTP-GET
 
-Zahájíme implementaci chování HTTP "GET" naší metody vytvoření akce. Tato metoda bude volána, když někdo navštíví adresu URL */Dinners/Create* . Naše implementace vypadá takto:
+Začneme implementací http "GET" chování naší metody vytvořit akci. Tato metoda bude volána, když někdo navštíví *adresu URL /Dinners/Create.* Naše implementace vypadá takto:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample23.cs)]
 
-Výše uvedený kód vytvoří nový objekt večeře a přiřadí jeho vlastnost EventDate v budoucnosti do jednoho týdne. Následně vykreslí zobrazení, které je založeno na novém objektu večeře. Vzhledem k tomu, že jsme explicitně nepředali název do pomocné metody *zobrazení ()* , použije se výchozí cesta založená na konvenci k vyřešení šablony zobrazení:/views/Dinners/Create.aspx.
+Výše uvedený kód vytvoří nový Objekt Dinner a přiřadí jeho EventDate vlastnost být jeden týden v budoucnosti. Potom vykreslí Zobrazení, který je založen na nový Objekt Dinner. Vzhledem k tomu, že jsme explicitně nepředali název metodě pomocníka *View(),* použije výchozí cestu založenou na konvencích k vyřešení šablony zobrazení: /Views/Dinners/Create.aspx.
 
-Teď vytvoříme tuto šablonu zobrazení. To můžeme provést tak, že kliknete pravým tlačítkem myši v rámci metody Create Action a vyberete příkaz "přidat zobrazení" v kontextové nabídce. V dialogovém okně Přidat zobrazení určíme, že do šablony zobrazení předáváme objekt večeře a v případě, že se rozhodnete k automatickému generování uživatelského rozhraní vytvořit šablonu:
+Nyní vytvoříme tuto šablonu zobrazení. Můžeme to udělat kliknutím pravým tlačítkem myši v rámci metody Vytvořit akci a výběrem příkazu kontextové nabídky "Přidat zobrazení". V dialogovém okně "Přidat zobrazení" označíme, že předáváme objekt Dinner šabloně zobrazení, a zvolíme automatické vytváření uživatelského okna šablony "Vytvořit":
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image12.png)
 
-Po kliknutí na tlačítko Přidat bude Visual Studio ukládat nové zobrazení "vytvořit. aspx" na základě uživatelského rozhraní do adresáře "\Views\Dinners" a otevře ho v integrovaném vývojovém prostředí (IDE):
+Po kliknutí na tlačítko "Přidat" visual studio uloží nové zobrazení "Create.aspx" založené na lešení do adresáře "\Views\Dinners" a otevře ho v rámci rozhraní IDE:
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image13.png)
 
-Pojďme udělat několik změn ve výchozím souboru generátoru "Create", který se vygeneroval pro nás, a upravit ho tak, aby vypadal níže:
+Pojďme udělat několik změn ve výchozím "vytvořit" generování souboru, který byl vygenerován pro nás, a upravit jej tak, aby vypadal jako níže:
 
 [!code-aspx[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample24.aspx)]
 
-A teď když spouštíme naši aplikaci a přistupuje k adrese URL *"/Dinners/Create"* v prohlížeči, vykreslí se uživatelské rozhraní podobně jako v naší implementaci akce vytvoření:
+A teď, když spustíme naši aplikaci a přístup *k "/Dinners/Create"* URL v prohlížeči bude vykreslovat ui jako níže z naší implementace vytvořit akci:
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image14.png)
 
-#### <a name="implementing-the-http-post-create-action-method"></a>Implementace metody akce vytvoření HTTP-POST
+#### <a name="implementing-the-http-post-create-action-method"></a>Implementace metody vytvoření akce HTTP-POST
 
-Máme implementovaná verze HTTP-GET metody Create Action. Když uživatel klikne na tlačítko Save (Uložit), provede formulářový příspěvek na adresu URL */Dinners/Create* a odešle &lt;vstupní&gt; hodnoty formuláře pomocí příkazu HTTP POST.
+Máme implementovanou http-get verzi naší metody akce Vytvořit. Když uživatel klepne na tlačítko "Uložit", provede příspěvek formuláře na adresu URL */Dinners/Create* a odešle hodnoty vstupního &lt;&gt; formuláře HTML pomocí slovesa HTTP POST.
 
-Pojďme teď implementovat chování HTTP POST metody Create Action. Začneme přidáním přetížené metody "vytvořit" do našich DinnersController s atributem "AcceptVerbs", který indikuje, že zpracovává scénáře HTTP POST:
+Nyní implementujeme chování HTTP POST naší metody akce create. Začneme přidáním přetížené metody akce "Vytvořit" do našeho DinnersController, který má atribut AcceptVerbs, který označuje, že zpracovává scénáře HTTP POST:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample25.cs)]
 
-Existuje mnoho způsobů, jak získat přístup k parametrům odeslaného formuláře v rámci metody "Create" odeslané pomocí protokolu HTTP-POST.
+Existuje celá řada způsobů, jak můžeme přistupovat k parametrům zaúčtovaného formuláře v rámci naší metody "Vytvořit" s podporou HTTP-POST.
 
-Jedním z možností je vytvořit nový objekt večeře a potom použít pomocnou metodu *UpdateModel ()* , která se naplní hodnotami publikovaných formulářů. Můžeme ho následně přidat do našich DinnerRepositoryů, uchovávat ho v databázi a přesměrovat uživatele na naši akci s podrobnostmi, jak zobrazit nově vytvořenou večeři pomocí následujícího kódu:
+Jedním z přístupů je vytvoření nového objektu Dinner a potom pomocí pomocné metody *UpdateModel()* (jako jsme to udělali s akcí Úpravy) k jeho naplnění zaúčtované hodnotami formuláře. Můžeme jej pak přidat do našeho DinnerRepository, zachovat do databáze a přesměrovat uživatele na naše podrobnosti akce zobrazit nově vytvořené Večeři pomocí kódu níže:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample26.cs)]
 
-Alternativně můžeme použít přístup, kde máme metodu vytvoření () akce převzít objekt večeře jako parametr metody. ASP.NET MVC pak automaticky vytvoří instanci nového objektu večeře pro nás, naplní své vlastnosti pomocí vstupů formuláře a předává je naší metodě akcí:
+Alternativně můžeme použít přístup, kde máme naše Create() metoda akce trvat Dinner objekt jako parametr metody. ASP.NET MVC pak automaticky vytvoří konkretizovat nový objekt Dinner, naplní jeho vlastnosti pomocí vstupů formuláře a předá jej naší metodě akce:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample27.cs)]
 
-Naše metoda Action výše ověří, že se objekt večeře úspěšně naplnil hodnotami post formuláře, a to tak, že zkontroluje vlastnost ModelState. IsValid. Pokud dojde k problémům s převodem vstupu (například s řetězcem "FALEŠNÉho" pro vlastnost EventDate) a dojde k nějakému problému, vrátí naše metoda akce formulář.
+Naše metoda akce výše ověří, že Objekt Dinner byl úspěšně naplněn hodnotami příspěvku formuláře kontrolou vlastnosti ModelState.IsValid. To vrátí false, pokud existují problémy vstupní převod (například řetězec "BOGUS" pro EventDate vlastnost), a pokud existují nějaké problémy naše metoda akce znovu zobrazí formulář.
 
-Pokud jsou vstupní hodnoty platné, pak se metoda akce pokusí přidat a uložit novou večeři do DinnerRepository. Zalomí tuto práci do bloku try/catch a znovu zobrazí formulář, pokud dojde k porušení obchodních pravidel (což by způsobilo, že metoda dinnerRepository. Save () vyvolá výjimku).
+Pokud vstupní hodnoty jsou platné, pak metoda akce se pokusí přidat a uložit nové Dinner do DinnerRepository. Zalomí tuto práci v rámci try/catch bloku a znovu zobrazí formulář, pokud existují jakékoli porušení obchodnípravidla (což by způsobilo dinnerRepository.Save() metoda vyvolat výjimku).
 
-Pokud se chcete podívat na chování zpracování chyb v akci, můžeme požádat o adresu URL */Dinners/Create* a vyplnit podrobnosti o nové večeři. Nesprávné zadání nebo hodnoty způsobí, že se ve formuláři pro vytvoření znovu zobrazí chyby zvýrazněné následujícím způsobem:
+Chcete-li zobrazit tuto chybu zpracování chování v akci, můžeme požádat */Dinners/Create* URL a vyplnit podrobnosti o nové večeři. Nesprávný vstup nebo hodnoty způsobí, že formulář vytvořit bude znovu zobrazen s chybami zvýrazněnými jako níže:
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image15.png)
 
-Všimněte si, jak náš formulář pro tvorbu dodržuje přesně stejná pravidla ověřování a obchodních pravidel jako formulář pro úpravy. Důvodem je to, že naše ověřování a obchodní pravidla byly definovány v modelu a nebyly vloženy do uživatelského rozhraní nebo kontroleru aplikace. To znamená, že můžeme později změnit nebo vyvíjet naše ověřovací nebo obchodní pravidla na jednom místě a použít je v naší aplikaci. Nebudeme muset měnit žádný kód v rámci metod úpravy nebo vytváření akcí, aby automaticky dodržovala nová pravidla nebo změny stávajících pravidel.
+Všimněte si, jak náš formulář Vytvořit respektuje přesně stejná pravidla ověření a obchodní pravidla jako náš formulář pro úpravy. Důvodem je, že naše ověření a obchodní pravidla byly definovány v modelu a nebyly vloženy do ui nebo kontroleru aplikace. To znamená, že můžeme později změnit/ vyvíjet naše validace nebo obchodní pravidla na jednom místě a nechat je použít v celé naší aplikaci. Nebudeme muset měnit žádný kód v rámci našich upravit nebo vytvořit akční metody automaticky respektovat nová pravidla nebo změny stávajících.
 
-Když opravíte vstupní hodnoty a znovu kliknete na tlačítko Uložit, naše přidání do DinnerRepository se podaří a do databáze se přidá nový večeři. Budeme přesměrováni na adresu URL */Dinners/Details/[ID]* , kde budeme prezentovat podrobnosti o nově vytvořené večeři:
+Když opravíme vstupní hodnoty a znovu klikneme na tlačítko "Uložit", náš přírůstek do DinnerRepository bude úspěšný a do databáze bude přidána nová večeře. Poté budeme přesměrováni na adresu URL */Dinners/Details/[id]* – kde nám budou představeny podrobnosti o nově vytvořené večeři:
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image16.png)
 
 ### <a name="delete-support"></a>Odstranit podporu
 
-Nyní přidáme podporu "odstranit" na naši DinnersController.
+Pojďme nyní přidat "Odstranit" podporu našedinnersController.
 
-#### <a name="the-http-get-delete-action-method"></a>Metoda akce HTTP-GET DELETE
+#### <a name="the-http-get-delete-action-method"></a>Metoda akce odstranění HTTP-GET
 
-Začneme implementací chování HTTP GET metody akce Odstranit. Tato metoda se volá, když někdo navštíví adresu URL */Dinners/DELETE/[ID]* . Níže je tato implementace:
+Začneme implementací http get chování naší metody akce delete. Tato metoda bude volat, když někdo navštíví *adresu URL /Dinners/Delete/[id].* Níže je implementace:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample28.cs)]
 
-Metoda akce se pokusí načíst večeři pro odstranění. Pokud večeře existuje, vykreslí zobrazení na základě objektu večeře. Pokud objekt neexistuje (nebo už je odstraněný), vrátí zobrazení, které vykreslí šablonu zobrazení "NotFound", kterou jsme vytvořili dříve pro naši metodu akce "Details".
+Metoda akce se pokusí načíst Večeři, která má být odstraněna. Pokud Dinner existuje vykreslí Zobrazení na základě Dinner objektu. Pokud objekt neexistuje (nebo již byl odstraněn), vrátí zobrazení, které vykreslí šablonu zobrazení "NotFound", kterou jsme vytvořili dříve pro naši metodu akce Podrobnosti.
 
-Šablonu zobrazení "odstranit" můžeme vytvořit tak, že kliknete pravým tlačítkem myši na metodu DELETE Action a vyberete příkaz "přidat zobrazení". V dialogovém okně Přidat zobrazení určíme, že jako svůj model předáte do naší šablony zobrazení objekt večeře a zvolíte vytvoření prázdné šablony:
+Šablonu zobrazení "Odstranit" můžeme vytvořit kliknutím pravým tlačítkem myši v rámci metody akce Delete a výběrem příkazu kontextové nabídky "Přidat zobrazení". V dialogovém okně "Přidat zobrazení" označíme, že předáváme objekt Dinner do naší šablony zobrazení jako jeho model a zvolíme vytvoření prázdné šablony:
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image17.png)
 
-Po kliknutí na tlačítko Přidat bude Visual Studio do našeho adresáře "\Views\Dinners" Přidat nový soubor šablony zobrazení "Delete. aspx" pro nás. Do šablony přidáme kód HTML a Naimplementujte obrazovku pro potvrzení odstranění, jak je znázorněno níže:
+Po kliknutí na tlačítko "Přidat" visual studio přidá nový soubor šablony zobrazení Delete.aspx pro nás v našem adresáři "\Views\Dinners". Do šablony přidáme nějaký KÓD HTML a kód, abychom implementovali potvrzovací obrazovku pro odstranění, jako je níže:
 
 [!code-aspx[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample29.aspx)]
 
-Výše uvedený kód zobrazuje název večeře, který se má odstranit, a vytvoří výstup&gt; elementu &lt;formuláře, který provede příspěvek na adresu URL/Dinners/Delete/[ID], pokud koncový uživatel klikne na tlačítko Odstranit v rámci.
+Výše uvedený kód zobrazí název večeři, která má &lt;&gt; být odstraněna a výstupy prvek formuláře, který provede POST na adresu URL /Dinners/Delete/[id], pokud koncový uživatel klepne na tlačítko "Odstranit" v něm.
 
-Po spuštění naší aplikace a přístup k adrese URL *"/Dinners/DELETE/[ID]"* pro platný objekt večeře VYKRESLÍ uživatelské rozhraní následujícím způsobem:
+Když spustíme naši aplikaci a přístup *k "/Dinners/Delete/[id]"* URL pro platný objekt Dinner vykreslí ui jako níže:
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image18.png)
 
-| **Vedlejší téma: Proč provádím příspěvek?** |
+| **Boční téma: Proč děláme POST?** |
 | --- |
-| Můžete se zeptat – proč procházíme úsilím o vytvoření formuláře &lt;&gt; v rámci naší obrazovky pro odstranění potvrzení? Proč nestačí použít standardní hypertextový odkaz k propojení s metodou akce, která provede skutečnou operaci odstranění? Důvodem je, že chceme být opatrní před ochranou před webovými prohledávacími moduly a vyhledávacími moduly, které zjišťují naše adresy URL a nechtěně způsobují odstranění dat, když následují odkazy. Adresy URL založené na protokolu HTTP-GET se považují za "bezpečné", aby je bylo možné používat nebo procházet, a neměly by následovat za HTTP-POST. Dobrým pravidlem je, abyste měli jistotu, že se v rámci požadavků HTTP-POST vždycky umísťují ničivé operace nebo změny dat. |
+| Můžete se zeptat - proč jsme prošli &lt;&gt; úsilím o vytvoření formuláře v rámci naší obrazovky potvrzení odstranit? Proč nepoužít standardní hypertextový odkaz k propojení s metodou akce, která provádí skutečnou operaci odstranění? Důvodem je, že chceme být opatrní, abychom se ochránili před webovými prohledávači a vyhledávači, kteří objevili naše adresy URL a neúmyslně způsobili, že data budou odstraněna, když sledují odkazy. Adresy URL založené na PROTOKOLU HTTP-GET jsou považovány za "bezpečné" pro přístup/procházení a mají nesledovat adresy HTTP-POST. Dobrým pravidlem je, abyste se ujistili, že vždy vložíte destruktivní operace nebo operace úpravy dat za požadavky HTTP-POST. |
 
-#### <a name="implementing-the-http-post-delete-action-method"></a>Implementace metody akce odstranění HTTP-POST
+#### <a name="implementing-the-http-post-delete-action-method"></a>Implementace metody akce odstranění protokolu HTTP-POST
 
-Teď máme naimplementovaná verze HTTP-GET metody akce odstranění, která zobrazuje obrazovku pro potvrzení odstranění. Když koncový uživatel klikne na tlačítko Odstranit, provede příspěvek formuláře na adresu URL */Dinners/Dinner/[ID]* .
+Nyní máme http-get verzi naší metody akce Delete implementována, která zobrazuje odstranit potvrzení obrazovky. Když koncový uživatel klikne na tlačítko "Odstranit", provede příspěvek formuláře na adresu URL */Dinners/Dinner/[id].*
 
-Pojďme teď implementovat chování metody "POST" metody akce DELETE pomocí kódu níže:
+Nyní implementujeme http "POST" chování metody akce delete pomocí následujícího kódu:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample30.cs)]
 
-Verze metody odstranění HTTP-POST se pokusí načíst objekt večeře, který se má odstranit. Pokud ho nemůžete najít (protože už je odstraněný), vykreslí naši šablonu "NotFound". Pokud najde večeři, odstraní ho z DinnerRepository. Potom vykreslí šablonu "Deleted".
+Http-POST verze naší Delete akce metoda pokusí načíst objekt večeři odstranit. Pokud ji nemůže najít (protože již byla odstraněna), vykreslí naši šablonu "NotFound". Pokud najde Dinner, odstraní z DinnerRepository. Poté vykreslí šablonu "Odstraněno".
 
-Pokud chcete implementovat šablonu "Deleted", klikněte na ni pravým tlačítkem a vyberte kontextovou nabídku přidat zobrazení. Budeme pojmenovat náš pohled "Deleted" a nechat ho prázdnou šablonu (a nemusíte mít objekt modelu silného typu). Pak do něj přidáte nějaký obsah HTML:
+Chcete-li implementovat šablonu "Odstraněno", klikneme pravým tlačítkem myši na metodu akce a zvolíme kontextovou nabídku "Přidat zobrazení". Pojmenujeme naše zobrazení "Odstraněno" a budeme ji mít jako prázdnou šablonu (a nebudeme mít objekt modelu silného typu). Poté do něj přidáme nějaký obsah HTML:
 
 [!code-aspx[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample31.aspx)]
 
-A teď když spouštíme naši aplikaci a přistupuje k adrese URL *"/Dinners/DELETE/[ID]"* pro platný objekt večeře, vykreslí se obrazovka s potvrzením o odstranění na večeři, jak je znázorněno níže:
+A teď, když spustíme naši aplikaci a přístup *k "/Dinners/Delete/[id]"* URL pro platný objekt Dinner bude vykreslovat naše večeře odstranit potvrzení obrazovky jako níže:
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image19.png)
 
-Když klikneme na tlačítko Odstranit, provede se odeslání HTTP-POST na adresu URL */Dinners/DELETE/[ID]* , která odstraní večeři z naší databáze a zobrazí naši šablonu zobrazení "smazáno":
+Když klikneme na tlačítko "Odstranit", provede adresu URL HTTP-POST na *adresu /Dinners/Delete/[id],* která odstraní večeři z naší databáze a zobrazí naši šablonu zobrazení "Smazané":
 
 ![](provide-crud-create-read-update-delete-data-form-entry-support/_static/image20.png)
 
 ### <a name="model-binding-security"></a>Zabezpečení vazby modelu
 
-Provedli jsme dva různé způsoby použití vestavěných funkcí vázání modelů ASP.NET MVC. První pomocí metody UpdateModel () pro aktualizaci vlastností existujícího objektu modelu a druhého pomocí podpory ASP.NET MVC pro předávání objektů modelu do jako parametrů metody Action. Oba tyto postupy jsou velmi výkonné a velmi užitečné.
+Probrali jsme dva různé způsoby použití vestavěných funkcí vazby modelu ASP.NET MVC. První pomocí UpdateModel() metoda aktualizovat vlastnosti na existující objekt modelu a druhý pomocí ASP.NET mvc podporu pro předávání objektů modelu jako parametry metody akce. Obě tyto techniky jsou velmi silné a velmi užitečné.
 
-Tato mocnina také přináší zodpovědnost za IT oddělení. Při přijímání jakéhokoli vstupu uživatele je důležité vždy paranoidní o zabezpečení, a to platí také při vytváření vazby objektů k vytvoření vstupu. Měli byste pečlivě zakódovat všechny uživatelem zadané hodnoty, aby se zabránilo útokům prostřednictvím injektáže HTML a JavaScriptu, a buďte opatrní při útocích prostřednictvím injektáže SQL. (Poznámka: používáme LINQ to SQL pro naši aplikaci, která automaticky kóduje parametry, které je zabrání. typy útoků). Nikdy byste neměli spoléhat jenom na ověřování na straně klienta a vždycky používat ověřování na straně serveru pro ochranu proti hackerům, kteří se snaží poslat falešně falešně neoprávněné hodnoty.
+Tato moc s sebou také nese odpovědnost. Je důležité být vždy paranoidní o zabezpečení při přijímání všech vstupů uživatele, a to platí také při vazby objekty formulář vstup. Měli byste být opatrní vždy HTML kódovat všechny uživatelem zadané hodnoty, aby se zabránilo html a JavaScript injektáž útoky, a dávejte pozor na útoky injektáže SQL (poznámka: používáme LINQ na SQL pro naši aplikaci, která automaticky kóduje parametry, aby se zabránilo tyto typy útoků). Nikdy byste se neměli spoléhat pouze na ověření na straně klienta a vždy používat ověření na straně serveru, abyste se ochránili před hackery, kteří se pokoušejí odeslat falešné hodnoty.
 
-Jedna další položka zabezpečení pro zajištění, že budete uvažovat o použití funkcí vazby ASP.NET MVC, je obor objektů, které vytváříte. Konkrétně se ujistěte, že rozumíte vlivům na zabezpečení vlastností, které chcete svázat, a ujistěte se, že tyto vlastnosti povolíte, aby je bylo možné aktualizovat koncovým uživatelem.
+Jedna další položka zabezpečení, ujistěte se, že přemýšlíte o při použití funkce vazby ASP.NET MVC je rozsah objektů, které jsou závazné. Konkrétně chcete, abyste se ujistili, že rozumíte důsledkům zabezpečení vlastností, které umožňují být vázány, a ujistěte se, že povolíte pouze ty vlastnosti, které by měly být aktualizovatelné koncovým uživatelem, které mají být aktualizovány.
 
-Ve výchozím nastavení se metoda UpdateModel () pokusí aktualizovat všechny vlastnosti objektu modelu, které odpovídají hodnotám příchozích parametrů formuláře. Podobně objekty, které jsou předány jako parametry metody akce také ve výchozím nastavení, mohou mít všechny vlastnosti nastavené prostřednictvím parametrů formuláře.
+Ve výchozím nastavení se metoda UpdateModel() pokusí aktualizovat všechny vlastnosti objektu modelu, které odpovídají hodnotám parametrů příchozího formuláře. Podobně objekty předané jako parametry metody akce také ve výchozím nastavení mohou mít všechny své vlastnosti nastaveny pomocí parametrů formuláře.
 
-#### <a name="locking-down-binding-on-a-per-usage-basis"></a>Uzamčení vazby u jednotlivých použití
+#### <a name="locking-down-binding-on-a-per-usage-basis"></a>Uzamčení vazby na základě použití
 
-Zásadu vazby můžete u jednotlivých použití uzamknout tím, že poskytnete explicitní "seznam zahrnutí" vlastností, které se dají aktualizovat. To se dá udělat tak, že předáte další parametr řetězcového pole metodě UpdateModel (), jak je znázorněno níže:
+Zásady vazby můžete uzamknout na základě použití poskytnutím explicitní "zahrnout seznam" vlastností, které lze aktualizovat. To lze provést předáním parametru pole další řetězec updatemodel() jako níže:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample32.cs)]
 
-Objekty předané jako parametry metody Action podporují také atribut [BIND], který umožňuje zadat seznam zahrnutí povolených vlastností následujícím způsobem:
+Objekty předané jako parametry metody akce také podporují atribut [Bind], který umožňuje zadat "zahrnout seznam" povolených vlastností jako níže:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample33.cs)]
 
 #### <a name="locking-down-binding-on-a-type-basis"></a>Uzamčení vazby na základě typu
 
-Pravidla vazby můžete také Uzamknout pro jednotlivé typy. To umožňuje zadat pravidla vazby jednou a pak je použít ve všech scénářích (včetně scénářů parametrů UpdateModel a Action) napříč všemi řadiči a metodami akcí.
+Můžete také uzamknout pravidla vazby na základě typu. To umožňuje zadat pravidla vazby jednou a pak je použít ve všech scénářích (včetně scénáře UpdateModel a parametr metody akce) napříč všemi řadiči a metodami akce.
 
-Můžete přizpůsobit pravidla vazby podle typu přidáním atributu [BIND] na typ nebo jeho registrací do souboru Global. asax aplikace (hodí se pro scénáře, které nevlastníte typ). Pak můžete pomocí vlastností include a Exclude atributu BIND řídit, které vlastnosti jsou pro konkrétní třídu nebo rozhraní vázané.
+Pravidla vazby podle typu můžete přizpůsobit přidáním atributu [Bind] k typu nebo jeho registrací v souboru Global.asax aplikace (užitečné pro scénáře, kde typ nevlastníte). Potom můžete použít Bind atribut u include a exclude vlastnosti řídit, které vlastnosti jsou vazby pro konkrétní třídy nebo rozhraní.
 
-Tuto techniku použijeme pro třídu večeře v naší aplikaci NerdDinner a přidáte do ní atribut [BIND], který omezí seznam vlastností s možností vazby na následující:
+Použijeme tento postup pro Dinner třídy v naší aplikaci NerdDinner a přidat [Bind] atribut, který omezuje seznam vazebných vlastností na následující:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample34.cs)]
 
-Všimněte si, že nepovolujeme, aby byla kolekce RSVP zpracovávána prostřednictvím vazby, ani aby bylo možné nastavit vlastnosti DinnerID nebo HostedBy prostřednictvím vazby. Z bezpečnostních důvodů budeme místo toho manipulovat jenom s těmito konkrétními vlastnostmi pomocí explicitního kódu v rámci našich metod akcí.
+Všimněte si, že nepovolujeme, aby byla kolekce RSVPs manipulována prostřednictvím vazby, ani nepovolujeme vlastnosti DinnerID nebo HostedBy, které mají být nastaveny prostřednictvím vazby. Z bezpečnostních důvodů budeme místo toho pouze manipulovat s těmito konkrétními vlastnostmi pomocí explicitního kódu v rámci našich metod akce.
 
-### <a name="crud-wrap-up"></a>Zalamování CRUD
+### <a name="crud-wrap-up"></a>CRUD Wrap-Up
 
-ASP.NET MVC zahrnuje řadu integrovaných funkcí, které vám pomůžou s implementací scénářů pro odesílání formulářů. Používali jsme celou řadu těchto funkcí, které vám poskytnou podporu uživatelského rozhraní CRUD nad naše DinnerRepository.
+ASP.NET MVC obsahuje řadu předdefinovaných funkcí, které pomáhají s implementací scénáře účtování formulářů. Použili jsme celou řadu těchto funkcí poskytovat podporu ui CRUD na vrcholu našedinnerRepository.
 
-K implementaci naší aplikace používáme přístup zaměřený na model. To znamená, že všechny naše ověřování a logika obchodních pravidel jsou definovány v rámci naší vrstvy modelu – a ne v rámci našich řadičů nebo zobrazení. Ani naše třída Controller ani naše šablony zobrazení neznají žádné informace o konkrétních obchodních pravidlech, která jsou vynucuje naší třídou modelu večeře.
+K implementaci naší aplikace používáme přístup zaměřený na model. To znamená, že všechny naše logiky ověřování a obchodnípravidla jsou definovány v rámci vrstvy modelu – a nikoli v rámci našich řadičů nebo zobrazení. Naše třída Controller ani naše šablony zobrazení nevědí nic o konkrétních obchodních pravidlech vynucených naší třídou modelu Dinner.
 
-Tím se zajistí, že naše architektura aplikace bude čistá a bude snazší ji otestovat. Do naší vrstvy modelu můžeme v budoucnu přidat další obchodní pravidla a *není nutné provádět změny kódu* pro náš kontroler nebo zobrazení, aby je bylo možné podporovat. Díky tomu budeme mít velkou flexibilitu pro vývoj a změnu naší aplikace v budoucnu.
+To udrží naši architekturu aplikací čistou a usnadní testování. Můžeme přidat další obchodní pravidla do naší vrstvy modelu v budoucnu a *není třeba provádět žádné změny kódu* našeho řadiče nebo zobrazení, aby byly podporovány. To nám poskytne velkou flexibilitu, abychom se v budoucnu vyvíjeli a měnili naši aplikaci.
 
-Naše DinnersController teď umožňuje vytvářet, upravovat a odstraňovat večeře. Úplný kód pro třídu najdete níže:
+Naše DinnersController nyní umožňuje večeře výpisy /podrobnosti, stejně jako vytvořit, upravit a odstranit podporu. Kompletní kód pro třídu naleznete níže:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample35.cs)]
 
 ### <a name="next-step"></a>Další krok
 
-Nyní máme základní třídu CRUD (vytváření, čtení, aktualizace a odstranění), která podporuje implementaci v rámci naší třídy DinnersController.
+Nyní máme základní CRUD (Vytvořit, Číst, Aktualizovat a odstranit) podporu implementovat v rámci naší DinnersController třídy.
 
-Teď se podíváme na to, jak můžeme použít třídy ViewData a ViewModel k povolení ještě bohatšího uživatelského rozhraní v našich formulářích.
+Podívejme se nyní na to, jak můžeme použít ViewData a ViewModel třídy povolit ještě bohatší uI na našich formulářích.
 
 > [!div class="step-by-step"]
 > [Předchozí](use-controllers-and-views-to-implement-a-listingdetails-ui.md)
-> [Další](use-viewdata-and-implement-viewmodel-classes.md)
+> [další](use-viewdata-and-implement-viewmodel-classes.md)

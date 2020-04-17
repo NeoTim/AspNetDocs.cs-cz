@@ -1,140 +1,140 @@
 ---
 uid: mvc/overview/older-versions-1/nerddinner/implement-efficient-data-paging
-title: Implementace efektivního stránkování dat | Microsoft Docs
-author: microsoft
-description: Krok 8 ukazuje, jak přidat podporu stránkování do naší adresy URL/Dinners, aby se místo zobrazení tisíců večeře najednou zobrazil jenom 10 nadcházejících večeři na...
+title: Implementace efektivního stránkování dat | Dokumenty společnosti Microsoft
+author: rick-anderson
+description: Krok 8 ukazuje, jak přidat podporu stránkování na naši adresu URL / Dinners, takže místo zobrazení 1000s večeří najednou zobrazíme pouze 10 nadcházejících večeří na...
 ms.author: riande
 ms.date: 07/27/2010
 ms.assetid: adea836d-dbc2-4005-94ea-53aef09e9e34
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/implement-efficient-data-paging
 msc.type: authoredcontent
-ms.openlocfilehash: 2d9a0dba381b71755ac626f76d52bc5bcb434447
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: a833553fe44b62b136f7eb55c7e00eca0b0462c6
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78601050"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81541322"
 ---
 # <a name="implement-efficient-data-paging"></a>Implementace efektivního stránkování dat
 
-od [Microsoftu](https://github.com/microsoft)
+podle [společnosti Microsoft](https://github.com/microsoft)
 
 [Stáhnout PDF](http://aspnetmvcbook.s3.amazonaws.com/aspnetmvc-nerdinner_v1.pdf)
 
-> Toto je krok 8 bezplatného [kurzu aplikace "NerdDinner"](introducing-the-nerddinner-tutorial.md) , který vás provede procesem vytvoření malé, ale dokončené webové aplikace pomocí ASP.NET MVC 1.
+> Toto je krok 8 zdarma ["NerdDinner" aplikační kurz,](introducing-the-nerddinner-tutorial.md) který prochází, jak vytvořit malou, ale kompletní, webové aplikace pomocí ASP.NET MVC 1.
 > 
-> Krok 8 ukazuje, jak přidat podporu stránkování k naší adrese URL/Dinners, aby se místo zobrazení tisíců večeře najednou zobrazovaly jenom 10 nadcházejících večeře najednou a aby koncoví uživatelé mohli vracet zpět a předávat dál celý seznam v uživatelsky přívětivém způsobu.
+> Krok 8 ukazuje, jak přidat podporu stránkování do naší adresy URL /Dinners, takže místo zobrazení 1000s večeří najednou zobrazíme pouze 10 nadcházejících večeří najednou - a umožníme koncovým uživatelům stránku zpět a vpřed přes celý seznam přátelským způsobem SEO.
 > 
-> Pokud používáte ASP.NET MVC 3, doporučujeme vám postupovat podle [Začínáme s kurzy pro](../../older-versions/getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3.md) [hudební úložiště](../../older-versions/mvc-music-store/mvc-music-store-part-1.md) MVC 3 nebo MVC.
+> Pokud používáte ASP.NET MVC 3, doporučujeme postupovat podle kurzů [Začínáme s MVC 3](../../older-versions/getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3.md) nebo [MVC Music Store.](../../older-versions/mvc-music-store/mvc-music-store-part-1.md)
 
-## <a name="nerddinner-step-8-paging-support"></a>NerdDinner krok 8: Podpora stránkování
+## <a name="nerddinner-step-8-paging-support"></a>NerdDinner Krok 8: Paging podpora
 
-Pokud je náš web úspěšný, bude mít tisíce nadcházejících večeři. Musíme zajistit, aby se toto uživatelské rozhraní nacházelo tak, aby zpracovávala všechny tyto hostiny, a umožní uživatelům jejich procházení. Pokud to chcete povolit, přidáme podporu stránkování na naši adresu URL */Dinners* , aby se místo zobrazení tisíců večeře najednou zobrazovaly jenom 10 nadcházejících večeře najednou a aby koncoví uživatelé mohli vracet zpět a předávat dál celý seznam v uživatelsky přívětivém způsobu.
+Pokud naše stránky budou úspěšné, budou mít tisíce nadcházejících večeří. Musíme se ujistit, že naše uživatelské ho ui škály pro zpracování všech těchto večeří a umožňuje uživatelům procházet. Chcete-li to povolit, přidáme podporu stránkování do naší adresy URL */Dinners* tak, abychom místo zobrazení 1000s večeří najednou zobrazili pouze 10 nadcházejících večeří najednou - a umožnili koncovým uživatelům stránkovat zpět a vpřed celý seznam přátelským způsobem.
 
-### <a name="index-action-method-recap"></a>Index () akce metody rekapitulace
+### <a name="index-action-method-recap"></a>Index() Rekapitulace metody akce
 
-Metoda Action () v rámci naší třídy DinnersController v současné době vypadá následovně:
+Metoda akce Index() v rámci naší třídy DinnersController v současné době vypadá takto:
 
 [!code-csharp[Main](implement-efficient-data-paging/samples/sample1.cs)]
 
-Při odeslání požadavku na adresu URL */Dinners* se načte seznam všech nadcházejících večeře a potom se vykreslí jejich seznam:
+Když je požadavek na adresu URL */Dinners,* načte seznam všech nadcházejících večeří a pak vykreslí seznam všech z nich ven:
 
 ![](implement-efficient-data-paging/_static/image1.png)
 
 ### <a name="understanding-iqueryablelttgt"></a>Principy IQueryable&lt;T&gt;
 
-*IQueryable&lt;t&gt;* je rozhraní, které bylo zavedeno pomocí LINQ jako součást .NET 3,5. Umožňuje výkonné scénáře odloženého provádění, které můžeme využít k implementaci podpory stránkování.
+*IQueryable&lt;&gt; T* je rozhraní, které bylo zavedeno s LINQ jako součást rozhraní .NET 3.5. Umožňuje výkonné scénáře "odložené spuštění", které můžeme využít k implementaci podpory stránkování.
 
-V našem DinnerRepository vracíme&gt; sekvenci IQueryable&lt;večeře z naší metody FindUpcomingDinners ():
+V našem DinnerRepository vracíme&lt;IQueryable&gt; Dinner sekvence z naší FindUpcomingDinners() metoda:
 
 [!code-csharp[Main](implement-efficient-data-paging/samples/sample2.cs)]
 
-Objekt IQueryable&lt;večeře&gt; vrácený metodou FindUpcomingDinners () zapouzdřuje dotaz k načtení objektů večeře z naší databáze pomocí LINQ to SQL. Důležité je, aby se dotaz nespouštěl proti databázi, dokud se nepokusíme o přístup k datům v dotazu, nebo dokud na ni nevoláme metodu ToList – (). Kód, který volá naši metodu FindUpcomingDinners (), může volitelně zvolit přidání dalších "zřetězených" operací/filtrů do objektu IQueryable&lt;večeře&gt; před provedením dotazu. LINQ to SQL je pak dostatečně inteligentní, aby se při požadavku na data spustil Kombinovaný dotaz na databázi.
+IQueryable&lt;Dinner&gt; objektvrácené naše FindUpcomingDinners() metoda zapouzdřuje dotaz načíst Dinner objekty z naší databáze pomocí LINQ do SQL. Důležité je, že nebude provádět dotaz proti databázi, dokud se nepokusíme o přístup/ iterát přes data v dotazu, nebo dokud jsme volání ToList() metoda na něm. Kód volá naše FindUpcomingDinners() metoda můžete volitelně zvolit přidat další "zřetězené" operace/filtry na IQueryable&lt;Dinner&gt; objektu před spuštěním dotazu. LINQ na SQL je pak dostatečně chytrý, aby spustit kombinovaný dotaz proti databázi při požadavku na data.
 
-Aby bylo možné implementovat logiku stránkování, můžeme aktualizovat metodu akce index () naší DinnersController tak, aby platila další "Skip" a "přenést" operátory pro vrácenou aktualizaci&lt;IQueryable&gt; sekvenci před voláním ToList – ():
+Chcete-li implementovat stránkovací logiku, můžeme aktualizovat naši metodu akce Index() společnosti DinnersController tak, aby&lt;&gt; na vrácenou posloupnost IQueryable Dinner aponovala další operátory "Skip" a "Take" před voláním ToList() na něm:
 
 [!code-csharp[Main](implement-efficient-data-paging/samples/sample3.cs)]
 
-Výše uvedený kód přeskočí za prvních 10 nadcházejících večeři v databázi a vrátí zpět 20 večeři. LINQ to SQL je dostatečně inteligentní, aby bylo možné vytvořit optimalizovaný dotaz SQL, který provede tuto logiku v databázi SQL, a ne na webovém serveru. To znamená, že i když máme miliony nadcházejících večeře v databázi, v rámci této žádosti se načte jenom 10, které chceme (což zajistí efektivní a škálovatelné).
+Výše uvedený kód přeskočí přes prvních 10 nadcházející večeře v databázi a potom vrátí zpět 20 večeří. LINQ to SQL je dostatečně chytrý na to, aby vytvořil optimalizovaný dotaz SQL, který provádí tuto logiku přeskakování v databázi SQL – a ne na webovém serveru. To znamená, že i v případě, že máme miliony nadcházející večeře v databázi, pouze 10 chceme budou načteny jako součást tohoto požadavku (takže je efektivní a škálovatelné).
 
-### <a name="adding-a-page-value-to-the-url"></a>Přidání hodnoty "Page" do adresy URL
+### <a name="adding-a-page-value-to-the-url"></a>Přidání hodnoty "stránky" do adresy URL
 
-Místo pevného kódování konkrétního rozsahu stránky chceme, aby naše adresy URL zahrnovaly parametr "stránka", který označuje, který rozsah večeře uživatel požaduje.
+Namísto pevného kódování určitého rozsahu stránek chceme, aby naše adresy URL obsahovaly parametr "page", který označuje, který rozsah večeří uživatel požaduje.
 
-#### <a name="using-a-querystring-value"></a>Použití hodnoty QueryString
+#### <a name="using-a-querystring-value"></a>Použití hodnoty Querystring
 
-Následující kód demonstruje, jak můžeme aktualizovat metodu akce index () na podporu parametru QueryString a povolit adresy URL jako */Dinners? Page = 2*:
+Níže uvedený kód ukazuje, jak můžeme aktualizovat naši metodu akce Index() pro podporu parametru řetězce dotazu a povolit adresy URL jako */Dinners?page=2*:
 
 [!code-csharp[Main](implement-efficient-data-paging/samples/sample4.cs)]
 
-Výše uvedená metoda akce index () obsahuje parametr s názvem "Page". Parametr je deklarován jako celé číslo s možnou hodnotou null (to znamená to, co int? označuje). To znamená, že */Dinners? Page = 2* URL způsobí, že hodnota "2" bude předána jako hodnota parametru. Adresa URL */Dinners* (bez hodnoty řetězce dotazu) způsobí předání hodnoty null.
+Metoda akce Index() výše má parametr s názvem "stránka". Parametr je deklarován jako celé číslo s možnou hodnotou null (to znamená, co int? To znamená, že adresa URL */Dinners?page=2* způsobí, že hodnota "2" bude předána jako hodnota parametru. *Adresa /Dinners* URL (bez hodnoty řetězce dotazu) způsobí předání hodnoty null.
 
-Hodnota stránky se vynásobí velikostí stránky (v tomto případě 10 řádků) a určíte, kolik večeře se má přeskočit. Používáme [ C# "slučovací" operátor (??)](https://weblogs.asp.net/scottgu/archive/2007/09/20/the-new-c-null-coalescing-operator-and-using-it-with-linq.aspx) , který je užitečný při práci s typy s možnou hodnotou null. Výše uvedený kód přiřadí hodnotu 0, pokud má parametr stránky hodnotu null.
+Vynásobíme hodnotu stránky velikostí stránky (v tomto případě 10 řádků), abychom zjistili, kolik večeří má přeskočit. Používáme [c# null "coalescing" operátor (??),](https://weblogs.asp.net/scottgu/archive/2007/09/20/the-new-c-null-coalescing-operator-and-using-it-with-linq.aspx) který je užitečný při práci s nullable typy. Výše uvedený kód přiřadí stránce hodnotu 0, pokud je parametr stránky nulový.
 
-#### <a name="using-embedded-url-values"></a>Použití vložených hodnot URL
+#### <a name="using-embedded-url-values"></a>Použití vložených hodnot url
 
-Alternativou k použití hodnoty QueryString by bylo vložit parametr stránky do samotné vlastní adresy URL. Například: */Dinners/Page/2* nebo */Dinners/2*. ASP.NET MVC zahrnuje výkonný modul pro směrování adres URL, který usnadňuje podporu podobných scénářů.
+Alternativou k použití querystring hodnotu by bylo vložit parametr stránky v rámci samotné adresy URL. Příklad: */Dinners/Page/2* nebo */Dinners/2*. ASP.NET MVC obsahuje výkonný modul pro směrování adres URL, který usnadňuje podporu scénářů, jako je tento.
 
-Můžeme registrovat vlastní pravidla směrování, která mapují všechny příchozí adresy URL nebo formát adresy URL na libovolnou třídu kontroleru nebo metodu akce, kterou chceme. Vše, co musíme udělat, je otevřít soubor Global. asax v rámci našeho projektu:
+Můžeme zaregistrovat vlastní pravidla směrování, která mapují libovolnou příchozí adresu URL nebo formát ADRESY URL na libovolnou třídu nebo metodu akce řadiče, kterou chceme. Vše, co potřebujeme udělat, je otevřít soubor Global.asax v rámci našeho projektu:
 
 ![](implement-efficient-data-paging/_static/image2.png)
 
-A pak zaregistrujte nové pravidlo mapování pomocí pomocné metody MapRoute (), jako je první volání tras. MapRoute () níže:
+A pak zaregistrujte nové pravidlo mapování pomocí MapRoute() pomocné metody, jako je první volání tras. MapRoute() níže:
 
 [!code-csharp[Main](implement-efficient-data-paging/samples/sample5.cs)]
 
-Výše je registrace nového pravidla směrování s názvem "UpcomingDinners". Oznamujeme, že má formát adresy URL "večeře/stránka/{Page}" – kde {Page} je hodnota parametru vložená v rámci adresy URL. Třetí parametr metody MapRoute () označuje, že by měly být mapovány adresy URL, které odpovídají tomuto formátu, metodě akce index () třídy DinnersController.
+Výše registrujeme nové pravidlo směrování s názvem "Nadcházející večeře". Uvádíme, že má formát URL "Dinners/Page/{page}" – kde {page} je hodnota parametru vložená do adresy URL. Třetí parametr metody MapRoute() označuje, že bychom měli mapovat adresy URL, které odpovídají tomuto formátu, na metodu akce Index() ve třídě DinnersController.
 
-Můžeme použít přesný index () kód, který jsme předtím používali ve scénáři QueryString – s výjimkou toho, že tento parametr Page bude pocházet z adresy URL, nikoli řetězce dotazu:
+Můžeme použít přesně stejný Index() kód jsme měli před s naší mačká scénář Querystring – s výjimkou nyní naše "page" parametr bude pocházet z URL a ne querystring:
 
 [!code-csharp[Main](implement-efficient-data-paging/samples/sample6.cs)]
 
-A teď když aplikaci spustíme a zadáte do */Dinners* , zobrazí se prvních 10 nadcházejících večeři:
+A teď, když spustíme aplikaci a zadejte */ Večeře* uvidíme prvních 10 nadcházejícívečeře:
 
 ![](implement-efficient-data-paging/_static/image3.png)
 
-A když zadáte v */Dinners/Page/1* , zobrazí se další stránka večeře:
+A když zadáme */Dinners/Page/1,* uvidíme další stránku večeří:
 
 ![](implement-efficient-data-paging/_static/image4.png)
 
-### <a name="adding-page-navigation-ui"></a>Přidávání uživatelského rozhraní pro navigaci stránky
+### <a name="adding-page-navigation-ui"></a>Přidání uživatelského uživatelského uživatelského panelu navigace na stránce
 
-Posledním krokem k dokončení našeho scénáře stránkování bude implementace "Next" a "předchozí" navigační uživatelské rozhraní v naší šabloně zobrazení, aby uživatelé mohli snadno přeskočit data z večeře.
+Posledním krokem k dokončení našeho stránkování scénář bude implementovat "další" a "předchozí" navigační uživatelské okno v rámci naší šablony zobrazení, aby uživatelé snadno přeskočit data večeři.
 
-Abychom to správně implementovali, budeme potřebovat znát celkový počet večeře v databázi a také počet stránek dat, ke kterým se tato data vztahují. Pak bude potřeba počítat s tím, jestli je aktuálně požadovaná hodnota "stránka" na začátku nebo na konci dat, a odpovídajícím způsobem zobrazit nebo skrýt uživatelské rozhraní "předchozí" a "Další". Tuto logiku můžeme implementovat v rámci naší metody akce index (). Alternativně můžeme do našeho projektu přidat pomocnou třídu, která zapouzdřuje tuto logiku ve více opakovaně použitelném způsobu.
+Chcete-li implementovat správně, budeme potřebovat znát celkový počet večeří v databázi, stejně jako kolik stránek dat to překládá. Poté budeme muset vypočítat, zda je aktuálně požadovaná hodnota "stránka" na začátku nebo na konci dat, a odpovídajícím způsobem zobrazit nebo skrýt předchozí a "další" uI. Tuto logiku můžeme implementovat v rámci naší metody akce Index(). Alternativně můžeme přidat pomocnou třídu do našeho projektu, který zapouzdřuje tuto logiku více re-použitelným způsobem.
 
-Níže je jednoduchá pomocná třída "PaginatedList", která je odvozena od třídy seznamu&lt;T&gt; kolekce integrovaná do .NET Framework. Implementuje znovu použitelnou třídu kolekce, kterou lze použít k stránkování jakékoli sekvence dat IQueryable. V naší aplikaci NerdDinner budeme mít k dispozici práci prostřednictvím rozhraní IQueryable&lt;večeře&gt; výsledky, ale je možné, že se to dá jednoduše snadno použít proti rozhraní IQueryable&lt;produkt&gt; nebo IQueryable&lt;&gt; výsledky v jiných scénářích aplikací:
+Níže je jednoduchá "PaginatedList" pomocná třída,&lt;která&gt; je odvozena z list T třídy kolekce zabudované do rozhraní .NET Framework. Implementuje opakovaně použitelnou třídu kolekce, která může být použita k stránkování libovolné sekvence dat IQueryable. V naší aplikaci NerdDinner budeme mít to&lt;&gt; pracovat přes IQueryable Dinner výsledky, ale&lt;&gt; to by&lt;mohlo&gt; stejně snadno použít proti IQueryable produktu nebo IQueryable zákazník výsledky v jiných scénářích aplikace:
 
 [!code-csharp[Main](implement-efficient-data-paging/samples/sample7.cs)]
 
-Všimněte si nad tím, jak se počítá a potom zpřístupňuje vlastnosti jako "PageIndex", "PageSize", "TotalCount" a "TotalPages". Pak zpřístupní dvě pomocné vlastnosti "HasPreviousPage" a "HasNextPage", které označují, zda je stránka dat v kolekci na začátku nebo na konci původní sekvence. Výše uvedený kód způsobí, že budou spuštěny dva dotazy SQL – první z nich získá celkový počet objektů večeře (nevrátí objekty – místo toho provede příkaz SELECT COUNT, který vrátí celé číslo) a druhý pro načtení pouze řádků data, která potřebujeme z naší databáze pro aktuální stránku dat.
+Všimněte si, jak vypočítá a potom zpřístupňuje vlastnosti jako "PageIndex", "PageSize", "TotalCount" a "TotalPages". Také pak zpřístupní dvě pomocné vlastnosti "HasPreviousPage" a "HasNextPage", které označují, zda je stránka dat v kolekci na začátku nebo na konci původní sekvence. Výše uvedený kód způsobí spuštění dvou dotazů SQL – první načíst počet celkový počet Dinner objekty (to nevrátí objekty – spíše provede příkaz "SELECT COUNT", který vrátí celé číslo) a druhý načíst pouze řádky dat, které potřebujeme z naší databáze pro aktuální stránku dat.
 
-Pak můžeme aktualizovat pomocnou metodu DinnersController. index () a vytvořit PaginatedList&lt;večeře&gt; z našeho výsledku DinnerRepository. FindUpcomingDinners () a předat ji do naší šablony zobrazení:
+Můžeme pak aktualizovat naše DinnersController.Index() pomocná metoda k&lt;vytvoření&gt; Večeři PaginatedList z našeho DinnerRepository.FindUpcomingDinners() výsledek a předat ji do našeho zobrazení šablony:
 
 [!code-csharp[Main](implement-efficient-data-paging/samples/sample8.cs)]
 
-Pak můžeme aktualizovat šablonu zobrazení \Views\Dinners\Index.aspx tak, aby dědila z ViewPage&lt;NerdDinner. helps. PaginatedList&lt;večeře&gt;&gt; místo ViewPage&lt;IEnumerable&lt;večeře&gt;&gt;a potom přidat následující kód do dolní části našeho zobrazení – šablony pro zobrazení nebo skrytí dalšího a předchozího navigačního rozhraní:
+Potom můžeme aktualizovat šablonu zobrazení \Views\Dinners\Index.aspx,&lt;která se dědí z aplikace&lt;ViewPage&gt; &gt; NerdDinner.Helpers.PaginatedList Dinner místo aplikace&lt;ViewPage IEnumerable&lt;Dinner&gt;&gt;, a potom přidat následující kód na konec naší šablony zobrazení, aby se zobrazilo nebo skrylo další a předchozí navigační uživatelské tlačítko:
 
 [!code-aspx[Main](implement-efficient-data-paging/samples/sample9.aspx)]
 
-Všimněte si, jak se používá pomocná metoda HTML. RouteLink () ke generování našich hypertextových odkazů. Tato metoda je podobná pomocné metodě HTML. ActionLink (), kterou jsme používali dřív. Rozdílem je, že generujeme adresu URL pomocí pravidla směrování "UpcomingDinners", které jsme nastavili v rámci našeho souboru Global. asax. Tím se zajistí, že vygenerujeme adresy URL pro metodu akce index (), která má formát: */Dinners/Page/{Page}* – kde hodnota {Page} je proměnná, kterou poskytujeme výše v závislosti na aktuální vlastnosti pageIndex.
+Všimněte si, jak používáme Html.RouteLink() pomocnou metodu pro generování našich hypertextových odkazů. Tato metoda je podobná metodě pomocné položky Html.ActionLink(), kterou jsme použili dříve. Rozdíl je v tom, že generujeme adresu URL pomocí pravidla směrování "UpcomingDinners", které nastavujeme v našem souboru Global.asax. Tím zajistíme, že budeme generovat adresy URL do naší metody akce Index(), které mají formát: */Dinners/Page/{page}* – kde hodnota {page} je proměnná, kterou poskytujeme výše na základě aktuálního PageIndex.
 
-A teď i po opětovném spuštění naší aplikace se v našem prohlížeči zobrazí 10 večeři v čase:
+A teď, když spustíme naši aplikaci znovu uvidíme 10 večeří najednou v našem prohlížeči:
 
 ![](implement-efficient-data-paging/_static/image5.png)
 
-V dolní části stránky máme taky &lt;&lt;&lt; a &gt;uživatelské rozhraní pro navigaci v &gt;, které nám umožňuje přeskočit dopředu a zpět na naše data pomocí adres URL přístupného pro vyhledávač:&gt;
+&lt; &lt; Máme &lt; také &gt; &gt; &gt; navigační uživatelské tlačítko v dolní části stránky, které nám umožňuje přeskočit dopředu a dozadu přes naše data pomocí vyhledávacího stroje přístupné adresy URL:
 
 ![](implement-efficient-data-paging/_static/image6.png)
 
-| **Vedlejší téma: princip dopadu sady IQueryable&lt;T&gt;** |
+| **Boční téma: Pochopení důsledků IQueryable&lt;T&gt;** |
 | --- |
-| IQueryable&lt;T&gt; je velmi výkonná funkce, která umožňuje řadu zajímavých odložených scénářů provádění (například dotazy na stránkování a skládání). Stejně jako u všech výkonných funkcí chcete být opatrní při jejich používání a zajistěte, aby nemohly být zneužití. Je důležité rozpoznat, že vrácení sady IQueryable&lt;T&gt; výsledek z úložiště umožňuje volajícímu kódu připojit k metodám zřetězených operátorů, a tak se zúčastnit v konečném provádění dotazu. Pokud nechcete, aby tato možnost poskytovala volající kód, měli byste vrátit objekty IList&lt;T&gt; nebo IEnumerable&lt;T&gt; výsledky, které obsahují výsledky dotazu, který již byl proveden. V případě scénářů stránkování by to vyžadovalo vložení skutečné logiky stránkování dat do metody úložiště, která se volá. V tomto scénáři můžeme aktualizovat naši vyhledávací metodu FindUpcomingDinners () tak, aby měla signaturu, která vrátila hodnotu PaginatedList: PaginatedList&lt; večeře&gt; FindUpcomingDinners (int pageIndex, int pageSize) {} nebo vraťte zpět objekt IList&lt;večeře&gt;a použijte parametr "totalCount" out, který vrátí celkový počet večeře: IList&lt;večeře&gt; FindUpcomingDinners (int pageIndex, int pageSize, out int totalCount) {} |
+| IQueryable&lt;&gt; T je velmi výkonná funkce, která umožňuje řadu zajímavých scénářů odložené spuštění (jako je stránkování a dotazy založené na složení). Stejně jako u všech výkonných funkcí, chcete být opatrní s tím, jak ji používat, a ujistěte se, že není zneužívána. Je důležité si uvědomit, že&lt;vrácení&gt; iQueryable T výsledek z vašeho úložiště umožňuje volání kódu připojit na zřetězené operátor metody k němu, a tak se podílet na konečné spuštění dotazu. Pokud nechcete poskytnout volající kód této schopnosti, pak&lt;byste&gt; měli vrátit&lt;zpět&gt; IList T nebo IEnumerable T výsledky - které obsahují výsledky dotazu, který již byl proveden. Pro scénáře stránkování by to vyžadovalo, abyste do volané metody úložiště posunuli logiku stránkování skutečných dat. V tomto scénáři můžeme aktualizovat naše FindUpcomingDinners() finder metoda mít podpis, který buď vrátil&lt; &gt; PaginatedList: PaginatedList Dinner FindComingDinners (int&lt;pageIndex, int pageSize) { } Nebo vrátit zpět IList Dinner&gt;, a použít "totalCount" z param vrátit celkový počet Dinners: IList&lt;Dinner&gt; FindUpcomingDinners (int pageIndex, int pageSize, out int totalCount) { } |
 
 ### <a name="next-step"></a>Další krok
 
-Teď se podíváme, jak můžeme do naší aplikace přidat podporu ověřování a autorizace.
+Podívejme se nyní na to, jak můžeme do naší aplikace přidat podporu ověřování a autorizace.
 
 > [!div class="step-by-step"]
 > [Předchozí](re-use-ui-using-master-pages-and-partials.md)
-> [Další](secure-applications-using-authentication-and-authorization.md)
+> [další](secure-applications-using-authentication-and-authorization.md)

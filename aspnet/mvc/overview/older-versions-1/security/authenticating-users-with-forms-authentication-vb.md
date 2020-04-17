@@ -1,152 +1,152 @@
 ---
 uid: mvc/overview/older-versions-1/security/authenticating-users-with-forms-authentication-vb
-title: Ověřování uživatelů s ověřováním pomocí formulářů (VB) | Microsoft Docs
-author: microsoft
-description: Přečtěte si, jak pomocí atributu [autorizovat] chránit heslem konkrétní stránky v aplikaci MVC. Naučíte se, jak používat správu webu...
+title: Ověřování uživatelů pomocí ověřování pomocí formulářů (VB) | Dokumenty společnosti Microsoft
+author: rick-anderson
+description: Přečtěte si, jak používat atribut [Authorize] k ochraně určitých stránek heslem v aplikaci MVC. Naučíte se, jak používat webové stránky správy příliš ...
 ms.author: riande
 ms.date: 01/27/2009
 ms.assetid: 4341f5b1-6fe5-44c5-8b8a-18fa84f80177
 msc.legacyurl: /mvc/overview/older-versions-1/security/authenticating-users-with-forms-authentication-vb
 msc.type: authoredcontent
-ms.openlocfilehash: a2c2140631d59a7f8b21aa73613a92ea5c7a91d0
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 9e3117af55db2effed20b6421c2322f1c265f1c7
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78615575"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81540815"
 ---
 # <a name="authenticating-users-with-forms-authentication-vb"></a>Ověřování uživatelů pomocí formulářů (VB)
 
-od [Microsoftu](https://github.com/microsoft)
+podle [společnosti Microsoft](https://github.com/microsoft)
 
-> Přečtěte si, jak pomocí atributu [autorizovat] chránit heslem konkrétní stránky v aplikaci MVC. Naučíte se, jak pomocí nástroje pro správu webu vytvářet a spravovat uživatele a role. Naučíte se také, jak nakonfigurovat, kde jsou uložené informace o uživatelském účtu a roli.
+> Přečtěte si, jak používat atribut [Authorize] k ochraně určitých stránek heslem v aplikaci MVC. Dozvíte se, jak pomocí Nástroje pro správu webu vytvářet a spravovat uživatele a role. Dozvíte se také, jak nakonfigurovat, kde jsou uloženy informace o uživatelském účtu a roli.
 
-Cílem tohoto kurzu je vysvětlit, jak můžete používat ověřování pomocí formulářů k ochraně zobrazení v aplikacích ASP.NET MVC. Naučíte se, jak pomocí nástroje pro správu webu vytvářet uživatele a role. Naučíte se také, jak zabránit neautorizovaným uživatelům v vyvolání akcí kontroleru. Nakonec se dozvíte, jak nakonfigurovat, kde jsou uložená uživatelská jména a hesla.
+Cílem tohoto kurzu je vysvětlit, jak můžete pomocí ověřování pomocí formulářů chránit zobrazení v aplikacích ASP.NET MVC. Dozvíte se, jak pomocí Nástroje pro správu webu vytvářet uživatele a role. Dozvíte se také, jak zabránit neoprávněným uživatelům v vyvolání akcí řadiče. Nakonec se dozvíte, jak nakonfigurovat, kde jsou uložena uživatelská jména a hesla.
 
-#### <a name="using-the-web-site-administration-tool"></a>Použití nástroje pro správu webu
+#### <a name="using-the-web-site-administration-tool"></a>Použití Nástroje pro správu webu
 
-Než budeme dělat cokoli jiného, měli byste začít vytvořením některých uživatelů a rolí. Nejjednodušší způsob, jak vytvořit nové uživatele a role, je využít nástroj pro správu webu sady Visual Studio 2008. Tento nástroj můžete spustit výběrem možnosti nabídky **projekt, konfigurace ASP.NET**. Alternativně můžete spustit nástroj pro správu webu kliknutím na ikonu (trochu Scary) kladiva, která se zobrazí v horní části okna Průzkumník řešení (viz obrázek 1).
+Než budeme dělat něco jiného, měli bychom začít tím, že vytvoří některé uživatele a role. Nejjednodušší způsob, jak vytvořit nové uživatele a role, je využít výhod nástroje pro správu webu sady Visual Studio 2008. Tento nástroj můžete spustit výběrem možnosti nabídky **Projekt, ASP.NET Konfigurace**. Případně můžete spustit Nástroj pro správu webu kliknutím na (poněkud děsivou) ikonu kladiva, která zasáhne svět, který se zobrazí v horní části okna Průzkumníka řešení (viz obrázek 1).
 
-**Obrázek 1 – spuštění nástroje pro správu webu**
+**Obrázek 1 – Spuštění nástroje pro správu webu**
 
-![clip_image002[4]](authenticating-users-with-forms-authentication-vb/_static/image1.jpg)
+![clip_image002.[](authenticating-users-with-forms-authentication-vb/_static/image1.jpg)
 
-V nástroji pro správu webu můžete vytvořit nové uživatele a role výběrem karty zabezpečení. Kliknutím na odkaz **vytvořit uživatele** vytvořte nového uživatele s názvem Stephen (viz obrázek 2). Poskytněte Stephen uživateli jakékoli heslo, které chcete (například *tajný klíč*).
+V nástroji pro správu webu vytvoříte nové uživatele a role výběrem karty Zabezpečení. Klepnutím na odkaz **Vytvořit uživatele** vytvoříte nového uživatele s názvem Stephen (viz obrázek 2). Zadejte uživateli Stephen libovolné heslo, které chcete (například *tajné).*
 
 **Obrázek 2 – Vytvoření nového uživatele**
 
-![clip_image004[4]](authenticating-users-with-forms-authentication-vb/_static/image2.jpg)
+![clip_image004.[](authenticating-users-with-forms-authentication-vb/_static/image2.jpg)
 
-Nové role vytvoříte tak, že nejprve povolíte role a definujete jednu nebo více rolí. Role Povolte kliknutím na odkaz **Povolit role** . Potom vytvořte roli s názvem *Administrators* kliknutím na odkaz **vytvořit nebo spravovat role** (viz obrázek 3).
+Nové role vytvoříte tak, že nejprve povolíte role a definujete jednu nebo více rolí. Povolte role kliknutím na odkaz **Povolit role.** Dále vytvořte roli s názvem *Správci* kliknutím na odkaz **Vytvořit nebo spravovat role** (viz obrázek 3).
 
-**Obrázek 3 – vytvoření nové role**
+**Obrázek 3 – Vytvoření nové role**
 
-![clip_image006[4]](authenticating-users-with-forms-authentication-vb/_static/image3.jpg)
+![clip_image006.[](authenticating-users-with-forms-authentication-vb/_static/image3.jpg)
 
-Nakonec vytvořte nového uživatele s názvem Sally a přidružte Sally k roli Administrators kliknutím na odkaz vytvořit uživatele a výběrem možnosti správci při vytváření Sally (viz obrázek 4).
+Nakonec vytvořte nového uživatele s názvem Sally a přidružte Sally k roli Administrators klepnutím na odkaz Vytvořit uživatele a výběrem správců při vytváření Sally (viz obrázek 4).
 
-**Obrázek 4 – Přidání uživatele k roli**
+**Obrázek 4 – Přidání uživatele do role**
 
-![clip_image008[4]](authenticating-users-with-forms-authentication-vb/_static/image4.jpg)
+![clip_image008.[](authenticating-users-with-forms-authentication-vb/_static/image4.jpg)
 
-Když je vše zmíněné a hotové, měli byste mít dva nové uživatele s názvem Stephen a Sally. Měli byste také mít novou roli s názvem Administrators. Sally je členem role Administrators a Stephen není.
+Když je vše řečeno a vykonáno, měli byste mít dva nové uživatele jménem Stephen a Sally. Měli byste mít také novou roli s názvem Správci. Sally je členem role Administrators a Stephen není.
 
 #### <a name="requiring-authorization"></a>Vyžadování autorizace
 
-Můžete vyžadovat, aby uživatel byl ověřený předtím, než uživatel vyvolá akci kontroleru přidáním atributu [autorizační] k akci. Můžete použít atribut [autorizovat] na jednotlivé akce kontroleru nebo můžete použít tento atribut na celou třídu kontroleru.
+Můžete vyžadovat, aby byl uživatel ověřen dříve, než uživatel vyvolá akci kontroleru přidáním atributu [Authorize] k akci. Atribut [Authorize] můžete použít na jednotlivé akce řadiče nebo můžete použít tento atribut pro celou třídu kontroleru.
 
-Například kontroler v výpisu 1 zpřístupňuje akci s názvem CompanySecrets (). Vzhledem k tomu, že tato akce je upravena pomocí atributu [autorizovat], tuto akci nelze vyvolat, pokud není uživatel ověřen.
+Například řadič v Listing 1 zpřístupňuje akci s názvem CompanySecrets(). Vzhledem k tomu, že tato akce je dekorována atributem [Authorize], nelze tuto akci vyvolat, pokud není ověřen uživatel.
 
-**Výpis 1 – Controllers\HomeController.vb**
+**Výpis 1 – Řadiče\HomeController.vb**
 
 [!code-vb[Main](authenticating-users-with-forms-authentication-vb/samples/sample1.vb)]
 
-Pokud zavoláte akci CompanySecrets () tak, že zadáte adresu URL/Home/CompanySecrets na adresní řádek v prohlížeči a nejste ověřeným uživatelem, budete přesměrováni na automatické zobrazení přihlášení (viz obrázek 5).
+Pokud vyvoláte akci CompanySecrets() zadáním adresy URL /Home/CompanySecrets do adresního řádku prohlížeče a nejste ověřeným uživatelem, budete automaticky přesměrováni do zobrazení Přihlášení (viz obrázek 5).
 
-**Obrázek 5 – zobrazení přihlášení**
+**Obrázek 5 – Zobrazení přihlášení**
 
-![clip_image010[4]](authenticating-users-with-forms-authentication-vb/_static/image5.jpg)
+![clip_image010.[](authenticating-users-with-forms-authentication-vb/_static/image5.jpg)
 
-Můžete použít zobrazení přihlášení a zadat své uživatelské jméno a heslo. Pokud nejste registrovaný uživatel, můžete kliknout na odkaz **zaregistrovat** a přejít k zobrazení registru (viz obrázek 6). Můžete použít zobrazení registru k vytvoření nového uživatelského účtu.
+Pomocí zobrazení Přihlášení můžete zadat své uživatelské jméno a heslo. Pokud nejste registrovaným uživatelem, můžete kliknutím na odkaz **registru** přejít do zobrazení Registr (viz obrázek 6). Pomocí zobrazení Registr můžete vytvořit nový uživatelský účet.
 
-**Obrázek 6 – zobrazení registrů**
+**Obrázek 6 – Zobrazení registru**
 
 ![clip_image012](authenticating-users-with-forms-authentication-vb/_static/image6.jpg)
 
-Po úspěšném přihlášení si můžete prohlédnout zobrazení CompanySecrets (viz obrázek 7). Ve výchozím nastavení budete nadále přihlášeni, dokud nezavřete okno prohlížeče.
+Po úspěšném přihlášení se zobrazí zobrazení CompanySecrets (viz obrázek 7). Ve výchozím nastavení budete nadále přihlášeni, dokud nezavřete okno prohlížeče.
 
-**Obrázek 7 – zobrazení CompanySecrets**
+**Obrázek 7 – Zobrazení CompanySecrets**
 
 ![clip_image014](authenticating-users-with-forms-authentication-vb/_static/image7.jpg)
 
-#### <a name="authorizing-by-user-name-or-user-role"></a>Autorizace podle uživatelského jména nebo role uživatele
+#### <a name="authorizing-by-user-name-or-user-role"></a>Autorizace podle uživatelského jména nebo uživatelské role
 
-Atribut [autorizovat] můžete použít k omezení přístupu k akci kontroleru na konkrétní skupinu uživatelů nebo konkrétní sadu rolí uživatele. Například upravený domovský řadič v seznamu 2 obsahuje dvě nové akce s názvem StephenSecrets () a AdministratorSecrets ().
+Atribut [Authorize] můžete použít k omezení přístupu k akci kontroleru na určitou sadu uživatelů nebo určitou sadu uživatelských rolí. Například upravený domácí řadič v seznamu 2 obsahuje dvě nové akce s názvem StephenSecrets() a AdministratorSecrets().
 
-**Výpis 2 – Controllers\HomeController.vb**
+**Výpis 2 – Řadiče\HomeController.vb**
 
 [!code-vb[Main](authenticating-users-with-forms-authentication-vb/samples/sample2.vb)]
 
-Akci StephenSecrets () může vyvolat jenom uživatel s uživatelským jménem Stephen. Všichni ostatní uživatelé budou přesměrováni na zobrazení přihlášení. Vlastnost Users přijímá seznam názvů uživatelských účtů oddělených čárkami.
+Pouze uživatel s uživatelským jménem Stephen může vyvolat StephenSecrets() akce. Všichni ostatní uživatelé budou přesměrováni do zobrazení Přihlášení. Vlastnost Users přijímá seznam názvů uživatelských účtů oddělených čárkami.
 
-Akci AdministratorSecrets () mohou vyvolat pouze uživatelé v roli správců. Například vzhledem k tomu, že Sally je členem skupiny Administrators, může vyvolat akci AdministratorSecrets (). Všichni ostatní uživatelé budou přesměrováni na zobrazení přihlášení. Vlastnost role přijímá seznam názvů rolí oddělených čárkami.
+Akci AdministratorSecrets() mohou vyvolat pouze uživatelé v roli Administrators. Například protože Sally je členem skupiny Administrators, může vyvolat akci AdministratorSecrets(). Všichni ostatní uživatelé budou přesměrováni do zobrazení Přihlášení. Vlastnost Role přijímá seznam názvů rolí oddělený chod čárek.
 
 #### <a name="configuring-authentication"></a>Konfigurace ověřování
 
-V tomto okamžiku se můžete zajímat, kde se ukládají informace o uživatelském účtu a roli. Ve výchozím nastavení jsou informace uložené v databázi SQL Express s názvem ASPNETDB. mdf, která se nachází ve složce aplikace\_dat aplikace MVC. Tato databáze je generována ASP.NET architekturou automaticky, když začnete používat členství.
+V tomto okamžiku se možná divíte, kde jsou uloženy informace o uživatelském účtu a roli. Ve výchozím nastavení jsou informace uloženy v databázi (RANU) SQL Express s názvem ASPNETDB.mdf umístěné ve složce Data aplikací\_aplikace MVC. Tato databáze je generována ASP.NET rámci automaticky při spuštění členství.
 
-Chcete-li zobrazit databázi ASPNETDB. mdf v okně Průzkumník řešení, musíte nejprve vybrat možnost projekt možnosti nabídky, Zobrazit všechny soubory.
+Chcete-li zobrazit databázi ASPNETDB.mdf v okně Průzkumník řešení, musíte nejprve vybrat možnost nabídky Projekt, Zobrazit všechny soubory.
 
-Použití výchozí databáze SQL Express je při vývoji aplikace přesné. Pravděpodobně ale nebudete chtít používat výchozí databázi ASPNETDB. mdf pro produkční aplikaci. V takovém případě můžete změnit, kde jsou uložené informace o uživatelském účtu, a to provedením následujících dvou kroků:
+Použití výchozí databáze SQL Express je v pořádku při vývoji aplikace. S největší pravděpodobností však nebudete chtít použít výchozí databázi ASPNETDB.mdf pro produkční aplikaci. V takovém případě můžete změnit, kde jsou uloženy informace o uživatelském účtu, provedením následujících dvou kroků:
 
-1. Přidání databázových objektů Aplikační služby do provozní databáze – Změňte připojovací řetězec aplikace tak, aby odkazoval na provozní databázi.
+1. Přidání databázových objektů aplikačních služeb do produkční databáze – Změňte připojovací řetězec aplikace tak, aby přectol na produkční databázi.
 
-Prvním krokem je přidání všech potřebných databázových objektů (tabulek a uložených procedur) do provozní databáze. Nejjednodušší způsob, jak tyto objekty přidat do nové databáze, je využít průvodce instalací SQL Server ASP.NET (viz obrázek 8). Tento nástroj můžete spustit otevřením příkazového řádku sady Visual Studio 2008 ze skupiny programu Microsoft Visual Studio 2008 a spuštěním následujícího příkazu z příkazového řádku:
+Prvním krokem je přidání všech potřebných databázových objektů (tabulek a uložených procedur) do produkční databáze. Nejjednodušší způsob, jak přidat tyto objekty do nové databáze, je využít ASP.NET Průvodce instalací serveru SQL Server (viz obrázek 8). Tento nástroj můžete spustit otevřením příkazového řádku sady Visual Studio 2008 ze skupiny programů sady Microsoft Visual Studio 2008 a spuštěním následujícího příkazu z příkazového řádku:
 
-ASPNET\_regsql
+aspnet\_regsql
 
-**Obrázek 8 – Průvodce instalací SQL Server ASP.NET**
+**Obrázek 8 – Průvodce instalací serveru ASP.NET SQL Server**
 
 ![clip_image016](authenticating-users-with-forms-authentication-vb/_static/image8.jpg)
 
-Průvodce instalací SQL Server ASP.NET umožňuje vybrat databázi SQL Server v síti a nainstalovat všechny databázové objekty, které vyžadují aplikační služby ASP.NET. Databázový server není nutné umístit na místní počítač.
+Průvodce instalací serveru ASP.NET SQL Server umožňuje vybrat databázi serveru SQL Server v síti a nainstalovat všechny databázové objekty vyžadované ASP.NET aplikačními službami. Databázový server nemusí být umístěn v místním počítači.
 
 > [!NOTE]
-> Pokud nechcete použít Průvodce instalací SQL Server ASP.NET, můžete najít skripty SQL pro přidání databázových objektů služby Application Services do následující složky:
+> Pokud nechcete používat Průvodce instalací ASP.NET serveru SQL Server, můžete najít skripty SQL pro přidání databázových objektů aplikačních služeb v následující složce:
 > 
 > 
 > C:\Windows\Microsoft.NET\Framework\v2.0.50727
 
-Po vytvoření potřebných databázových objektů je nutné upravit připojení k databázi, které používá aplikace MVC. Upravte připojovací řetězec ApplicationServices v souboru webové konfigurace (Web. config) tak, aby odkazoval na provozní databázi. Například upravené připojení v seznamu 3 odkazuje na databázi s názvem MyProductionDB (původní připojovací řetězec ApplicationServices byl zakomentován).
+Po vytvoření potřebných databázových objektů je třeba upravit připojení databáze používané aplikací MVC. Upravte připojovací řetězec ApplicationServices ve webové konfiguraci (web.config) souboru tak, aby odkazuje na produkční databázi. Například upravené připojení v Výpis 3 odkazuje na databázi s názvem MyProductionDB (původní applicationservices připojovací řetězec byl zakomentován).
 
-**Výpis 3 – Web. config**
+**Výpis 3 - Web.config**
 
 [!code-xml[Main](authenticating-users-with-forms-authentication-vb/samples/sample3.xml)]
 
 #### <a name="configuring-database-permissions"></a>Konfigurace oprávnění databáze
 
-Použijete-li integrované zabezpečení pro připojení k databázi, budete muset přidat správný uživatelský účet systému Windows jako přihlašovací jméno k databázi. Správný účet závisí na tom, zda používáte vývojový server ASP.NET nebo Internetová informační služba jako webový server. Správný uživatelský účet závisí také na vašem operačním systému.
+Pokud používáte integrované zabezpečení pro připojení k databázi, pak budete muset přidat správný uživatelský účet systému Windows jako přihlášení do databáze. Správný účet závisí na tom, zda jako webový server používáte ASP.NET Development Server nebo Internetovou informační službu. Správný uživatelský účet také závisí na operačním systému.
 
-Pokud používáte vývojový server ASP.NET (výchozí webový server používaný aplikací Visual Studio), aplikace se spustí v kontextu uživatelského účtu systému Windows. V takovém případě je nutné přidat uživatelský účet systému Windows jako přihlášení k databázovému serveru.
+Pokud používáte ASP.NET Development Server (výchozí webový server používaný aplikací Visual Studio), aplikace se spustí v kontextu uživatelského účtu systému Windows. V takovém případě je třeba přidat uživatelský účet systému Windows jako přihlášení databázového serveru.
 
-Případně, pokud používáte Internetová informační služba pak musíte přidat účet ASPNET nebo účet služby NT/NETWORK SERVICE jako přihlášení k databázovému serveru. Pokud používáte systém Windows XP, přidejte účet ASPNET jako přihlašovací údaje do vaší databáze. Pokud používáte novější operační systém, například Windows Vista nebo Windows Server 2008, přidejte účet AUTORITy NT/síťová služba jako přihlašovací jméno databáze.
+Pokud používáte Internetovou informační službu, je třeba přidat buď účet ASPNET, nebo účet NT AUTHORITY/NETWORK SERVICE jako přihlášení k databázovému serveru. Pokud používáte systém Windows XP, přidejte účet ASPNET jako přihlášení do databáze. Pokud používáte novější operační systém, například Windows Vista nebo Windows Server 2008, přidejte jako přihlášení do databáze účet NT AUTHORITY/NETWORK SERVICE.
 
-Nový uživatelský účet můžete do databáze přidat pomocí Microsoft SQL Server Management Studio (viz obrázek 9).
+Nový uživatelský účet můžete do databáze přidat pomocí aplikace Microsoft SQL Server Management Studio (viz obrázek 9).
 
-**Obrázek 9 – vytvoření nového Microsoft SQL Serverho přihlášení**
+**Obrázek 9 – Vytvoření nového přihlášení k serveru Microsoft SQL Server**
 
 ![clip_image018](authenticating-users-with-forms-authentication-vb/_static/image9.jpg)
 
-Po vytvoření požadovaného přihlašovacího jména musíte mapovat přihlášení k uživateli databáze se správnými databázovými rolemi. Dvakrát klikněte na přihlášení a vyberte kartu mapování uživatele. Vyberte jednu nebo více databázových rolí služby Application Services. Chcete-li například ověřit uživatele, je třeba povolit roli databáze ASPNET\_Membership\_BasicAccess. Aby bylo možné vytvářet nové uživatele, je nutné povolit roli FullAccess členství v\_ASPNET\_a databázi (viz obrázek 10).
+Po vytvoření požadované přihlášení, je třeba mapovat přihlášení do databáze uživatele s správné databázové role. Poklepejte na přihlášení a vyberte kartu Mapování uživatelů. Chcete-li například ověřit uživatele, musíte povolit\_databázovou roli aspnet Membership\_BasicAccess. Chcete-li vytvořit nové uživatele, je třeba\_povolit roli databáze Aspnet Membership\_FullAccess (viz obrázek 10).
 
-**Obrázek 10 – přidávání rolí Aplikační služby databáze**
+**Obrázek 10 – Přidání rolí databáze aplikačních služeb**
 
 ![clip_image020](authenticating-users-with-forms-authentication-vb/_static/image10.jpg)
 
 #### <a name="summary"></a>Souhrn
 
-V tomto kurzu jste zjistili, jak používat ověřování pomocí formulářů při sestavování aplikace ASP.NET MVC. Nejprve jste zjistili, jak vytvořit nové uživatele a role pomocí nástroje pro správu webu. V dalším kroku jste zjistili, jak použít atribut [autorizovat] k tomu, aby se zabránilo neautorizovaným uživatelům v vyvolání herních akcí. Nakonec jste zjistili, jak nakonfigurovat aplikaci MVC tak, aby ukládala informace o uživatelích a rolích do provozní databáze.
+V tomto kurzu jste se naučili používat ověřování pomocí formulářů při vytváření ASP.NET aplikace MVC. Nejprve jste se naučili vytvářet nové uživatele a role využitím nástroje pro správu webu. Dále jste se dozvěděli, jak pomocí atributu [Authorize] zabránit neoprávněným uživatelům v vyvolání akcí řadiče. Nakonec jste se dozvěděli, jak nakonfigurovat aplikaci MVC pro ukládání informací o uživatelích a rolích v produkční databázi.
 
 > [!div class="step-by-step"]
 > [Předchozí](preventing-javascript-injection-attacks-cs.md)
-> [Další](authenticating-users-with-windows-authentication-vb.md)
+> [další](authenticating-users-with-windows-authentication-vb.md)

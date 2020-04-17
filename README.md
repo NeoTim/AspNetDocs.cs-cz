@@ -1,10 +1,5 @@
-# <a name="aspnet-docs"></a>ASP.NET docs
+# <a name="aspnet-docs"></a>ASP.NET dokumenty
 
-Toto úložiště obsahuje dokumentaci koncepčního ASP.NET 4. x, která je hostována na adrese [docs.Microsoft.com/ASPNET](https://docs.microsoft.com/aspnet). Pokud byste chtěli vystavit nápovědu, přečtěte si [příručku pro přispívajícího](CONTRIBUTING.md) a [seznam problémů](https://github.com/dotnet/AspNetDocs/issues) .
+Toto úložiště obsahuje koncepční dokumentaci ASP.NET 4.x hostovopono na [docs.microsoft.com/aspnet](https://docs.microsoft.com/aspnet). Pokud chcete pomoci, přečtěte si nápovědu v [průvodci přispěním](CONTRIBUTING.md) a [v seznamu problémů.](https://github.com/dotnet/AspNetDocs/issues)
 
-Změny v dokumentaci k rozhraní API by se měly provádět v [úložišti ApiDocs](https://github.com/aspnet/ApiDocs) proti trojnásobku lomítka `///` komentářů.
-
-## <a name="microsoft-open-source-code-of-conduct"></a>Pravidla chování pro open source společnosti Microsoft
-
-Tento projekt přijal [pravidla chování pro Microsoft Open Source](https://opensource.microsoft.com/codeofconduct/).
-Další informace najdete v [nejčastějších dotazech k pravidlům chování](https://opensource.microsoft.com/codeofconduct/faq/). S případnými dalšími dotazy nebo připomínkami se obraťte na adresu [opencode@microsoft.com](mailto:opencode@microsoft.com).
+Změny dokumentace rozhraní API by měly být provedeny `///` v [úložišti ApiDocs](https://github.com/aspnet/ApiDocs) proti komentáře trojité lomítko.

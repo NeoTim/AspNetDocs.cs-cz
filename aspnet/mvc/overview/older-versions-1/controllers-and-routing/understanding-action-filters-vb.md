@@ -1,124 +1,124 @@
 ---
 uid: mvc/overview/older-versions-1/controllers-and-routing/understanding-action-filters-vb
-title: Principy filtrů akcí (VB) | Microsoft Docs
-author: microsoft
-description: Cílem tohoto kurzu je vysvětlit filtry akcí. Filtr akcí je atribut, který můžete použít pro akci kontroleru, nebo pro celý kontroler...
+title: Principy filtrů akcí (VB) | Dokumenty společnosti Microsoft
+author: rick-anderson
+description: Cílem tohoto kurzu je vysvětlit filtry akcí. Filtr akce je atribut, který můžete použít na akci kontroleru nebo na celý řadič...
 ms.author: riande
 ms.date: 10/16/2008
 ms.assetid: e83812f2-c53e-4a43-a7c1-d64c59ecf694
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/understanding-action-filters-vb
 msc.type: authoredcontent
-ms.openlocfilehash: 263658231ccaa7863508c691a3570bc00b9e8039
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 70ab564bc1217f67874090d2ae6899d9bcd743a1
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78601169"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542102"
 ---
 # <a name="understanding-action-filters-vb"></a>Principy filtrů akcí (VB)
 
-od [Microsoftu](https://github.com/microsoft)
+podle [společnosti Microsoft](https://github.com/microsoft)
 
 [Stáhnout PDF](https://download.microsoft.com/download/e/f/3/ef3f2ff6-7424-48f7-bdaa-180ef64c3490/ASPNET_MVC_Tutorial_14_VB.pdf)
 
-> Cílem tohoto kurzu je vysvětlit filtry akcí. Filtr akcí je atribut, který můžete použít pro akci kontroleru, nebo pro celý kontroler, který mění způsob, jakým se akce provádí.
+> Cílem tohoto kurzu je vysvětlit filtry akcí. Filtr akce je atribut, který můžete použít pro akci kontroleru nebo celý řadič , který upravuje způsob, jakým je akce provedena.
 
-## <a name="understanding-action-filters"></a>Porozumění filtrům akcí
+## <a name="understanding-action-filters"></a>Principy filtrů akcí
 
-Cílem tohoto kurzu je vysvětlit filtry akcí. Filtr akcí je atribut, který můžete použít pro akci kontroleru, nebo pro celý kontroler, který mění způsob, jakým se akce provádí. Rozhraní ASP.NET MVC obsahuje několik filtrů akcí:
+Cílem tohoto kurzu je vysvětlit filtry akcí. Filtr akce je atribut, který můžete použít pro akci kontroleru nebo celý řadič , který upravuje způsob, jakým je akce provedena. Rozhraní ASP.NET MVC obsahuje několik akčních filtrů:
 
-- OutputCache – tento filtr akcí ukládá do mezipaměti výstup akce kontroleru po zadanou dobu.
-- HandleError – tento filtr akcí zpracovává chyby vyvolané při spuštění akce kontroleru.
-- Autorizovat – tento filtr akcí vám umožňuje omezit přístup k určitému uživateli nebo roli.
+- OutputCache – Tento filtr akce ukládá výstup akce řadiče po určitou dobu.
+- HandleError – Tento filtr akce zpracovává chyby vyvolané při spuštění akce kontroleru.
+- Autorizace – Tento filtr akce umožňuje omezit přístup k určitému uživateli nebo roli.
 
-Můžete také vytvořit vlastní filtry akcí. Například můžete chtít vytvořit vlastní filtr akcí, abyste mohli implementovat vlastní ověřovací systém. Nebo můžete chtít vytvořit filtr akcí, který upraví zobrazení dat vrácených akcí kontroleru.
+Můžete také vytvořit vlastní filtry akcí. Můžete například vytvořit vlastní filtr akcí, abyste mohli implementovat vlastní ověřovací systém. Nebo můžete chtít vytvořit filtr akce, který upravuje data zobrazení vrácená akcí kontroleru.
 
-V tomto kurzu se naučíte, jak vytvořit filtr akcí od základu. Vytvoříme filtr akcí protokolu, který bude protokolovat různé fáze zpracování akce v okně výstupu sady Visual Studio.
+V tomto kurzu se dozvíte, jak vytvořit filtr akce od základu. Vytvoříme filtr akce protokolu, který zaznamenává různé fáze zpracování akce do okna Visual Studio Output.
 
 ### <a name="using-an-action-filter"></a>Použití filtru akcí
 
-Filtr akcí je atribut. Většinu filtrů akcí můžete použít buď na akci samostatného kontroleru, nebo na celý kontroler.
+Filtr akce je atribut. Většinu filtrů akcí můžete použít na jednotlivou akci kontroleru nebo na celý ovladač.
 
-Například řadič dat v seznamu 1 zpřístupňuje akci s názvem `Index()`, která vrací aktuální čas. Tato akce je upravena pomocí filtru akcí `OutputCache`. Tento filtr způsobí, že hodnota vrácená akcí bude ukládána do mezipaměti po dobu 10 sekund.
+Například správce dat v výpisu 1 `Index()` zpřístupňuje akci s názvem, která vrací aktuální čas. Tato akce je `OutputCache` zdobena filtrem akce. Tento filtr způsobí, že hodnota vrácená akcí bude uložena do mezipaměti po dobu 10 sekund.
 
-**Výpis 1 – `Controllers\DataController.vb`**
+**Výpis 1 –`Controllers\DataController.vb`**
 
 [!code-vb[Main](understanding-action-filters-vb/samples/sample1.vb)]
 
-Pokud `Index()` akci opakovaně vyvoláte tak, že zadáte adresu URL/Data/Index do panelu Adresa v prohlížeči a několikrát kliknete na tlačítko Aktualizovat, bude se vám po dobu 10 sekund zobrazovat stejný čas. Výstup akce `Index()` je uložen do mezipaměti po dobu 10 sekund (viz obrázek 1).
+Pokud akci opakovaně `Index()` vyvoláte zadáním adresy URL /Data/Index do adresního řádku prohlížeče a opakovaným stisknutím tlačítka Aktualizovat, zobrazí se stejný čas po dobu 10 sekund. Výstup akce `Index()` je uložen do mezipaměti po dobu 10 sekund (viz obrázek 1).
 
-[čas ![v mezipaměti](understanding-action-filters-vb/_static/image2.png)](understanding-action-filters-vb/_static/image1.png)
+[![Čas uložený v mezipaměti](understanding-action-filters-vb/_static/image2.png)](understanding-action-filters-vb/_static/image1.png)
 
-**Obrázek 01**: čas v mezipaměti ([kliknutím zobrazíte obrázek v plné velikosti](understanding-action-filters-vb/_static/image3.png))
+**Obrázek 01**: Čas uložený v mezipaměti[(Kliknutím zobrazíte obrázek v plné velikosti)](understanding-action-filters-vb/_static/image3.png)
 
-V seznamu 1 se pro metodu `Index()` používá filtr akcí `OutputCache` –. Pokud potřebujete, můžete pro stejnou akci použít více filtrů akcí. Můžete například chtít, aby se pro stejnou akci mohla použít filtr akcí `OutputCache` i `HandleError`.
+V seznamu 1 se na `OutputCache` `Index()` metodu použije jeden filtr akce – filtr akce. Pokud potřebujete, můžete použít více filtrů akcí na stejnou akci. Můžete například použít filtry `OutputCache` i `HandleError` filtry akcí pro stejnou akci.
 
-V seznamu 1 se pro akci `Index()` použije filtr akce `OutputCache`. Tento atribut můžete použít také pro třídu `DataController` samotné. V takovém případě by výsledek vrácený všemi akcemi vystavenými řadičem byl uložen do mezipaměti po dobu 10 sekund.
+V seznamu 1 `OutputCache` se na `Index()` akci použije filtr akce. Tento atribut můžete také `DataController` použít pro samotnou třídu. V takovém případě výsledek vrácený jakoukoli akcí vystavenou řadičem by byl uložen do mezipaměti po dobu 10 sekund.
 
 ### <a name="the-different-types-of-filters"></a>Různé typy filtrů
 
-Rozhraní ASP.NET MVC podporuje čtyři různé typy filtrů:
+ASP.NET MVC framework podporuje čtyři různé typy filtrů:
 
-1. Autorizační filtry – implementuje atribut `IAuthorizationFilter`.
-2. Filtry akcí – implementuje atribut `IActionFilter`.
-3. Filtry výsledků – implementuje atribut `IResultFilter`.
-4. Filtry výjimek – implementuje atribut `IExceptionFilter`.
+1. Filtry autorizace `IAuthorizationFilter` – Implementuje atribut.
+2. Akce filtry – `IActionFilter` Implementuje atribut.
+3. Filtry výsledků – `IResultFilter` Implementuje atribut.
+4. Filtry výjimek `IExceptionFilter` – Implementuje atribut.
 
-Filtry se spouštějí v uvedeném pořadí. Například filtry autorizace jsou vždy spouštěny před filtry akcí a filtry výjimek jsou vždy provedeny po každém jiném typu filtru.
+Filtry jsou prováděny v pořadí uvedeném výše. Například filtry autorizace jsou vždy provedeny před filtry akcí a filtry výjimek jsou vždy provedeny po každém jiném typu filtru.
 
-Filtry autorizace slouží k implementaci ověřování a autorizace pro akce kontroleru. Například filtr autorizace je příkladem autorizačního filtru.
+Filtry autorizace se používají k implementaci ověřování a autorizace akcí řadiče. Například filtr Autorizovat je příkladem filtru Autorizace.
 
-Filtry akcí obsahují logiku, která se spustí před a po spuštění akce kontroleru. Filtr akcí můžete například použít k úpravě dat zobrazení, která akce kontroleru vrátí.
+Filtry akcí obsahují logiku, která je spuštěna před a po provedení akce kontroleru. Filtr akce můžete použít například k úpravě dat zobrazení, která vrátí akce kontroleru.
 
-Filtry výsledků obsahují logiku, která se spustí před a po provedení výsledku zobrazení. Například můžete chtít upravit výsledek zobrazení přímo před tím, než se zobrazení vykreslí do prohlížeče.
+Filtry výsledků obsahují logiku, která je spuštěna před a po spuštění výsledku zobrazení. Můžete například chtít upravit výsledek zobrazení těsně před vykreslením zobrazení do prohlížeče.
 
-Filtry výjimek jsou poslední typ filtru, který má být spuštěn. Filtr výjimek můžete použít ke zpracování chyb vyvolaných akcemi kontroleru nebo výsledky akce kontroleru. Filtry výjimek můžete použít také k protokolování chyb.
+Filtry výjimek jsou posledním typem filtru, který má být spuštěn. Filtr výjimek můžete použít ke zpracování chyb vydchlých vydazeným akcemi ovladače nebo výsledky akce kontroleru. Můžete také použít filtry výjimek k protokolování chyb.
 
-Každý jiný typ filtru se spustí v určitém pořadí. Pokud chcete řídit pořadí, ve kterém se spouštějí filtry stejného typu, můžete nastavit vlastnost Order objektu Filter.
+Každý jiný typ filtru je proveden v určitém pořadí. Pokud chcete řídit pořadí, ve kterém jsou filtry stejného typu provedeny, můžete nastavit vlastnost objednávky filtru.
 
-Základní třídou pro všechny filtry akcí je třída `System.Web.Mvc.FilterAttribute`. Pokud chcete implementovat konkrétní typ filtru, je nutné vytvořit třídu, která dědí z třídy základního filtru a implementuje jedno nebo více rozhraní IAuthorizationFilter, IActionFilter, IResultFilter nebo ExceptionFilter.
+Základní třída pro všechny filtry `System.Web.Mvc.FilterAttribute` akcí je třída. Pokud chcete implementovat určitý typ filtru, potom je třeba vytvořit třídu, která dědí ze základní třídy Filter a implementuje jeden nebo více rozhraní IAuthorizationFilter, IActionFilter, IResultFilter nebo ExceptionFilter.
 
 ### <a name="the-base-actionfilterattribute-class"></a>Základní třída ActionFilterAttribute
 
-Aby bylo snazší implementovat vlastní filtr akcí, rozhraní ASP.NET MVC zahrnuje základní třídu `ActionFilterAttribute`. Tato třída implementuje rozhraní `IActionFilter` i `IResultFilter` a dědí z třídy `Filter`.
+Aby bylo možné usnadnit implementaci filtru vlastní akce, ASP.NET mvc `ActionFilterAttribute` rámec obsahuje základní třídy. Tato třída `IActionFilter` implementuje `IResultFilter` rozhraní a rozhraní `Filter` a dědí z třídy.
 
-Tato terminologie není zcela konzistentní. Technicky, třída, která dědí z třídy ActionFilterAttribute, je filtr akcí a filtr výsledků. Ale ve volném smyslu se k odkazování na libovolný typ filtru v rozhraní ASP.NET MVC používá filtr akcí Wordu.
+Terminologie zde není zcela konzistentní. Technicky je třída, která dědí z třídy ActionFilterAttribute, filtr akce i filtr výsledků. Ve volném smyslu se však filtr akce slova používá k odkazování na jakýkoli typ filtru v rámci ASP.NET MVC.
 
-Základní třída ActionFilterAttribute má následující metody, které lze přepsat:
+Základní třída ActionFilterAttribute má následující metody, které můžete přepsat:
 
 - OnActionExecuting – Tato metoda je volána před provedením akce kontroleru.
-- OnActionExecuted – Tato metoda se volá po provedení akce kontroleru.
-- OnResultExecuting – Tato metoda je volána před provedením výsledku akce kontroleru.
-- OnResultExecuted – Tato metoda se volá poté, co se spustí výsledek akce kontroleru.
+- OnActionExecuted – Tato metoda je volána po provedení akce kontroleru.
+- OnResultExecuting – Tato metoda je volána před spuštěním akce kontroleru.
+- OnResultExecuted – Tato metoda je volána po provedení akce kontroléru.
 
-V další části uvidíte, jak můžete implementovat každou z těchto různých metod.
+V další části uvidíme, jak můžete implementovat každou z těchto různých metod.
 
 ### <a name="creating-a-log-action-filter"></a>Vytvoření filtru akce protokolu
 
-Pro ilustraci, jak můžete vytvořit vlastní filtr akcí, vytvoříme vlastní filtr akcí, který bude protokolovat fáze zpracování akce kontroleru v okně výstupu sady Visual Studio. Náš `LogActionFilter` je obsažený v seznamu 2.
+Aby chomáč, jak můžete vytvořit vlastní akce filtr, vytvoříme vlastní akce filtr, který zaznamenává fáze zpracování akce kontroleru do okna Visual Studio Výstup. Naše `LogActionFilter` je obsažena v seznamu 2.
 
-**Výpis 2 – `ActionFilters\LogActionFilter.vb`**
+**Výpis 2 –`ActionFilters\LogActionFilter.vb`**
 
 [!code-vb[Main](understanding-action-filters-vb/samples/sample2.vb)]
 
-V výpisu 2 jsou `OnActionExecuting()`, `OnActionExecuted()`, `OnResultExecuting()`a `OnResultExecuted()` metody všechny volat metodu `Log()`. Název metody a data aktuální trasy jsou předány metodě `Log()`. Metoda `Log()` zapisuje zprávu do okna výstupu sady Visual Studio (viz obrázek 2).
+`OnActionExecuting()`V výpisu 2, `OnResultExecuting()`, `OnResultExecuted()` `OnActionExecuted()`, a `Log()` metody všechny volání metody. Název metody a aktuální data trasy je `Log()` předán metodě. Metoda `Log()` zapíše zprávu do okna Visual Studio Output (viz obrázek 2).
 
-[![zápis do okna výstup aplikace Visual Studio](understanding-action-filters-vb/_static/image5.png)](understanding-action-filters-vb/_static/image4.png)
+[![Zápis do okna Výstup sady Visual Studio](understanding-action-filters-vb/_static/image5.png)](understanding-action-filters-vb/_static/image4.png)
 
-**Obrázek 02**: zápis do okna výstup aplikace Visual Studio ([kliknutím zobrazíte obrázek v plné velikosti](understanding-action-filters-vb/_static/image6.png))
+**Obrázek 02**: Zápis do okna Výstup sady Visual Studio[(Klepnutím zobrazíte obrázek v plné velikosti)](understanding-action-filters-vb/_static/image6.png)
 
-Domovský kontroler v seznamu 3 ukazuje, jak můžete použít filtr akce protokolu na celou třídu kontroleru. Vždy, když jsou vyvolány jakékoli akce vystavené domovským řadičem – buď metoda `Index()`, nebo metoda `About()` – fáze zpracování akce jsou protokolovány do okna výstup sady Visual Studio.
+Domácí kontroler v seznamu 3 ukazuje, jak můžete použít filtr akce protokolu na celou třídu kontroleru. Vždy, když některé akce vystavené řadič home `Index()` jsou vyvolány – metoda nebo `About()` metoda – fáze zpracování akce jsou zaznamenány do okna Visual Studio Výstup.
 
-**Výpis 3 – `Controllers\HomeController.vb`**
+**Výpis 3 –`Controllers\HomeController.vb`**
 
 [!code-vb[Main](understanding-action-filters-vb/samples/sample3.vb)]
 
 ### <a name="summary"></a>Souhrn
 
-V tomto kurzu jste se zavedli k ASP.NETm filtrům akcí MVC. Seznámili jste se se čtyřmi různými typy filtrů: filtry autorizace, filtry akcí, filtry výsledků a filtry výjimek. Zjistili jste také základní třídu `ActionFilterAttribute`.
+V tomto kurzu jste byli představeni ASP.NET filtry akcí MVC. Dozvěděli jste se o čtyřech různých typech filtrů: filtrech autorizace, filtrech akcí, filtrech výsledků a filtrech výjimek. Také jste se `ActionFilterAttribute` dozvěděli o základní třídě.
 
-Nakonec jste zjistili, jak implementovat jednoduchý filtr akcí. Vytvořili jsme filtr akcí protokolu, který zapisuje fáze zpracování akce kontroleru do okna výstup sady Visual Studio.
+Nakonec jste se naučili, jak implementovat jednoduchý filtr akce. Vytvořili jsme filtr akce protokolu, který zaznamenává fáze zpracování akce kontroleru do okna Visual Studio Output.
 
 > [!div class="step-by-step"]
 > [Předchozí](asp-net-mvc-routing-overview-vb.md)
-> [Další](improving-performance-with-output-caching-vb.md)
+> [další](improving-performance-with-output-caching-vb.md)

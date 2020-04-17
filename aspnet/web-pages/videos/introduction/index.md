@@ -1,26 +1,26 @@
 ---
 uid: web-pages/videos/introduction/index
-title: Úvod do videí na webových stránkách | Microsoft Docs
+title: Úvod do webových stránek Videa | Dokumenty společnosti Microsoft
 author: rick-anderson
-description: Která videa si můžete zobrazit a Naučte se základy webových stránek a WebMatrixu.
+description: Která videa si můžete prohlédnout, abyste se dozvěděli základy webových stránek a webmatrixu.
 ms.author: riande
 ms.date: 05/18/2012
 ms.assetid: b8a43660-177f-4a00-bb51-be887364c607
 msc.legacyurl: /web-pages/videos/introduction
 msc.type: chapter
-ms.openlocfilehash: e4e9d63ddc701205d9f102e05fe47dd2c552bdf1
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: e1720cf4fc9cdbec216ae0043a14d7118a388d9b
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78631689"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542978"
 ---
-# <a name="introduction-to-web-pages-videos"></a>Seznámení s webovými stránkami – videa
+# <a name="introduction-to-web-pages-videos"></a>Úvod do webových stránek Videa
 
-> Která videa si můžete zobrazit a Naučte se základy webových stránek a WebMatrixu.
+> Která videa si můžete prohlédnout, abyste se dozvěděli základy webových stránek a webmatrixu.
 
 > [!NOTE] 
-> WebMatrix se už nedoporučuje jako integrované vývojové prostředí pro webové stránky ASP.NET. Použijte [Visual Studio](xref:aspnet/web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio) nebo [Visual Studio Code](https://code.visualstudio.com/).
+> WebMatrix se již nedoporučuje jako integrované vývojové prostředí pro ASP.NET webových stránek. Použijte [visual studio](xref:web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio) nebo kód sady Visual [Studio](https://code.visualstudio.com/).
 
 - [Pětiminutový úvod do webových stránek ASP.NET](5-minute-introduction-to-aspnet-web-pages.md)
 - [Instalace použití nástroje Microsoft WebMatrix](install-and-use-the-microsoft-webmatrix-tool.md)

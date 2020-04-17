@@ -1,24 +1,24 @@
 ---
 uid: web-forms/videos/how-do-i/how-do-i-make-use-of-caching
-title: '[Postupy:] Využijete ukládání do mezipaměti? | Dokumenty Microsoft'
-author: microsoft
-description: Podívejte se na ukázku ukládání výstupu stránky do mezipaměti následovaný přehledem nové podpory ukládání do mezipaměti databáze pro SQL Server 2000 a SQL Server 2005.
+title: '[Jak mohu:] Využít Caching? | Dokumentace Microsoftu'
+author: rick-anderson
+description: Podívejte se na ukázku ukládání do mezipaměti výstupu stránky následovanou přehledem nové podpory ukládání do mezipaměti databáze pro sql server 2000 a SQL Server 2005.
 ms.author: riande
 ms.date: 01/16/2006
 ms.assetid: 43939d36-0d3a-42b0-a9ed-c839eef6daa9
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-make-use-of-caching
 msc.type: video
-ms.openlocfilehash: f44738eca2c3f0146890f69d560eb0a92230ec00
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 235b64596d78393b428eefaaf49506da7a48a58b
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78523287"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543844"
 ---
-# <a name="how-do-i-make-use-of-caching"></a>[Postupy:] Využijete ukládání do mezipaměti?
+# <a name="how-do-i-make-use-of-caching"></a>[Jak mohu:] Využít Caching?
 
-od [Microsoftu](https://github.com/microsoft)
+podle [společnosti Microsoft](https://github.com/microsoft)
 
-Podívejte se na ukázku ukládání výstupu stránky do mezipaměti následovaný přehledem nové podpory ukládání do mezipaměti databáze pro SQL Server 2000 a SQL Server 2005.
+Podívejte se na ukázku ukládání do mezipaměti výstupu stránky následovanou přehledem nové podpory ukládání do mezipaměti databáze pro sql server 2000 a SQL Server 2005.
 
-[&#9654;Přehrát video (11 minut)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-make-use-of-caching)
+[&#9654; Podívejte se na video (11 minut)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-make-use-of-caching)

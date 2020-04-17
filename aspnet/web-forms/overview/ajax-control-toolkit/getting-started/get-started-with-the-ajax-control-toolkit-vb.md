@@ -1,80 +1,80 @@
 ---
 uid: web-forms/overview/ajax-control-toolkit/getting-started/get-started-with-the-ajax-control-toolkit-vb
-title: Začínáme s AJAX Control Toolkit (VB) | Microsoft Docs
-author: microsoft
-description: Naučte se všechno, co potřebujete vědět, abyste mohli začít používat AJAX Control Toolkit.
+title: Začínáme s AJAX Control Toolkit (VB) | Dokumenty společnosti Microsoft
+author: rick-anderson
+description: Naučte se vše, co potřebujete vědět, abyste mohli začít používat ajax control toolkit.
 ms.author: riande
 ms.date: 05/12/2009
 ms.assetid: 9f8fa166-49a2-402c-b236-20caef0c658f
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/getting-started/get-started-with-the-ajax-control-toolkit-vb
 msc.type: authoredcontent
-ms.openlocfilehash: ff614308555b31710b11f408e12e9a6fadbf98d0
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 6af5e293a35ce3e3ba35a0f7abfd2d92d538c84c
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78613482"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543558"
 ---
 # <a name="get-started-with-the-ajax-control-toolkit-vb"></a>Začínáme se sadou nástrojů AJAX Control Toolkit (VB)
 
-od [Microsoftu](https://github.com/microsoft)
+podle [společnosti Microsoft](https://github.com/microsoft)
 
-> Naučte se všechno, co potřebujete vědět, abyste mohli začít používat AJAX Control Toolkit.
+> Naučte se vše, co potřebujete vědět, abyste mohli začít používat ajax control toolkit.
 
-Sada nástrojů AJAX Control Toolkit obsahuje více než 30 bezplatných ovládacích prvků, které lze použít v aplikacích ASP.NET. V tomto kurzu se naučíte, jak stáhnout AJAX Control Toolkit a přidat ovládací prvky Toolkit do sady Visual Studio/Visual Web Developer Express Toolkit.
+Sada nástrojů AJAX Control Toolkit obsahuje více než 30 bezplatných ovládacích prvků, které můžete použít ve svých ASP.NET aplikacích. V tomto kurzu se dozvíte, jak stáhnout sadu nástrojů AJAX Control Toolkit a přidat ovládací prvky sady nástrojů do sady nástrojů Visual Studio/Visual Web Developer Express.
 
-## <a name="downloading-the-ajax-control-toolkit"></a>Stažení sady nástrojů AJAX Control Toolkit
+## <a name="downloading-the-ajax-control-toolkit"></a>Stažení sady nástrojů ajax control
 
-[AJAX Control Toolkit](http://devexpress.com/act) je open source projekt vyvinutý členy komunity ASP.NET a týmu ASP.NET.
+[AJAX Control Toolkit](http://devexpress.com/act) je open source projekt vyvinutý členy ASP.NET komunity a ASP.NET týmu.
 
-[![stažení sady nástrojů AJAX Control Toolkit](get-started-with-the-ajax-control-toolkit-vb/_static/image1.jpg)](get-started-with-the-ajax-control-toolkit-vb/_static/image1.png)
+[![Stažení sady nástrojů ajax control](get-started-with-the-ajax-control-toolkit-vb/_static/image1.jpg)](get-started-with-the-ajax-control-toolkit-vb/_static/image1.png)
 
-**Obrázek 01**: stažení sady nástrojů Ajax Control Toolkit ([kliknutím zobrazíte obrázek v plné velikosti](get-started-with-the-ajax-control-toolkit-vb/_static/image2.png))
+**Obrázek 01**: Stažení AJAX Control Toolkit[(Klikněte pro zobrazení full-size image)](get-started-with-the-ajax-control-toolkit-vb/_static/image2.png)
 
-Po stažení souboru je nutné soubor odblokovat. Klikněte na soubor pravým tlačítkem, vyberte vlastnosti a klikněte na tlačítko **odblokování** (viz obrázek 2).
+Po stažení souboru je třeba soubor odblokovat. Klikněte pravým tlačítkem myši na soubor, vyberte Vlastnosti a klikněte na tlačítko **Odblokovat** (viz obrázek 2).
 
-[![odblokování souboru ZIP sady nástrojů AJAX Control Toolkit](get-started-with-the-ajax-control-toolkit-vb/_static/image2.jpg)](get-started-with-the-ajax-control-toolkit-vb/_static/image3.png)
+[![Odblokování souboru ZIP sady NÁSTROJŮ ovládacího prvku AJAX](get-started-with-the-ajax-control-toolkit-vb/_static/image2.jpg)](get-started-with-the-ajax-control-toolkit-vb/_static/image3.png)
 
-**Obrázek 02**: odblokování souboru ZIP sady nástrojů Ajax Control Toolkit ([kliknutím zobrazíte obrázek v plné velikosti](get-started-with-the-ajax-control-toolkit-vb/_static/image4.png))
+**Obrázek 02**: Odblokování AJAX Control Toolkit ZIP soubor[(Klikněte pro zobrazení full-size image)](get-started-with-the-ajax-control-toolkit-vb/_static/image4.png)
 
-Po odblokování souboru můžete soubor rozbalit: klikněte pravým tlačítkem myši na soubor a vyberte možnost **Rozbalit vše** v nabídce. Nyní jsme připraveni přidat sadu nástrojů do sady Visual Studio nebo Visual Web Developer Toolkit.
+Po odblokování souboru můžete rozbalit soubor: Klikněte pravým tlačítkem myši na soubor a vyberte volbu **Rozbalit vše.** Nyní jsme připraveni přidat sadu nástrojů do sady nástrojů Visual Studio/Visual Web Developer.
 
 ## <a name="adding-the-ajax-control-toolkit-to-the-toolbox"></a>Přidání sady nástrojů AJAX Control Toolkit do sady nástrojů
 
-Nejjednodušší způsob, jak použít sadu nástrojů AJAX Control Toolkit, je přidat sadu nástrojů do sady Visual Studio nebo Visual Web Developer Toolkit (viz obrázek 3). Tímto způsobem můžete jednoduše přetáhnout ovládací prvek Toolkit na stránku, pokud ho chcete použít.
+Nejjednodušší způsob, jak použít sadu nástrojů AJAX Control Toolkit, je přidat sadu nástrojů do sady nástrojů Visual Studio/Visual Web Developer (viz obrázek 3). Tímto způsobem můžete jednoduše přetáhnout ovládací prvek sady nástrojů na stránku, když jej chcete použít.
 
-[![sada nástrojů AJAX Control Toolkit se zobrazí v sadě nástrojů](get-started-with-the-ajax-control-toolkit-vb/_static/image3.jpg)](get-started-with-the-ajax-control-toolkit-vb/_static/image5.png)
+[![V sadě nástrojů se zobrazí sada nástrojů AJAX Control Toolkit](get-started-with-the-ajax-control-toolkit-vb/_static/image3.jpg)](get-started-with-the-ajax-control-toolkit-vb/_static/image5.png)
 
-**Obrázek 03**: ovládací prvek AJAX Control Toolkit se zobrazuje v sadě nástrojů ([kliknutím zobrazíte obrázek v plné velikosti](get-started-with-the-ajax-control-toolkit-vb/_static/image6.png)).
+**Obrázek 03**: Ajax Control Toolkit se objeví v sadě[nástrojů(Klikněte pro zobrazení obrázku v plné velikosti)](get-started-with-the-ajax-control-toolkit-vb/_static/image6.png)
 
 Nejprve je třeba přidat kartu AJAX Control Toolkit do sady nástrojů. Postupujte následovně.
 
-1. Vytvořte nový web ASP.NET tak, že vyberete soubor možnosti nabídky, nový web. Dvojitým kliknutím na Default. aspx v okně Průzkumník řešení otevřete soubor v editoru.
-2. Klikněte pravým tlačítkem myši na panel nástrojů pod kartou obecné a vyberte možnost nabídky **Přidat kartu** (viz obrázek 4).
+1. Vytvořte nový ASP.NET web výběrem možnosti menu Soubor, Nový web. Poklepáním na soubor Default.aspx v okně Průzkumník řešení otevřete soubor v editoru.
+2. Klikněte pravým tlačítkem myši na panel nástrojů pod kartou Obecné a vyberte možnost nabídky **Přidat kartu** (viz obrázek 4).
 3. Zadejte novou kartu s názvem AJAX Control Toolkit.
 
-[![přidávání nové karty](get-started-with-the-ajax-control-toolkit-vb/_static/image4.jpg)](get-started-with-the-ajax-control-toolkit-vb/_static/image7.png)
+[![Přidání nové karty](get-started-with-the-ajax-control-toolkit-vb/_static/image4.jpg)](get-started-with-the-ajax-control-toolkit-vb/_static/image7.png)
 
-**Obrázek 04**: Přidání nové karty ([kliknutím zobrazíte obrázek v plné velikosti](get-started-with-the-ajax-control-toolkit-vb/_static/image8.png))
+**Obrázek 04**: Přidání nové karty[(Kliknutím zobrazíte obrázek v plné velikosti)](get-started-with-the-ajax-control-toolkit-vb/_static/image8.png)
 
-Dále je nutné přidat ovládací prvky AJAX Control Toolkit na novou kartu. postupujte takto:
+Dále je třeba přidat ovládací prvky AJAX Control Toolkit na novou kartu. Postupujte takto:
 
-- Klikněte pravým tlačítkem myši pod kartu AJAX Control Toolkit a vyberte možnost nabídky vybrat **položky (viz obrázek 5)** .
-- Přejděte do umístění, kde jste rozAjaxControlToolkiti AJAX Control Toolkit, a vyberte sestavení. dll.
+- Klepněte pravým tlačítkem myši pod kartu Ajax Control Toolkit a vyberte volbu nabídky **Zvolit položky (viz obrázek 5).**
+- Přejděte do umístění, kde jste rozbalili sadu nástrojů AJAX Control Toolkit, a vyberte sestavu AjaxControlToolkit.dll.
 
-[![zvolit položky, které se mají přidat do sady nástrojů](get-started-with-the-ajax-control-toolkit-vb/_static/image5.jpg)](get-started-with-the-ajax-control-toolkit-vb/_static/image9.png)
+[![Výběr položek, které chcete přidat do panelu nástrojů](get-started-with-the-ajax-control-toolkit-vb/_static/image5.jpg)](get-started-with-the-ajax-control-toolkit-vb/_static/image9.png)
 
-**Obrázek 05**: vyberte položky, které chcete přidat do sady nástrojů ([kliknutím zobrazíte obrázek v plné velikosti).](get-started-with-the-ajax-control-toolkit-vb/_static/image10.png)
+**Obrázek 05**: Vyberte položky, které chcete přidat do panelu nástrojů([Kliknutím zobrazíte obrázek v plné velikosti)](get-started-with-the-ajax-control-toolkit-vb/_static/image10.png)
 
-Po dokončení tohoto postupu se všechny ovládací prvky sady Toolkit zobrazí v sadě nástrojů.
+Po dokončení těchto kroků se v sadě nástrojů zobrazí všechny ovládací prvky sady nástrojů.
 
 ## <a name="upgrading-to-a-new-version-of-the-toolkit"></a>Upgrade na novou verzi sady nástrojů
 
-Pokud jste používali starší verzi sady Toolkit a teď potřebujete přejít na novější verzi, doporučujeme postupovat takto:
+Pokud jste používali starší verzi sady Toolkit a nyní potřebujete přejít na novější verzi, postupujte podle následujících kroků:
 
-- Binární soubory – odstraňte starou verzi sestavení AjaxControlToolkit. dll ze složky Bin webu.
-- Položky sady nástrojů – odstraňte kartu AJAX Control Toolkit a pomocí výše uvedeného postupu znovu vytvořte kartu s novou verzí sestavení AjaxControlToolkit. dll.
+- Binární soubory – Odstraňte starou verzi sestavení AjaxControlToolkit.dll ze složky Bin webu.
+- Položky panelu nástrojů - Odstraňte kartu AJAX Control Toolkit a postupujte podle výše uvedených kroků a znovu vytvořte kartu s novou verzí sestavení AjaxControlToolkit.dll.
 
 > [!div class="step-by-step"]
 > [Předchozí](creating-a-custom-ajax-control-toolkit-control-extender-cs.md)
-> [Další](using-ajax-control-toolkit-controls-and-control-extenders-vb.md)
+> [další](using-ajax-control-toolkit-controls-and-control-extenders-vb.md)

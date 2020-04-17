@@ -1,6 +1,6 @@
 ---
 uid: web-pages/videos/index
-title: Videa | Microsoft Docs
+title: Videa | Dokumenty společnosti Microsoft
 author: rick-anderson
 description: ''
 ms.author: riande
@@ -8,17 +8,17 @@ ms.date: 05/18/2012
 ms.assetid: febf2824-4e3d-4dc6-84c5-f99777ec6144
 msc.legacyurl: /web-pages/videos
 msc.type: book
-ms.openlocfilehash: 4c22b024240740d971740e9f043231ccbcdc47fb
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 8c24a01b592bead86369a0a9cebeca05f566de53
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78631745"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543038"
 ---
 # <a name="videos"></a>Videa
 
 > [!NOTE] 
-> WebMatrix se už nedoporučuje jako integrované vývojové prostředí pro webové stránky ASP.NET. Použijte [Visual Studio](xref:aspnet/web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio) nebo [Visual Studio Code](https://code.visualstudio.com/).
+> WebMatrix se již nedoporučuje jako integrované vývojové prostředí pro ASP.NET webových stránek. Použijte [visual studio](xref:web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio) nebo kód sady Visual [Studio](https://code.visualstudio.com/).
 
 - [Úvod](introduction/index.md)
 
@@ -32,7 +32,7 @@ ms.locfileid: "78631745"
     - [Vytvoření a úprava stránky s daty v nástroji WebMatrix](introduction/create-an-edit-data-page-in-webmatrix.md)
     - [Vytvoření a odstranění stránky s daty v nástroji WebMatrix](introduction/create-a-delete-data-page-in-webmatrix.md)
     - [Publikování webu na internet nástrojem WebMatrix](introduction/publish-a-website-to-the-internet-using-webmatrix.md)
-- [ASP.NET Razor Pages](aspnet-razor-pages/index.md)
+- [ASP.NET Razor Stránky](aspnet-razor-pages/index.md)
 
     - [Začínáme s nástrojem WebMatrix a webovými stránkami ASP.NET](aspnet-razor-pages/getting-started-with-webmatrix-and-aspnet-web-pages.md)
     - [Úvod do programování webu ASP.NET pomocí syntaxe Razor](aspnet-razor-pages/introduction-to-aspnet-web-programming-using-the-razor-syntax.md)

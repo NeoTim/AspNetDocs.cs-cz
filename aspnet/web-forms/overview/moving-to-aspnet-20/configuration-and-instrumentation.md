@@ -1,433 +1,433 @@
 ---
 uid: web-forms/overview/moving-to-aspnet-20/configuration-and-instrumentation
-title: Konfigurace a instrumentace | Microsoft Docs
-author: microsoft
-description: Konfigurace a instrumentace v ASP.NET 2,0 jsou významné změny. Nové rozhraní API konfigurace ASP.NET umožňuje provádět změny konfigurace...
+title: Konfigurace a přístrojové vybavení | Dokumenty společnosti Microsoft
+author: rick-anderson
+description: V ASP.NET 2.0 došlo k významným změnám v konfiguraci a instrumentaci. Nové konfigurační rozhraní API ASP.NET umožňuje provést změny konfigurace pr...
 ms.author: riande
 ms.date: 02/20/2005
 ms.assetid: 21ebbaee-7ed8-45ae-b6c1-c27c88342e48
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/configuration-and-instrumentation
 msc.type: authoredcontent
-ms.openlocfilehash: cd5bedce5459e8cf8e72df8de69ebd82f2d97789
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 30ea2ffd3d055c5373a33615bc19a8f68fb568ab
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78626026"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543051"
 ---
 # <a name="configuration-and-instrumentation"></a>Konfigurace a instrumentace
 
-od [Microsoftu](https://github.com/microsoft)
+podle [společnosti Microsoft](https://github.com/microsoft)
 
-> Konfigurace a instrumentace v ASP.NET 2,0 jsou významné změny. Nové rozhraní API konfigurace ASP.NET umožňuje provádět změny konfigurace prostřednictvím kódu programu. Kromě toho existuje mnoho nových nastavení konfigurace umožňujících nové konfigurace a instrumentaci.
+> V ASP.NET 2.0 došlo k významným změnám v konfiguraci a instrumentaci. Nové konfigurační rozhraní API ASP.NET umožňuje provádění změn konfigurace programově. Kromě toho existuje mnoho nových nastavení konfigurace umožňují nové konfigurace a instrumentace.
 
-Konfigurace a instrumentace v ASP.NET 2,0 jsou významné změny. Nové rozhraní API konfigurace ASP.NET umožňuje provádět změny konfigurace prostřednictvím kódu programu. Kromě toho existuje mnoho nových nastavení konfigurace umožňujících nové konfigurace a instrumentaci.
+V ASP.NET 2.0 došlo k významným změnám v konfiguraci a instrumentaci. Nové konfigurační rozhraní API ASP.NET umožňuje provádění změn konfigurace programově. Kromě toho existuje mnoho nových nastavení konfigurace umožňují nové konfigurace a instrumentace.
 
-V tomto modulu probereme ASP.NET rozhraní API pro konfiguraci, protože souvisí s čtením a zápisem do konfiguračních souborů ASP.NET a my také pokryjeme instrumentaci ASP.NET. Také pokryjeme nové funkce, které jsou k dispozici v trasování ASP.NET.
+V tomto modulu budeme diskutovat ASP.NET konfiguračníapi, protože se týká čtení a zápisu do ASP.NET konfiguračních souborů, a budeme také zahrnovat ASP.NET instrumentace. Budeme také zahrnovat nové funkce, které jsou k dispozici v ASP.NET trasování.
 
-## <a name="aspnet-configuration-api"></a>Rozhraní API pro konfiguraci ASP.NET
+## <a name="aspnet-configuration-api"></a>ASP.NET konfigurační rozhraní API
 
-Rozhraní ASP.NET Configuration API umožňuje vyvíjet, nasazovat a spravovat konfigurační data aplikací pomocí jediného programovacího rozhraní. Rozhraní API pro konfiguraci můžete použít k vývoji a úpravám úplných konfigurací ASP.NET programově, aniž by bylo nutné přímo upravovat XML v konfiguračních souborech. Kromě toho můžete použít rozhraní API konfigurace v konzolových aplikacích a skriptech, které vyvíjíte, v nástrojích webové správy a v modulech snap-in konzoly MMC (Microsoft Management Console).
+Konfigurační rozhraní API ASP.NET umožňuje vyvíjet, nasazovat a spravovat konfigurační data aplikací pomocí jediného programovacího rozhraní. Konfigurační rozhraní API můžete použít k vývoji a úpravám kompletních konfigurací ASP.NET programově bez přímé úpravy xml v konfiguračních souborech. Kromě toho můžete konfigurační rozhraní API používat v konzolových aplikacích a skriptech, které vyvíjíte, v nástrojích pro správu na webu a v modulech snap-in konzoly MMC (MMC).
 
-Následující dva nástroje pro správu konfigurace používají rozhraní API konfigurace a jsou součástí verze .NET Framework 2,0:
+Následující dva nástroje pro správu konfigurace používají konfigurační rozhraní API a jsou součástí rozhraní .NET Framework verze 2.0:
 
-- Modul snap-in konzoly MMC ASP.NET, který používá rozhraní API konfigurace ke zjednodušení úloh správy a poskytuje integrované zobrazení dat místních konfigurací ze všech úrovní konfigurační hierarchie.
-- Nástroj pro správu webu, který umožňuje spravovat nastavení konfigurace pro místní a vzdálené aplikace, včetně hostovaných lokalit.
+- Modul snap-in ASP.NET MMC, který používá konfigurační rozhraní API ke zjednodušení úloh správy a poskytuje integrované zobrazení místních konfiguračních dat ze všech úrovní hierarchie konfigurace.
+- Nástroj pro správu webu, který umožňuje spravovat nastavení konfigurace místních a vzdálených aplikací, včetně hostovaných webů.
 
-Rozhraní ASP.NET Configuration API obsahuje sadu objektů správy ASP.NET, které můžete použít ke konfiguraci webových stránek a aplikací prostřednictvím kódu programu. Objekty správy jsou implementovány jako .NET Framework knihovny tříd. Programovací model rozhraní API pro konfiguraci pomáhá zajistit konzistenci a spolehlivost kódu vynucením datových typů v době kompilace. Aby bylo možné spravovat konfigurace aplikací snadněji, rozhraní API pro konfiguraci umožňuje zobrazit data sloučená ze všech bodů v konfigurační hierarchii jako jednu kolekci, namísto zobrazení dat jako samostatných kolekcí z různých konfigurační soubory. Rozhraní API pro konfiguraci navíc umožňuje manipulovat s celou konfigurací aplikace bez nutnosti přímo upravovat XML v konfiguračních souborech. Rozhraní API nakonec zjednodušuje konfigurační úlohy tím, že podporuje nástroje pro správu, jako je například nástroj pro správu webu. Rozhraní API pro konfiguraci zjednodušuje nasazení tím, že podporuje vytváření konfiguračních souborů na počítači a spouštění konfiguračních skriptů napříč více počítači.
+Konfigurační rozhraní API ASP.NET obsahuje sadu objektů pro správu ASP.NET, které lze použít k programové konfiguraci webových serverů a aplikací. Objekty správy jsou implementovány jako knihovna tříd rozhraní .NET Framework. Konfigurační programovací model rozhraní API pomáhá zajistit konzistenci kódu a spolehlivost vynucením datových typů v době kompilace. Chcete-li usnadnit správu konfigurací aplikací, konfigurační rozhraní API umožňuje zobrazit data, která jsou sloučena ze všech bodů v hierarchii konfigurace jako jednu kolekci, namísto zobrazení dat jako samostatné kolekce z různých konfiguračních souborů. Konfigurační rozhraní API navíc umožňuje manipulovat s celými konfiguracemi aplikací bez přímé úpravy xml v konfiguračních souborech. A konečně rozhraní API zjednodušuje úlohy konfigurace podporou nástrojů pro správu, jako je například Nástroj pro správu webu. Konfigurační rozhraní API zjednodušuje nasazení podporou vytváření konfiguračních souborů v počítači a spouštěním konfiguračních skriptů ve více počítačích.
 
 > [!NOTE]
-> Rozhraní API pro konfiguraci nepodporuje vytváření aplikací služby IIS.
+> Konfigurační rozhraní API nepodporuje vytváření aplikací služby IIS.
 
-## <a name="working-with-local-and-remote-configuration-settings"></a>Práce s nastavením místních a vzdálených konfigurací
+## <a name="working-with-local-and-remote-configuration-settings"></a>Práce s místním a vzdáleným nastavením konfigurace
 
-Objekt konfigurace představuje sloučené zobrazení nastavení konfigurace, která se vztahují na konkrétní fyzickou entitu, jako je například počítač nebo na logickou entitu, jako je například aplikace nebo Web. Zadaná logická entita může existovat v místním počítači nebo na vzdáleném serveru. Pokud pro zadanou entitu neexistuje konfigurační soubor, představuje objekt konfigurace výchozí nastavení konfigurace definované souborem Machine. config.
+Objekt Configuration představuje sloučené zobrazení nastavení konfigurace, které se vztahuje na určitou fyzickou entitu, například počítač, nebo na logickou entitu, například na aplikaci nebo web. Zadaná logická entita může existovat v místním počítači nebo na vzdáleném serveru. Pokud pro zadanou entitu neexistuje žádný konfigurační soubor, představuje objekt Configuration výchozí nastavení konfigurace definované souborem Machine.config.
 
-Objekt konfigurace můžete získat pomocí jedné z otevřených metod konfigurace z následujících tříd:
+Objekt Configuration můžete získat pomocí jedné z metod otevřené konfigurace z následujících tříd:
 
-1. Třída ConfigurationManager, pokud vaše entita je klientská aplikace.
-2. Třída funkci WebConfigurationManager, pokud vaše entita je webová aplikace.
+1. Třída ConfigurationManager, pokud je vaše entita klientskou aplikací.
+2. Třída WebConfigurationManager, pokud je vaše entita webovou aplikací.
 
-Tyto metody vrátí objekt konfigurace, který zase poskytne požadované metody a vlastnosti, které budou zpracovávat základní konfigurační soubory. K těmto souborům můžete přistupovat pro čtení nebo zápis.
+Tyto metody vrátí Configuration objektu, který zase poskytuje požadované metody a vlastnosti pro zpracování základních konfiguračních souborů. K těmto souborům můžete přistupovat pro čtení nebo zápis.
 
 ### <a name="reading"></a>Čtení
 
-K načtení informací o konfiguraci použijte metodu GetSection nebo GetSectionGroup. Uživatel nebo proces, který čte, musí mít oprávnění ke čtení pro všechny konfigurační soubory v hierarchii.
+Ke čtení informací o konfiguraci slouží metoda GetSection nebo GetSectionGroup. Uživatel nebo proces, který čte, musí mít oprávnění ke čtení pro všechny konfigurační soubory v hierarchii.
 
 > [!NOTE]
-> Použijete-li statickou metodu GetSection, která přijímá parametr Path, parametr Path musí odkazovat na aplikaci, ve které je kód spuštěn. V opačném případě se parametr ignoruje a vrátí se informace o konfiguraci aktuálně spuštěné aplikace.
+> Pokud používáte statickou metodu GetSection, která přebírá parametr cesty, musí parametr cesty odkazovat na aplikaci, ve které je kód spuštěn. V opačném případě je parametr ignorován a jsou vráceny informace o konfiguraci aktuálně spuštěné aplikace.
 
-### <a name="writing"></a>Zapsat
+### <a name="writing"></a>Psaní
 
-K zápisu informací o konfiguraci se používá jedna z metod uložení. Uživatel nebo proces, který zápis zapisuje, musí mít oprávnění k zápisu do konfiguračního souboru a adresáře na úrovni aktuální hierarchie konfigurace a také oprávnění ke čtení pro všechny konfigurační soubory v hierarchii.
+K zápisu informací o konfiguraci použijte jednu z metod Save. Uživatel nebo proces, který zapisuje, musí mít oprávnění k zápisu do konfiguračního souboru a adresáře na aktuální úrovni hierarchie konfigurace a také oprávnění ke čtení pro všechny konfigurační soubory v hierarchii.
 
-Pokud chcete vygenerovat konfigurační soubor, který představuje zděděné nastavení konfigurace pro zadanou entitu, použijte jednu z následujících metod Save-Configuration:
+Chcete-li vygenerovat konfigurační soubor, který představuje zděděné nastavení konfigurace pro zadanou entitu, použijte jednu z následujících metod konfigurace ukládání:
 
 1. Metoda Save pro vytvoření nového konfiguračního souboru.
-2. Metoda SaveAs pro vygenerování nového konfiguračního souboru v jiném umístění.
+2. SaveAs Metoda generovat nový konfigurační soubor v jiném umístění.
 
 ## <a name="configuration-classes-and-namespaces"></a>Třídy konfigurace a obory názvů
 
-Mnoho tříd a metod konfigurace je podobných. Následující tabulka popisuje nejběžněji používané konfigurační třídy a obory názvů.
+Mnoho konfiguračních tříd a metod jsou navzájem podobné. Následující tabulka popisuje nejčastěji používané konfigurační třídy a obory názvů.
 
-| **Konfigurační třída nebo obor názvů** | **Popis** |
+| **Třída konfigurace nebo obor názvů** | **Popis** |
 | --- | --- |
-| Obor názvů [System. Configuration](https://msdn.microsoft.com/library/system.configuration.aspx) | Obsahuje hlavní třídy konfigurace pro všechny .NET Framework aplikace. Třídy obslužných rutin oddílu slouží k získávání konfiguračních dat pro oddíl z metod, jako je GetSection a GetSectionGroup. Tyto dvě metody jsou nestatické. |
-| System. Configuration. Configuration – třída | Představuje sadu konfiguračních dat pro počítač, aplikaci, webový adresář nebo jiný prostředek. Tato třída obsahuje užitečné metody, jako je GetSection a GetSectionGroup, pro aktualizaci nastavení konfigurace a získání odkazů na oddíly a skupiny oddílů. Tato třída se používá jako návratový typ pro metody, které získávají konfigurační data pro dobu návrhu, jako jsou metody tříd funkci WebConfigurationManager a ConfigurationManager. |
-| Obor názvů System. Web. Configuration | Obsahuje třídy obslužných rutin oddílu pro konfigurační oddíly ASP.NET definované v [nastavení konfigurace ASP.NET](https://msdn.microsoft.com/library/b5ysx397.aspx). Třídy obslužných rutin oddílu slouží k získávání konfiguračních dat pro oddíl z metod, jako je GetSection a GetSectionGroup. |
-| System.Web.Configuration.WebConfigurationManager class | Poskytuje užitečné metody pro získání odkazů na konfigurační nastavení v době běhu a v době návrhu. Tyto metody používají třídu System. Configuration. Configuration jako návratový typ. Metodu static GetSection této třídy nebo nestatickou metodu GetSection třídy System. Configuration. ConfigurationManager lze použít jako zaměnitelné. Pro konfigurace webových aplikací se doporučuje třída System. Web. Configuration. funkci WebConfigurationManager namísto třídy System. Configuration. ConfigurationManager. |
-| Obor názvů [System. Configuration. Provider](https://msdn.microsoft.com/library/system.configuration.provider.aspx) | Poskytuje způsob, jak přizpůsobit a roztáhnout poskytovatele konfigurace. Toto je základní třída pro všechny třídy poskytovatele v konfiguračním systému. |
-| Obor názvů [System. Web. Management](https://msdn.microsoft.com/library/system.web.management.aspx) | Obsahuje třídy a rozhraní pro správu a monitorování stavu webových aplikací. Výhradně řečeno, tento obor názvů není považován za součást konfiguračního rozhraní API. Například trasování a vyvolávání událostí je dosaženo třídami v tomto oboru názvů. |
-| Obor názvů [System. Management. Instrumentation](https://msdn.microsoft.com/library/system.management.instrumentation.aspx) | Poskytuje třídy potřebné k tomu, aby instrumentace aplikací zveřejnila své informace o správě a události prostřednictvím rozhraní WMI (Windows Management Instrumentation) (WMI) k potenciálním spotřebitelům. Sledování stavu ASP.NET využívá rozhraní WMI k doručování událostí. Výhradně řečeno, tento obor názvů není považován za součást konfiguračního rozhraní API. |
+| Obor názvů [System.Configuration](https://msdn.microsoft.com/library/system.configuration.aspx) | Obsahuje hlavní třídy konfigurace pro všechny aplikace rozhraní .NET Framework. Třídy obslužné rutiny oddílu se používají k získání konfiguračních dat pro oddíl z metod, jako je například GetSection a GetSectionGroup. Tyto dvě metody jsou nestatické. |
+| Třída System.Configuration.Configuration | Představuje sadu konfiguračních dat pro počítač, aplikaci, webový adresář nebo jiný prostředek. Tato třída obsahuje užitečné metody, jako je například GetSection a GetSectionGroup, pro aktualizaci nastavení konfigurace a získání odkazů na oddíly a skupiny oddílů. Tato třída se používá jako návratový typ pro metody, které získávají konfigurační data návrhu, jako jsou například metody tříd WebConfigurationManager a ConfigurationManager. |
+| Obor názvů System.Web.Configuration | Obsahuje třídy obslužné rutiny oddílu pro oddíly konfigurace ASP.NET definované v [ASP.NET Nastavení konfigurace](https://msdn.microsoft.com/library/b5ysx397.aspx). Třídy obslužné rutiny oddílu se používají k získání konfiguračních dat pro oddíl z metod, jako je například GetSection a GetSectionGroup. |
+| Třída System.Web.Configuration.WebConfigurationManager | Poskytuje užitečné metody pro získání odkazů na nastavení konfigurace za běhu a návrhu. Tyto metody používají třídu System.Configuration.Configuration jako návratový typ. Můžete použít statickou metodu GetSection této třídy nebo nestatickou metodu GetSection třídy System.Configuration.ConfigurationManager zaměnitelně. Pro konfigurace webových aplikací se místo třídy System.Configuration.Configuration.WebConfigurationManager doporučuje třída System.Web.Configuration.WebConfigurationManager. |
+| Obor názvů [System.Configuration.Provider](https://msdn.microsoft.com/library/system.configuration.provider.aspx) | Poskytuje způsob, jak přizpůsobit a rozšířit zprostředkovatele konfigurace. Toto je základní třída pro všechny třídy zprostředkovatele v konfiguračním systému. |
+| Obor názvů [System.Web.Management](https://msdn.microsoft.com/library/system.web.management.aspx) | Obsahuje třídy a rozhraní pro správu a sledování stavu webových aplikací. Přísně vzato, tento obor názvů není považován za součást konfiguračního rozhraní API. Například trasování a spouštění událostí je provedeno třídv tomto oboru názvů. |
+| Obor názvů [System.Management.Instrumentation](https://msdn.microsoft.com/library/system.management.instrumentation.aspx) | Poskytuje třídy nezbytné pro instrumentaci aplikací vystavit jejich informace o správě a události prostřednictvím služby WMI (WMI) potenciálním spotřebitelům. ASP.NET monitorování stavu používá službu WMI k doručování událostí. Přísně vzato, tento obor názvů není považován za součást konfiguračního rozhraní API. |
 
-## <a name="reading-from-aspnet-configuration-files"></a>Čtení z konfiguračních souborů ASP.NET
+## <a name="reading-from-aspnet-configuration-files"></a>Čtení z ASP.NET konfiguračních souborů
 
-Třída funkci WebConfigurationManager je základní třídou pro čtení z konfiguračních souborů ASP.NET. Existují v podstatě tři kroky pro čtení konfiguračních souborů ASP.NET:
+Třída WebConfigurationManager je základní třídou pro čtení z ASP.NET konfiguračních souborů. Existují v podstatě tři kroky ke čtení ASP.NET konfiguračních souborů:
 
-1. Získání objektu konfigurace pomocí metody OpenWebConfiguration
+1. Získejte objekt Configuration pomocí metody OpenWebConfiguration.
 2. Získejte odkaz na požadovaný oddíl v konfiguračním souboru.
 3. Přečtěte si požadované informace z konfiguračního souboru.
 
-Objekt konfigurace představuje nereprezentuje konkrétní konfigurační soubor. Místo toho představuje sloučené zobrazení konfigurace počítače, aplikace nebo webu. Následující ukázka kódu vytvoří instanci objektu konfigurace, která představuje konfiguraci webové aplikace s názvem *ProductInfo*.
+Konfigurační objekt představuje nepředstavuje konkrétní konfigurační soubor. Místo toho představuje sloučené zobrazení konfigurace počítače, aplikace nebo webu. Následující ukázka kódu instancije objekt Configuration představující konfiguraci webové aplikace s názvem *ProductInfo*.
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample1.cs)]
 
 > [!NOTE]
-> Všimněte si, že pokud cesta/ProductInfo neexistuje, bude výše uvedený kód vracet výchozí konfiguraci, jak je uvedeno v souboru Machine. config.
+> Všimněte si, že pokud cesta /ProductInfo neexistuje, výše uvedený kód vrátí výchozí konfiguraci, jak je zadáno v souboru machine.config.
 
-Jakmile budete mít objekt konfigurace, můžete pomocí metody GetSection nebo GetSectionGroup přejít k nastavení konfigurace. Následující příklad získá odkaz na nastavení zosobnění pro výše uvedenou aplikaci ProductInfo:
+Jakmile budete mít configuration objekt, pak můžete použít GetSection nebo GetSectionGroup metoda přejít k podrobnostem nastavení konfigurace. Následující příklad získá odkaz na nastavení zosobnění pro výše uvedenou aplikaci ProductInfo:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample2.cs)]
 
 ## <a name="writing-to-aspnet-configuration-files"></a>Zápis do konfiguračních souborů ASP.NET
 
-Jako při čtení z konfiguračních souborů je třída funkci WebConfigurationManager základem pro zápis do konfiguračních souborů Asp.NET. Existují také tři kroky pro zápis do konfiguračních souborů ASP.NET.
+Stejně jako při čtení z konfiguračních souborů je třída WebConfigurationManager jádrem pro zápis do konfiguračních souborů Asp.NET. Existují také tři kroky k zápisu do ASP.NET konfiguračních souborů.
 
-1. Získání objektu konfigurace pomocí metody OpenWebConfiguration
+1. Získejte objekt Configuration pomocí metody OpenWebConfiguration.
 2. Získejte odkaz na požadovaný oddíl v konfiguračním souboru.
-3. Pomocí metody Save nebo SaveAs zapište požadované informace z konfiguračního souboru.
+3. Napište požadované informace z konfiguračního souboru pomocí metody Save nebo SaveAs.
 
-Následující kód změní atribut **Debug** elementu &lt;Compilation&gt; na hodnotu false:
+Následující kód změní atribut **ladění** &lt;elementu kompilace&gt; na false:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample3.cs)]
 
-Po spuštění tohoto kódu se atribut **ladění** &lt;&gt; elementu compilation nastaví na hodnotu false pro soubor Web. config aplikace *WebApp* .
+Při spuštění tohoto kódu **debug** bude atribut ladění &lt;&gt; elementu kompilace nastaven na hodnotu false pro soubor web.config aplikace *webApp.*
 
-## <a name="systemwebmanagement-namespace"></a>System.Web.Management Namespace
+## <a name="systemwebmanagement-namespace"></a>Obor názvů System.Web.Management
 
-Obor názvů System. Web. Management poskytuje třídy a rozhraní pro správu a monitorování stavu aplikací ASP.NET.
+Obor názvů System.Web.Management poskytuje třídy a rozhraní pro správu a sledování stavu ASP.NET aplikací.
 
-Protokolování se provádí definováním pravidla, které přidruží události ke zprostředkovateli. Pravidlo definuje typ událostí, které jsou odeslány poskytovateli. Následující základní události jsou k dispozici pro přihlášení:
+Protokolování se provádí definováním pravidla, které přidružuje události k poskytovateli. Pravidlo definuje typ událostí, které jsou odesílány zprostředkovateli. K dispozici jsou následující základní události, které můžete protokolovat:
 
-| **EventCode** | Základní třída Event pro všechny události. Obsahuje vlastnosti vyžadované pro všechny události, jako je kód události, kód podrobností události, datum a čas vyvolání události, číslo sekvence, zpráva události a podrobnosti události. |
+| **Webbaseevent** | Základní třída událostí pro všechny události. Obsahuje požadované vlastnosti pro všechny události, jako je například kód události, kód podrobností události, datum a čas, kdy byla událost vyvolána, pořadové číslo, zpráva události a podrobnosti události. |
 | --- | --- |
-| **WebManagementEvent** | Základní třída Event pro události správy, například události životnosti aplikace, požadavek, chyba a audit. |
-| **WebHeartbeatEvent** | Událost generovaná aplikací v pravidelných intervalech pro zachycení užitečných informací o stavu modulu runtime. |
-| **WebAuditEvent** | Základní třída pro události auditu zabezpečení, které se používají k označení podmínek, jako je například Chyba autorizace, selhání dešifrování *atd.* |
-| **WebRequestEvent** | Základní třída pro všechny informativní události požadavku. |
-| **WebBaseErrorEvent** | Základní třída pro všechny události, které indikují chybové stavy. |
+| **Událost WebManagementEvent** | Základní třída událostí pro události správy, jako je například životnost aplikace, požadavek, chyba a události auditu. |
+| **Událost webheartbeat** | Událost generovaná aplikací v pravidelných intervalech pro zachycení užitečných informací o stavu za běhu. |
+| **Událost WebAuditEvent** | Základní třída pro události auditu zabezpečení, které se používají k označení podmínek, jako je selhání autorizace, selhání dešifrování *atd.* |
+| **WebRequestEvent** | Základní třída pro všechny události informačních požadavků. |
+| **WebBaseErrorEvent** | Základní třída pro všechny události označující chybové stavy. |
 
-Typy zprostředkovatelů, které jsou k dispozici, vám umožní posílat výstup události do Prohlížeč událostí, SQL Server, rozhraní WMI (Windows Management Instrumentation) (WMI) a e-mailu. Předem nakonfigurované zprostředkovatele a mapování událostí omezují množství práce potřebné k načtení protokolu událostí.
+Typy dostupných zprostředkovatelů umožňují odesílat výstup událostí do Prohlížeče událostí, serveru SQL Server, nástroje WMI (WMI) systému Windows a e-mailu. Předem nakonfigurované zprostředkovatele a mapování událostí snížit množství práce potřebné k získání výstup u událostí zaznamenány.
 
-ASP.NET 2,0 používá ke zpracování událostí v závislosti na doménách aplikací, které se spouštějí a zastavují, a také protokolování všech neošetřených výjimek do protokolu událostí. To pomáhá pokrýt některé ze základních scénářů. Řekněme například, že vaše aplikace vyvolá výjimku, ale uživatel chybu neuloží a nemůžete ho reprodukováni. S výchozím pravidlem protokolu událostí byste mohli shromáždit výjimku a informace zásobníku a získat tak lepší představu o tom, jaký druh chyby došlo. Další příklad se vztahuje, pokud vaše aplikace ztratí stav relace. V takovém případě můžete vyhledat v protokolu událostí, zda se doména aplikace recykluje a proč se doména aplikace zastavila na prvním místě.
+ASP.NET 2.0 používá zprostředkovatele protokolu událostí out-of-the-box protokolovat události na základě spuštění a zastavení aplikačních domén, stejně jako protokolování všechny neošetřené výjimky. To pomáhá pokrýt některé základní scénáře. Řekněme například, že vaše aplikace vyvolá výjimku, ale uživatel chybu neuloží a nemůžete ji reprodukovat. S výchozím pravidlem protokolu událostí byste mohli shromáždit informace o výjimce a zásobníku, abyste získali lepší představu o tom, k jaké chybě došlo. Jiný příklad platí, pokud vaše aplikace ztrácí stav relace. V takovém případě můžete v protokolu událostí zjistit, zda doména aplikace je recyklace a proč doména aplikace zastavena na prvním místě.
 
-Systém monitorování stavu je také rozšiřitelný. Můžete například definovat vlastní webové události, aktivovat je v rámci aplikace a potom definovat pravidlo pro odeslání informací o události poskytovateli, jako je například váš e-mail. To vám umožní snadnou vazbu vaší instrumentace s poskytovateli sledování stavu. V dalším příkladu byste mohli vyvolat událost pokaždé, když se zpracuje objednávka, a nastavit pravidlo, které odešle každou událost do databáze SQL Server. Můžete taky vyvolat událost, když se uživatel neúspěšně přihlašuje víckrát na řádku a nastaví událost pro použití e-mailových poskytovatelů.
+Také systém sledování stavu je rozšiřitelný. Můžete například definovat vlastní webové události, vypálit je v rámci aplikace a pak definovat pravidlo pro odeslání informací o události poskytovateli, jako je váš e-mail. To vám umožní snadno svázat instrumentaci s poskytovateli monitorování stavu. Jako další příklad můžete vypálit událost při každém zpracování objednávky a nastavit pravidlo, které odesílá každou událost do databáze serveru SQL Server. Událost můžete také vypálit, když se uživateli nepodaří přihlásit vícekrát za sebou, a nastavit událost tak, aby používala zprostředkovatele založené na e-mailu.
 
-Konfigurace pro výchozí zprostředkovatele a události je uložena v globálním souboru Web. config. Globální soubor Web. config ukládá všechna webová nastavení, která byla uložena v souboru Machine. config v ASP.NET 1x. Globální soubor Web. config je umístěný v následujícím adresáři:
+Konfigurace pro výchozí zprostředkovatele a události je uložena v globálním souboru Web.config. Globální soubor Web.config ukládá všechna webová nastavení uložená v souboru Machine.config v ASP.NET 1x. Globální soubor Web.config je umístěn v následujícím adresáři:
 
 `%windir%\Microsoft.Net\Framework\v2.0.*\config\Web.config`
 
-Oddíl &lt;healthMonitoring&gt; globálního souboru Web. config poskytuje výchozí nastavení konfigurace. Můžete přepsat tato nastavení nebo nakonfigurovat vlastní nastavení implementací oddílu &lt;healthMonitoring&gt; v souboru Web. config pro vaši aplikaci.
+Část &lt;healthMonitoring&gt; globálního souboru Web.config poskytuje výchozí nastavení konfigurace. Toto nastavení můžete přepsat nebo nakonfigurovat vlastní &lt;nastavení&gt; implementací oddílu healthMonitoring v souboru Web.config pro vaši aplikaci.
 
-Oddíl &lt;healthMonitoring&gt; globálního souboru Web. config obsahuje následující položky:
+Část &lt;healthMonitoring&gt; globálního souboru Web.config obsahuje následující položky:
 
-| **dodavateli** | Obsahuje zprostředkovatele nastavené pro Prohlížeč událostí, rozhraní WMI a SQL Server. |
+| **Poskytovatelů** | Obsahuje zprostředkovatele nastavené pro Prohlížeč událostí, Službu WMI a SQL Server. |
 | --- | --- |
-| **eventMappings** | Obsahuje mapování pro různé třídy WebBase. Tento seznam můžete roztáhnout, pokud vygenerujete vlastní třídu Event. Vygenerování vlastní třídy Event poskytuje přesnější členitost poskytovatelům, kterým odesíláte informace. Můžete například nakonfigurovat neošetřené výjimky, které budou odesílány do SQL Server, při posílání vlastních událostí do e-mailu. |
-| **pravidly** | Propojí pole eventMappings se zprostředkovatelem. |
-| **do vyrovnávací paměti** | Používá se pro SQL Server a poskytovatele e-mailů k určení, jak často se mají události vyprázdnit poskytovateli. |
+| **Eventmappings** | Obsahuje mapování pro různé třídy WebBase. Tento seznam můžete rozšířit, pokud vygenerujete vlastní třídu událostí. Generování vlastní třídy událostí poskytuje jemnější rozlišovací schopnost nad zprostředkovateli, které odesíláte informace. Můžete například nakonfigurovat neošetřené výjimky, které mají být odeslány na SQL Server, při odesílání vlastních událostí do e-mailu. |
+| **Pravidla** | Propojí eventMappings s poskytovatelem. |
+| **Vyrovnávací paměti** | Používá se sql server a poskytovatelé e-mailu k určení, jak často vyprázdnění události zprostředkovatele. |
 
-Níže je příklad kódu z globálního souboru Web. config.
+Níže je uveden příklad kódu z globálního souboru Web.config.
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample4.xml)]
 
-## <a name="how-to-store-events-to-event-viewer"></a>Jak ukládat události do Prohlížeč událostí
+## <a name="how-to-store-events-to-event-viewer"></a>Jak ukládat události do Prohlížeče událostí
 
-Jak bylo zmíněno dříve, poskytovatel pro protokolování událostí v Prohlížeč událostí je nakonfigurován v globálním souboru Web. config. Ve výchozím nastavení jsou protokolovány všechny události založené na **WebBaseErrorEvent** a **WebFailureAuditEvent** . Můžete přidat další pravidla, která zaprotokolují Další informace do protokolu událostí. Pokud jste například chtěli protokolovat všechny události (*tj.* každou událost na základě **EventCode**), mohli byste do souboru Web. config přidat následující pravidlo:
+Jak již bylo zmíněno dříve, zprostředkovatel pro protokolování událostí v Prohlížeči událostí je konfigurován pro vás v globálním souboru Web.config. Ve výchozím nastavení jsou protokolovány všechny události založené na **událostech WebBaseErrorEvent** a **WebFailureAuditEvent.** Můžete přidat další pravidla pro protokolování dalších informací do protokolu událostí. Chcete-li například protokolovat všechny události *(tj.* každou událost založenou na **aplikaci WebBaseEvent),** můžete do souboru Web.config přidat následující pravidlo:
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample5.xml)]
 
-Toto pravidlo by propojí mapu událostí **všechny události** s poskytovatelem protokolu událostí. V globálním souboru Web. config jsou uvedeny oba tabulka eventMapping i zprostředkovatel.
+Toto pravidlo by propojilo mapu událostí **Všechny události** s poskytovatelem protokolu událostí. Do globálního souboru Web.config jsou zahrnuty i eventMapping a zprostředkovatel.
 
-## <a name="how-to-store-events-to-sql-server"></a>Jak ukládat události do SQL Server
+## <a name="how-to-store-events-to-sql-server"></a>Jak ukládat události na SQL Server
 
-Tato metoda používá databázi **aspnetdb** , která je generována nástrojem ASPNET\_regsql. exe. Výchozí zprostředkovatel používá připojovací řetězec LocalSqlServer, který používá databázi založenou na souborech ve složce App\_data nebo v místní instanci SQLExpress SQL Server. Připojovací řetězec LocalSqlServer i SqlProvider jsou konfigurovány v globálním souboru Web. config.
+Tato metoda používá databázi **ASPNETDB,** která je\_generována nástrojem Aspnet regsql.exe. Výchozí zprostředkovatel používá připojovací řetězec LocalSqlServer, který používá\_databázi založenou na souborech ve složce Dat aplikace nebo místní instanci SQLExpress serveru SQL Server. Připojovací řetězec LocalSqlServer i sqlprovider jsou konfigurovány v globálním souboru Web.config.
 
-Připojovací řetězec LocalSqlServer v globálním souboru Web. config vypadá takto:
+Připojovací řetězec LocalSqlServer v globálním souboru Web.config vypadá takto:
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample6.xml)]
 
-Chcete-li použít jinou instanci SQL Server, je nutné použít nástroj ASPNET\_regsql. exe, který lze najít v%windir%\Microsoft.Net\Framework\v2.0.\* složky. Pomocí nástroje ASPNET\_regsql. exe vygenerujte vlastní databázi **aspnetdb** v instanci SQL Server a pak přidejte připojovací řetězec do konfiguračního souboru vašich aplikací a pak přidejte poskytovatele pomocí nového připojovacího řetězce. Jakmile budete mít vytvořenou databázi **aspnetdb** , budete muset nastavit pravidlo, které propojí tabulka eventMapping s SqlProvider.
+Pokud chcete použít jinou instanci serveru SQL Server,\_budete muset použít nástroj Aspnet regsql.exe, který lze nalézt v %windir%\Microsoft.Net\Framework\v2.0. \* složku. Pomocí nástroje Aspnet\_regsql.exe vygenerujte vlastní databázi **ASPNETDB** v instanci serveru SQL Server, přidejte připojovací řetězec do konfiguračního souboru aplikací a potom přidejte zprostředkovatele pomocí nového připojovacího řetězce. Jakmile budete mít vytvořenou databázi **ASPNETDB,** budete muset nastavit pravidlo pro propojení eventMapping u sqlProvider.
 
-Bez ohledu na to, jestli používáte výchozí SqlProvider, nebo nakonfigurovat vlastního poskytovatele, budete muset přidat pravidlo spojující zprostředkovatele s mapou událostí. Následující pravidlo propojuje nového poskytovatele, kterého jste vytvořili výše, s mapou události **všechny události** . Toto pravidlo zaznamená všechny události založené na **EventCode** a pošle je do MySqlWebEventProvider, které budou používat připojovací řetězec MYASPNETDB. Následující kód přidá pravidlo pro propojení poskytovatele s mapou události:
+Bez ohledu na to, zda používáte výchozího zprostředkovatele SqlProvider nebo nakonfigurujete vlastního zprostředkovatele, budete muset přidat pravidlo spojující zprostředkovatele s mapou událostí. Následující pravidlo propojuje nového zprostředkovatele, kterého jste vytvořili výše, s mapou událostí **Všechny události.** Toto pravidlo zaprotokoluje všechny události založené na **WebBaseEvent** a odešle je mysqlwebeventprovideru, který použije připojovací řetězec MYASPNETDB. Následující kód přidá pravidlo pro propojení zprostředkovatele s mapou událostí:
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample7.xml)]
 
-Pokud jste chtěli odeslat jenom chyby SQL Server, můžete přidat následující pravidlo:
+Pokud chcete odesílat chyby pouze na SQL Server, můžete přidat následující pravidlo:
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample8.xml)]
 
-## <a name="how-to-forward-events-to-wmi"></a>Postup přeposílání událostí do rozhraní WMI
+## <a name="how-to-forward-events-to-wmi"></a>Jak předávat události do wmi
 
-Události můžete také přeposláním do WMI. Zprostředkovatel rozhraní WMI je ve výchozím nastavení nakonfigurován v globálním souboru Web. config.
+Události můžete také předat do systému WMI. Zprostředkovatel služby WMI je ve výchozím nastavení nakonfigurován v globálním souboru Web.config.
 
-Následující příklad kódu přidá pravidlo pro přeposílání událostí do rozhraní WMI:
+Následující příklad kódu přidá pravidlo pro předávání událostí do služeb WMI:
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample9.xml)]
 
-Budete muset přidat pravidlo, které přiřadí tabulka eventMapping k poskytovateli, a také aplikaci naslouchacího procesu WMI, která bude naslouchat událostem. Následující příklad kódu přidá pravidlo pro propojení zprostředkovatele rozhraní WMI s mapou události **všechny události** :
+Budete muset přidat pravidlo pro přidružení eventMapping k poskytovateli a také naslouchací proces služby WMI aplikace naslouchat události. Následující příklad kódu přidá pravidlo pro propojení zprostředkovatele služby WMI s mapou událostí **Všechny události:**
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample10.xml)]
 
-## <a name="how-to-forward-events-to-email"></a>Postup přeposílání událostí do e-mailu
+## <a name="how-to-forward-events-to-email"></a>Jak přeposlat události na e-mail
 
-Můžete také přeslat události do e-mailu. Dejte pozor na to, která pravidla událostí namapujete na svého poskytovatele e-mailu, protože si můžete omylně poslat spoustu informací, které můžou být vhodnější pro SQL Server nebo protokol událostí. Existují dva poskytovatelé e-mailu. SimpleMailWebEventProvider a TemplatedMailWebEventProvider. Každá z nich má stejné atributy konfigurace s výjimkou atributů Template a detailedTemplateErrors, které jsou k dispozici pouze v TemplatedMailWebEventProvider.
+Události můžete také přeposlat e-mailem. Buďte opatrní, která pravidla událostí mapujete na poskytovatele e-mailu, protože můžete neúmyslně odeslat mnoho informací, které mohou být vhodnější pro SQL Server nebo protokol událostí. Existují dva poskytovatelé e-mailu; SimpleMailWebEventProvider a TemplatedMailWebEventProvider. Každý z nich má stejné atributy konfigurace, s výjimkou atributů "template" a "detailedTemplateErrors", které jsou k dispozici pouze na TemplatedMailWebEventProvider.
 
 > [!NOTE]
-> Ani tito poskytovatelé e-mailů nejsou pro vás nakonfigurované. Budete je muset přidat do souboru Web. config.
+> Ani jeden z těchto poskytovatelů e-mailu není nakonfigurován pro vás. Budete je muset přidat do souboru Web.config.
 
-Hlavním rozdílem mezi těmito dvěma poskytovateli e-mailů je, že SimpleMailWebEventProvider posílá e-maily v obecné šabloně, kterou nelze upravovat. Ukázkový soubor Web. config přidá tohoto poskytovatele e-mailu do seznamu nakonfigurovaných zprostředkovatelů pomocí následujícího pravidla:
+Hlavní rozdíl mezi těmito dvěma poskytovateli e-mailu spočine na to, že SimpleMailWebEventProvider odesílá e-maily v obecné šabloně, kterou nelze změnit. Ukázkový soubor Web.config přidá tohoto poskytovatele e-mailu do seznamu nakonfigurovaných zprostředkovatelů pomocí následujícího pravidla:
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample11.xml)]
 
-K propojení poskytovatele e-mailu s mapou události **všechny události** se přidá taky následující pravidlo:
+Pro vazbu poskytovatele e-mailu s mapou událostí **Všechny události** je také přidáno následující pravidlo:
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample12.xml)]
 
-## <a name="aspnet-20-tracing"></a>ASP.NET 2,0 – trasování
+## <a name="aspnet-20-tracing"></a>ASP.NET 2.0 Trasování
 
-Existují tři hlavní vylepšení pro trasování v ASP.NET 2,0.
+Existují tři hlavní vylepšení trasování v ASP.NET 2.0.
 
 1. Funkce integrovaného trasování
-2. Programový přístup k trasovacím zprávám
+2. Programový přístup ke trasovacím zprávám
 3. Vylepšené trasování na úrovni aplikace
 
 ## <a name="integrated-tracing-functionality"></a>Funkce integrovaného trasování
 
-Nyní můžete směrovat zprávy vydávané třídou System. Diagnostics. Trace, aby ASP.NET výstup trasování, a směrovat zprávy vysílané trasováním ASP.NET do System. Diagnostics. Trace. Události instrumentace ASP.NET můžete také přeslat do System. Diagnostics. Trace. Tuto funkci poskytuje nový atribut **writeToDiagnosticsTrace**&gt; elementu &lt;Trace. Pokud je tato logická hodnota true, zprávy trasování ASP.NET se předávají do infrastruktury trasování System. Diagnostics pro použití všemi naslouchacími procesy, které jsou zaregistrované pro zobrazení trasovacích zpráv.
+Nyní můžete směrovat zprávy vyzařované třídou System.Diagnostics.Trace do ASP.NET výstupu trasování a směrovat zprávy vysílané ASP.NET trasování na System.Diagnostics.Trace. Události ASP.NET instrumentace můžete také předat systému System.Diagnostics.Trace. Tato funkce je poskytována nový **writeToDiagnosticsTrace** &lt;atribut&gt; trace element. Pokud je tato logická hodnota true, ASP.NET trasovací zprávy jsou předány system.diagnostics trasování infrastruktury pro všechny naslouchací procesy, které jsou registrovány k zobrazení trasovacích zpráv.
 
-## <a name="programmatic-access-to-trace-messages"></a>Programový přístup k trasovacím zprávám
+## <a name="programmatic-access-to-trace-messages"></a>Programový přístup ke stopovým zprávám
 
-ASP.NET 2,0 umožňuje programový přístup ke všem trasovacím zprávám prostřednictvím třídy **TraceContextRecord** a kolekce **TraceRecords** . Nejúčinnější způsob přístupu ke trasovacím zprávám je registrace delegáta **TraceContextEventHandler** (také novinka v ASP.NET 2,0) pro zpracování nové události **TraceFinished** . Podle potřeby můžete procházet zprávy trasování.
+ASP.NET 2.0 umožňuje programový přístup ke všem trasovacím zprávám prostřednictvím třídy **TraceContextRecord** a kolekce **TraceRecords.** Nejúčinnější způsob přístupu ke zprávám trasování je zaregistrovat delegáta **TraceContextEventHandler** (také nový v ASP.NET 2.0) pro zpracování nové události **TraceFinished.** Potom můžete smyčku prostřednictvím trasovacích zpráv, jak si přejete.
 
-Následující ukázka kódu Tento příklad ilustruje:
+Následující ukázka kódu ilustruje toto:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample13.cs)]
 
-Ve výše uvedeném příkladu se smyčka provede kolekcí TraceRecords a pak se každou zprávu zapíše do datového proudu odpovědí.
+Ve výše uvedeném příkladu jsem smyčka prostřednictvím TraceRecords kolekce a potom zapsat každou zprávu do datového proudu odpovědi.
 
-## <a name="improved-application-level-tracing"></a>Vylepšené trasování na úrovni aplikace
+## <a name="improved-application-level-tracing"></a>Vylepšené trasování na úrovni aplikací
 
-Trasování na úrovni aplikace je vylepšeno prostřednictvím zavedení nového atributu **mostRecent**&gt; elementu &lt;Trace. Tento atribut určuje, zda je zobrazen poslední výstup trasování na úrovni aplikace a starší data trasování přesahující limity, které jsou označeny atributem requestLimit, jsou zahozeny. Je-li nastavena hodnota false, zobrazí se data trasování pro požadavky, dokud není dosaženo atributu requestLimit.
+Trasování na úrovni aplikace je vylepšeno zavedením nového&gt; atributu **mostRecent** prvku &lt;trace. Tento atribut určuje, zda je zobrazen nejnovější výstup trasování na úrovni aplikace a starší data trasování za limity, které jsou označeny requestLimit jsou zahozeny. Pokud false, data trasování jsou zobrazeny pro požadavky, dokud requestLimit atribut je dosaženo.
 
-## <a name="aspnet-command-line-tools"></a>Nástroje příkazového řádku ASP.NET
+## <a name="aspnet-command-line-tools"></a>nástroje ASP.NET příkazového řádku
 
-Při konfiguraci ASP.NET je k dispozici několik nástrojů příkazového řádku. ASP.NET vývojáři by měli být obeznámeni s nástrojem ASPNET\_regiis. exe. ASP.NET 2,0 poskytuje tři další nástroje příkazového řádku, které pomáhají při konfiguraci.
+Existuje několik nástrojů příkazového řádku, které pomáhají při konfiguraci ASP.NET. ASP.NET vývojáři by měli být\_obeznámeni s nástrojem aspnet regiis.exe. ASP.NET 2.0 poskytuje tři další nástroje příkazového řádku, které pomáhají v konfiguraci.
 
 K dispozici jsou následující nástroje příkazového řádku:
 
 | **Nástroj** | **Použití** |
 | --- | --- |
-| **ASPNET\_regiis. exe** | Umožňuje registraci ASP.NET se službou IIS. Existují dvě verze těchto nástrojů, které jsou dodávány s ASP.NET 2,0, jeden pro 32 systémy (ve složce Framework) a jeden pro 64-bit Systems (ve složce Framework64). Verze 64 nebude nainstalována na 32 operačním systému. |
-| **ASPNET\_regsql. exe** | Nástroj pro registraci SQL Server ASP.NET slouží k vytvoření databáze Microsoft SQL Server pro použití poskytovateli SQL Server v ASP.NET nebo k přidání nebo odebrání možností z existující databáze. Soubor ASPNET\_regsql. exe je umístěný ve složce [jednotka:] \WINDOWS\Microsoft.NET\Framework\versionNumber na vašem webovém serveru. |
-| **ASPNET\_regbrowsers. exe** | Nástroj pro registraci prohlížeče ASP.NET analyzuje a zkompiluje všechny definice prohlížečů v celém systému do sestavení a nainstaluje sestavení do globální mezipaměti sestavení (GAC). Nástroj používá definiční soubory prohlížeče (. Soubory prohlížeče) z podadresáře .NET Framework prohlížeče. Nástroj najdete v adresáři%SystemRoot%\Microsoft.NET\Framework\version\. |
-| **ASPNET\_Compiler. exe** | Nástroj ASP.NET Compilation umožňuje kompilovat webovou aplikaci v ASP.NET, ať už na místě, nebo pro nasazení do cílového umístění, jako je například provozní server. Místní kompilace pomáhá výkon aplikace, protože koncoví uživatelé nenaleznou zpoždění prvního požadavku na aplikaci, zatímco je aplikace zkompilována. |
+| **aspnet\_regiis.exe** | Umožňuje registraci ASP.NET se su-iis. Existují dvě verze těchto nástrojů, které jsou dodávány s ASP.NET 2.0, jeden pro 32bitové systémy (ve složce Framework) a jeden pro 64bitové systémy (ve složce Framework64).) 64bitová verze nebude nainstalována v 32bitovém os. |
+| **aspnet\_regsql.exe** | Nástroj ASP.NET registrace serveru SQL Server slouží k vytvoření databáze serveru Microsoft SQL Server pro použití zprostředkovateli serveru SQL Server v ASP.NET nebo k přidání nebo odebrání možností z existující databáze. Soubor Aspnet\_regsql.exe je umístěn ve složce [drive:]\WINDOWS\Microsoft.NET\Framework\versionNumber na webovém serveru. |
+| **aspnet\_regbrowsers.exe** | Nástroj ASP.NET registrace prohlížeče analyzuje a zkompiluje všechny definice prohlížeče v celém systému do sestavení a nainstaluje sestavení do globální mezipaměti sestavení. Nástroj používá definiční soubory prohlížeče (. prohlížeče) z podadresáře prohlížečů .NET Framework. Nástroj naleznete v adresáři %SystemRoot%\Microsoft.NET\Framework\version\. |
+| **soubor compiler.exe aspnet\_** | Nástroj ASP.NET kompilace umožňuje zkompilovat ASP.NET webovou aplikaci, a to buď na místě, nebo pro nasazení do cílového umístění, například produkčního serveru. Místní kompilace pomáhá výkon aplikace, protože koncoví uživatelé nenarazí na zpoždění při prvním požadavku na aplikaci, zatímco aplikace je kompilován. |
 
-Vzhledem k tomu, že nástroj ASPNET\_regiis. exe není novinkou ASP.NET 2,0, nebudeme ho tady pojednávat.
+Vzhledem k\_tomu, že nástroj aspnet regiis.exe není pro ASP.NET 2.0 nový, nebudeme o tom zde diskutovat.
 
-## <a name="aspnet-sql-server-registration-tool---aspnet_regsqlexe"></a>Nástroj pro registraci SQL Server ASP.NET – ASPNET\_regsql. exe
+## <a name="aspnet-sql-server-registration-tool---aspnet_regsqlexe"></a>ASP.NET nástroj pro registraci\_serveru SQL Server - aspnet regsql.exe
 
-Pomocí nástroje pro registraci SQL Server ASP.NET můžete nastavit několik typů možností. Můžete zadat připojení SQL, určit, které ASP.NET aplikační služby se mají použít SQL Server ke správě informací, určení, která databáze nebo tabulka se používá pro funkci závislosti mezipaměti SQL, a přidání nebo odebrání podpory pro použití SQL Server k ukládání procedur a stavu relace.
+Pomocí nástroje ASP.NET registrace serveru SQL Server můžete nastavit několik typů možností. Můžete zadat připojení SQL, určit, které ASP.NET aplikační služby používají SQL Server ke správě informací, označit, která databáze nebo tabulka se používá pro závislost mezipaměti SQL, a přidat nebo odebrat podporu pro použití serveru SQL Server k ukládání procedur a stavu relace.
 
-Několik aplikačních služeb ASP.NET využívá poskytovatele ke správě ukládání a načítání dat ze zdroje dat. Každý zprostředkovatel je specifický pro zdroj dat. ASP.NET obsahuje poskytovatele SQL Server pro tyto funkce ASP.NET:
+Několik ASP.NET aplikačních služeb spoléhá na poskytovatele při správě ukládání a načítání dat ze zdroje dat. Každý zprostředkovatel je specifický pro zdroj dat. ASP.NET zahrnuje zprostředkovatele serveru SQL Server pro následující funkce ASP.NET:
 
-- Členství (třída [SqlMembershipProvider](https://msdn.microsoft.com/library/system.web.security.sqlmembershipprovider.aspx) ).
-- Správa rolí (třída [SqlRoleProvider](https://msdn.microsoft.com/library/system.web.security.sqlroleprovider.aspx) ).
-- Profil (třída [SqlProfileProvider](https://msdn.microsoft.com/library/system.web.profile.sqlprofileprovider.aspx) ).
-- Přizpůsobení Webové části (třída [SqlPersonalizationProvider](https://msdn.microsoft.com/library/system.web.ui.webcontrols.webparts.sqlpersonalizationprovider.aspx) ).
-- Webové události (třída [SqlWebEventProvider](https://msdn.microsoft.com/library/system.web.management.sqlwebeventprovider.aspx) ).
+- Členství (třída [SqlMembershipProvider).](https://msdn.microsoft.com/library/system.web.security.sqlmembershipprovider.aspx)
+- Správa rolí (třída [SqlRoleProvider).](https://msdn.microsoft.com/library/system.web.security.sqlroleprovider.aspx)
+- Profil (třída [SqlProfileProvider).](https://msdn.microsoft.com/library/system.web.profile.sqlprofileprovider.aspx)
+- Individuální nastavení webových částí (třída [SqlPersonalizationProvider).](https://msdn.microsoft.com/library/system.web.ui.webcontrols.webparts.sqlpersonalizationprovider.aspx)
+- Webové události (třída [SqlWebEventProvider).](https://msdn.microsoft.com/library/system.web.management.sqlwebeventprovider.aspx)
 
-Když nainstalujete ASP.NET, soubor Machine. config pro server obsahuje prvky konfigurace, které určují poskytovatele SQL Server pro každou z funkcí ASP.NET, které jsou závislé na poskytovateli. Tito zprostředkovatelé se ve výchozím nastavení nakonfigurují pro připojení k místní uživatelské instanci SQL Server Express 2005. Pokud změníte výchozí připojovací řetězec používaný poskytovateli, pak předtím, než budete moci použít kteroukoli z funkcí ASP.NET nakonfigurovaných v konfiguraci počítače, je nutné nainstalovat databázi SQL Server a prvky databáze pro vaši zvolenou funkci pomocí ASPNET\_regsql. exe. Pokud databáze, kterou zadáte pomocí nástroje pro registraci SQL, ještě neexistuje (vytvoří se výchozí databáze, pokud není zadaná v příkazovém řádku), musí mít aktuální uživatel práva k vytváření databází v SQL Server a také vytváření schématu e. lements v rámci databáze.
+Při instalaci ASP.NET obsahuje soubor Machine.config pro váš server konfigurační prvky, které určují zprostředkovatele serveru SQL Server pro každou ASP.NET funkcí, které jsou závislé na zprostředkovateli. Tito zprostředkovatelé jsou ve výchozím nastavení konfigurováni pro připojení k místní instanci uživatele serveru SQL Server Express 2005. Pokud změníte výchozí připojovací řetězec používaný zprostředkovateli, pak před použitím některé z ASP.NET funkcí nakonfigurovaných v konfiguraci počítače,\_je nutné nainstalovat databázi serveru SQL Server a databázové prvky pro vybranou funkci pomocí souboru Aspnet regsql.exe. Pokud databáze, kterou zadáte pomocí registračního nástroje SQL, ještě neexistuje (aspnetdb bude výchozí databáze, pokud není zadána na příkazovém řádku), musí mít aktuální uživatel práva k vytváření databází na serveru SQL Server a také k vytváření prvků schématu v databázi.
 
 ### <a name="sql-cache-dependency"></a>Závislost mezipaměti SQL
 
-Pokročilá funkce ukládání výstupu do mezipaměti ASP.NET je závislost mezipaměti SQL. Závislost mezipaměti SQL podporuje dva různé režimy provozu: jeden, který používá implementaci ASP.NET pro dotazování tabulky a druhý režim, který používá funkce oznamování dotazů SQL Server 2005. Nástroj pro registraci SQL se dá použít ke konfiguraci režimu cyklického dotazování tabulky.
+Pokročilou funkcí ukládání do mezipaměti výstupu ASP.NET je závislost mezipaměti SQL. Závislost mezipaměti SQL podporuje dva různé provozní režimy: jeden, který používá ASP.NET implementaci dotazování tabulek a druhý režim, který používá funkce oznámení dotazu serveru SQL Server 2005. Registrační nástroj SQL lze použít ke konfiguraci režimu dotazování tabulek.
 
 ### <a name="session-state"></a>Stav relace
 
-Ve výchozím nastavení jsou hodnoty stavu relace a informace uloženy v paměti v rámci procesu ASP.NET. Případně můžete data relace ukládat do databáze SQL Server, kde ji můžete sdílet s více webovými servery. Pokud databáze, kterou zadáte pro stav relace s nástrojem pro registraci SQL, ještě neexistuje, musí mít aktuální uživatel práva k vytváření databází v SQL Server a také k vytváření elementů schématu v rámci databáze. Pokud databáze existuje, musí mít aktuální uživatel práva k vytváření elementů schématu v existující databázi.
+Ve výchozím nastavení jsou hodnoty stavu relace a informace uloženy v paměti v rámci procesu ASP.NET. Případně můžete data relace uložit do databáze serveru SQL Server, kde je může sdílet více webových serverů. Pokud databáze, kterou zadáte pro stav relace pomocí nástroje pro registraci SQL, ještě neexistuje, musí mít aktuální uživatel práva k vytváření databází na serveru SQL Server a také k vytváření prvků schématu v databázi. Pokud databáze existuje, musí mít aktuální uživatel práva k vytvoření prvků schématu v existující databázi.
 
-Chcete-li nainstalovat databázi stavu relace na SQL Server, spusťte nástroj ASPNET\_regsql. exe a zadejte následující informace s příkazem:
+Chcete-li nainstalovat databázi stavu relace na\_serveru SQL Server, spusťte nástroj Aspnet regsql.exe a zařaďte příkaz následující informace:
 
-- Název instance SQL Server s použitím možnosti **-S** .
-- Přihlašovací údaje pro účet, který má oprávnění k vytvoření databáze na počítači se systémem SQL Server. Použijte možnost **-E** k používání aktuálně přihlášeného uživatele nebo použijte možnost **-U** k zadání hesla a zadáním ID uživatele spolu s možností **-P** .
+- Název instance serveru SQL Server pomocí možnosti **-S.**
+- Přihlašovací pověření pro účet, který má oprávnění k vytvoření databáze v počítači se systémem SQL Server. Pomocí možnosti **-E** můžete použít aktuálně přihlášeného uživatele nebo pomocí možnosti **-U** určit ID uživatele spolu s volbou **-P** k zadání hesla.
 - Možnost příkazového řádku **-ssadd** pro přidání databáze stavu relace.
 
-Ve výchozím nastavení nemůžete použít nástroj ASPNET\_regsql. exe k instalaci databáze stavu relace do počítače se systémem SQL Server 2005 Express Edition.
+Ve výchozím nastavení nelze použít\_nástroj Aspnet regsql.exe k instalaci databáze stavu relace do počítače se systémem SQL Server 2005 Express Edition.
 
-### <a name="the-aspnet-browser-registration-tool---aspnet_regbrowsersexe"></a>Nástroj pro registraci prohlížeče ASP.NET-ASPNET\_regbrowsers. exe
+### <a name="the-aspnet-browser-registration-tool---aspnet_regbrowsersexe"></a>Nástroj pro registraci prohlížeče\_ASP.NET - aspnet regbrowsers.exe
 
-V ASP.NET verze 1,1 obsahuje soubor Machine. config oddíl s názvem &lt;browserCaps&gt;. Tato část obsahovala řadu položek XML, které definovaly konfigurace pro různé prohlížeče na základě regulárního výrazu. Pro ASP.NET verze 2,0, nový. Soubor prohlížeče definuje parametry konkrétního prohlížeče pomocí záznamů XML. Do nového prohlížeče přidáte informace přidáním nového. Soubor prohlížeče do složky umístěné na%SystemRoot%\Microsoft.NET\Framework\version\CONFIG\Browsers ve vašem systému.
+V ASP.NET verze 1.1 obsahoval soubor Machine.config &lt;oddíl&gt;s názvem browserCaps . Tato část obsahovala řadu položek XML, které definovaly konfigurace pro různé prohlížeče na základě regulárního výrazu. Pro ASP.NET verze 2.0 nový . Soubor prohlížeče definuje parametry konkrétního prohlížeče pomocí položek XML. Informace v novém prohlížeči přidáte přidáním nového . Soubor prohlížeče do složky umístěné na adrese %SystemRoot%\Microsoft.NET\Framework\version\CONFIG\Browsers v systému.
 
-Vzhledem k tomu, že aplikace nečte soubor. config pokaždé, když vyžaduje informace o prohlížeči, můžete vytvořit nový. Soubor prohlížeče a spuštěním ASPNET\_regbrowsers. exe přidejte požadované změny do sestavení. Díky tomu může server okamžitě přistupovat k novým informacím v prohlížeči, takže nemusíte vypínat žádné z vašich aplikací a vybírat informace. Aplikace může získat přístup k funkcím prohlížeče pomocí vlastnosti prohlížeče aktuálního HttpRequest.
+Vzhledem k tomu, že aplikace nečte soubor .config pokaždé, když vyžaduje informace o prohlížeči, můžete vytvořit nový soubor . prohlížeč a spustit Aspnet\_regbrowsers.exe přidat požadované změny do sestavení. To umožňuje serveru přístup k nové informace o prohlížeči okamžitě, takže nemusíte vypnout žádné z vašich aplikací vyzvednout informace. Aplikace může přistupovat k možnostem prohlížeče prostřednictvím vlastnosti Browser aktuálního httprequest.
 
-Při spuštění ASPNET\_regbrowser. exe jsou k dispozici následující možnosti:
+Při spuštění souboru aspnet\_regbrowser.exe jsou k dispozici následující možnosti:
 
 | **Možnost** | **Popis** |
 | --- | --- |
-| **-?** | Zobrazí text v nápovědě ASPNET\_regbbrowsers. exe v příkazovém okně. |
-| **– i** | Vytvoří sestavení možností prohlížeče modulu runtime a nainstaluje ho do globální mezipaměti sestavení (GAC). |
-| **-u** | Odinstaluje sestavení schopností prohlížeče modulu runtime z globální mezipaměti sestavení (GAC). |
+| **-?** | Zobrazí text nápovědy Aspnet\_regbbrowsers.exe v příkazovém okně. |
+| **-i** | Vytvoří sestavení schopností prohlížeče za běhu a nainstaluje jej do globální mezipaměti sestavení. |
+| **-u** | Odinstaluje sestavení schopností prohlížeče za běhu z globální mezipaměti sestavení. |
 
-## <a name="the-aspnet-compilation-tool---aspnet_compilerexe"></a>Nástroj ASP.NET Compilation – ASPNET\_Compiler. exe
+## <a name="the-aspnet-compilation-tool---aspnet_compilerexe"></a>Nástroj pro kompilaci ASP.NET\_- aspnet compiler.exe
 
-Kompilační nástroj ASP.NET lze použít dvěma obecnými způsoby: pro místní kompilaci a kompilaci pro nasazení, kde je zadán cílový výstupní adresář.
+Nástroj ASP.NET kompilace lze použít dvěma obecnými způsoby: pro kompilaci na místě a kompilaci pro nasazení, kde je určen cílový výstupní adresář.
 
 ### <a name="compiling-an-application-in-place"></a>[Kompilace aplikace na místě](https://msdn.microsoft.com/library/ms229863.aspx)
 
-Kompilační nástroj ASP.NET může kompilovat aplikaci na místě, to znamená, že napodobuje chování při provádění více požadavků do aplikace, což způsobuje běžnou kompilaci. Uživatelům předkompilovaných webů nebude nacházet prodleva způsobená kompilováním stránky při prvním požadavku.
+Nástroj ASP.NET kompilace může zkompilovat aplikaci na místě, to znamená, že napodobuje chování provádění více požadavků na aplikaci, což způsobuje pravidelnou kompilaci. Uživatelé předem zkompilovaného webu nezaznamená zpoždění způsobené kompilací stránky na první žádost.
 
-Když předkompilujete lokalitu na místě, platí následující položky:
+Při předkompilaci webu na místě platí následující položky:
 
-- Lokalita si zachová své soubory a strukturu adresářů.
+- Web si zachová své soubory a adresářovou strukturu.
 - Musíte mít kompilátory pro všechny programovací jazyky používané webem na serveru.
-- Pokud dojde ke kompilaci jakéhokoli souboru, celá lokalita nebude zkompilována.
+- Pokud některý soubor selže kompilace, celý web selže kompilace.
 
-Můžete také znovu zkompilovat aplikaci na místě po přidání nových zdrojových souborů do této aplikace. Nástroj zkompiluje pouze nové nebo změněné soubory, Pokud nezahrnete možnost **-c** .
+Můžete také překompilovat aplikaci na místě po přidání nových zdrojových souborů do ní. Nástroj zkompiluje pouze nové nebo změněné soubory, pokud nezahrnete možnost **-c.**
 
 > [!NOTE]
-> Kompilace aplikace, která obsahuje vnořenou aplikaci, nekompiluje vnořenou aplikaci. Vnořená aplikace musí být zkompilována samostatně.
+> Kompilace aplikace, která obsahuje vnořenou aplikaci, nezkompiluje vnořenou aplikaci. Vnořená aplikace musí být kompilován samostatně.
 
-### <a name="compiling-an-application-for-deployment"></a>[Kompilování aplikace pro nasazení](https://msdn.microsoft.com/library/ms229863.aspx)
+### <a name="compiling-an-application-for-deployment"></a>[Kompilace aplikace pro nasazení](https://msdn.microsoft.com/library/ms229863.aspx)
 
-Zkompilujete aplikaci pro nasazení (kompilace do cílového umístění) zadáním parametru targetDir. TargetDir může být konečné umístění webové aplikace nebo kompilovaná aplikace může být nasazena. Použití možnosti **-u** zkompiluje aplikaci takovým způsobem, že můžete provádět změny určitých souborů v kompilované aplikaci, aniž by bylo nutné je znovu kompilovat. ASPNET\_Compiler. exe rozlišuje mezi statickými a dynamickými typy souborů a zpracovává je jinak při vytváření výsledné aplikace.
+Zkompilovat aplikaci pro nasazení (kompilace do cílového umístění) zadáním parametru targetDir. TargetDir může být konečné umístění pro webovou aplikaci nebo kompilované aplikace lze dále nasadit. Pomocí možnosti **-u** zkompiluje aplikaci takovým způsobem, že můžete provádět změny určitých souborů v kompilované aplikaci bez jeho opětovné kompilace. Soubor Aspnet\_compiler.exe rozlišuje mezi statickými a dynamickými typy souborů a při vytváření výsledné aplikace je zpracovává odlišně.
 
-- Statické typy souborů jsou ty, které nemají přidruženého kompilátoru nebo poskytovatele sestavení, jako jsou například soubory s názvem, jejichž přípona má přípony jako. CSS,. gif,. htm,. html,. jpg,. js a tak dále. Tyto soubory jsou jednoduše zkopírovány do cílového umístění, kde se jejich relativní místa v adresářové struktuře uchovávají.
-- Dynamické typy souborů jsou ty, které mají přidruženého kompilátoru nebo poskytovatele sestavení, včetně souborů s příponou názvu souboru, které jsou specifické pro ASP.NET, například. asax,. ascx,. ashx,. aspx,. Browser,. Master a tak dále. Nástroj pro kompilaci ASP.NET generuje sestavení z těchto souborů. Pokud je možnost **-u** vynechána, nástroj také vytvoří soubory s příponou názvu souboru. KOMPILOVÁNo, které mapuje původní zdrojové soubory na jejich sestavení. Aby bylo zajištěno, že bude zachována adresářová struktura zdroje aplikace, nástroj vygeneruje v odpovídajících umístěních v cílové aplikaci zástupné soubory.
+- Statické typy souborů jsou ty, které nemají přidružený kompilátor nebo zprostředkovatele sestavení, například soubory, jejichž název má přípony, například .css, .gif, .htm, .html, .jpg, .js a tak dále. Tyto soubory jsou jednoduše zkopírovány do cílového umístění, s jejich relativní místa ve struktuře adresáře zachována.
+- Dynamické typy souborů jsou ty, které mají přidružený kompilátor nebo zprostředkovatelsestavení, včetně souborů s přípony názvů specifických pro ASP.NET, jako je asax, ascx, ashx, .aspx, .browser, .master a tak dále. Nástroj kompilace ASP.NET generuje sestavení z těchto souborů. Pokud je volba **-u** vynechána, nástroj také vytvoří soubory s příponou názvu souboru . KOMPILOVANÉ, které mapují původní zdrojové soubory na jejich sestavení. Chcete-li zajistit zachování struktury adresáře zdroje aplikace, nástroj generuje zástupné soubory v odpovídajících umístěních v cílové aplikaci.
 
-Pro indikaci, že obsah kompilované aplikace lze upravit, je nutné použít parametr **-u** . V opačném případě jsou následné změny ignorovány nebo způsobují chyby v době běhu.
+Je nutné použít **-u** možnost označit, že obsah kompilované aplikace lze upravit. V opačném případě jsou následné změny ignorovány nebo způsobit chyby za běhu.
 
-Následující tabulka popisuje, jak Nástroj pro kompilaci ASP.NET zpracovává různé typy souborů, pokud je zahrnutá možnost **-u** .
+Následující tabulka popisuje, jak nástroj ASP.NET kompilace zpracovává různé typy souborů, když je zahrnuta možnost **-u.**
 
 | **Typ souboru** | **Akce kompilátoru** |
 | --- | --- |
-| .ascx, .aspx, .master | Tyto soubory jsou rozděleny do značek a zdrojového kódu, který zahrnuje jak soubory kódu na pozadí, tak i jakýkoli kód, který je uzavřen v &lt;&gt; prvky skriptu runat = "Server". Zdrojový kód je zkompilován do sestavení s názvy, které jsou odvozeny z algoritmu hash, a sestavení jsou umístěna do adresáře bin. Všechny vložené kódy, tj. kód uzavřený mezi **&lt;%** a **%&gt;** závorky, jsou součástí kódu a nejsou kompilovány. Vytvoří se nové soubory se stejným názvem, jako jsou zdrojové soubory, aby obsahovaly značky a umístily do odpovídajících výstupních adresářů. |
-| .ashx, .asmx | Tyto soubory nejsou kompilovány a přesunuty do výstupních adresářů tak, jak jsou, a nejsou kompilovány. Pokud chcete zkompilovat kód obslužné rutiny, umístěte kód do souboru zdrojového kódu v adresáři App\_Code. |
-| cs,. vb,. jsl,. cpp (nezahrnuje soubory kódu na pozadí pro typy souborů, které jsou uvedeny dříve) | Tyto soubory jsou kompilovány a zahrnuty jako prostředek v sestaveních, která na ně odkazují. Zdrojové soubory nejsou zkopírovány do výstupního adresáře. Pokud se na soubor s kódem neodkazuje, není zkompilován. |
+| .ascx, .aspx, .master | Tyto soubory jsou rozděleny do značky a zdrojový kód, který zahrnuje jak &lt;kód na pozadí&gt; soubory a jakýkoli kód, který je uzavřen ve skriptu runat = "server" prvky. Zdrojový kód je kompilován do sestavení s názvy, které jsou odvozeny z algoritmu hash a sestavení jsou umístěny v adresáři Bin. Jakýkoli vložkový kód, to ** &lt; ** znamená ** % ** kód uzavřený mezi závorkami a, je součástí značky a není kompilován. Nové soubory se stejným názvem jako zdrojové soubory jsou vytvořeny tak, aby obsahovaly značky a umístěny do odpovídajících výstupních adresářů. |
+| .ashx, .asmx | Tyto soubory nejsou kompilovány a jsou přesunuty do výstupních adresářů tak, jak jsou a nejsou kompilovány. Pokud chcete mít kód obslužné rutiny zkompilován, umístěte kód do souborů zdrojového kódu v adresáři Kód aplikace.\_ |
+| .cs, .vb, .jsl, .cpp (bez souborů s kódem na pozadí pro výše uvedené typy souborů) | Tyto soubory jsou kompilovány a zahrnuty jako prostředek v sestaveních, které na ně odkazují. Zdrojové soubory nejsou zkopírovány do výstupního adresáře. Pokud soubor kódu není odkazován, není zkompilován. |
 | Vlastní typy souborů | Tyto soubory nejsou kompilovány. Tyto soubory jsou zkopírovány do odpovídajících výstupních adresářů. |
-| Soubory zdrojového kódu v podadresáři\_App Code | Tyto soubory jsou zkompilovány do sestavení a umístěny do adresáře bin. |
-| soubory. resx a. Resources v podadresáři App\_GlobalResources | Tyto soubory jsou zkompilovány do sestavení a umístěny do adresáře bin. V hlavním výstupním adresáři není vytvořená podadresář aplikace\_GlobalResources a žádné soubory. resx nebo. Resources umístěné ve zdrojovém adresáři se zkopírují do výstupních adresářů. |
-| soubory. resx a. Resources v podadresáři App\_LocalResources | Tyto soubory nejsou kompilovány a jsou zkopírovány do odpovídajících výstupních adresářů. |
-| soubory. skinu v podadresáři aplikace\_ch motivů | Soubory. Skin a statické soubory motivů nejsou kompilovány a zkopírovány do odpovídajících výstupních adresářů. |
-| . browser – statické typy souborů Web. config: sestavení, která už jsou přítomná v adresáři bin | Tyto soubory jsou zkopírovány do výstupních adresářů. |
+| Soubory zdrojového kódu\_v podadresáři Kód aplikace | Tyto soubory jsou zkompilovány do sestavení a umístěny do adresáře Bin. |
+| Soubory Resx a .resource\_v podadresáři App GlobalResources | Tyto soubory jsou zkompilovány do sestavení a umístěny do adresáře Bin. V\_hlavním výstupním adresáři není vytvořen žádný podadresář App GlobalResources a do výstupních adresářů se nezkopírují žádné soubory Resx nebo .resources umístěné ve zdrojovém adresáři. |
+| Soubory Resx a .resource\_v podadresáři App LocalResources | Tyto soubory nejsou kompilovány a jsou zkopírovány do odpovídajících výstupních adresářů. |
+| Soubory .skin v\_podadresáři Témata aplikace | Soubory .skin a statické soubory motivů nejsou zkompilovány a jsou zkopírovány do odpovídajících výstupních adresářů. |
+| Statické typy souborů .browser Web.config Sestavení, která jsou již v adresáři Bin k dispozici | Tyto soubory jsou zkopírovány stejně jako do výstupních adresářů. |
 
-Následující tabulka popisuje, jak Nástroj pro kompilaci ASP.NET zpracovává různé typy souborů, když je vynechána možnost **-u** .
+Následující tabulka popisuje, jak nástroj ASP.NET kompilace zpracovává různé typy souborů, když je možnost **-u** vynechána.
 
 | **Typ souboru** | **Akce kompilátoru** |
 | --- | --- |
-| .aspx, .asmx, .ashx, .master | Tyto soubory jsou rozděleny do značek a zdrojového kódu, který zahrnuje jak soubory kódu na pozadí, tak i jakýkoli kód, který je uzavřen v &lt;&gt; prvky skriptu runat = "Server". Zdrojový kód je zkompilován do sestavení s názvy, které jsou odvozeny z algoritmu hash. Výsledná sestavení jsou umístěna do adresáře bin. Všechny vložené kódy, tj. kód uzavřený mezi **&lt;%** a **%&gt;** závorky, jsou součástí kódu a nejsou kompilovány. Kompilátor vytvoří nové soubory, které obsahují značky se stejným názvem, jako mají zdrojové soubory. Tyto výsledné soubory jsou umístěny do adresáře bin. Kompilátor také vytvoří soubory se stejným názvem, jako mají zdrojové soubory, ale s příponou. KOMPILOVÁNo obsahující informace o mapování. Okně. ZKOMPILOVANÉ soubory jsou umístěny ve výstupních adresářích odpovídajících původnímu umístění zdrojových souborů. |
-| .ascx | Tyto soubory jsou rozděleny do značek a zdrojového kódu. Zdrojový kód je zkompilován do sestavení a umístěn do adresáře bin s názvy, které jsou odvozeny z algoritmu hash. Nejsou generovány žádné soubory značek. |
-| cs,. vb,. jsl,. cpp (nezahrnuje soubory kódu na pozadí pro typy souborů, které jsou uvedeny dříve) | Zdrojový kód, na který odkazuje sestavení generovaná ze souborů. ascx,. ashx nebo. aspx, je zkompilován do sestavení a umístěn do adresáře bin. Nejsou kopírovány žádné zdrojové soubory. |
-| Vlastní typy souborů | Tyto soubory jsou kompilovány jako dynamické soubory. V závislosti na typu souboru, na kterém jsou založeny, může kompilátor umístit soubory mapování ve výstupních adresářích. |
-| Soubory v podadresáři\_App Code | Soubory zdrojového kódu v tomto podadresáři jsou zkompilovány do sestavení a umístěny do adresáře bin. |
-| Soubory v podadresáři aplikace\_GlobalResources | Tyto soubory jsou zkompilovány do sestavení a umístěny do adresáře bin. V hlavním výstupním adresáři není vytvořená podadresář aplikace\_GlobalResources. Pokud konfigurační soubor určuje, že soubory appliesTo = "All",. resx a. Resources se zkopírují do výstupních adresářů. Nejsou zkopírovány, pokud se na ně odkazuje pomocí [BuildProvider](https://msdn.microsoft.com/library/system.web.configuration.buildprovider.aspx). |
-| soubory. resx a. Resources v podadresáři App\_LocalResources | Tyto soubory jsou zkompilovány do sestavení s jedinečnými názvy a umístěny do adresáře bin. Do výstupních adresářů se nekopírují žádné soubory. resx nebo. Resource. |
-| soubory. skinu v podadresáři aplikace\_ch motivů | Motivy jsou kompilovány do sestavení a umístěny do adresáře bin. Pro soubory. Skin se vytvoří zástupné soubory a umístí se do odpovídajícího výstupního adresáře. Statické soubory (například. CSS) se zkopírují do výstupních adresářů. |
-| . browser – statické typy souborů Web. config: sestavení, která už jsou přítomná v adresáři bin | Tyto soubory jsou zkopírovány do výstupního adresáře. |
+| .aspx, .asmx, .ashx, .master | Tyto soubory jsou rozděleny do značky a zdrojový kód, který zahrnuje jak &lt;kód na pozadí&gt; soubory a jakýkoli kód, který je uzavřen ve skriptu runat = "server" prvky. Zdrojový kód je kompilován do sestavení s názvy, které jsou odvozeny z algoritmu hash. Výsledná sestavení jsou umístěna v adresáři Bin. Jakýkoli vložkový kód, to ** &lt; ** znamená ** % ** kód uzavřený mezi závorkami a, je součástí značky a není kompilován. Kompilátor vytvoří nové soubory, které budou obsahovat značky se stejným názvem jako zdrojové soubory. Tyto výsledné soubory jsou umístěny v adresáři Bin. Kompilátor také vytváří soubory se stejným názvem jako zdrojové soubory, ale s příponou . KOMPILOVANÉ, které obsahují informace o mapování. Tá. KOMPILOVANÉ soubory jsou umístěny ve výstupních adresářích odpovídajících původnímu umístění zdrojových souborů. |
+| Ascx | Tyto soubory jsou rozděleny do značky a zdrojový kód. Zdrojový kód je zkompilován do sestavení a umístěn do adresáře Bin s názvy, které jsou odvozeny z algoritmu hash. Nejsou generovány žádné soubory značek. |
+| .cs, .vb, .jsl, .cpp (bez souborů s kódem na pozadí pro výše uvedené typy souborů) | Zdrojový kód, na který odkazují sestavení vygenerovaná ze souborů ASCX, ASHX nebo ASPX, je zkompilován do sestavení a umístěn do adresáře Bin. Nejsou zkopírovány žádné zdrojové soubory. |
+| Vlastní typy souborů | Tyto soubory jsou kompilovány jako dynamické soubory. V závislosti na typu souboru, na kterých jsou založeny, může kompilátor umístit soubory mapování do výstupních adresářů. |
+| Soubory v\_podadresáři Kód aplikace | Soubory zdrojového kódu v tomto podadresáři jsou kompilovány do sestavení a umístěny do adresáře Bin. |
+| Soubory v\_podadresáři App GlobalResources | Tyto soubory jsou zkompilovány do sestavení a umístěny do adresáře Bin. V\_hlavním výstupním adresáři není vytvořen žádný podadresář App GlobalResources. Pokud konfigurační soubor určuje appliesTo="All", soubory .resx a .resources se zkopírují do výstupních adresářů. Nejsou zkopírovány, pokud jsou odkazovány [BuildProvider](https://msdn.microsoft.com/library/system.web.configuration.buildprovider.aspx). |
+| Soubory Resx a .resource\_v podadresáři App LocalResources | Tyto soubory jsou kompilovány do sestavení s jedinečnými názvy a umístěny do adresáře Bin. Do výstupních adresářů nejsou zkopírovány žádné soubory Resx nebo .resource. |
+| Soubory .skin v\_podadresáři Témata aplikace | Motivy jsou kompilovány do sestavení a umístěny do adresáře Bin. Soubory se zakázaným inzerováním jsou vytvořeny pro soubory .skin a umístěny do odpovídajícího výstupního adresáře. Statické soubory (například CSS) jsou zkopírovány do výstupních adresářů. |
+| Statické typy souborů .browser Web.config Sestavení, která jsou již v adresáři Bin k dispozici | Tyto soubory jsou zkopírovány stejně jako do výstupního adresáře. |
 
-### <a name="fixed-assembly-names"></a>[Názvy pevných sestavení](https://msdn.microsoft.com/library/ms229863.aspx##)
+### <a name="fixed-assembly-names"></a>[Pevné názvy sestavení](https://msdn.microsoft.com/library/ms229863.aspx##)
 
-Některé scénáře, například nasazení webové aplikace pomocí Instalační služba systému Windows MSI, vyžadují použití konzistentních názvů souborů a obsahu a také konzistentní struktury adresářů k identifikaci sestavení nebo konfiguračních nastavení pro aktualizace. V těchto případech můžete použít možnost **-fixednames** a určit tak, že kompilační nástroj ASP.NET by měl kompilovat sestavení pro každý zdrojový soubor namísto použití objektu, kde je kompilováno více stránek do sestavení. To může vést k velkému počtu sestavení, takže pokud máte obavy s škálovatelností, měli byste tuto možnost používat opatrně.
+Některé scénáře, například nasazení webové aplikace pomocí Instalační služby systému Windows MSI, vyžadují použití konzistentních názvů souborů a obsahu a konzistentních adresářových struktur k identifikaci sestavení nebo nastavení konfigurace aktualizací. V těchto případech můžete použít **-fixednames** možnost určit, že nástroj ASP.NET kompilace by měl zkompilovat sestavení pro každý zdrojový soubor namísto použití kde jsou kompilovány více stránek do sestavení. To může vést k velkému počtu sestavení, takže pokud se obáváte škálovatelnosti, měli byste tuto možnost používat opatrně.
 
-### <a name="strong-name-compilation"></a>[Kompilace se silným názvem](https://msdn.microsoft.com/library/ms229863.aspx##)
+### <a name="strong-name-compilation"></a>[Kompilace silného názvu](https://msdn.microsoft.com/library/ms229863.aspx##)
 
-K dispozici jsou možnosti **-APTCA**, **-delaysign**, **-** a **-keyfile** , takže můžete použít ASPNET\_Compiler. exe pro vytváření silně pojmenovaných sestavení bez použití [nástroje Strong Name (Sn. exe)](https://msdn.microsoft.com/library/k5b5tt23.aspx) samostatně. Tyto možnosti odpovídají, v uvedeném pořadí, k **AllowPartiallyTrustedCallersAttribute**, **/delaysign.** , **AssemblyKeyNameAttribute**a **AssemblyKeyFileAttribute**.
+Možnosti **-aptca**, **-delaysign**, **-keycontainer** a **-keyfile** jsou k\_dispozici, takže můžete použít soubor Aspnet compiler.exe k vytvoření silně pojmenovaných sestavení bez použití [nástroje Silný název (Sn.exe)](https://msdn.microsoft.com/library/k5b5tt23.aspx) samostatně. Tyto možnosti odpovídají atributu **AllowPartiallyTrustedCallersAttribute**, **AssemblyDelaySignAttribute**, **AssemblyKeyNameAttribute**a **AssemblyKeyFileAttribute**.
 
-Diskuze o těchto atributech nespadají do rozsahu tohoto kurzu.
+Diskuse o těchto atributů je mimo rozsah tohoto kurzu.
 
 ## <a name="labs"></a>Testovací prostředí
 
-Každé z následujících cvičení sestaví v předchozí laboratoři. Budete je muset udělat v uvedeném pořadí.
+Každá z následujících laboratoří vychází z předchozích testovacích prostředí. Budete je muset udělat v pořádku.
 
-## <a name="lab-1-using-the-configuration-api"></a>Testovací prostředí 1: použití rozhraní API pro konfiguraci
+## <a name="lab-1-using-the-configuration-api"></a>Lab 1: Použití konfiguračního rozhraní API
 
 1. Vytvořte nový web s názvem *mod9lab*.
-2. Přidejte do webu nový soubor webové konfigurace.
-3. Do souboru Web. config přidejte následující:
+2. Přidejte na web nový webový konfigurační soubor.
+3. Do souboru web.config přidejte následující:
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample14.xml)]
 
-Tím se zajistí, že budete mít oprávnění ukládat změny do souboru Web. config.
+Tím zajistíte oprávnění k ukládání změn do souboru web.config.
 
-1. Přidejte nový ovládací prvek popisek na Default. aspx a změňte ID na **lblDebugStatus**.
-2. Přidat nový ovládací prvek tlačítko na Default. aspx.
-3. Změňte ID ovládacího prvku tlačítko na **btnToggleDebug** a text pro **přepnutí stavu ladění**.
-4. Otevřete zobrazení kódu pro soubor kódu na pozadí default. aspx a přidejte příkaz **using** pro **System. Web. Configuration** následujícím způsobem:
+1. Přidejte nový ovládací prvek Label do souboru Default.aspx a změňte ID na **lblDebugStatus**.
+2. Přidejte nový ovládací prvek Button do souboru Default.aspx.
+3. Změňte ID ovládacího prvku Button na **btnToggleDebug** a text **přepnout stav ladění**.
+4. Otevřete zobrazení kódu pro soubor default.aspx na pozadí kódu a přidejte **příkaz using** pro **soubor System.Web.Configuration** následujícím způsobem:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample15.cs)]
 
-1. Přidejte do třídy dvě soukromé proměnné a stránku\_inicializační metodu, jak je znázorněno níže:
+1. Přidejte do třídy dvě soukromé\_proměnné a metodu Page Init, jak je znázorněno níže:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample16.cs)]
 
-1. Přidejte následující kód pro\_načtení stránky:
+1. Přidejte do načtení stránky\_následující kód:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample17.cs)]
 
-1. Uložte a přejděte na Default. aspx. Všimněte si, že ovládací prvek popisek zobrazí aktuální stav ladění.
-2. Dvakrát klikněte na ovládací prvek tlačítko v návrháři a přidejte následující kód do události Click pro ovládací prvek tlačítko:
+1. Uložit a procházet default.aspx. Všimněte si, že ovládací prvek Label zobrazuje aktuální stav ladění.
+2. Poklepejte na ovládací prvek Button v návrháři a přidejte následující kód do události Click pro ovládací prvek Button:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample18.cs)]
 
-1. Uložte a přejděte na Default. aspx a klikněte na tlačítko.
-2. Po kliknutí na tlačítko otevřete soubor Web. config a sledujte atribut **Debug** v části&gt; &lt;Compilation.
+1. Uložte a procházejte výchozí soubor ASPX a klepněte na tlačítko.
+2. Po každém kliknutí na tlačítko otevřete soubor web.config &lt;&gt; a dodržujte atribut **ladění** v části kompilace.
 
-## <a name="lab-2-logging-application-restarts"></a>Testovací prostředí 2: protokolování restartování aplikace
+## <a name="lab-2-logging-application-restarts"></a>Lab 2: Protokolování aplikace restartuje
 
-V tomto testovacím prostředí vytvoříte kód, který vám umožní přepnout protokolování vypnutí aplikace, spuštění a opětovnou kompilaci v Prohlížeč událostí.
+V tomto testovacím prostředí vytvoříte kód, který vám umožní přepnout protokolování vypnutí aplikací, spuštění a rekompilace v Prohlížeči událostí.
 
-1. Přidejte DropDownList do default. aspx a změňte ID na ddlLogAppEvents.
-2. Nastavte vlastnost **AutoPostBack** pro vlastnost DropDownList na **hodnotu true**.
-3. Přidejte tři položky do kolekce Items pro DropDownList. Naplňte **text** pro první položku jako *hodnotu* a hodnotu-1. Nastavte **text** a **hodnotu** druhé položky na **true** a **text** a **hodnotu** třetí položky **false**.
-4. Přidejte nový popisek na Default. aspx. Změňte ID na **lblLogAppEvents**.
-5. Otevřete zobrazení kódu na pozadí pro default. aspx a přidejte novou deklaraci pro proměnnou typu HealthMonitoringSection, jak je znázorněno níže:
+1. Přidejte DropDownList na default.aspx a změňte ID na ddlLogAppEvents.
+2. Nastavte vlastnost **AutoPostBack** pro dropdownlist na **hodnotu true**.
+3. Přidejte tři položky do kolekce Položky pro DropDownList. Vytvořte **text** pro první položku *Vybrat hodnotu* a hodnotu -1. Text **a** **hodnotu** druhé položky načiní **hodnotou true** a **text** a **hodnota** třetí položky **False**.
+4. Přidejte nový popisek do default.aspx. Změňte ID na **lblLogAppEvents**.
+5. Otevřete zobrazení s kódem na pozadí pro default.aspx a přidejte novou deklaraci pro proměnnou typu HealthMonitoringSection, jak je znázorněno níže:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample19.cs)]
 
-1. Do existujícího kódu na stránce\_init přidejte následující kód:
+1. Přidejte do existujícího kódu\_v aplikaci Page Init následující kód:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample20.cs)]
 
-1. Dvakrát klikněte na DropDownList a přidejte následující kód do události SelectedIndexChanged:
+1. Poklepejte na DropDownList a přidejte následující kód do události SelectedIndexChanged:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample21.cs)]
 
-1. Přejděte na Default. aspx.
-2. Nastavte rozevírací seznam na **false**.
-3. Vymažte protokol aplikace v Prohlížeč událostí.
-4. Chcete-li změnit atribut ladění aplikace, klikněte na tlačítko.
-5. Aktualizujte protokol aplikace v Prohlížeč událostí. 
+1. Procházet default.aspx.
+2. Nastavte rozevírací hodnotu na **hodnotu False**.
+3. Zrušte zaškrtnutí protokolu aplikací v Prohlížeči událostí.
+4. Klepnutím na tlačítko změníte atribut Ladění aplikace.
+5. Aktualizujte protokol aplikace v Prohlížeči událostí. 
 
     1. Byly zaznamenány nějaké události?
     2. Proč nebo proč ne?
-6. Nastavte rozevírací seznam na **hodnotu true.**
-7. Kliknutím na tlačítko přepnete atribut ladění aplikace.
-8. Aktualizujte Prohlížeč událostí přihlašovacího jména aplikace. 
+6. Nastavte rozevírací hodnotu na **Hodnotu True.**
+7. Klepnutím na tlačítko přepnete atribut Ladění aplikace.
+8. Aktualizujte přihlášení aplikace do Prohlížeče událostí. 
 
     1. Byly zaznamenány nějaké události?
-    2. Jaký byl důvod vypnutí aplikace?
-9. Experimentujte s zapnutím a vypnutím protokolování a podívejte se na změny provedené v souboru Web. config.
+    2. Jaký byl důvod pro vypnutí aplikace?
+9. Experimentujte se zapnutím a vypnutím protokolování a podívejte se na změny provedené v souboru web.config.
 
-## <a name="more-information"></a>Další informace:
+## <a name="more-information"></a>Více informací:
 
-Model poskytovatele ASP.NET 2.0 umožňuje vytvářet vlastní poskytovatele pro nejen instrumentaci aplikace, ale pro spoustu dalších použití, jako je například členství, profily atd. Podrobné informace o tom, jak napsat vlastního poskytovatele pro protokolování událostí aplikace do textového souboru, najdete na [tomto odkazu](https://msdn.microsoft.com/library/default.asp?url=/library/dnaspp/html/ASPNETProvMod_Prt6.asp).
+ASP.NET model poskytovatele 2.0 umožňuje vytvářet vlastní poskytovatele nejen pro aplikační instrumentaci, ale i pro mnoho dalších použití, jako je členství, profily atd. Podrobné informace o psaní vlastního zprostředkovatele pro protokolování událostí aplikace do textového souboru naleznete na [tomto odkazu](https://msdn.microsoft.com/library/default.asp?url=/library/dnaspp/html/ASPNETProvMod_Prt6.asp).

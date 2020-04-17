@@ -1,24 +1,24 @@
 ---
 uid: web-forms/videos/how-do-i/how-do-i-create-a-multi-lingual-site-with-localization
-title: '[Postupy:] Chcete vytvořit vícejazyčnou lokalitu s lokalizací? | Dokumenty Microsoft'
-author: microsoft
-description: Naučte se vytvářet webový obsah specifický pro jazykovou verzi a národní prostředí s žádným dalším kódem. Pomocí editoru prostředků vytvořte na úrovni stránky a na úrovni aplikace...
+title: '[Jak mohu:] Chcete vytvořit vícejazyčné místo s lokalizací? | Dokumentace Microsoftu'
+author: rick-anderson
+description: Zjistěte, jak vytvořit webový obsah podporující jazykovou verzi a národní prostředí bez dalšího kódu. Pomocí Editoru prostředků vytvořte úroveň stránky a úroveň aplikace...
 ms.author: riande
 ms.date: 01/06/2006
 ms.assetid: 93190bb9-83fa-4318-a261-0de41ff72b24
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-a-multi-lingual-site-with-localization
 msc.type: video
-ms.openlocfilehash: 15c4a0341afcbd273508a420518b637b07b3476f
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: c185d77b1aed116fa177984a75ddf04ccaaaa5f1
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78523504"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543793"
 ---
-# <a name="how-do-i-create-a-multi-lingual-site-with-localization"></a>[Postupy:] Chcete vytvořit vícejazyčnou lokalitu s lokalizací?
+# <a name="how-do-i-create-a-multi-lingual-site-with-localization"></a>[Jak mohu:] Chcete vytvořit vícejazyčné místo s lokalizací?
 
-od [Microsoftu](https://github.com/microsoft)
+podle [společnosti Microsoft](https://github.com/microsoft)
 
-Naučte se vytvářet webový obsah specifický pro jazykovou verzi a národní prostředí s žádným dalším kódem. K vytvoření prostředků na úrovni stránky a aplikace použijte editor prostředků.
+Zjistěte, jak vytvořit webový obsah podporující jazykovou verzi a národní prostředí bez dalšího kódu. Editor prostředků slouží k vytvoření prostředků na úrovni stránky a na úrovni aplikace.
 
-[&#9654;Přehrát video (13 minut)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-create-a-multi-lingual-site-with-localization)
+[&#9654; Sledovat video (13 minut)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-create-a-multi-lingual-site-with-localization)

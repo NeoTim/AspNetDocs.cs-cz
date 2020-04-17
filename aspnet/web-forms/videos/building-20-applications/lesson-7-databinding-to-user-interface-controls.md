@@ -1,28 +1,28 @@
 ---
 uid: web-forms/videos/building-20-applications/lesson-7-databinding-to-user-interface-controls
-title: '[Lekce 7:] Vázání dat na ovládací prvky uživatelského rozhraní | Microsoft Docs'
-author: microsoft
-description: V této lekci se dozvíte, jak zobrazit data ve webových aplikacích v&#160;ASP.NET 2,0 pomocí některých nových ovládacích prvků vázaných na data.
+title: '[Lekce 7:] Datové vazbě na ovládací prvky uživatelského rozhraní | Dokumenty společnosti Microsoft'
+author: rick-anderson
+description: V této lekci se dozvíte, jak zobrazit data ve ASP.NET&#160;2.0 webových aplikací prostřednictvím některé nové ovládací prvky databound.
 ms.author: riande
 ms.date: 11/29/2005
 ms.assetid: 49625de7-06c3-484c-bd76-d322b9ca41ea
 msc.legacyurl: /web-forms/videos/building-20-applications/lesson-7-databinding-to-user-interface-controls
 msc.type: video
-ms.openlocfilehash: bec31c6d45701e2a27c38cea066fec0d0dc908c8
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 211c9fe88b5d7c92ef52bae2567499de36c112b8
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78630198"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542791"
 ---
 # <a name="lesson-7-databinding-to-user-interface-controls"></a>[7. lekce:] Vazba dat na ovládací prvky uživatelského rozhraní
 
-od [Microsoftu](https://github.com/microsoft)
+podle [společnosti Microsoft](https://github.com/microsoft)
 
-V této lekci se dozvíte, jak zobrazit data ve webových aplikacích ASP. NET 2.0 prostřednictvím některých nových ovládacích prvků vázaných na data.
+V této lekci se dozvíte, jak zobrazit data ve webových aplikacích ASP.NET2.0 prostřednictvím některých nových ovládacích prvků vázaných na data.
 
-[&#9654;Přehrát video (22 minut)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/lesson-7-databinding-to-user-interface-controls)
+[&#9654; Podívejte se na video (22 minut)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/lesson-7-databinding-to-user-interface-controls)
 
 > [!div class="step-by-step"]
 > [Předchozí](lesson-6-working-with-stylesheets-and-master-pages.md)
-> [Další](lesson-8-working-with-the-gridview-and-formview.md)
+> [další](lesson-8-working-with-the-gridview-and-formview.md)

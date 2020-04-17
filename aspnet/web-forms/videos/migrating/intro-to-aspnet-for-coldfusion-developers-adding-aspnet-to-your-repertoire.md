@@ -1,28 +1,28 @@
 ---
 uid: web-forms/videos/migrating/intro-to-aspnet-for-coldfusion-developers-adding-aspnet-to-your-repertoire
-title: 'Úvod do ASP.NET pro vývojáře v aplikaci ColdFusion: Přidání ASP.NET do repertoáru | Microsoft Docs'
-author: microsoft
-description: Tato relace zobrazuje jednoduché porovnávání kódu, který je v reálném čase a ASP.NET.
+title: 'Úvod do ASP.NET pro Vývojáře ColdFusion: Přidání ASP.NET do vašeho repertoáru | Dokumenty společnosti Microsoft'
+author: rick-anderson
+description: Tato relace ukazuje jednoduché, ale reálné srovnání kódu mezi ColdFusion a ASP.NET.
 ms.author: riande
 ms.date: 07/25/2006
 ms.assetid: 835a2484-e9e5-468e-9e43-5ae4e61531b6
 msc.legacyurl: /web-forms/videos/migrating/intro-to-aspnet-for-coldfusion-developers-adding-aspnet-to-your-repertoire
 msc.type: video
-ms.openlocfilehash: 644996c713f589c09b991589cf940f73c798809f
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: e65edb09ba9dba98d4fa303a39f959a38a6e2e3d
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78638766"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543415"
 ---
 # <a name="intro-to-aspnet-for-coldfusion-developers-adding-aspnet-to-your-repertoire"></a>Úvod do ASP.NET pro vývojáře v ColdFusion: Přidání ASP.NET do vašeho repertoáru
 
-od [Microsoftu](https://github.com/microsoft)
+podle [společnosti Microsoft](https://github.com/microsoft)
 
-Tato relace zobrazuje jednoduché porovnávání kódu, který je v reálném čase a ASP.NET.
+Tato relace ukazuje jednoduché, ale reálné srovnání kódu mezi ColdFusion a ASP.NET.
 
-[&#9654;Přehrát video (49 minut)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/intro-to-aspnet-for-coldfusion-developers-adding-aspnet-to-your-repertoire)
+[&#9654; Podívejte se na video (49 minut)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/intro-to-aspnet-for-coldfusion-developers-adding-aspnet-to-your-repertoire)
 
 > [!div class="step-by-step"]
 > [Předchozí](intro-to-aspnet-for-jsp-developers-building-applications.md)
-> [Další](introduction-to-aspnet-for-coldfusion-developers-building-an-aspnet-application.md)
+> [další](introduction-to-aspnet-for-coldfusion-developers-building-an-aspnet-application.md)
