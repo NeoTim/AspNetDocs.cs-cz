@@ -8,12 +8,12 @@ ms.date: 11/24/2017
 ms.custom: seoapril2019
 msc.legacyurl: /web-api/overview/advanced/calling-a-web-api-from-a-net-client
 msc.type: authoredcontent
-ms.openlocfilehash: ab3ba71839123e848dffaa59871f9dac8c1a88d0
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 484d927eeb0ba49f5f00d476f4658ebc081d0a4a
+ms.sourcegitcommit: a4c3c7e04e5f53cf8cd334f036d324976b78d154
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78622617"
+ms.lasthandoff: 05/29/2020
+ms.locfileid: "84172936"
 ---
 # <a name="call-a-web-api-from-a-net-client-c"></a>Volání webového rozhraní API z klienta .NET (C#)
 
@@ -37,6 +37,11 @@ Informace o tom, jak implementovat toto rozhraní API s webovým rozhraním API 
 
 Pro zjednodušení je klientská aplikace v tomto kurzu pro konzolovou aplikaci systému Windows. **HttpClient** se také podporuje pro aplikace Windows Phone a Windows Store. Další informace najdete v tématu [Zápis kódu klienta webového rozhraní API pro více platforem pomocí přenosných knihoven](https://blogs.msdn.com/b/webdev/archive/2013/07/19/writing-web-api-client-code-for-multiple-platforms-using-portable-libraries.aspx) .
 
+**Poznámka:** Pokud předáte základní adresy URL a relativní identifikátory URI jako pevně zakódované hodnoty, nezapomeňte na pravidla pro použití `HttpClient` rozhraní API. `HttpClient.BaseAddress`Vlastnost by měla být nastavená na adresu s koncovým lomítkem ( `/` ). Například při předávání pevně kódovaných identifikátorů URI prostředků do `HttpClient.GetAsync` metody nezahrnujte lomítko. Jak získat `Product` ID:
+
+1. Stanovenými`client.BaseAddress = new Uri("https://localhost:5001/");`
+1. Žádost a `Product` . Například, `client.GetAsync<Product>("api/products/4");`.
+
 <a id="CreateConsoleApp"></a>
 ## <a name="create-the-console-application"></a>Vytvoření konzolové aplikace
 
@@ -46,7 +51,7 @@ V aplikaci Visual Studio vytvořte novou konzolovou aplikaci pro Windows s názv
 
 Předchozí kód je kompletní klientská aplikace.
 
-`RunAsync` běží a blokuje až do dokončení. Většina metod **HttpClient** je asynchronní, protože provádí v/v sítě. Všechny asynchronní úlohy jsou prováděny v rámci `RunAsync`. Obvykle aplikace neblokuje hlavní vlákno, ale tato aplikace nepovoluje žádnou interakci.
+`RunAsync`spouští a blokuje až do dokončení. Většina metod **HttpClient** je asynchronní, protože provádí v/v sítě. Všechny asynchronní úlohy jsou prováděny v rámci `RunAsync` . Obvykle aplikace neblokuje hlavní vlákno, ale tato aplikace nepovoluje žádnou interakci.
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_run)]
 
@@ -55,13 +60,13 @@ Předchozí kód je kompletní klientská aplikace.
 
 Pomocí Správce balíčků NuGet nainstalujte balíček klientské knihovny webového rozhraní API.
 
-V nabídce **nástroje** vyberte **správce balíčků NuGet** > **konzolu Správce balíčků**. V konzole správce balíčků (PMC) zadejte následující příkaz:
+V nabídce **nástroje** vyberte možnost **Správce balíčků NuGet**  >  **Konzola správce balíčků**. V konzole správce balíčků (PMC) zadejte následující příkaz:
 
 `Install-Package Microsoft.AspNet.WebApi.Client`
 
 Předchozí příkaz přidá do projektu následující balíčky NuGet:
 
-* Microsoft.AspNet.WebApi.Client
+* Microsoft. AspNet. WebApi. Client
 * Newtonsoft.Json
 
 Netwonsoft. JSON (označované také jako Json.NET) je oblíbený vysoce výkonný rozhraní JSON pro rozhraní .NET.
@@ -69,11 +74,11 @@ Netwonsoft. JSON (označované také jako Json.NET) je oblíbený vysoce výkonn
 <a id="AddModelClass"></a>
 ## <a name="add-a-model-class"></a>Přidat třídu modelu
 
-Projděte si třídu `Product`:
+Prověřte `Product` třídu:
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_prod)]
 
-Tato třída se shoduje s datovým modelem používaným webovým rozhraním API. Aplikace může použít **HttpClient** ke čtení instance `Product` z odpovědi HTTP. Aplikace nemusí zapisovat žádný kód deserializace.
+Tato třída se shoduje s datovým modelem používaným webovým rozhraním API. Aplikace může použít **HttpClient** ke čtení `Product` instance z odpovědi HTTP. Aplikace nemusí zapisovat žádný kód deserializace.
 
 <a id="InitClient"></a>
 ## <a name="create-and-initialize-httpclient"></a>Vytvoření a inicializace HttpClient
@@ -93,7 +98,7 @@ Následující kód Inicializuje instanci **HttpClient** :
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet5)]
 
-Předchozí kód:
+Předcházející kód:
 
 * Nastaví základní identifikátor URI pro požadavky HTTP. Změňte číslo portu na port použitý v serverové aplikaci. Aplikace nebude fungovat, pokud se nepoužije port pro serverovou aplikaci.
 * Nastaví hlavičku Accept na "Application/JSON". Nastavení této hlavičky oznamuje serveru, aby odesílal data ve formátu JSON.
@@ -105,9 +110,9 @@ Následující kód odešle požadavek GET na produkt:
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_GetProductAsync)]
 
-Metoda **GetAsync** ODEŠLE požadavek HTTP GET. Po dokončení metody vrátí **HttpResponseMessage** , který obsahuje odpověď HTTP. Pokud je stavový kód v odpovědi kód úspěšnosti, tělo odpovědi obsahuje reprezentaci kódu Product. Zavolejte **ReadAsAsync** k deserializaci datové části JSON do instance `Product`. Metoda **ReadAsAsync** je asynchronní, protože tělo odpovědi může být libovolně velké.
+Metoda **GetAsync** ODEŠLE požadavek HTTP GET. Po dokončení metody vrátí **HttpResponseMessage** , který obsahuje odpověď HTTP. Pokud je stavový kód v odpovědi kód úspěšnosti, tělo odpovědi obsahuje reprezentaci kódu Product. Zavolejte **ReadAsAsync** k deserializaci datové části JSON do `Product` instance. Metoda **ReadAsAsync** je asynchronní, protože tělo odpovědi může být libovolně velké.
 
-**HttpClient** nevyvolá výjimku, pokud odpověď HTTP obsahuje kód chyby. Místo toho má vlastnost **IsSuccessStatusCode** **hodnotu false** , pokud je stav kód chyby. Pokud dáváte přednost považovat kódy chyb HTTP jako výjimky, zavolejte [HttpResponseMessage. EnsureSuccessStatusCode](https://msdn.microsoft.com/library/system.net.http.httpresponsemessage.ensuresuccessstatuscode(v=vs.110).aspx) objektu Response. `EnsureSuccessStatusCode` vyvolá výjimku, pokud stavový kód spadá mimo rozsah 200&ndash;299. Všimněte si, že **HttpClient** může vyvolat výjimky z jiných důvodů &mdash; například, pokud vyprší časový limit požadavku.
+**HttpClient** nevyvolá výjimku, pokud odpověď HTTP obsahuje kód chyby. Místo toho má vlastnost **IsSuccessStatusCode** **hodnotu false** , pokud je stav kód chyby. Pokud dáváte přednost považovat kódy chyb HTTP jako výjimky, zavolejte [HttpResponseMessage. EnsureSuccessStatusCode](https://msdn.microsoft.com/library/system.net.http.httpresponsemessage.ensuresuccessstatuscode(v=vs.110).aspx) objektu Response. `EnsureSuccessStatusCode`vyvolá výjimku, pokud stavový kód spadá mimo rozsah 200 &ndash; 299. Všimněte si, že **HttpClient** může vyvolat výjimky z jiných důvodů &mdash; například v případě, že vyprší časový limit požadavku.
 
 <a id="MediaTypeFormatters"></a>
 ### <a name="media-type-formatters-to-deserialize"></a>Formátovací moduly typu Media k deserializaci
@@ -129,7 +134,7 @@ Další informace najdete v tématu [Formátování médií ve webovém rozhran�
 
 ## <a name="sending-a-post-request-to-create-a-resource"></a>Odeslání požadavku POST k vytvoření prostředku
 
-Následující kód odešle požadavek POST, který obsahuje instanci `Product` ve formátu JSON:
+Následující kód odešle požadavek POST, který obsahuje `Product` instanci ve formátu JSON:
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_CreateProductAsync)]
 

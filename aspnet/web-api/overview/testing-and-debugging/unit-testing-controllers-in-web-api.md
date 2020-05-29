@@ -8,12 +8,12 @@ ms.date: 06/11/2014
 ms.assetid: 43a6cce7-a3ef-42aa-ad06-90d36d49f098
 msc.legacyurl: /web-api/overview/testing-and-debugging/unit-testing-controllers-in-web-api
 msc.type: authoredcontent
-ms.openlocfilehash: cdb1700537021e276669de1a9e0330a62659746c
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 3b89009a375e766f1c5b439dfe3fffd43b4963b3
+ms.sourcegitcommit: a4c3c7e04e5f53cf8cd334f036d324976b78d154
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78554990"
+ms.lasthandoff: 05/29/2020
+ms.locfileid: "84172923"
 ---
 # <a name="unit-testing-controllers-in-aspnet-web-api-2"></a>Testování jednotek kontrolerů webového rozhraní API 2 technologie ASP.NET
 
@@ -30,7 +30,7 @@ o [Jan Wasson](https://github.com/MikeWasson)
 > [!NOTE]
 > Použil (a) jsem MOQ, ale stejný nápad se vztahuje i na jakékoli makety rozhraní. MOQ 4.5.30 (a novější) podporuje sady Visual Studio 2017, Roslyn a .NET 4,5 a novější verze.
 
-Běžným vzorem při testování částí je &quot;příkaz Uspořádat-Act-Assert&quot;:
+Běžným vzorem testů jednotek je &quot; uspořádání – Act-Assert &quot; :
 
 - Uspořádat: nastavte všechny požadované součásti pro spuštění testu.
 - ACT: proveďte test.
@@ -53,7 +53,7 @@ Tady je příklad kontroleru, jehož akce vrací **HttpResponseMessage**.
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample1.cs)]
 
-Všimněte si, že kontroler používá vkládání závislostí pro vložení `IProductRepository`. Tím se kontroler testovatelné, protože můžete vložit maketu úložiště. Následující test jednotky ověřuje, že metoda `Get` zapisuje `Product` do těla odpovědi. Předpokládejme, že `repository` je `IProductRepository`typu.
+Všimněte si, že kontroler používá vkládání závislostí pro vložení `IProductRepository` . Tím se kontroler testovatelné, protože můžete vložit maketu úložiště. Následující test jednotek ověřuje, zda `Get` Metoda zapisuje `Product` do těla odpovědi. Předpokládejme, že `repository` je to objekt typu `IProductRepository` .
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample2.cs)]
 
@@ -61,13 +61,13 @@ Je důležité nastavit na řadiči **požadavek** a **konfiguraci** . V opačn�
 
 ## <a name="testing-link-generation"></a>Testování generování odkazů
 
-Metoda `Post` volá **UrlHelper. Link** a vytvoří odkazy v odpovědi. K tomu je potřeba pár dalších nastavení v testu jednotek:
+`Post`Metoda volá **UrlHelper. Link** a vytvoří odkazy v odpovědi. K tomu je potřeba pár dalších nastavení v testu jednotek:
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample3.cs)]
 
 Třída **UrlHelper** potřebuje adresu URL požadavku a data směrování, takže test musí nastavovat hodnoty pro tyto. Další možností je **UrlHelper**nebo zástupné procedury. S tímto přístupem nahradíte výchozí hodnotu [ApiController. URL](https://msdn.microsoft.com/library/system.web.http.apicontroller.url.aspx) s použitím přípravné nebo zástupné verze, která vrací pevnou hodnotu.
 
-Pojďme přepsat test pomocí [MOQ](https://github.com/Moq) Frameworku. Nainstalujte balíček NuGet `Moq` do testovacího projektu.
+Pojďme přepsat test pomocí [MOQ](https://github.com/Moq) Frameworku. Nainstalujte `Moq` balíček NuGet do testovacího projektu.
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample4.cs)]
 
@@ -85,7 +85,7 @@ Tento příklad ukazuje některé běžné vzory pomocí **IHttpActionResult**. 
 
 ### <a name="action-returns-200-ok-with-a-response-body"></a>Akce vrátí 200 (OK) s textem odpovědi.
 
-Metoda `Get` volá `Ok(product)`, pokud se produkt najde. V testu jednotek se ujistěte, že je návratový typ **OkNegotiatedContentResult** a vrácený produkt má správné ID.
+`Get`Metoda volá, `Ok(product)` Pokud je produkt nalezen. V testu jednotek se ujistěte, že je návratový typ **OkNegotiatedContentResult** a vrácený produkt má správné ID.
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample6.cs)]
 
@@ -93,30 +93,30 @@ Všimněte si, že test jednotky neprovede výsledek akce. Můžete předpoklád
 
 ### <a name="action-returns-404-not-found"></a>Akce vrátí 404 (Nenalezeno).
 
-Metoda `Get` volá `NotFound()`, pokud produkt nenalezne. Pro tento případ test jednotek pouze kontroluje, zda je návratový typ **NotFoundResult**.
+`Get`Metoda volá, `NotFound()` Pokud se nenalezne produkt. Pro tento případ test jednotek pouze kontroluje, zda je návratový typ **NotFoundResult**.
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample7.cs)]
 
 ### <a name="action-returns-200-ok-with-no-response-body"></a>Akce vrátí 200 (OK) bez textu odpovědi.
 
-Metoda `Delete` volá `Ok()`, aby vrátila prázdnou odpověď HTTP 200. Podobně jako v předchozím příkladu test jednotek kontroluje návratový typ, v tomto případě **OkResult**.
+`Delete`Metoda volá `Ok()` k vrácení prázdné odpovědi HTTP 200. Podobně jako v předchozím příkladu test jednotek kontroluje návratový typ, v tomto případě **OkResult**.
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample8.cs)]
 
 ### <a name="action-returns-201-created-with-a-location-header"></a>Akce vrátí 201 (vytvořeno) s hlavičkou umístění.
 
-Metoda `Post` volá `CreatedAtRoute`, aby vrátila odpověď HTTP 201 s identifikátorem URI v hlavičce umístění. V testu jednotky ověřte, zda akce nastavuje správné hodnoty směrování.
+`Post`Metoda volá metodu `CreatedAtRoute` , která vrátí odpověď HTTP 201 s identifikátorem URI v hlavičce umístění. V testu jednotky ověřte, zda akce nastavuje správné hodnoty směrování.
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample9.cs)]
 
 ### <a name="action-returns-another-2xx-with-a-response-body"></a>Akce vrátí jiný 2xx s textem odpovědi.
 
-Metoda `Put` volá `Content`, aby vrátila odpověď HTTP 202 (přijato) s textem odpovědi. Tento případ je podobný jako vracení 200 (OK), ale test jednotky by také měl zkontrolovat stavový kód.
+`Put`Metoda volá `Content` k vrácení odpovědi HTTP 202 (přijato) s textem odpovědi. Tento případ je podobný jako vracení 200 (OK), ale test jednotky by také měl zkontrolovat stavový kód.
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample10.cs)]
 
-## <a name="additional-resources"></a>Další prostředky
+## <a name="additional-resources"></a>Další zdroje
 
 - [Napodobování Entity Framework při testování jednotek webového rozhraní API 2 ASP.NET](mocking-entity-framework-when-unit-testing-aspnet-web-api-2.md)
-- [Zápis testů pro službu ASP.NET Web API](https://blogs.msdn.com/b/youssefm/archive/2013/01/28/writing-tests-for-an-asp-net-webapi-service.aspx) (Blogový příspěvek – Youssef Moussaoui).
+- [Zápis testů pro službu ASP.NET Web API](https://docs.microsoft.com/en-gb/archive/blogs/youssefm/writing-tests-for-an-asp-net-web-api-service) (Blogový příspěvek – Youssef Moussaoui).
 - [Ladění webového rozhraní API ASP.NET pomocí ladicího programu směrování](https://blogs.msdn.com/b/webdev/archive/2013/04/04/debugging-asp-net-web-api-with-route-debugger.aspx)
