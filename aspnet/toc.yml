@@ -1,4 +1,4 @@
-- name: Dokumentace k ASP.NET
+- name: Dokumentace k ASP.NET Core
   href: /aspnet/core/
 - name: Přehled ASP.NET
   href: overview.md
@@ -10,7 +10,7 @@
     - name: Doprovodné materiály
       href: web-forms/overview/index.md
       items:
-        - name: začínáme
+        - name: Začínáme
           href: web-forms/overview/getting-started/index.md
           items:
             - name: Začínáme s webovými formuláři ASP.NET 4.5 a sadou Visual Studio 2013
@@ -74,7 +74,7 @@
           items:
             - name: 'Vytvoření zabezpečené aplikace webových formulářů ASP.NET s registrací uživatele, potvrzením e-mailu a resetováním hesla (C#)'
               href: web-forms/overview/security/create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset.md
-            - name: 'Vytvoření aplikace webových formulářů ASP.NET s dvoufaktorovým ověřováním prostřednictvím SMS (C#)'
+            - name: Vytvoření aplikace webových formulářů ASP.NET s dvoufaktorovým ověřováním prostřednictvím SMS (C#)
               href: web-forms/overview/security/create-an-aspnet-web-forms-app-with-sms-two-factor-authentication.md
         - name: Výkon
           href: web-forms/overview/performance-and-caching/index.md
@@ -109,7 +109,7 @@
                   href: web-forms/overview/deployment/visual-studio-web-deployment/command-line-deployment.md
                 - name: Nasazení dalších souborů
                   href: web-forms/overview/deployment/visual-studio-web-deployment/deploying-extra-files.md
-                - name: Řešení potíží
+                - name: Poradce při potížích
                   href: web-forms/overview/deployment/visual-studio-web-deployment/troubleshooting.md
             - name: ASP.NET 4 – úvod do nasazení v podniku
               href: web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/index.md
@@ -118,7 +118,7 @@
                   href: web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/deploying-web-applications-in-enterprise-scenarios.md
                 - name: 'Nasazení podnikového webu: Přehledný scénář'
                   href: web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/enterprise-web-deployment-scenario-overview.md
-                - name: 'Správa životního cyklu aplikace: Od vývoje k ostrému provozu'
+                - name: 'Správa životního cyklu aplikací: Od vývoje k ostrému provozu'
                   href: web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/application-lifecycle-management-from-development-to-production.md
             - name: ASP.NET 4 – nasazení v podniku (1. část)
               href: web-forms/overview/deployment/web-deployment-in-the-enterprise/index.md
@@ -208,7 +208,7 @@
                   href: web-forms/overview/deployment/advanced-enterprise-web-deployment/running-windows-powershell-scripts-from-msbuild-project-files.md
                 - name: Řešení potíží s procesem vytváření balíčku
                   href: web-forms/overview/deployment/advanced-enterprise-web-deployment/troubleshooting-the-packaging-process.md
-        - name: Upřesňující
+        - name: Upřesnit
           href: web-forms/overview/advanced/index.md
           items:
             - name: Webové formuláře ASP.NET – odolnost připojení a zachycení příkazů
@@ -219,21 +219,21 @@
             - name: ASP.NET 4 – Tailspin Spyworks
               href: web-forms/overview/older-versions-getting-started/tailspin-spyworks/index.md
               items:
-                - name: '1. část: Soubor > Nový projekt'
+                - name: 'Část 1: Soubor > Nový projekt'
                   href: web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-1.md
-                - name: '2. část: Vrstva přístupu k datům'
+                - name: 'Část 2: Vrstva přístupu k datům'
                   href: web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-2.md
-                - name: '3. část: Nabídka Rozložení a Kategorie'
+                - name: 'Část 3: Nabídka Rozložení a Kategorie'
                   href: web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-3.md
-                - name: '4. část: Seznam produktů'
+                - name: 'Část 4: Seznam produktů'
                   href: web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-4.md
-                - name: '5. část: Obchodní logika'
+                - name: 'Část 5: Obchodní logika'
                   href: web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-5.md
-                - name: '6. část: Členství v ASP.NET'
+                - name: 'Část 6: Členství v ASP.NET'
                   href: web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-6.md
-                - name: '7. část: Přidání funkcí'
+                - name: 'Část 7: Přidání funkcí'
                   href: web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-7.md
-                - name: '8. část: Závěrečné stránky, zpracování výjimek a závěr'
+                - name: 'Část 8: Závěrečné stránky, zpracování výjimek a závěr'
                   href: web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-8.md
             - name: ASP.NET 4 – Začínáme se sadou Entity Framework 4 a webovými formuláři
               href: web-forms/overview/older-versions-getting-started/getting-started-with-ef/index.md
@@ -314,25 +314,25 @@
             - name: ASP.NET 3.5 – stránky předlohy webových formulářů
               href: web-forms/overview/older-versions-getting-started/master-pages/index.md
               items:
-                - name: 'Vytvoření rozložení platného pro celý web pomocí stránek předlohy (C#)'
+                - name: Vytvoření rozložení platného pro celý web pomocí stránek předlohy (C#)
                   href: web-forms/overview/older-versions-getting-started/master-pages/creating-a-site-wide-layout-using-master-pages-cs.md
-                - name: 'Několik prvků ContentPlaceHolder a výchozí obsah (C#)'
+                - name: Několik prvků ContentPlaceHolder a výchozí obsah (C#)
                   href: web-forms/overview/older-versions-getting-started/master-pages/multiple-contentplaceholders-and-default-content-cs.md
                 - name: 'Zadání názvu, metaznaček a dalších hlaviček HTML na stránce předlohy (C#)'
                   href: web-forms/overview/older-versions-getting-started/master-pages/specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-cs.md
-                - name: 'Adresy URL stránek předloh (C#)'
+                - name: Adresy URL stránek předloh (C#)
                   href: web-forms/overview/older-versions-getting-started/master-pages/urls-in-master-pages-cs.md
-                - name: 'Pojmenovávání ID ovládacích prvků na stránkách obsahu (C#)'
+                - name: Pojmenovávání ID ovládacích prvků na stránkách obsahu (C#)
                   href: web-forms/overview/older-versions-getting-started/master-pages/control-id-naming-in-content-pages-cs.md
-                - name: 'Interakce stránky předlohy se stránkou obsahu (C#)'
+                - name: Interakce stránky předlohy se stránkou obsahu (C#)
                   href: web-forms/overview/older-versions-getting-started/master-pages/interacting-with-the-master-page-from-the-content-page-cs.md
-                - name: 'Interakce stránky předlohy se stránkou obsahu (C#)'
+                - name: Interakce stránky předlohy se stránkou obsahu (C#)
                   href: web-forms/overview/older-versions-getting-started/master-pages/interacting-with-the-content-page-from-the-master-page-cs.md
-                - name: 'Stránky předlohy a ASP.NET AJAX (C#)'
+                - name: Stránky předlohy a ASP.NET AJAX (C#)
                   href: web-forms/overview/older-versions-getting-started/master-pages/master-pages-and-asp-net-ajax-cs.md
-                - name: 'Programové určení stránky předlohy (C#)'
+                - name: Programové určení stránky předlohy (C#)
                   href: web-forms/overview/older-versions-getting-started/master-pages/specifying-the-master-page-programmatically-cs.md
-                - name: 'Vložené hlavní stránky (C#)'
+                - name: Vložené hlavní stránky (C#)
                   href: web-forms/overview/older-versions-getting-started/master-pages/nested-master-pages-cs.md
                 - name: Vytvoření rozložení platného pro celý web pomocí stránek předlohy (VB)
                   href: web-forms/overview/older-versions-getting-started/master-pages/creating-a-site-wide-layout-using-master-pages-vb.md
@@ -357,37 +357,37 @@
             - name: Nasazení webových projektů v sadě Visual Studio 2008 a v předchozích verzích
               href: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/index.md
               items:
-                - name: 'Možnosti hostování v technologii ASP.NET (C#)'
+                - name: Možnosti hostování v technologii ASP.NET (C#)
                   href: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/asp-net-hosting-options-cs.md
                 - name: 'Zjištění souborů, které je potřeba nasadit (C#)'
                   href: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/determining-what-files-need-to-be-deployed-cs.md
-                - name: 'Nasazení webu pomocí klienta FTP (C#)'
+                - name: Nasazení webu pomocí klienta FTP (C#)
                   href: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/deploying-your-site-using-an-ftp-client-cs.md
-                - name: 'Nasazení webu pomocí sady Visual Studio (C#)'
+                - name: Nasazení webu pomocí sady Visual Studio (C#)
                   href: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/deploying-your-site-using-visual-studio-cs.md
-                - name: 'Nejčastější rozdíly mezi vývojovou a provozní konfigurací (C#)'
+                - name: Nejčastější rozdíly mezi vývojovou a provozní konfigurací (C#)
                   href: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/common-configuration-differences-between-development-and-production-cs.md
-                - name: 'Hlavní rozdíly mezi službou IIS a serverem ASP.NET Development Server (C#)'
+                - name: Hlavní rozdíly mezi službou IIS a serverem ASP.NET Development Server (C#)
                   href: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/core-differences-between-iis-and-the-asp-net-development-server-cs.md
-                - name: 'Nasazení databáze (C#)'
+                - name: Nasazení databáze (C#)
                   href: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/deploying-a-database-cs.md
-                - name: 'Konfigurace provozní webové aplikace pro použití produkční databáze (C#)'
+                - name: Konfigurace provozní webové aplikace pro použití produkční databáze (C#)
                   href: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/configuring-the-production-web-application-to-use-the-production-database-cs.md
                 - name: 'Konfigurace webu, který používá aplikační služby (C#)'
                   href: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/configuring-a-website-that-uses-application-services-cs.md
-                - name: 'Strategie vývoje a nasazení databází (C#)'
+                - name: Strategie vývoje a nasazení databází (C#)
                   href: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/strategies-for-database-development-and-deployment-cs.md
-                - name: 'Zobrazení vlastní chybové stránky (C#)'
+                - name: Zobrazení vlastní chybové stránky (C#)
                   href: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/displaying-a-custom-error-page-cs.md
-                - name: 'Zpracování neošetřených výjimek (C#)'
+                - name: Zpracování neošetřených výjimek (C#)
                   href: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/processing-unhandled-exceptions-cs.md
-                - name: 'Protokolování podrobností o chybách pomocí monitorování stavu v ASP.NET (C#)'
+                - name: Protokolování podrobností o chybách pomocí monitorování stavu v ASP.NET (C#)
                   href: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/logging-error-details-with-asp-net-health-monitoring-cs.md
-                - name: 'Protokolování podrobností o chybách pomocí knihovny ELMAH (C#)'
+                - name: Protokolování podrobností o chybách pomocí knihovny ELMAH (C#)
                   href: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/logging-error-details-with-elmah-cs.md
-                - name: 'Předkompilace webu (C#)'
+                - name: Předkompilace webu (C#)
                   href: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/precompiling-your-website-cs.md
-                - name: 'Uživatelé a role na produkčním webu (C#)'
+                - name: Uživatelé a role na produkčním webu (C#)
                   href: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/users-and-roles-on-the-production-website-cs.md
                 - name: Možnosti hostování v technologii ASP.NET (VB)
                   href: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/asp-net-hosting-options-vb.md
@@ -424,14 +424,14 @@
         - name: Starší verze – sada nástrojů Ajax Control Toolkit
           href: web-forms/overview/ajax-control-toolkit/index.md
           items:
-            - name: začínáme
+            - name: Začínáme
               href: web-forms/overview/ajax-control-toolkit/getting-started/index.md
               items:
-                - name: 'Začínáme se sadou nástrojů AJAX Control Toolkit (C#)'
+                - name: Začínáme se sadou nástrojů AJAX Control Toolkit (C#)
                   href: web-forms/overview/ajax-control-toolkit/getting-started/get-started-with-the-ajax-control-toolkit-cs.md
-                - name: 'Použití ovládacích prvků a rozšiřujících ovládacích prvků AJAX Control Toolkit (C#)'
+                - name: Použití ovládacích prvků a rozšiřujících ovládacích prvků AJAX Control Toolkit (C#)
                   href: web-forms/overview/ajax-control-toolkit/getting-started/using-ajax-control-toolkit-controls-and-control-extenders-cs.md
-                - name: 'Vytvoření vlastního rozšiřujícího ovládacího prvku AJAX Control Toolkit (C#)'
+                - name: Vytvoření vlastního rozšiřujícího ovládacího prvku AJAX Control Toolkit (C#)
                   href: web-forms/overview/ajax-control-toolkit/getting-started/creating-a-custom-ajax-control-toolkit-control-extender-cs.md
                 - name: Začínáme se sadou nástrojů AJAX Control Toolkit (VB)
                   href: web-forms/overview/ajax-control-toolkit/getting-started/get-started-with-the-ajax-control-toolkit-vb.md
@@ -442,9 +442,9 @@
             - name: Accordion
               href: web-forms/overview/ajax-control-toolkit/accordion/index.md
               items:
-                - name: 'Datová vazba ovládacího prvku Accordion (C#)'
+                - name: Datová vazba ovládacího prvku Accordion (C#)
                   href: web-forms/overview/ajax-control-toolkit/accordion/databinding-to-an-accordion-cs.md
-                - name: 'Dynamické přidání podokna ovládacího prvku Accordion (C#)'
+                - name: Dynamické přidání podokna ovládacího prvku Accordion (C#)
                   href: web-forms/overview/ajax-control-toolkit/accordion/dynamically-adding-an-accordion-pane-cs.md
                 - name: Datová vazba ovládacího prvku Accordion (VB)
                   href: web-forms/overview/ajax-control-toolkit/accordion/databinding-to-an-accordion-vb.md
@@ -453,31 +453,31 @@
             - name: Animace
               href: web-forms/overview/ajax-control-toolkit/animation/index.md
               items:
-                - name: 'Přidání animace k ovládacímu prvku (C#)'
+                - name: Přidání animace k ovládacímu prvku (C#)
                   href: web-forms/overview/ajax-control-toolkit/animation/adding-animation-to-a-control-cs.md
-                - name: 'Současné provedení několika animací (C#)'
+                - name: Současné provedení několika animací (C#)
                   href: web-forms/overview/ajax-control-toolkit/animation/executing-several-animations-at-the-same-time-cs.md
-                - name: 'Postupné provedení několika animací (C#)'
+                - name: Postupné provedení několika animací (C#)
                   href: web-forms/overview/ajax-control-toolkit/animation/executing-several-animations-after-each-other-cs.md
-                - name: 'Animace závislá na podmínce (C#)'
+                - name: Animace závislá na podmínce (C#)
                   href: web-forms/overview/ajax-control-toolkit/animation/animation-depending-on-a-condition-cs.md
-                - name: 'Výběr jedné animace ze seznamu (C#)'
+                - name: Výběr jedné animace ze seznamu (C#)
                   href: web-forms/overview/ajax-control-toolkit/animation/picking-one-animation-out-of-a-list-cs.md
-                - name: 'Animace v reakci na interakci uživatele (C#)'
+                - name: Animace v reakci na interakci uživatele (C#)
                   href: web-forms/overview/ajax-control-toolkit/animation/animating-in-response-to-user-interaction-cs.md
-                - name: 'Zakázání akcí během animace (C#)'
+                - name: Zakázání akcí během animace (C#)
                   href: web-forms/overview/ajax-control-toolkit/animation/disabling-actions-during-animation-cs.md
-                - name: 'Aktivace animace jiného ovládacího prvku (C#)'
+                - name: Aktivace animace jiného ovládacího prvku (C#)
                   href: web-forms/overview/ajax-control-toolkit/animation/triggering-an-animation-in-another-control-cs.md
-                - name: 'Úpravy animací na straně serveru (C#)'
+                - name: Úpravy animací na straně serveru (C#)
                   href: web-forms/overview/ajax-control-toolkit/animation/modifying-animations-from-the-server-side-cs.md
-                - name: 'Spuštění animací klientským kódem (C#)'
+                - name: Spuštění animací klientským kódem (C#)
                   href: web-forms/overview/ajax-control-toolkit/animation/executing-animations-using-client-side-code-cs.md
-                - name: 'Změna animace klientským kódem (C#)'
+                - name: Změna animace klientským kódem (C#)
                   href: web-forms/overview/ajax-control-toolkit/animation/changing-an-animation-using-client-side-code-cs.md
-                - name: 'Animace ovládacího prvku UpdatePanel (C#)'
+                - name: Animace ovládacího prvku UpdatePanel (C#)
                   href: web-forms/overview/ajax-control-toolkit/animation/animating-an-updatepanel-control-cs.md
-                - name: 'Dynamické řízení animací ovládacím prvkem UpdatePanel (C#)'
+                - name: Dynamické řízení animací ovládacím prvkem UpdatePanel (C#)
                   href: web-forms/overview/ajax-control-toolkit/animation/dynamically-controlling-updatepanel-animations-cs.md
                 - name: Přidání animace k ovládacímu prvku (VB)
                   href: web-forms/overview/ajax-control-toolkit/animation/adding-animation-to-a-control-vb.md
@@ -508,13 +508,13 @@
             - name: CascadingDropdown
               href: web-forms/overview/ajax-control-toolkit/cascadingdropdown/index.md
               items:
-                - name: 'Vyplnění seznamu ovládacím prvkem CascadingDropDown (C#)'
+                - name: Vyplnění seznamu ovládacím prvkem CascadingDropDown (C#)
                   href: web-forms/overview/ajax-control-toolkit/cascadingdropdown/filling-a-list-using-cascadingdropdown-cs.md
-                - name: 'Použití ovládacího prvku CascadingDropDown s databází (C#)'
+                - name: Použití ovládacího prvku CascadingDropDown s databází (C#)
                   href: web-forms/overview/ajax-control-toolkit/cascadingdropdown/using-cascadingdropdown-with-a-database-cs.md
-                - name: 'Předvedení položek seznamu ovládacím prvkem CascadingDropDown (C#)'
+                - name: Předvedení položek seznamu ovládacím prvkem CascadingDropDown (C#)
                   href: web-forms/overview/ajax-control-toolkit/cascadingdropdown/presetting-list-entries-with-cascadingdropdown-cs.md
-                - name: 'Použití funkce Auto-Postback v ovládacím prvku CascadingDropDown (C#)'
+                - name: Použití funkce Auto-Postback v ovládacím prvku CascadingDropDown (C#)
                   href: web-forms/overview/ajax-control-toolkit/cascadingdropdown/using-auto-postback-with-cascadingdropdown-cs.md
                 - name: Vyplnění seznamu ovládacím prvkem CascadingDropDown (VB)
                   href: web-forms/overview/ajax-control-toolkit/cascadingdropdown/filling-a-list-using-cascadingdropdown-vb.md
@@ -527,37 +527,37 @@
             - name: CollapsiblePanel
               href: web-forms/overview/ajax-control-toolkit/collapsiblepanel/index.md
               items:
-                - name: 'Sbalení a rozbalení panelu JavaScriptem (C#)'
+                - name: Sbalení a rozbalení panelu JavaScriptem (C#)
                   href: web-forms/overview/ajax-control-toolkit/collapsiblepanel/collapsing-and-expanding-a-panel-from-javascript-cs.md
                 - name: Sbalení a rozbalení panelu JavaScriptem (VB)
                   href: web-forms/overview/ajax-control-toolkit/collapsiblepanel/collapsing-and-expanding-a-panel-from-javascript-vb.md
             - name: ColorPicker
               href: web-forms/overview/ajax-control-toolkit/colorpicker/index.md
               items:
-                - name: 'Rozšiřující ovládací prvek pro ovládací prvek ColorPicker (C#)'
+                - name: Rozšiřující ovládací prvek pro ovládací prvek ColorPicker (C#)
                   href: web-forms/overview/ajax-control-toolkit/colorpicker/using-the-colorpicker-control-extender-cs.md
                 - name: Rozšiřující ovládací prvek pro ovládací prvek ColorPicker (VB)
                   href: web-forms/overview/ajax-control-toolkit/colorpicker/using-the-colorpicker-control-extender-vb.md
             - name: ComboBox
               href: web-forms/overview/ajax-control-toolkit/combobox/index.md
               items:
-                - name: 'Ovládací prvek ComboBox (C#)'
+                - name: Ovládací prvek ComboBox (C#)
                   href: web-forms/overview/ajax-control-toolkit/combobox/how-do-i-use-the-combobox-control-cs.md
                 - name: Ovládací prvek ComboBox (VB)
                   href: web-forms/overview/ajax-control-toolkit/combobox/how-do-i-use-the-combobox-control-vb.md
             - name: ConfirmButton
               href: web-forms/overview/ajax-control-toolkit/confirmbutton/index.md
               items:
-                - name: 'Použití ovládacího prvku ConfirmButton v repeateru (C#)'
+                - name: Použití ovládacího prvku ConfirmButton v repeateru (C#)
                   href: web-forms/overview/ajax-control-toolkit/confirmbutton/using-a-confirmbutton-in-a-repeater-cs.md
                 - name: Použití ovládacího prvku ConfirmButton v repeateru (VB)
                   href: web-forms/overview/ajax-control-toolkit/confirmbutton/using-a-confirmbutton-in-a-repeater-vb.md
             - name: DropShadow
               href: web-forms/overview/ajax-control-toolkit/dropshadow/index.md
               items:
-                - name: 'Úprava indexu Z ovládacího prvku DropShadow (C#)'
+                - name: Úprava indexu Z ovládacího prvku DropShadow (C#)
                   href: web-forms/overview/ajax-control-toolkit/dropshadow/adjusting-the-z-index-of-a-dropshadow-cs.md
-                - name: 'Změna vlastností ovládacího prvku DropShadow klientským kódem (C#)'
+                - name: Změna vlastností ovládacího prvku DropShadow klientským kódem (C#)
                   href: web-forms/overview/ajax-control-toolkit/dropshadow/manipulating-dropshadow-properties-from-client-code-cs.md
                 - name: Úprava indexu Z ovládacího prvku DropShadow (VB)
                   href: web-forms/overview/ajax-control-toolkit/dropshadow/adjusting-the-z-index-of-a-dropshadow-vb.md
@@ -566,11 +566,11 @@
             - name: DynamicPopulate
               href: web-forms/overview/ajax-control-toolkit/dynamicpopulate/index.md
               items:
-                - name: 'Dynamické naplnění ovládacího prvku (C#)'
+                - name: Dynamické naplnění ovládacího prvku (C#)
                   href: web-forms/overview/ajax-control-toolkit/dynamicpopulate/dynamically-populating-a-control-cs.md
-                - name: 'Dynamické naplnění ovládacího prvku javascriptovým kódem (C#)'
+                - name: Dynamické naplnění ovládacího prvku javascriptovým kódem (C#)
                   href: web-forms/overview/ajax-control-toolkit/dynamicpopulate/dynamically-populating-a-control-using-javascript-code-cs.md
-                - name: 'Použití ovládacího prvku DynamicPopulate s uživatelským ovládacím prvkem a JavaScriptem (C#)'
+                - name: Použití ovládacího prvku DynamicPopulate s uživatelským ovládacím prvkem a JavaScriptem (C#)
                   href: web-forms/overview/ajax-control-toolkit/dynamicpopulate/using-dynamicpopulate-with-a-user-control-and-javascript-cs.md
                 - name: Dynamické naplnění ovládacího prvku (VB)
                   href: web-forms/overview/ajax-control-toolkit/dynamicpopulate/dynamically-populating-a-control-vb.md
@@ -581,34 +581,34 @@
             - name: FilteredTextBox
               href: web-forms/overview/ajax-control-toolkit/filteredtextbox/index.md
               items:
-                - name: 'Povolení určitých znaků v textovém poli (C#)'
+                - name: Povolení určitých znaků v textovém poli (C#)
                   href: web-forms/overview/ajax-control-toolkit/filteredtextbox/allowing-only-certain-characters-in-a-text-box-cs.md
                 - name: Povolení určitých znaků v textovém poli (VB)
                   href: web-forms/overview/ajax-control-toolkit/filteredtextbox/allowing-only-certain-characters-in-a-text-box-vb.md
             - name: HoverMenu
               href: web-forms/overview/ajax-control-toolkit/hovermenu/index.md
               items:
-                - name: 'Použití nabídky HoverMenu s ovládacím prvkem Repeater (C#)'
+                - name: Použití nabídky HoverMenu s ovládacím prvkem Repeater (C#)
                   href: web-forms/overview/ajax-control-toolkit/hovermenu/using-hovermenu-with-a-repeater-control-cs.md
                 - name: Použití nabídky HoverMenu s ovládacím prvkem Repeater (VB)
                   href: web-forms/overview/ajax-control-toolkit/hovermenu/using-hovermenu-with-a-repeater-control-vb.md
             - name: HTMLEditor
               href: web-forms/overview/ajax-control-toolkit/htmleditor/index.md
               items:
-                - name: 'Ovládací prvek editoru HTML (C#)'
+                - name: Ovládací prvek editoru HTML (C#)
                   href: web-forms/overview/ajax-control-toolkit/htmleditor/how-do-i-use-the-html-editor-control-cs.md
                 - name: Ovládací prvek editoru HTML (VB)
                   href: web-forms/overview/ajax-control-toolkit/htmleditor/how-do-i-use-the-html-editor-control-vb.md
             - name: ModalPopup
               href: web-forms/overview/ajax-control-toolkit/modalpopup/index.md
               items:
-                - name: 'Spuštění okna modální místní nabídky serverovým kódem (C#)'
+                - name: Spuštění okna modální místní nabídky serverovým kódem (C#)
                   href: web-forms/overview/ajax-control-toolkit/modalpopup/launching-a-modal-popup-window-from-server-code-cs.md
-                - name: 'Použití ovládacího prvku ModalPopup v ovládacím prvku Repeater (C#)'
+                - name: Použití ovládacího prvku ModalPopup v ovládacím prvku Repeater (C#)
                   href: web-forms/overview/ajax-control-toolkit/modalpopup/using-modalpopup-with-a-repeater-control-cs.md
-                - name: 'Zpracování postbacků z ovládacího prvku ModalPopup (C#)'
+                - name: Zpracování postbacků z ovládacího prvku ModalPopup (C#)
                   href: web-forms/overview/ajax-control-toolkit/modalpopup/handling-postbacks-from-a-modalpopup-cs.md
-                - name: 'Umístění ovládacího prvku ModalPopup (C#)'
+                - name: Umístění ovládacího prvku ModalPopup (C#)
                   href: web-forms/overview/ajax-control-toolkit/modalpopup/positioning-a-modalpopup-cs.md
                 - name: Spuštění okna modální místní nabídky serverovým kódem (VB)
                   href: web-forms/overview/ajax-control-toolkit/modalpopup/launching-a-modal-popup-window-from-server-code-vb.md
@@ -621,39 +621,39 @@
             - name: MutuallyExclusiveCheckbox
               href: web-forms/overview/ajax-control-toolkit/mutuallyexclusivecheckbox/index.md
               items:
-                - name: 'Vytvoření vzájemně se vylučujících zaškrtávacích políček (C#)'
+                - name: Vytvoření vzájemně se vylučujících zaškrtávacích políček (C#)
                   href: web-forms/overview/ajax-control-toolkit/mutuallyexclusivecheckbox/creating-mutually-exclusive-checkboxes-cs.md
                 - name: Vytvoření vzájemně se vylučujících zaškrtávacích políček (VB)
                   href: web-forms/overview/ajax-control-toolkit/mutuallyexclusivecheckbox/creating-mutually-exclusive-checkboxes-vb.md
             - name: NoBot
               href: web-forms/overview/ajax-control-toolkit/nobot/index.md
               items:
-                - name: 'Boj s roboty (C#)'
+                - name: Boj s roboty (C#)
                   href: web-forms/overview/ajax-control-toolkit/nobot/fighting-bots-cs.md
                 - name: Boj s roboty (VB)
                   href: web-forms/overview/ajax-control-toolkit/nobot/fighting-bots-vb.md
             - name: NumericUpDown
               href: web-forms/overview/ajax-control-toolkit/numericupdown/index.md
               items:
-                - name: 'Vytvoření ovládacího prvku Numeric Up/Down webovou službou typu back-end (C#)'
+                - name: Vytvoření ovládacího prvku Numeric Up/Down webovou službou typu back-end (C#)
                   href: web-forms/overview/ajax-control-toolkit/numericupdown/creating-a-numeric-up-down-control-with-a-web-service-backend-cs.md
                 - name: Vytvoření ovládacího prvku Numeric Up/Down webovou službou typu back-end (VB)
                   href: web-forms/overview/ajax-control-toolkit/numericupdown/creating-a-numeric-up-down-control-with-a-web-service-backend-vb.md
             - name: PasswordStrength
               href: web-forms/overview/ajax-control-toolkit/passwordstrength/index.md
               items:
-                - name: 'Testování síly hesla (C#)'
+                - name: Testování síly hesla (C#)
                   href: web-forms/overview/ajax-control-toolkit/passwordstrength/testing-the-strength-of-a-password-cs.md
                 - name: Testování síly hesla (VB)
                   href: web-forms/overview/ajax-control-toolkit/passwordstrength/testing-the-strength-of-a-password-vb.md
             - name: Překryvný
               href: web-forms/overview/ajax-control-toolkit/popup/index.md
               items:
-                - name: 'Použití několika překryvných ovládacích prvků (C#)'
+                - name: Použití několika překryvných ovládacích prvků (C#)
                   href: web-forms/overview/ajax-control-toolkit/popup/using-multiple-popup-controls-cs.md
-                - name: 'Zpracování postbacků ovládacího prvku PopupControl ovládacím prvkem UpdatePanel (C#)'
+                - name: Zpracování postbacků ovládacího prvku PopupControl ovládacím prvkem UpdatePanel (C#)
                   href: web-forms/overview/ajax-control-toolkit/popup/handling-postbacks-from-a-popup-control-with-an-updatepanel-cs.md
-                - name: 'Zpracování postbacků ovládacího prvku PopupControl bez ovládacího prvku UpdatePanel (C#)'
+                - name: Zpracování postbacků ovládacího prvku PopupControl bez ovládacího prvku UpdatePanel (C#)
                   href: web-forms/overview/ajax-control-toolkit/popup/handling-postbacks-from-a-popup-control-without-an-updatepanel-cs.md
                 - name: Použití několika překryvných ovládacích prvků (VB)
                   href: web-forms/overview/ajax-control-toolkit/popup/using-multiple-popup-controls-vb.md
@@ -664,16 +664,16 @@
             - name: Rating
               href: web-forms/overview/ajax-control-toolkit/rating/index.md
               items:
-                - name: 'Vytvoření ovládacího prvku Rating (C#)'
+                - name: Vytvoření ovládacího prvku Rating (C#)
                   href: web-forms/overview/ajax-control-toolkit/rating/creating-a-rating-control-cs.md
                 - name: Vytvoření ovládacího prvku Rating (VB)
                   href: web-forms/overview/ajax-control-toolkit/rating/creating-a-rating-control-vb.md
             - name: ReorderList
               href: web-forms/overview/ajax-control-toolkit/reorderlist/index.md
               items:
-                - name: 'Použití postbacků s ovládacím prvkem ReorderList (C#)'
+                - name: Použití postbacků s ovládacím prvkem ReorderList (C#)
                   href: web-forms/overview/ajax-control-toolkit/reorderlist/using-postbacks-with-reorderlist-cs.md
-                - name: 'Přetažení ovládacím prvkem ReorderList (C#)'
+                - name: Přetažení ovládacím prvkem ReorderList (C#)
                   href: web-forms/overview/ajax-control-toolkit/reorderlist/drag-and-drop-via-reorderlist-cs.md
                 - name: Použití postbacků s ovládacím prvkem ReorderList (VB)
                   href: web-forms/overview/ajax-control-toolkit/reorderlist/using-postbacks-with-reorderlist-vb.md
@@ -682,9 +682,9 @@
             - name: Posuvník
               href: web-forms/overview/ajax-control-toolkit/slider/index.md
               items:
-                - name: 'Posuvník s funkcí Auto-Postback (C#)'
+                - name: Posuvník s funkcí Auto-Postback (C#)
                   href: web-forms/overview/ajax-control-toolkit/slider/using-the-slider-control-with-auto-postback-cs.md
-                - name: 'Svázání posuvníku s daty (C#)'
+                - name: Svázání posuvníku s daty (C#)
                   href: web-forms/overview/ajax-control-toolkit/slider/databinding-the-slider-control-cs.md
                 - name: Posuvník s funkcí Auto-Postback (VB)
                   href: web-forms/overview/ajax-control-toolkit/slider/using-the-slider-control-with-auto-postback-vb.md
@@ -693,9 +693,9 @@
             - name: TextBoxWatermark
               href: web-forms/overview/ajax-control-toolkit/textboxwatermark/index.md
               items:
-                - name: 'Použití ovládacího prvku TextBoxWatermark v ovládacím prvku FormView (C#)'
+                - name: Použití ovládacího prvku TextBoxWatermark v ovládacím prvku FormView (C#)
                   href: web-forms/overview/ajax-control-toolkit/textboxwatermark/using-textboxwatermark-in-a-formview-cs.md
-                - name: 'Použití ovládacího prvku TextBoxWatermark s validačními ovládacími prvky (C#)'
+                - name: Použití ovládacího prvku TextBoxWatermark s validačními ovládacími prvky (C#)
                   href: web-forms/overview/ajax-control-toolkit/textboxwatermark/using-textboxwatermark-with-validation-controls-cs.md
                 - name: Použití ovládacího prvku TextBoxWatermark v ovládacím prvku FormView (VB)
                   href: web-forms/overview/ajax-control-toolkit/textboxwatermark/using-textboxwatermark-in-a-formview-vb.md
@@ -707,11 +707,11 @@
             - name: Úvod
               href: web-forms/overview/data-access/introduction/index.md
               items:
-                - name: 'Vytvoření vrstvy přístupu k datům (C#)'
+                - name: Vytvoření vrstvy přístupu k datům (C#)
                   href: web-forms/overview/data-access/introduction/creating-a-data-access-layer-cs.md
-                - name: 'Vytvoření vrstvy obchodní logiky (C#)'
+                - name: Vytvoření vrstvy obchodní logiky (C#)
                   href: web-forms/overview/data-access/introduction/creating-a-business-logic-layer-cs.md
-                - name: 'Stránky předlohy a navigace na webu (C#)'
+                - name: Stránky předlohy a navigace na webu (C#)
                   href: web-forms/overview/data-access/introduction/master-pages-and-site-navigation-cs.md
                 - name: Vytvoření vrstvy přístupu k datům (VB)
                   href: web-forms/overview/data-access/introduction/creating-a-data-access-layer-vb.md
@@ -722,11 +722,11 @@
             - name: Základy vytváření sestav
               href: web-forms/overview/data-access/basic-reporting/index.md
               items:
-                - name: 'Zobrazení dat ovládacím prvkem ObjectDataSource (C#)'
+                - name: Zobrazení dat ovládacím prvkem ObjectDataSource (C#)
                   href: web-forms/overview/data-access/basic-reporting/displaying-data-with-the-objectdatasource-cs.md
-                - name: 'Deklarované parametry (C#)'
+                - name: Deklarované parametry (C#)
                   href: web-forms/overview/data-access/basic-reporting/declarative-parameters-cs.md
-                - name: 'Programové nastavení hodnot parametru ObjectDataSource (C#)'
+                - name: Programové nastavení hodnot parametru ObjectDataSource (C#)
                   href: web-forms/overview/data-access/basic-reporting/programmatically-setting-the-objectdatasource-s-parameter-values-cs.md
                 - name: Zobrazení dat ovládacím prvkem ObjectDataSource (VB)
                   href: web-forms/overview/data-access/basic-reporting/displaying-data-with-the-objectdatasource-vb.md
@@ -737,13 +737,13 @@
             - name: Hlavní záznamy / podrobnosti
               href: web-forms/overview/data-access/masterdetail/index.md
               items:
-                - name: 'Filtrování hlavních záznamů / podrobností ovládacím prvkem DropDownList (C#)'
+                - name: Filtrování hlavních záznamů / podrobností ovládacím prvkem DropDownList (C#)
                   href: web-forms/overview/data-access/masterdetail/master-detail-filtering-with-a-dropdownlist-cs.md
-                - name: 'Filtrování hlavních záznamů / podrobností dvou ovládacích prvků DropDownList (C#)'
+                - name: Filtrování hlavních záznamů / podrobností dvou ovládacích prvků DropDownList (C#)
                   href: web-forms/overview/data-access/masterdetail/master-detail-filtering-with-two-dropdownlists-cs.md
-                - name: 'Filtrování hlavních záznamů / podrobností na dvou stránkách (C#)'
+                - name: Filtrování hlavních záznamů / podrobností na dvou stránkách (C#)
                   href: web-forms/overview/data-access/masterdetail/master-detail-filtering-across-two-pages-cs.md
-                - name: 'Zobrazení hlavních záznamů / podrobností výběrem hlavního záznamu prvkem GridView s podrobnostmi v prvku DetailView (C#)'
+                - name: Zobrazení hlavních záznamů / podrobností výběrem hlavního záznamu prvkem GridView s podrobnostmi v prvku DetailView (C#)
                   href: web-forms/overview/data-access/masterdetail/master-detail-using-a-selectable-master-gridview-with-a-details-detailview-cs.md
                 - name: Filtrování hlavních záznamů / podrobností ovládacím prvkem DropDownList (VB)
                   href: web-forms/overview/data-access/masterdetail/master-detail-filtering-with-a-dropdownlist-vb.md
@@ -756,15 +756,15 @@
             - name: Vlastní formátování
               href: web-forms/overview/data-access/custom-formatting/index.md
               items:
-                - name: 'Vlastní formátování založené na datech (C#)'
+                - name: Vlastní formátování založené na datech (C#)
                   href: web-forms/overview/data-access/custom-formatting/custom-formatting-based-upon-data-cs.md
-                - name: 'Použití vlastností TemplateField v ovládacím prvku GridView (C#)'
+                - name: Použití vlastností TemplateField v ovládacím prvku GridView (C#)
                   href: web-forms/overview/data-access/custom-formatting/using-templatefields-in-the-gridview-control-cs.md
-                - name: 'Použití vlastností TemplateField v ovládacím prvku DetailsView (C#)'
+                - name: Použití vlastností TemplateField v ovládacím prvku DetailsView (C#)
                   href: web-forms/overview/data-access/custom-formatting/using-templatefields-in-the-detailsview-control-cs.md
-                - name: 'Šablony ovládacího prvku FormView (C#)'
+                - name: Šablony ovládacího prvku FormView (C#)
                   href: web-forms/overview/data-access/custom-formatting/using-the-formview-s-templates-cs.md
-                - name: 'Zobrazení souhrnných informací v zápatí prvku GridView (C#)'
+                - name: Zobrazení souhrnných informací v zápatí prvku GridView (C#)
                   href: web-forms/overview/data-access/custom-formatting/displaying-summary-information-in-the-gridview-s-footer-cs.md
                 - name: Vlastní formátování založené na datech (VB)
                   href: web-forms/overview/data-access/custom-formatting/custom-formatting-based-upon-data-vb.md
@@ -783,17 +783,17 @@
                   href: web-forms/overview/data-access/editing-inserting-and-deleting-data/an-overview-of-inserting-updating-and-deleting-data-cs.md
                 - name: 'Zkoumání událostí spojených s vložením, aktualizací a odstraněním (C#)'
                   href: web-forms/overview/data-access/editing-inserting-and-deleting-data/examining-the-events-associated-with-inserting-updating-and-deleting-cs.md
-                - name: 'Zpracování výjimek na úrovni knihoven BLL a DAL na stránce ASP.NET (C#)'
+                - name: Zpracování výjimek na úrovni knihoven BLL a DAL na stránce ASP.NET (C#)
                   href: web-forms/overview/data-access/editing-inserting-and-deleting-data/handling-bll-and-dal-level-exceptions-in-an-asp-net-page-cs.md
-                - name: 'Přidání validačních ovládacích prvků do rozhraní pro úpravy a vložení (C#)'
+                - name: Přidání validačních ovládacích prvků do rozhraní pro úpravy a vložení (C#)
                   href: web-forms/overview/data-access/editing-inserting-and-deleting-data/adding-validation-controls-to-the-editing-and-inserting-interfaces-cs.md
-                - name: 'Přizpůsobení rozhraní pro úpravu dat (C#)'
+                - name: Přizpůsobení rozhraní pro úpravu dat (C#)
                   href: web-forms/overview/data-access/editing-inserting-and-deleting-data/customizing-the-data-modification-interface-cs.md
-                - name: 'Implementace optimistického řízení souběžnosti (C#)'
+                - name: Implementace optimistického řízení souběžnosti (C#)
                   href: web-forms/overview/data-access/editing-inserting-and-deleting-data/implementing-optimistic-concurrency-cs.md
-                - name: 'Přidání potvrzení odstranění na straně klienta (C#)'
+                - name: Přidání potvrzení odstranění na straně klienta (C#)
                   href: web-forms/overview/data-access/editing-inserting-and-deleting-data/adding-client-side-confirmation-when-deleting-cs.md
-                - name: 'Omezení funkcí pro úpravu dat podle uživatele (C#)'
+                - name: Omezení funkcí pro úpravu dat podle uživatele (C#)
                   href: web-forms/overview/data-access/editing-inserting-and-deleting-data/limiting-data-modification-functionality-based-on-the-user-cs.md
                 - name: 'Přehled vložení, aktualizace a odstranění dat (VB)'
                   href: web-forms/overview/data-access/editing-inserting-and-deleting-data/an-overview-of-inserting-updating-and-deleting-data-vb.md
@@ -814,13 +814,13 @@
             - name: Stránkování a řazení
               href: web-forms/overview/data-access/paging-and-sorting/index.md
               items:
-                - name: 'Stránkování a řazení dat sestavy (C#)'
+                - name: Stránkování a řazení dat sestavy (C#)
                   href: web-forms/overview/data-access/paging-and-sorting/paging-and-sorting-report-data-cs.md
-                - name: 'Účinné stránkování velkých objemů dat (C#)'
+                - name: Účinné stránkování velkých objemů dat (C#)
                   href: web-forms/overview/data-access/paging-and-sorting/efficiently-paging-through-large-amounts-of-data-cs.md
-                - name: 'Řazení dat s vlastním stránkováním (C#)'
+                - name: Řazení dat s vlastním stránkováním (C#)
                   href: web-forms/overview/data-access/paging-and-sorting/sorting-custom-paged-data-cs.md
-                - name: 'Vytvoření vlastního uživatelského rozhraní pro řazení (C#)'
+                - name: Vytvoření vlastního uživatelského rozhraní pro řazení (C#)
                   href: web-forms/overview/data-access/paging-and-sorting/creating-a-customized-sorting-user-interface-cs.md
                 - name: Stránkování a řazení dat sestavy (VB)
                   href: web-forms/overview/data-access/paging-and-sorting/paging-and-sorting-report-data-vb.md
@@ -833,20 +833,20 @@
             - name: Vlastní tlačítka akcí
               href: web-forms/overview/data-access/custom-button-actions/index.md
               items:
-                - name: 'Přidání tlačítek do ovládacího prvku GridView a reakce na ně (C#)'
+                - name: Přidání tlačítek do ovládacího prvku GridView a reakce na ně (C#)
                   href: web-forms/overview/data-access/custom-button-actions/adding-and-responding-to-buttons-to-a-gridview-cs.md
                 - name: Přidání tlačítek do ovládacího prvku GridView a reakce na ně (VB)
                   href: web-forms/overview/data-access/custom-button-actions/adding-and-responding-to-buttons-to-a-gridview-vb.md
             - name: Zobrazení dat ovládacími prvky DataList a Repeater
               href: web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/index.md
               items:
-                - name: 'Zobrazení dat ovládacími prvky DataList a Repeater (C#)'
+                - name: Zobrazení dat ovládacími prvky DataList a Repeater (C#)
                   href: web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/displaying-data-with-the-datalist-and-repeater-controls-cs.md
-                - name: 'Formátování ovládacích prvků DataList a Repeater na základě dat (C#)'
+                - name: Formátování ovládacích prvků DataList a Repeater na základě dat (C#)
                   href: web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/formatting-the-datalist-and-repeater-based-upon-data-cs.md
-                - name: 'Zobrazení více záznamů na řádku ovládacím prvkem DataList (C#)'
+                - name: Zobrazení více záznamů na řádku ovládacím prvkem DataList (C#)
                   href: web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/showing-multiple-records-per-row-with-the-datalist-control-cs.md
-                - name: 'Webové ovládací prvky vnořených dat (C#)'
+                - name: Webové ovládací prvky vnořených dat (C#)
                   href: web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/nested-data-web-controls-cs.md
                 - name: Zobrazení dat ovládacími prvky DataList a Repeater (VB)
                   href: web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/displaying-data-with-the-datalist-and-repeater-controls-vb.md
@@ -859,11 +859,11 @@
             - name: Scénáře filtrování ovládacími prvky DataList a Repeater
               href: web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-repeater/index.md
               items:
-                - name: 'Filtrování hlavních záznamů / podrobností ovládacím prvkem DropDownList (C#)'
+                - name: Filtrování hlavních záznamů / podrobností ovládacím prvkem DropDownList (C#)
                   href: web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-repeater/master-detail-filtering-with-a-dropdownlist-datalist-cs.md
-                - name: 'Filtrování hlavních záznamů / podrobností na dvou stránkách (C#)'
+                - name: Filtrování hlavních záznamů / podrobností na dvou stránkách (C#)
                   href: web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-repeater/master-detail-filtering-acess-two-pages-datalist-cs.md
-                - name: 'Zobrazení hlavních záznamů / podrobností v seznamu hlavních záznamů s odrážkami a podrobnostmi v prvku DataList (C#)'
+                - name: Zobrazení hlavních záznamů / podrobností v seznamu hlavních záznamů s odrážkami a podrobnostmi v prvku DataList (C#)
                   href: web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-repeater/master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-cs.md
                 - name: Filtrování hlavních záznamů / podrobností ovládacím prvkem DropDownList (VB)
                   href: web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-repeater/master-detail-filtering-with-a-dropdownlist-datalist-vb.md
@@ -874,15 +874,15 @@
             - name: Úpravy a odstranění dat prostřednictvím datového prvku DataList
               href: web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/index.md
               items:
-                - name: 'Přehled úprav a odstranění dat v ovládacím prvku DataList (C#)'
+                - name: Přehled úprav a odstranění dat v ovládacím prvku DataList (C#)
                   href: web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/an-overview-of-editing-and-deleting-data-in-the-datalist-cs.md
-                - name: 'Provádění dávkových aktualizací (C#)'
+                - name: Provádění dávkových aktualizací (C#)
                   href: web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/performing-batch-updates-cs.md
-                - name: 'Zpracování výjimek na úrovni knihoven BLL a DAL (C#)'
+                - name: Zpracování výjimek na úrovni knihoven BLL a DAL (C#)
                   href: web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/handling-bll-and-dal-level-exceptions-cs.md
-                - name: 'Přidání validačních ovládacích prvků do rozhraní pro úpravy prvku DataList (C#)'
+                - name: Přidání validačních ovládacích prvků do rozhraní pro úpravy prvku DataList (C#)
                   href: web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/adding-validation-controls-to-the-datalist-s-editing-interface-cs.md
-                - name: 'Přizpůsobení rozhraní pro úpravy prvku DataList (C#)'
+                - name: Přizpůsobení rozhraní pro úpravy prvku DataList (C#)
                   href: web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/customizing-the-datalist-s-editing-interface-cs.md
                 - name: Přehled úprav a odstranění dat v ovládacím prvku DataList (VB)
                   href: web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/an-overview-of-editing-and-deleting-data-in-the-datalist-vb.md
@@ -897,9 +897,9 @@
             - name: Stránkování a řazení ovládacími prvky DataList a Repeater
               href: web-forms/overview/data-access/paging-and-sorting-with-the-datalist-and-repeater/index.md
               items:
-                - name: 'Stránkování dat sestavy ovládacími prvky DataList nebo Repeater (C#)'
+                - name: Stránkování dat sestavy ovládacími prvky DataList nebo Repeater (C#)
                   href: web-forms/overview/data-access/paging-and-sorting-with-the-datalist-and-repeater/paging-report-data-in-a-datalist-or-repeater-control-cs.md
-                - name: 'Řazení dat sestavy ovládacími prvky DataList nebo Repeater (C#)'
+                - name: Řazení dat sestavy ovládacími prvky DataList nebo Repeater (C#)
                   href: web-forms/overview/data-access/paging-and-sorting-with-the-datalist-and-repeater/sorting-data-in-a-datalist-or-repeater-control-cs.md
                 - name: Stránkování dat sestavy ovládacími prvky DataList nebo Repeater (VB)
                   href: web-forms/overview/data-access/paging-and-sorting-with-the-datalist-and-repeater/paging-report-data-in-a-datalist-or-repeater-control-vb.md
@@ -908,20 +908,20 @@
             - name: Akce vlastních tlačítek s ovládacími prvky DataList a Repeater
               href: web-forms/overview/data-access/custom-button-actions-with-the-datalist-and-repeater/index.md
               items:
-                - name: 'Vlastní tlačítka v ovládacích prvcích DataList a Repeater (C#)'
+                - name: Vlastní tlačítka v ovládacích prvcích DataList a Repeater (C#)
                   href: web-forms/overview/data-access/custom-button-actions-with-the-datalist-and-repeater/custom-buttons-in-the-datalist-and-repeater-cs.md
                 - name: Vlastní tlačítka v ovládacích prvcích DataList a Repeater (VB)
                   href: web-forms/overview/data-access/custom-button-actions-with-the-datalist-and-repeater/custom-buttons-in-the-datalist-and-repeater-vb.md
             - name: Přiřazení databáze přímo ze stránky ASP.NET
               href: web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/index.md
               items:
-                - name: 'Dotazování na data ovládacím prvkem SqlDataSource (C#)'
+                - name: Dotazování na data ovládacím prvkem SqlDataSource (C#)
                   href: web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/querying-data-with-the-sqldatasource-control-cs.md
-                - name: 'Použití parametrizovaných dotazů s ovládacím prvkem SqlDataSource (C#)'
+                - name: Použití parametrizovaných dotazů s ovládacím prvkem SqlDataSource (C#)
                   href: web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/using-parameterized-queries-with-the-sqldatasource-cs.md
                 - name: 'Vkládání, aktualizace a odstraňování dat ovládacím prvkem SqlDataSource (C#)'
                   href: web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/inserting-updating-and-deleting-data-with-the-sqldatasource-cs.md
-                - name: 'Implementace optimistického řízení souběžnosti ovládacím prvkem SqlDataSource (C#)'
+                - name: Implementace optimistického řízení souběžnosti ovládacím prvkem SqlDataSource (C#)
                   href: web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/implementing-optimistic-concurrency-with-the-sqldatasource-cs.md
                 - name: Dotazování na data ovládacím prvkem SqlDataSource(VB)
                   href: web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/querying-data-with-the-sqldatasource-control-vb.md
@@ -934,11 +934,11 @@
             - name: Vylepšení ovládacího prvku GridView
               href: web-forms/overview/data-access/enhancing-the-gridview/index.md
               items:
-                - name: 'Přidání sloupce přepínačů do ovládacího prvku GridView (C#)'
+                - name: Přidání sloupce přepínačů do ovládacího prvku GridView (C#)
                   href: web-forms/overview/data-access/enhancing-the-gridview/adding-a-gridview-column-of-radio-buttons-cs.md
-                - name: 'Přidání sloupce zaškrtávacích políček do ovládacího prvku GridView (C#)'
+                - name: Přidání sloupce zaškrtávacích políček do ovládacího prvku GridView (C#)
                   href: web-forms/overview/data-access/enhancing-the-gridview/adding-a-gridview-column-of-checkboxes-cs.md
-                - name: 'Vložení nového záznamu ze zápatí prvku GridView (C#)'
+                - name: Vložení nového záznamu ze zápatí prvku GridView (C#)
                   href: web-forms/overview/data-access/enhancing-the-gridview/inserting-a-new-record-from-the-gridview-s-footer-cs.md
                 - name: Přidání sloupce přepínačů do ovládacího prvku GridView (VB)
                   href: web-forms/overview/data-access/enhancing-the-gridview/adding-a-gridview-column-of-radio-buttons-vb.md
@@ -949,13 +949,13 @@
             - name: Práce s binárními soubory
               href: web-forms/overview/data-access/working-with-binary-files/index.md
               items:
-                - name: 'Nahrávání souborů (C#)'
+                - name: Nahrávání souborů (C#)
                   href: web-forms/overview/data-access/working-with-binary-files/uploading-files-cs.md
-                - name: 'Zobrazení binárních dat ve webových ovládacích prvcích dat (C#)'
+                - name: Zobrazení binárních dat ve webových ovládacích prvcích dat (C#)
                   href: web-forms/overview/data-access/working-with-binary-files/displaying-binary-data-in-the-data-web-controls-cs.md
-                - name: 'Zahrnutí možnosti nahrání souboru při přidání nového záznamu (C#)'
+                - name: Zahrnutí možnosti nahrání souboru při přidání nového záznamu (C#)
                   href: web-forms/overview/data-access/working-with-binary-files/including-a-file-upload-option-when-adding-a-new-record-cs.md
-                - name: 'Aktualizace a odstranění stávajících binárních dat (C#)'
+                - name: Aktualizace a odstranění stávajících binárních dat (C#)
                   href: web-forms/overview/data-access/working-with-binary-files/updating-and-deleting-existing-binary-data-cs.md
                 - name: Nahrávání souborů (VB)
                   href: web-forms/overview/data-access/working-with-binary-files/uploading-files-vb.md
@@ -968,13 +968,13 @@
             - name: Ukládaní dat do mezipaměti
               href: web-forms/overview/data-access/caching-data/index.md
               items:
-                - name: 'Ukládání dat do mezipaměti ovládacím prvkem ObjectDataSource (C#)'
+                - name: Ukládání dat do mezipaměti ovládacím prvkem ObjectDataSource (C#)
                   href: web-forms/overview/data-access/caching-data/caching-data-with-the-objectdatasource-cs.md
-                - name: 'Ukládání dat do mezipaměti v architektuře (C#)'
+                - name: Ukládání dat do mezipaměti v architektuře (C#)
                   href: web-forms/overview/data-access/caching-data/caching-data-in-the-architecture-cs.md
-                - name: 'Ukládání dat do mezipaměti při spuštění aplikace (C#)'
+                - name: Ukládání dat do mezipaměti při spuštění aplikace (C#)
                   href: web-forms/overview/data-access/caching-data/caching-data-at-application-startup-cs.md
-                - name: 'Použití závislostí mezipaměti SQL (C#)'
+                - name: Použití závislostí mezipaměti SQL (C#)
                   href: web-forms/overview/data-access/caching-data/using-sql-cache-dependencies-cs.md
                 - name: Ukládání dat do mezipaměti ovládacím prvkem ObjectDataSource (VB)
                   href: web-forms/overview/data-access/caching-data/caching-data-with-the-objectdatasource-vb.md
@@ -987,20 +987,20 @@
             - name: Databázově řízené mapy webu
               href: web-forms/overview/data-access/database-driven-site-maps/index.md
               items:
-                - name: 'Vytvoření vlastního databázově řízeného zprostředkovatele mapy webu (C#)'
+                - name: Vytvoření vlastního databázově řízeného zprostředkovatele mapy webu (C#)
                   href: web-forms/overview/data-access/database-driven-site-maps/building-a-custom-database-driven-site-map-provider-cs.md
                 - name: Vytvoření vlastního databázově řízeného zprostředkovatele mapy webu (VB)
                   href: web-forms/overview/data-access/database-driven-site-maps/building-a-custom-database-driven-site-map-provider-vb.md
             - name: Práce s daty uspořádanými do dávek
               href: web-forms/overview/data-access/working-with-batched-data/index.md
               items:
-                - name: 'Zabalení úprav databáze do transakce (C#)'
+                - name: Zabalení úprav databáze do transakce (C#)
                   href: web-forms/overview/data-access/working-with-batched-data/wrapping-database-modifications-within-a-transaction-cs.md
-                - name: 'Dávkové aktualizace (C#)'
+                - name: Dávkové aktualizace (C#)
                   href: web-forms/overview/data-access/working-with-batched-data/batch-updating-cs.md
-                - name: 'Dávkové odstraňování (C#)'
+                - name: Dávkové odstraňování (C#)
                   href: web-forms/overview/data-access/working-with-batched-data/batch-deleting-cs.md
-                - name: 'Dávkové vkládání (C#)'
+                - name: Dávkové vkládání (C#)
                   href: web-forms/overview/data-access/working-with-batched-data/batch-inserting-cs.md
                 - name: Zabalení úprav databáze do transakce (VB)
                   href: web-forms/overview/data-access/working-with-batched-data/wrapping-database-modifications-within-a-transaction-vb.md
@@ -1013,23 +1013,23 @@
             - name: Pokročilé scénáře přístupu k datům
               href: web-forms/overview/data-access/advanced-data-access-scenarios/index.md
               items:
-                - name: 'Vytvoření nových uložených procedur prvků TableAdapter typových sad dat (C#)'
+                - name: Vytvoření nových uložených procedur prvků TableAdapter typových sad dat (C#)
                   href: web-forms/overview/data-access/advanced-data-access-scenarios/creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs.md
-                - name: 'Použití stávajících uložených procedur komponentami TableAdapter typových sad dat (C#)'
+                - name: Použití stávajících uložených procedur komponentami TableAdapter typových sad dat (C#)
                   href: web-forms/overview/data-access/advanced-data-access-scenarios/using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-cs.md
-                - name: 'Aktualizace komponenty TableAdapter kvůli použití příkazů JOIN (C#)'
+                - name: Aktualizace komponenty TableAdapter kvůli použití příkazů JOIN (C#)
                   href: web-forms/overview/data-access/advanced-data-access-scenarios/updating-the-tableadapter-to-use-joins-cs.md
-                - name: 'Přidání dalších sloupců do tabulky DataTable (C#)'
+                - name: Přidání dalších sloupců do tabulky DataTable (C#)
                   href: web-forms/overview/data-access/advanced-data-access-scenarios/adding-additional-datatable-columns-cs.md
-                - name: 'Práce s vypočítanými sloupci (C#)'
+                - name: Práce s vypočítanými sloupci (C#)
                   href: web-forms/overview/data-access/advanced-data-access-scenarios/working-with-computed-columns-cs.md
-                - name: 'Konfigurace připojení vrstvy přístupu k datům a nastavení na úrovni příkazu (C#)'
+                - name: Konfigurace připojení vrstvy přístupu k datům a nastavení na úrovni příkazu (C#)
                   href: web-forms/overview/data-access/advanced-data-access-scenarios/configuring-the-data-access-layer-s-connection-and-command-level-settings-cs.md
-                - name: 'Ochrana připojovacích řetězců a dalších konfiguračních údajů (C#)'
+                - name: Ochrana připojovacích řetězců a dalších konfiguračních údajů (C#)
                   href: web-forms/overview/data-access/advanced-data-access-scenarios/protecting-connection-strings-and-other-configuration-information-cs.md
-                - name: 'Ladění uložených procedur (C#)'
+                - name: Ladění uložených procedur (C#)
                   href: web-forms/overview/data-access/advanced-data-access-scenarios/debugging-stored-procedures-cs.md
-                - name: 'Vytvoření uložených procedur a uživatelsky definovaných funkcí spravovaným kódem (C#)'
+                - name: Vytvoření uložených procedur a uživatelsky definovaných funkcí spravovaným kódem (C#)
                   href: web-forms/overview/data-access/advanced-data-access-scenarios/creating-stored-procedures-and-user-defined-functions-with-managed-code-cs.md
                 - name: Vytvoření nových uložených procedur prvků TableAdapter typových sad dat (VB)
                   href: web-forms/overview/data-access/advanced-data-access-scenarios/creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-vb.md
@@ -1047,7 +1047,7 @@
                   href: web-forms/overview/data-access/advanced-data-access-scenarios/protecting-connection-strings-and-other-configuration-information-vb.md
                 - name: Ladění uložených procedur (VB)
                   href: web-forms/overview/data-access/advanced-data-access-scenarios/debugging-stored-procedures-vb.md
-                - name: 'Vytvoření uložených procedur a uživatelsky definovaných funkcí spravovaným kódem (C#)'
+                - name: Vytvoření uložených procedur a uživatelsky definovaných funkcí spravovaným kódem (C#)
                   href: web-forms/overview/data-access/advanced-data-access-scenarios/creating-stored-procedures-and-user-defined-functions-with-managed-code-vb.md
         - name: Starší verze – zabezpečení
           href: web-forms/overview/older-versions-security/index.md
@@ -1055,11 +1055,11 @@
             - name: ASP.NET 3.5 – úvod do zabezpečení
               href: web-forms/overview/older-versions-security/introduction/index.md
               items:
-                - name: 'Základy zabezpečení a podpora ASP.NET (C#)'
+                - name: Základy zabezpečení a podpora ASP.NET (C#)
                   href: web-forms/overview/older-versions-security/introduction/security-basics-and-asp-net-support-cs.md
-                - name: 'Přehled ověřování pomocí formuláře (C#)'
+                - name: Přehled ověřování pomocí formuláře (C#)
                   href: web-forms/overview/older-versions-security/introduction/an-overview-of-forms-authentication-cs.md
-                - name: 'Konfigurace ověřování pomocí formuláře a pokročilá témata (C#)'
+                - name: Konfigurace ověřování pomocí formuláře a pokročilá témata (C#)
                   href: web-forms/overview/older-versions-security/introduction/forms-authentication-configuration-and-advanced-topics-cs.md
                 - name: Základy zabezpečení a podpora ASP.NET (VB)
                   href: web-forms/overview/older-versions-security/introduction/security-basics-and-asp-net-support-vb.md
@@ -1070,15 +1070,15 @@
             - name: ASP.NET 3.5 – členství
               href: web-forms/overview/older-versions-security/membership/index.md
               items:
-                - name: 'Vytvoření schématu členství v SQL Serveru (C#)'
+                - name: Vytvoření schématu členství v SQL Serveru (C#)
                   href: web-forms/overview/older-versions-security/membership/creating-the-membership-schema-in-sql-server-cs.md
-                - name: 'Vytváření uživatelských účtů (C#)'
+                - name: Vytváření uživatelských účtů (C#)
                   href: web-forms/overview/older-versions-security/membership/creating-user-accounts-cs.md
                 - name: 'Ověření přihlašovacích údajů uživatele v úložišti uživatelů, kteří jsou členy (C#)'
                   href: web-forms/overview/older-versions-security/membership/validating-user-credentials-against-the-membership-user-store-cs.md
-                - name: 'Ověřování založené na uživatelích (C#)'
+                - name: Ověřování založené na uživatelích (C#)
                   href: web-forms/overview/older-versions-security/membership/user-based-authorization-cs.md
-                - name: 'Ukládání dalších informací o uživatelích (C#)'
+                - name: Ukládání dalších informací o uživatelích (C#)
                   href: web-forms/overview/older-versions-security/membership/storing-additional-user-information-cs.md
                 - name: Vytvoření schématu členství v SQL Serveru (VB)
                   href: web-forms/overview/older-versions-security/membership/creating-the-membership-schema-in-sql-server-vb.md
@@ -1093,11 +1093,11 @@
             - name: ASP.NET 3.5 – role
               href: web-forms/overview/older-versions-security/roles/index.md
               items:
-                - name: 'Vytváření a správa rolí (C#)'
+                - name: Vytváření a správa rolí (C#)
                   href: web-forms/overview/older-versions-security/roles/creating-and-managing-roles-cs.md
-                - name: 'Přiřazení rolí uživatelům (C#)'
+                - name: Přiřazení rolí uživatelům (C#)
                   href: web-forms/overview/older-versions-security/roles/assigning-roles-to-users-cs.md
-                - name: 'Ověřování založené na rolích (C#)'
+                - name: Ověřování založené na rolích (C#)
                   href: web-forms/overview/older-versions-security/roles/role-based-authorization-cs.md
                 - name: Vytváření a správa rolí (VB)
                   href: web-forms/overview/older-versions-security/roles/creating-and-managing-roles-vb.md
@@ -1108,11 +1108,11 @@
             - name: ASP.NET 3.5 – správa zabezpečení
               href: web-forms/overview/older-versions-security/admin/index.md
               items:
-                - name: 'Vytvoření rozhraní pro výběr jednoho uživatelského účtu z mnoha (C#)'
+                - name: Vytvoření rozhraní pro výběr jednoho uživatelského účtu z mnoha (C#)
                   href: web-forms/overview/older-versions-security/admin/building-an-interface-to-select-one-user-account-from-many-cs.md
-                - name: 'Obnovení a změna hesel (C#)'
+                - name: Obnovení a změna hesel (C#)
                   href: web-forms/overview/older-versions-security/admin/recovering-and-changing-passwords-cs.md
-                - name: 'Odemykání a schvalování uživatelských účtů (C#)'
+                - name: Odemykání a schvalování uživatelských účtů (C#)
                   href: web-forms/overview/older-versions-security/admin/unlocking-and-approving-user-accounts-cs.md
                 - name: Vytvoření rozhraní pro výběr jednoho uživatelského účtu z mnoha (VB)
                   href: web-forms/overview/older-versions-security/admin/building-an-interface-to-select-one-user-account-from-many-vb.md
@@ -1401,7 +1401,7 @@
               href: web-forms/videos/building-35-applications/an-introduction-to-soap-based-web-services-with-visual-web-developer-2008.md
             - name: Služby stylu AJAX v aplikaci Microsoft Visual Web Developer 2008
               href: web-forms/videos/building-35-applications/ajax-style-services-with-microsoft-visual-web-developer-2008.md
-            - name: Ověření
+            - name: Ověřování
               href: web-forms/videos/building-35-applications/validation.md
             - name: Přihlašovací ovládací prvky
               href: web-forms/videos/building-35-applications/login-controls.md
@@ -1467,7 +1467,7 @@
               href: web-forms/videos/sql-2005/understanding-security-and-network-connectivity.md
             - name: Připojení webové aplikace k SQL Serveru 2005 Express Edition
               href: web-forms/videos/sql-2005/connecting-your-web-application-to-sql-server-2005-express-edition.md
-            - name: Používání aplikace SQL Server Management Studio
+            - name: Používání SQL Server Management Studia
               href: web-forms/videos/sql-2005/using-sql-server-management-studio.md
             - name: Začínáme se službami Reporting Services
               href: web-forms/videos/sql-2005/getting-started-with-reporting-services.md
@@ -1867,7 +1867,7 @@
               href: web-forms/videos/aspnet-dynamic-data/how-to-enable-table-specific-routing-in-dynamic-data-applications.md
             - name: Použití atributu Validation v aplikacích ASP.NET s dynamickými daty
               href: web-forms/videos/aspnet-dynamic-data/how-to-use-attribute-validation-in-aspnet-dynamic-data-applications.md
-            - name: 'Implementace vlastního ověření pole imperativní logikou ve VB nebo C#'
+            - name: Implementace vlastního ověření pole imperativní logikou ve VB nebo C#
               href: web-forms/videos/aspnet-dynamic-data/how-to-implement-custom-field-validation-with-imperative-logic-in-vb-or-c.md
             - name: Odebrání sloupců z datových mřížek DynamicData
               href: web-forms/videos/aspnet-dynamic-data/how-to-remove-columns-from-your-dynamicdata-data-grids.md
@@ -1878,7 +1878,7 @@
         - name: ASP.NET 3.5
           href: web-forms/videos/aspnet-35/index.md
           items:
-            - name: Návody
+            - name: Jak na to?
               href: web-forms/videos/aspnet-35/how-do-i/index.md
               items:
                 - name: Vytvoření stránky předlohy v sadě Visual Studio 2008
@@ -2064,13 +2064,13 @@
     - name: Doprovodné materiály
       href: mvc/overview/index.md
       items:
-        - name: začínáme
+        - name: Začínáme
           href: mvc/overview/getting-started/index.md
           items:
             - name: Začínáme s ASP.NET MVC 5
               href: mvc/overview/getting-started/introduction/index.md
               items:
-                - name: začínáme
+                - name: Začínáme
                   href: mvc/overview/getting-started/introduction/getting-started.md
                 - name: Přidání kontroleru
                   href: mvc/overview/getting-started/introduction/adding-a-controller.md
@@ -2158,7 +2158,7 @@
               href: mvc/overview/security/aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication.md
             - name: Prevence XSRF/CSRF v ASP.NET MVC a na webových stránkách
               href: mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages.md
-            - name: 'Prevence útoků založených na otevřeném přesměrování (C#)'
+            - name: Prevence útoků založených na otevřeném přesměrování (C#)
               href: mvc/overview/security/preventing-open-redirection-attacks.md
         - name: Nasazení
           href: mvc/overview/deployment/index.md
@@ -2179,7 +2179,7 @@
           items:
             - name: Vlastní šablona MVC
               href: mvc/overview/advanced/custom-mvc-templates.md
-        - name: Vydání
+        - name: Vydané verze
           href: mvc/overview/releases/index.md
           items:
             - name: Novinky v ASP.NET MVC 5.2
@@ -2261,26 +2261,26 @@
             - name: Začínáme s ASP.NET MVC3
               href: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/index.md
               items:
-                - name: 'Začínáme s ASP.NET MVC 3 (C#)'
+                - name: Začínáme s ASP.NET MVC 3 (C#)
                   href: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/index.md
                   items:
-                    - name: 'Úvod do ASP.NET MVC 3 (C#)'
+                    - name: Úvod do ASP.NET MVC 3 (C#)
                       href: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3.md
-                    - name: 'Přidání kontroleru (C#)'
+                    - name: Přidání kontroleru (C#)
                       href: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/adding-a-controller.md
-                    - name: 'Přidání zobrazení (C#)'
+                    - name: Přidání zobrazení (C#)
                       href: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/adding-a-view.md
-                    - name: 'Přidání modelu (C#)'
+                    - name: Přidání modelu (C#)
                       href: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/adding-a-model.md
-                    - name: 'Přístup k datům modelu z kontroleru (C#)'
+                    - name: Přístup k datům modelu z kontroleru (C#)
                       href: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/accessing-your-models-data-from-a-controller.md
-                    - name: 'Zkoumání metod Edit a zobrazení pro úpravy (C#)'
+                    - name: Zkoumání metod Edit a zobrazení pro úpravy (C#)
                       href: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/examining-the-edit-methods-and-edit-view.md
-                    - name: 'Přidání nového pole do modelu a tabulky Movie (C#)'
+                    - name: Přidání nového pole do modelu a tabulky Movie (C#)
                       href: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/adding-a-new-field.md
-                    - name: 'Přidání ověření do modelu (C#)'
+                    - name: Přidání ověření do modelu (C#)
                       href: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/adding-validation-to-the-model.md
-                    - name: 'Vylepšení podrobností a metod Delete (C#)'
+                    - name: Vylepšení podrobností a metod Delete (C#)
                       href: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/improving-the-details-and-delete-methods.md
                 - name: Začínáme s ASP.NET MVC 3 (VB.NET)
                   href: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/index.md
@@ -2308,25 +2308,25 @@
             - name: Aplikace MVC 3 Music Store
               href: mvc/overview/older-versions/mvc-music-store/index.md
               items:
-                - name: '1. část: Přehled a Soubor->Nový projekt'
+                - name: 'Část 1: Přehled a Soubor->Nový projekt'
                   href: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-1.md
-                - name: '2. část: Kontrolery'
+                - name: 'Část 2: Kontrolery'
                   href: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-2.md
-                - name: '3. část: Zobrazení a modely ViewModel'
+                - name: 'Část 3: Zobrazení a modely ViewModel'
                   href: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-3.md
-                - name: '4. část: Modely a přístup k datům'
+                - name: 'Část 4: Modely a přístup k datům'
                   href: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-4.md
-                - name: '5. část: Editační formuláře a šablonování textu'
+                - name: 'Část 5: Editační formuláře a šablonování textu'
                   href: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-5.md
-                - name: '6. část: Používání datových poznámek k ověření modelu'
+                - name: 'Část 6: Používání datových poznámek k ověření modelu'
                   href: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6.md
-                - name: '7. část: Členství a ověřování'
+                - name: 'Část 7: Členství a ověřování'
                   href: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-7.md
-                - name: '8. část: Nákupní košík s aktualizacemi Ajax'
+                - name: 'Část 8: Nákupní košík s aktualizacemi Ajax'
                   href: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-8.md
-                - name: '9. část: Registrace a pokladna'
+                - name: 'Část 9: Registrace a pokladna'
                   href: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-9.md
-                - name: '10. část: Závěrečné aktualizace návrhu navigace a webu, závěr'
+                - name: 'Část 10: Závěrečné aktualizace návrhu navigace a webu, závěr'
                   href: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-10.md
             - name: MVC 3 – překryvný kalendář s prvkem DatePicker v uživatelském rozhraní HTML5 a jQuery
               href: mvc/overview/older-versions/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc/index.md
@@ -2382,19 +2382,19 @@
             - name: Modely (Data)
               href: mvc/overview/older-versions-1/models-data/index.md
               items:
-                - name: 'Vytvoření tříd modelu v sadě Entity Framework (C#)'
+                - name: Vytvoření tříd modelu v sadě Entity Framework (C#)
                   href: mvc/overview/older-versions-1/models-data/creating-model-classes-with-the-entity-framework-cs.md
-                - name: 'Vytvoření tříd modelu pomocí LINQ to SQL (C#)'
+                - name: Vytvoření tříd modelu pomocí LINQ to SQL (C#)
                   href: mvc/overview/older-versions-1/models-data/creating-model-classes-with-linq-to-sql-cs.md
-                - name: 'Zobrazení tabulky databázových dat (C#)'
+                - name: Zobrazení tabulky databázových dat (C#)
                   href: mvc/overview/older-versions-1/models-data/displaying-a-table-of-database-data-cs.md
-                - name: 'Provedení jednoduchého ověření (C#)'
+                - name: Provedení jednoduchého ověření (C#)
                   href: mvc/overview/older-versions-1/models-data/performing-simple-validation-cs.md
-                - name: 'Ověřování v rozhraní IDataErrorInfo (C#)'
+                - name: Ověřování v rozhraní IDataErrorInfo (C#)
                   href: mvc/overview/older-versions-1/models-data/validating-with-the-idataerrorinfo-interface-cs.md
-                - name: 'Ověřování vrstvou služby (C#)'
+                - name: Ověřování vrstvou služby (C#)
                   href: mvc/overview/older-versions-1/models-data/validating-with-a-service-layer-cs.md
-                - name: 'Ověřování validátory datových poznámek (C#)'
+                - name: Ověřování validátory datových poznámek (C#)
                   href: mvc/overview/older-versions-1/models-data/validation-with-the-data-annotation-validators-cs.md
                 - name: Vytvoření tříd modelu v sadě Entity Framework (VB)
                   href: mvc/overview/older-versions-1/models-data/creating-model-classes-with-the-entity-framework-vb.md
@@ -2413,15 +2413,15 @@
             - name: Zobrazení ASP.NET MVC
               href: mvc/overview/older-versions-1/views/index.md
               items:
-                - name: 'ASP.NET MVC – přehled zobrazení (C#)'
+                - name: ASP.NET MVC – přehled zobrazení (C#)
                   href: mvc/overview/older-versions-1/views/asp-net-mvc-views-overview-cs.md
-                - name: 'Vytvoření vlastních pomocných rutin HTML (C#)'
+                - name: Vytvoření vlastních pomocných rutin HTML (C#)
                   href: mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs.md
-                - name: 'Třída TagBuilder pro sestavení pomocných rutin HTML (C#)'
+                - name: Třída TagBuilder pro sestavení pomocných rutin HTML (C#)
                   href: mvc/overview/older-versions-1/views/using-the-tagbuilder-class-to-build-html-helpers-cs.md
-                - name: 'Vytvoření rozložení stránek pomocí stránek předlohy pro zobrazení (C#)'
+                - name: Vytvoření rozložení stránek pomocí stránek předlohy pro zobrazení (C#)
                   href: mvc/overview/older-versions-1/views/creating-page-layouts-with-view-master-pages-cs.md
-                - name: 'Předání dat stránkám předlohy pro zobrazení (C#)'
+                - name: Předání dat stránkám předlohy pro zobrazení (C#)
                   href: mvc/overview/older-versions-1/views/passing-data-to-view-master-pages-cs.md
                 - name: ASP.NET MVC – přehled zobrazení (VB)
                   href: mvc/overview/older-versions-1/views/asp-net-mvc-views-overview-vb.md
@@ -2436,17 +2436,17 @@
             - name: Kontrolery a směrování
               href: mvc/overview/older-versions-1/controllers-and-routing/index.md
               items:
-                - name: 'ASP.NET MVC – přehled směrování (C#)'
+                - name: ASP.NET MVC – přehled směrování (C#)
                   href: mvc/overview/older-versions-1/controllers-and-routing/asp-net-mvc-routing-overview-cs.md
-                - name: 'Principy filtrů akcí (C#)'
+                - name: Principy filtrů akcí (C#)
                   href: mvc/overview/older-versions-1/controllers-and-routing/understanding-action-filters-cs.md
-                - name: 'Zlepšení výkonu ukládáním výstupů do mezipaměti (C#)'
+                - name: Zlepšení výkonu ukládáním výstupů do mezipaměti (C#)
                   href: mvc/overview/older-versions-1/controllers-and-routing/improving-performance-with-output-caching-cs.md
-                - name: 'Přidání dynamického obsahu do stránky v mezipaměti (C#)'
+                - name: Přidání dynamického obsahu do stránky v mezipaměti (C#)
                   href: mvc/overview/older-versions-1/controllers-and-routing/adding-dynamic-content-to-a-cached-page-cs.md
-                - name: 'Vytvoření kontroleru (C#)'
+                - name: Vytvoření kontroleru (C#)
                   href: mvc/overview/older-versions-1/controllers-and-routing/creating-a-controller-cs.md
-                - name: 'Vytvoření akce (C#)'
+                - name: Vytvoření akce (C#)
                   href: mvc/overview/older-versions-1/controllers-and-routing/creating-an-action-cs.md
                 - name: ASP.NET MVC – přehled směrování (VB)
                   href: mvc/overview/older-versions-1/controllers-and-routing/asp-net-mvc-routing-overview-vb.md
@@ -2460,13 +2460,13 @@
                   href: mvc/overview/older-versions-1/controllers-and-routing/creating-a-controller-vb.md
                 - name: Vytvoření akce (VB)
                   href: mvc/overview/older-versions-1/controllers-and-routing/creating-an-action-vb.md
-                - name: 'ASP.NET MVC – přehled kontrolerů (C#)'
+                - name: ASP.NET MVC – přehled kontrolerů (C#)
                   href: mvc/overview/older-versions-1/controllers-and-routing/aspnet-mvc-controllers-overview-cs.md
-                - name: 'Vytváření vlastních tras (C#)'
+                - name: Vytváření vlastních tras (C#)
                   href: mvc/overview/older-versions-1/controllers-and-routing/creating-custom-routes-cs.md
-                - name: 'Vytvoření omezení trasy (C#)'
+                - name: Vytvoření omezení trasy (C#)
                   href: mvc/overview/older-versions-1/controllers-and-routing/creating-a-route-constraint-cs.md
-                - name: 'Vytvoření vlastního omezení trasy (C#)'
+                - name: Vytvoření vlastního omezení trasy (C#)
                   href: mvc/overview/older-versions-1/controllers-and-routing/creating-a-custom-route-constraint-cs.md
                 - name: ASP.NET MVC – přehled kontrolerů (VB)
                   href: mvc/overview/older-versions-1/controllers-and-routing/asp-net-mvc-controller-overview-vb.md
@@ -2479,18 +2479,18 @@
             - name: Nasazení
               href: mvc/overview/older-versions-1/deployment/index.md
               items:
-                - name: 'Použití ASP.NET MVC s různými verzemi služby IIS (C#)'
+                - name: Použití ASP.NET MVC s různými verzemi služby IIS (C#)
                   href: mvc/overview/older-versions-1/deployment/using-asp-net-mvc-with-different-versions-of-iis-cs.md
                 - name: Použití ASP.NET MVC s různými verzemi služby IIS (VB)
                   href: mvc/overview/older-versions-1/deployment/using-asp-net-mvc-with-different-versions-of-iis-vb.md
             - name: Zabezpečení
               href: mvc/overview/older-versions-1/security/index.md
               items:
-                - name: 'Ověřování uživatelů pomocí formulářů (C#)'
+                - name: Ověřování uživatelů pomocí formulářů (C#)
                   href: mvc/overview/older-versions-1/security/authenticating-users-with-forms-authentication-cs.md
-                - name: 'Ověřování uživatelů pomocí ověřování systému Windows (C#)'
+                - name: Ověřování uživatelů pomocí ověřování systému Windows (C#)
                   href: mvc/overview/older-versions-1/security/authenticating-users-with-windows-authentication-cs.md
-                - name: 'Prevence útoků založených na injektáži JavaScriptu (C#)'
+                - name: Prevence útoků založených na injektáži JavaScriptu (C#)
                   href: mvc/overview/older-versions-1/security/preventing-javascript-injection-attacks-cs.md
                 - name: Ověřování uživatelů pomocí formulářů (VB)
                   href: mvc/overview/older-versions-1/security/authenticating-users-with-forms-authentication-vb.md
@@ -2501,7 +2501,7 @@
             - name: Testování částí
               href: mvc/overview/older-versions-1/unit-testing/index.md
               items:
-                - name: 'Vytváření testů jednotek pro aplikace ASP.NET MVC (C#)'
+                - name: Vytváření testů jednotek pro aplikace ASP.NET MVC (C#)
                   href: mvc/overview/older-versions-1/unit-testing/creating-unit-tests-for-asp-net-mvc-applications-cs.md
                 - name: Vytváření testů jednotek pro aplikace ASP.NET MVC (VB)
                   href: mvc/overview/older-versions-1/unit-testing/creating-unit-tests-for-asp-net-mvc-applications-vb.md
@@ -2570,7 +2570,7 @@
             - name: Databáze filmů
               href: mvc/overview/older-versions-1/movie-database/index.md
               items:
-                - name: 'Vytvoření aplikace Movie Database za 15 minut s ASP.NET MVC (C#)'
+                - name: Vytvoření aplikace Movie Database za 15 minut s ASP.NET MVC (C#)
                   href: mvc/overview/older-versions-1/movie-database/create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-cs.md
                 - name: Vytvoření aplikace Movie Database za 15 minut s ASP.NET MVC (VB)
                   href: mvc/overview/older-versions-1/movie-database/create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb.md
@@ -2603,7 +2603,7 @@
                   href: mvc/videos/mvc-2/how-do-i/creating-a-movie-database-application-in-15-minutes-with-aspnet-mvc.md
                 - name: 'Principy modelů, zobrazení a kontrolerů'
                   href: mvc/videos/mvc-2/how-do-i/understanding-models-views-and-controllers.md
-                - name: 'ASP.NET MVC – přehled kontrolerů (C#)'
+                - name: ASP.NET MVC – přehled kontrolerů (C#)
                   href: mvc/videos/mvc-2/how-do-i/aspnet-mvc-controller-overview.md
                 - name: 'Principy kontrolerů, akce kontroleru a výsledky akcí'
                   href: mvc/videos/mvc-2/how-do-i/understanding-controllers-controller-actions-and-action-results.md
@@ -2658,13 +2658,13 @@
             - name: ASP.NET MVC pro nás ostatní
               href: mvc/videos/mvc-2/aspnet-mvc-for-the-rest-of-us/index.md
               items:
-                - name: 'ASP.NET MVC pro nás ostatní: 1. část'
+                - name: 'ASP.NET MVC pro nás ostatní: Část 1'
                   href: mvc/videos/mvc-2/aspnet-mvc-for-the-rest-of-us/aspnet-mvc-for-the-rest-of-us-part-1.md
-                - name: 'ASP.NET MVC pro nás ostatní: 2. část'
+                - name: 'ASP.NET MVC pro nás ostatní: Část 2'
                   href: mvc/videos/mvc-2/aspnet-mvc-for-the-rest-of-us/aspnet-mvc-for-the-rest-of-us-part-2.md
-                - name: 'ASP.NET MVC pro nás ostatní: 3. část'
+                - name: 'ASP.NET MVC pro nás ostatní: Část 3'
                   href: mvc/videos/mvc-2/aspnet-mvc-for-the-rest-of-us/aspnet-mvc-for-the-rest-of-us-part-3.md
-                - name: 'ASP.NET MVC pro nás ostatní: 4. část'
+                - name: 'ASP.NET MVC pro nás ostatní: Část 4'
                   href: mvc/videos/mvc-2/aspnet-mvc-for-the-rest-of-us/aspnet-mvc-for-the-rest-of-us-part-4.md
             - name: Aplikace Music Store
               href: mvc/videos/mvc-2/music-store/index.md
@@ -2673,7 +2673,7 @@
                   href: mvc/videos/mvc-2/music-store/mvc-music-store-part-1-intro-tools-and-project-structure.md
                 - name: 'Aplikace MVC Music Store 2. část: Kontrolery'
                   href: mvc/videos/mvc-2/music-store/mvc-music-store-part-2-controllers.md
-                - name: 'Aplikace MVC Music Store 3. část: Zobrazení a modely ViewModels'
+                - name: 'Aplikace MVC Music Store 3. část: Zobrazení a modely ViewModel'
                   href: mvc/videos/mvc-2/music-store/mvc-music-store-part-3-views-and-viewmodels.md
         - name: ASP.NET MVC 1
           href: mvc/videos/mvc-1/index.md
@@ -2683,7 +2683,7 @@
               items:
                 - name: 'Prezentace ASP.NET MVC – část 1: Architektura a celkový přehled'
                   href: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-1-architectural-discussion-and-overview.md
-                - name: 'Prezentace ASP.NET MVC – část 2: Úložiště'
+                - name: 'Prezentace ASP.NET MVC – část 2: Vzor úložiště'
                   href: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-2-the-repository-pattern.md
                 - name: 'Prezentace ASP.NET MVC – část 3: Kanály a filtry'
                   href: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-3-pipes-and-filters.md
@@ -2721,7 +2721,7 @@
                   href: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-19-processing-orders-with-windows-workflow.md
                 - name: 'Prezentace ASP.NET MVC – část 19a: Pokračování pracovního postupu Windows'
                   href: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-19a-windows-workflow-followup.md
-                - name: 'Prezentace ASP.NET MVC – část 20: Přihlášení'
+                - name: 'Prezentace ASP.NET MVC – část 20: protokolování'
                   href: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-20-logging.md
                 - name: 'Prezentace ASP.NET MVC – část 21: Správa objednávek a přizpůsobení'
                   href: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-21-order-manager-and-personalization.md
@@ -2748,16 +2748,16 @@
       href: mvc/mvc3.md
     - name: Videokurz o MVC od společnosti Pluralsight
       href: mvc/pluralsight.md
-- name: Web API
+- name: Webové rozhraní API
   href: web-api/index.md
   items:
     - name: Doprovodné materiály
       href: web-api/overview/index.md
       items:
-        - name: začínáme
+        - name: Začínáme
           href: web-api/overview/getting-started-with-aspnet-web-api/index.md
           items:
-            - name: 'Začínáme s webovým rozhraním API 2 (C#)'
+            - name: Začínáme s webovým rozhraním API 2 (C#)
               href: web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api.md
             - name: Výsledky akcí ve webovém rozhraní API 2
               href: web-api/overview/getting-started-with-aspnet-web-api/action-results.md
@@ -2807,7 +2807,7 @@
         - name: Mobilní klienti
           href: web-api/overview/mobile-clients/index.md
           items:
-            - name: 'Volání webového rozhraní API z aplikace pro Windows Phone 8 (C#)'
+            - name: Volání webového rozhraní API z aplikace pro Windows Phone 8 (C#)
               href: web-api/overview/mobile-clients/calling-web-api-from-a-windows-phone-8-application.md
         - name: OData
           href: web-api/overview/odata-support-in-aspnet-web-api/index.md
@@ -2817,7 +2817,7 @@
               items:
                 - name: Vytvoření koncového bodu OData v4
                   href: web-api/overview/odata-support-in-aspnet-web-api/odata-v4/create-an-odata-v4-endpoint.md
-                - name: 'Vytvoření klientské aplikace OData v4 (C#)'
+                - name: Vytvoření klientské aplikace OData v4 (C#)
                   href: web-api/overview/odata-support-in-aspnet-web-api/odata-v4/create-an-odata-v4-client-app.md
                 - name: Relace prvků v OData v4
                   href: web-api/overview/odata-support-in-aspnet-web-api/odata-v4/entity-relations-in-odata-v4.md
@@ -2840,7 +2840,7 @@
                   href: web-api/overview/odata-support-in-aspnet-web-api/odata-v3/working-with-entity-relations.md
                 - name: Akce OData ve webovém rozhraní API 2
                   href: web-api/overview/odata-support-in-aspnet-web-api/odata-v3/odata-actions.md
-                - name: 'Volání služby OData z klienta .NET (C#)'
+                - name: Volání služby OData z klienta .NET (C#)
                   href: web-api/overview/odata-support-in-aspnet-web-api/odata-v3/calling-an-odata-service-from-a-net-client.md
             - name: Podpora možností dotazů OData ve webovém rozhraní API 2
               href: web-api/overview/odata-support-in-aspnet-web-api/supporting-odata-query-options.md
@@ -2892,7 +2892,7 @@
               href: web-api/overview/security/authentication-and-authorization-in-aspnet-web-api.md
             - name: Zabezpečení webového rozhraní API individuálními účty ve webovém rozhraní API 2.2
               href: web-api/overview/security/individual-accounts-in-web-api.md
-            - name: 'Externí ověřovací služby ve webovém rozhraní API (C#)'
+            - name: Externí ověřovací služby ve webovém rozhraní API (C#)
               href: web-api/overview/security/external-authentication-services.md
             - name: Zabránění útokům založeným na padělání žádosti posílané mezi weby (CSRF) ve webovém rozhraní API
               href: web-api/overview/security/preventing-cross-site-request-forgery-csrf-attacks.md
@@ -2922,7 +2922,7 @@
               href: web-api/overview/advanced/configuring-aspnet-web-api.md
             - name: Injektáž závislostí ve webovém rozhraní API 2
               href: web-api/overview/advanced/dependency-injection.md
-            - name: 'Volání webového rozhraní API z klienta .NET (C#)'
+            - name: Volání webového rozhraní API z klienta .NET (C#)
               href: web-api/overview/advanced/calling-a-web-api-from-a-net-client.md
             - name: Obslužné rutiny zpráv HTTP ve webovém rozhraní API
               href: web-api/overview/advanced/http-message-handlers.md
@@ -2930,11 +2930,11 @@
               href: web-api/overview/advanced/httpclient-message-handlers.md
             - name: 'Posílání dat formulářů HTML ve webovém rozhraní API: Data formuláře kódovaná pomocí adresy URL'
               href: web-api/overview/advanced/sending-html-form-data-part-1.md
-            - name: 'Posílání dat formulářů HTML ve webovém rozhraní API: Nahrání souboru a vícedílné zprávy MIME'
+            - name: 'Posílání dat formulářů HTML ve webovém rozhraní API: Nahrání souboru a vícedílné zprávy standardu MIME'
               href: web-api/overview/advanced/sending-html-form-data-part-2.md
             - name: Soubory cookie HTTP ve webovém rozhraní API technologie ASP.NET
               href: web-api/overview/advanced/http-cookies.md
-        - name: Vydání
+        - name: Vydané verze
           href: web-api/overview/releases/index.md
           items:
             - name: Novinky webového rozhraní API OData 5.3
@@ -2965,7 +2965,7 @@
                   href: web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-6.md
                 - name: Vytvoření hlavní stránky
                   href: web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-7.md
-            - name: 'Samoobslužné hostování webového rozhraní API 1 (C#)'
+            - name: Samoobslužné hostování webového rozhraní API 1 (C#)
               href: web-api/overview/older-versions/self-host-a-web-api.md
             - name: Sestavení rozhraní API RESTful s webovým rozhraním API technologie ASP.NET
               href: web-api/overview/older-versions/build-restful-apis-with-aspnet-web-api.md
@@ -2975,7 +2975,7 @@
         - name: Přehled a začátek
           href: web-api/videos/getting-started/index.md
           items:
-            - name: Webové rozhraní API ASP.NET
+            - name: Rozhraní API pro ASP.NET Web
               href: web-api/videos/getting-started/aspnet-web-api.md
             - name: 'Webové rozhraní API v ASP.NET, 1. část: První webové rozhraní API'
               href: web-api/videos/getting-started/your-first-web-api.md
@@ -2997,7 +2997,7 @@
     - name: Doprovodné materiály
       href: web-pages/overview/index.md
       items:
-        - name: začínáme
+        - name: Začínáme
           href: web-pages/overview/getting-started/index.md
           items:
             - name: Programování webových stránek ASP.NET v sadě Visual Studio
@@ -3015,7 +3015,7 @@
             - name: Úvod do webových stránek ASP.NET
               href: web-pages/overview/getting-started/introducing-aspnet-web-pages-2/index.md
               items:
-                - name: začínáme
+                - name: Začínáme
                   href: web-pages/overview/getting-started/introducing-aspnet-web-pages-2/getting-started.md
                 - name: Základy programování
                   href: web-pages/overview/getting-started/introducing-aspnet-web-pages-2/intro-to-web-pages-programming.md
@@ -3061,7 +3061,7 @@
               href: web-pages/overview/ui-layouts-and-themes/twitter-helper.md
             - name: Zobrazení map na webu s webovými stránkami ASP.NET
               href: web-pages/overview/ui-layouts-and-themes/displaying-maps-in-an-aspnet-web-pages-site.md
-        - name: Mobilní
+        - name: Mobilní zařízení
           href: web-pages/overview/mobile/index.md
           items:
             - name: Vykreslení webů s webovými stránkami ASP.NET na mobilních zařízeních
@@ -3100,12 +3100,12 @@
               href: web-pages/overview/performance-and-traffic/14-analyzing-traffic.md
             - name: Sdružování a minifikace prostředků na webu s webovými stránkami ASP.NET (Razor)
               href: web-pages/overview/performance-and-traffic/bundling-and-minifying-assets-in-an-aspnet-web-pages-razor-site.md
-        - name: Referenční materiály k rozhraní API
+        - name: Referenční dokumentace ke knihovně API
           href: web-pages/overview/api-reference/index.md
           items:
             - name: Rozhraní API ASP.NET – rychlé odkazy
               href: web-pages/overview/api-reference/asp-net-web-pages-api-reference.md
-        - name: Vydání
+        - name: Vydané verze
           href: web-pages/overview/releases/index.md
           items:
             - name: Novinky webových stránek v ASP.NET 3.2
@@ -3200,7 +3200,7 @@
     - name: Doprovodné materiály
       href: signalr/overview/index.md
       items:
-        - name: začínáme
+        - name: Začínáme
           href: signalr/overview/getting-started/index.md
           items:
             - name: Úvod ke knihovně SignalR
@@ -3215,16 +3215,16 @@
               href: signalr/overview/getting-started/tutorial-high-frequency-realtime-with-signalr.md
             - name: Serverové vysílání s knihovnou SignalR 2
               href: signalr/overview/getting-started/tutorial-server-broadcast-with-signalr.md
-            - name: 'Praktické cvičené: Webové aplikace v reálném čase s knihovnou SignalR'
+            - name: 'Praktické cvičení: Webové aplikace v reálném čase s knihovnou SignalR'
               href: signalr/overview/getting-started/real-time-web-applications-with-signalr.md
         - name: Pokyny k rozhraní API
           href: signalr/overview/guide-to-the-api/index.md
           items:
-            - name: 'Pokyny k rozhraní API center – server (C#)'
+            - name: Pokyny k rozhraní API center – server (C#)
               href: signalr/overview/guide-to-the-api/hubs-api-guide-server.md
             - name: Pokyny k rozhraní API center – javascriptový klient
               href: signalr/overview/guide-to-the-api/hubs-api-guide-javascript-client.md
-            - name: 'Pokyny k rozhraní API center – klient .NET (C#)'
+            - name: Pokyny k rozhraní API center – klient .NET (C#)
               href: signalr/overview/guide-to-the-api/hubs-api-guide-net-client.md
             - name: Principy a zpracování událostí doby platnosti v knihovně SignalR
               href: signalr/overview/guide-to-the-api/handling-connection-lifetime-events.md
@@ -3276,12 +3276,12 @@
               href: signalr/overview/deployment/tutorial-signalr-self-host.md
             - name: Použití aplikace SignalR s webovými aplikacemi ve službě Azure App Service
               href: signalr/overview/deployment/using-signalr-with-azure-web-sites.md
-        - name: Upřesňující
+        - name: Upřesnit
           href: signalr/overview/advanced/index.md
           items:
             - name: Injektáž závislostí v centrech SignalR
               href: signalr/overview/advanced/dependency-injection.md
-        - name: Vydání
+        - name: Vydané verze
           href: signalr/overview/releases/index.md
           items:
             - name: Upgradování projektů SignalR 1.x na verzi 2
@@ -3289,7 +3289,7 @@
         - name: Starší verze
           href: signalr/overview/older-versions/index.md
           items:
-            - name: 'Kurz: Začínáme s knihovnou SignalR 1.x'
+            - name: 'Kurz: Začínáme s funkcí SignalR 1.x'
               href: signalr/overview/older-versions/tutorial-getting-started-with-signalr.md
             - name: 'Kurz: Začínáme s knihovnou SignalR 1.x a MVC 4'
               href: signalr/overview/older-versions/tutorial-getting-started-with-signalr-and-mvc-4.md
@@ -3337,7 +3337,7 @@
           items:
             - name: SignalR a webové sokety
               href: signalr/videos/getting-started/signalr-and-web-sockets.md
-- name: Mobilní
+- name: Mobilní zařízení
   items:
     - name: Přehled
       href: mobile/overview.md
@@ -3371,7 +3371,7 @@
               href: single-page-application/overview/templates/emberjs-template.md
             - name: Šablona Hot Towel
               href: single-page-application/overview/templates/hottowel-template.md
-- name: Webhooky
+- name: WebHooky
   href: webhooks/index.md
   items:
     - name: Zdrojový kód a NuGet
@@ -3390,7 +3390,7 @@
     - name: Diagnostika
       href: webhooks/diagnostics/index.md
       items:
-        - name: Protokolování
+        - name: protokolování
           href: webhooks/diagnostics/logging.md
         - name: Ladění
           href: webhooks/diagnostics/debugging.md
@@ -3487,7 +3487,7 @@
           items:
             - name: Doporučené postupy nasazení hesel a dalších citlivých dat do ASP.NET a služby Azure App Service
               href: identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure.md
-            - name: 'Potvrzení účtu a obnovení hesla s ASP.NET Identity (C#)'
+            - name: Potvrzení účtu a obnovení hesla s ASP.NET Identity (C#)
               href: identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity.md
             - name: Dvoufaktorové ověřování pomocí SMS a e-mailu s ASP.NET Identity
               href: identity/overview/features-api/two-factor-authentication-using-sms-and-email-with-aspnet-identity.md
@@ -3505,7 +3505,7 @@
           items:
             - name: Migrace stávajícího webu z členství SQL na ASP.NET Identity
               href: identity/overview/migrations/migrating-an-existing-website-from-sql-membership-to-aspnet-identity.md
-            - name: 'Migrace členských dat od univerzálního zprostředkovatele a uživatelských profilů na ASP.NET Identity (C#)'
+            - name: Migrace členských dat od univerzálního zprostředkovatele a uživatelských profilů na ASP.NET Identity (C#)
               href: identity/overview/migrations/migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity.md
 - name: Ajax
   href: ajax/index.md
@@ -3741,9 +3741,9 @@
           href: aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/queue-centric-work-pattern.md
         - name: Další postupy a pokyny
           href: aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/more-patterns-and-guidance.md
-        - name: 'Příloha: ukázková aplikace Fix It'
+        - name: 'Příloha: Ukázková aplikace Fix It'
           href: aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/the-fix-it-sample-application.md
-    - name: 'Praktické cvičení: Udržitelné weby Azure – správa změn a škálování'
+    - name: 'Praktické cvičení: Udržitelné weby Azure: Správa změn a škálování'
       href: aspnet/overview/developing-apps-with-windows-azure/maintainable-azure-websites-managing-change-and-scale.md
 - name: OWIN a Katana
   href: aspnet/overview/owin-and-katana/index.md
@@ -3775,9 +3775,9 @@
           href: SameSite/system-web-samesite.md
         - name: Články znalostní báze SameSite
           uid: samesite/kbs-samesite
-        - name: 'C# MVC'
+        - name: C# MVC
           uid: samesite/csMVC
-        - name: 'C# WebForms'
+        - name: C# WebForms
           uid: samesite/CSharpWebForms
         - name: VB WebForms
           uid: samesite/vbWF
@@ -3802,7 +3802,7 @@
       href: whitepapers/mvc4-beta-release-notes.md
     - name: Spuštění ASP.NET 1.1 se službou IIS 6.0
       href: whitepapers/aspnet-and-iis6.md
-    - name: 'Postup: Přidání mobilních stránek do webových formulářů ASP.NET/aplikace MVC'
+    - name: 'Postupy: Přidání mobilních stránek do webových formulářů ASP.NET/aplikace MVC'
       href: whitepapers/add-mobile-pages-to-your-aspnet-web-forms-mvc-application.md
     - name: Oprava chyby „Serverová aplikace není k dispozici“ po použití aktualizace zabezpečení pro IE
       href: whitepapers/ms03-32-issue.md
@@ -3820,5 +3820,5 @@
       href: whitepapers/aspnet-and-web-tools-20122-release-notes.md
     - name: Novinky v ASP.NET 4.5 a v sadě Visual Studio 2012
       href: whitepapers/whats-new-in-aspnet-45-and-visual-studio-2012.md
-- name: API – referenční informace
+- name: "referenční dokumentace k\_rozhraní API"
   href: api-ref.md
