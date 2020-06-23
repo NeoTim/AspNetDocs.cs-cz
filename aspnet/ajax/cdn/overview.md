@@ -8,12 +8,12 @@ ms.date: 10/14/2017
 ms.assetid: 8935bf14-ca6d-4a4e-9dbe-b96ce74cef49
 msc.legacyurl: /ajax/cdn
 msc.type: content
-ms.openlocfilehash: 27b1ca8567e29fa4bca0ae9f32e0c904ad54ba8f
-ms.sourcegitcommit: a4c3c7e04e5f53cf8cd334f036d324976b78d154
+ms.openlocfilehash: b66e812f0324be95effdd8d232baa6a59302b9df
+ms.sourcegitcommit: 0cf7d06071a8ff986e6c028ac9daf0c0e7490412
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84172949"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240596"
 ---
 # <a name="microsoft-ajax-content-delivery-network"></a>Microsoft Ajax Content Delivery Network
 
@@ -48,7 +48,7 @@ ms.locfileid: "84172949"
  [Odpověď verze v CDN](#Respond_Releases_on_the_CDN_13)  
  [Bootstrap vydaných verzí na CDN](#Bootstrap_Releases_on_the_CDN_14)  
  [Zavedení TouchCarousel vydání na CDN](#BootstrapTouchCarousel_Releases_on_the_CDN_18)  
- [Vydání nástroje kladiv. js v síti CDN](#Hammerjs_Releases_on_the_CDN_19)  
+ [VerzeHammer.js v CDN](#Hammerjs_Releases_on_the_CDN_19)  
  [ASP.NET webové formuláře a verze AJAX v CDN](#ASPNET_Web_Forms_and_Ajax_Releases_on_the_CDN_15)  
  [Verze ASP.NET MVC na CDN](#ASPNET_MVC_Releases_on_the_CDN_16)  
  [ASP.NET signalizace v CDN](#ASPNET_SignalR_Releases_on_the_CDN_17)
@@ -627,6 +627,7 @@ Následující verze knihovny uživatelského rozhraní jQuery jsou hostovány v
 
 Následující verze modulu plug-in pro [ověření jQuery](https://jqueryvalidation.org/ "Modul plug-in jQuery ověřování") jsou hostovány v této síti CDN. Kliknutím na každý odkaz zobrazíte aktuální seznam souborů.
 
+- [jQuery ověřit 1.19.2](jquery-validate/cdnjqueryvalidate1192.md "1.19.2 ověření jQuery")
 - [jQuery ověřit 1.19.1](jquery-validate/cdnjqueryvalidate1191.md "1.19.1 ověření jQuery")
 - [jQuery ověřit 1.19.0](jquery-validate/cdnjqueryvalidate1190.md "1.19.0 ověření jQuery")
 - [jQuery ověřit 1.17.0](jquery-validate/cdnjqueryvalidate1170.md "1.17.0 ověření jQuery")
@@ -779,7 +780,7 @@ Následující vydání [globalizace](https://github.com/jquery/globalize "Globa
     - všechny jazykové verze
 - https://ajax.aspnetcdn.com/ajax/globalize/0.1.1/cultures/globalize.culture.{culture-code}.js
 
-    - Nahraďte "{Code-Code}" požadovaným kódem jazykové verze, například globalizace. Culture. en-GB. js = = soubory Microsoftu na CDN = = tyto knihovny byly nahrány společností Microsoft.
+    - Nahraďte "{Code-Code}" požadovaným kódem jazykové verze, například globalize.culture.en-GB.js= = soubory Microsoftu na CDN = = tyto knihovny byly nahrány společností Microsoft.
 
 <a id="Respond_Releases_on_the_CDN_13"></a>
 
@@ -1186,11 +1187,11 @@ Následující verze [https://github.com/ixisio/bootstrap-touch-carousel](https:
 
 <a id="Hammerjs_Releases_on_the_CDN_19"></a>
 
-### <a name="hammerjs-releases-on-the-cdn"></a>Vydání nástroje kladiv. js v síti CDN
+### <a name="hammerjs-releases-on-the-cdn"></a>Verze Hammer.js v CDN
 
-Následující verze [http://hammerjs.github.io/](http://hammerjs.github.io/ "http://hammerjs.github.io/") vydaných vydání nástroje kladiv. js jsou hostovány v síti CDN:
+Následující verze [http://hammerjs.github.io/](http://hammerjs.github.io/ "http://hammerjs.github.io/") Hammer.js vydání jsou hostovány v CDN:
 
-#### <a name="hammerjs-version-204"></a>Kladiv. js verze 2.0.4
+#### <a name="hammerjs-version-204"></a>2.0.4 verze Hammer.js
 
 - https://ajax.aspnetcdn.com/ajax/hammer.js/2.0.4/hammer.js
 - https://ajax.aspnetcdn.com/ajax/hammer.js/2.0.4/hammer.min.js

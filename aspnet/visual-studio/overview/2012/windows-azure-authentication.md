@@ -8,12 +8,12 @@ ms.date: 02/20/2013
 ms.assetid: a3cef801-a54b-4ebd-93c3-55764e2e14b1
 msc.legacyurl: /visual-studio/overview/2012/windows-azure-authentication
 msc.type: authoredcontent
-ms.openlocfilehash: ce98effe18dd739504fb0d5453bae8a46c3ba102
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: ab75218cbe3817c14a064e9816388aebc7e431f7
+ms.sourcegitcommit: 0cf7d06071a8ff986e6c028ac9daf0c0e7490412
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78557860"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240563"
 ---
 # <a name="windows-azure-authentication"></a>Ověřování Windows Azure
 
@@ -25,7 +25,7 @@ od [Rick Anderson](https://twitter.com/RickAndMSFT)
 >
 > Podrobnosti o tom, jak nastavit synchronizaci mezi vaší místní službou Active Directory a vaším klientem Windows Azure Active Directory, najdete v článku [použití AD FS 2,0 k implementaci a správě jednotného přihlašování](https://technet.microsoft.com/library/jj205462.aspx).
 >
-> Windows Azure Active Directory je aktuálně k dispozici jako [bezplatná služba ve verzi Preview](https://azure.microsoft.com/free/?WT.mc_id=A443DD604).
+> Windows Azure Active Directory je aktuálně k dispozici jako [bezplatná služba ve verzi Preview](https://azure.microsoft.com/free/dotnet/).
 
 ## <a name="requirements"></a>Požadavky:
 
@@ -65,7 +65,7 @@ Pokud nemáte oprávnění globálního správce pro klienta Azure Active Direct
 ![](windows-azure-authentication/_static/image6.png)
 
 V dialogovém okně se zobrazí **doména**, **ID objektu zabezpečení aplikace** a **Adresa URL odpovědi** , které jsou požadovány pro zřízení aplikace s Azure Active Directory principem. Tyto informace je nutné poskytnout někomu, kdo má dostatečná oprávnění ke zřízení aplikace. Podrobnosti o tom, jak použít rutinu k vytvoření instančního objektu, najdete v tématu[implementace jednotného přihlašování pomocí aplikace Windows Azure Active Directory-ASP.NET](https://github.com/Azure-Samples/active-directory-dotnet-webapp-openidconnect) .
-Po úspěšném zřízení aplikace můžete kliknutím na **pokračovat aktualizovat web. config pomocí vybraného nastavení**. Pokud chcete pokračovat v vývoji aplikace při čekání na zřízení, můžete kliknout na tlačítko **Zavřít a zapamatovat si nastavení v souboru projektu**. Až příště vyvoláte možnost povolit ověřování systému Windows Azure a zrušit zaškrtnutí políčka zřizování, zobrazí se stejná nastavení a můžete kliknout na **pokračovat**a pak na, **použít tato nastavení v souboru Web. config**.
+Po úspěšném zřízení aplikace můžete kliknutím na **pokračovat aktualizovat web.config s vybraným nastavením**. Pokud chcete pokračovat v vývoji aplikace při čekání na zřízení, můžete kliknout na tlačítko **Zavřít a zapamatovat si nastavení v souboru projektu**. Až příště vyvoláte možnost povolit ověřování systému Windows Azure a zrušit zaškrtnutí políčka zřizování, zobrazí se stejná nastavení a můžete kliknout na **pokračovat**a pak na **použít tato nastavení v web.config**.
 
 1. Počkejte, než bude vaše aplikace nakonfigurovaná pro ověřování Windows Azure a zřízená pomocí Windows Azure Active Directory.
 2. Po povolení ověřování Windows Azure pro vaši aplikaci klikněte na **Zavřít:**
@@ -85,9 +85,9 @@ Po úspěšném zřízení aplikace můžete kliknutím na **pokračovat aktuali
 
 Povolení ověřování systému Windows Azure provede následující změny vaší aplikace:
 
-- Do projektu se přidá třída[CSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF))(anti-siteing Request) ( *App\_Start\AntiXsrfConfig.cs* ).
-- Do projektu se přidají `System.IdentityModel.Tokens.ValidatingIssuerNameRegistry` balíčky NuGet.
-- Nastavení Windows Identity Foundation v aplikaci se nakonfigurují tak, aby přijímala tokeny zabezpečení z tenanta Windows Azure Active Directory. Kliknutím na následující obrázek zobrazíte rozšířené zobrazení změn provedených v souboru *Web. config* .
+- Do projektu se přidá třída[CSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF))(anti-siteing Request) ( *App \_ Start\AntiXsrfConfig.cs* ).
+- Balíčky NuGet `System.IdentityModel.Tokens.ValidatingIssuerNameRegistry` se přidají do vašeho projektu.
+- Nastavení Windows Identity Foundation v aplikaci se nakonfigurují tak, aby přijímala tokeny zabezpečení z tenanta Windows Azure Active Directory. Kliknutím na následující obrázek zobrazíte rozšířené zobrazení změn provedených v souboru *Web.config* .
 
      ![](windows-azure-authentication/_static/image9.png)
 - V tenantovi Windows Azure Active Directory se zřídí instanční objekt pro vaši aplikaci.
@@ -141,7 +141,7 @@ Ověřování systému Windows Azure aktuálně neposkytuje potřebnou deklaraci
 
 #### <a name="browsing-to-an-application-with-windows-azure-authentication-results-in-the-error-acs20016-the-domain-of-the-logged-in-user-livecom-does-not-match-any-allowed-domain-of-this-sts"></a>Když přejdete na aplikaci s ověřováním Windows Azure, dojde k chybě "ACS20016 se doména přihlášeného uživatele (live.com) neshoduje s žádnou povolenou doménou této služby STS".
 
-Pokud jste už přihlášení k účtu Microsoft (například hotmail.com, live.com, outlook.com) a pokusíte se o přístup k aplikaci s povoleným ověřováním Windows Azure, může se vám zobrazit chybová odpověď 400, protože doména vašeho účtu Microsoft. není rozpoznáno Azure Active Directory Windows. Pokud se chcete přihlásit k aplikaci, odhlaste se nejdřív od svého účtu Microsoft.
+Pokud jste už přihlášení k účtu Microsoft (například hotmail.com, live.com, outlook.com) a pokusíte se o přístup k aplikaci, která má povolené ověřování Windows Azure, může se zobrazit chybová odpověď 400, protože služba Windows Azure Active Directory nerozpoznala doménu vašeho účtu Microsoft. Pokud se chcete přihlásit k aplikaci, odhlaste se nejdřív od svého účtu Microsoft.
 
 #### <a name="logging-into-an-application-with-windows-azure-authentication-enabled-and-a-x509certificatevalidationmode-other-than-none-results-in-certificate-validation-errors-for-the-accountsaccesscontrolwindowsnet-certificate"></a>Přihlášení k aplikaci s povoleným ověřováním Windows Azure a X509CertificateValidationMode jiným než None má za následek chyby ověření certifikátu pro certifikát accounts.accesscontrol.windows.net.
 
@@ -155,7 +155,7 @@ Tato chyba se může zobrazit v případě, že jste se dříve úspěšně při
 
 K tomu může dojít, pokud jste už přihlášení pomocí nějakého jiného ID Microsoftu k jedné ze služeb Azure. Použijte soukromé okno prohlížeče, jako je například InPrivate v IE nebo anonymním, nebo zrušte zaškrtnutí všech souborů cookie.
 
-## <a name="additional-resources"></a>Další prostředky
+## <a name="additional-resources"></a>Další zdroje
 
 - [Microsoft ASP.NET Tools for Windows Azure Active Directory – Visual Studio 2012](https://blogs.msdn.com/b/vbertocci/archive/2013/02/18/microsoft-asp-net-tools-for-windows-azure-active-directory-visual-studio-2012.aspx) – Vittorio Bertocci
 - [Funkce Windows Azure: identita](https://docs.microsoft.com/azure/active-directory/)

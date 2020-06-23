@@ -8,20 +8,18 @@ ms.date: 06/10/2014
 ms.assetid: 400db427-27af-4f2f-abf0-5486d5e024b5
 msc.legacyurl: /signalr/overview/deployment/tutorial-signalr-self-host
 msc.type: authoredcontent
-ms.openlocfilehash: 41c8c3803923e76ef238a5c5937cbe7f81e6aa82
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 7470e0d6b68772ccfd979c834b7db81fbba3ca78
+ms.sourcegitcommit: 0cf7d06071a8ff986e6c028ac9daf0c0e7490412
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78558679"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240613"
 ---
 # <a name="tutorial-signalr-self-host"></a>Kurz: SignalR v místním prostředí
 
 Po [Fletcheru](https://github.com/pfletcher)
 
 [!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
-
-[Stáhnout dokončený projekt](https://code.msdn.microsoft.com/SignalR-Self-Host-Sample-6da0f383)
 
 > V tomto kurzu se dozvíte, jak vytvořit server s nástrojem Signal-Host 2 a jak se k němu připojit pomocí JavaScriptového klienta.
 >
@@ -72,10 +70,10 @@ Tento kurz obsahuje následující oddíly:
 
 V tomto kurzu vytvoříte Server, který je hostovaný v konzolové aplikaci, ale server se může hostovat v jakémkoli procesu, jako je například služba systému Windows nebo role pracovního procesu Azure. Vzorový kód pro hostování serveru signalizace ve službě systému Windows najdete v tématu [signál pro samoobslužné hostování ve službě systému Windows](https://code.msdn.microsoft.com/SignalR-self-hosted-in-6ff7e6c3).
 
-1. Otevřete Visual Studio 2013 s oprávněními správce. Vyberte **soubor**, **Nový projekt**. V uzlu  **C# vizuálu** v podokně **šablony** vyberte možnost **Windows** a vyberte šablonu **Konzolová aplikace** . Pojmenujte nový projekt "SignalRSelfHost" a klikněte na tlačítko **OK**.
+1. Otevřete Visual Studio 2013 s oprávněními správce. Vyberte **soubor**, **Nový projekt**. V uzlu **Visual C#** v podokně **šablony** vyberte možnost **Windows** a vyberte šablonu **Konzolová aplikace** . Pojmenujte nový projekt "SignalRSelfHost" a klikněte na tlačítko **OK**.
 
     ![](tutorial-signalr-self-host/_static/image1.png)
-2. Otevřete konzolu Správce balíčků NuGet výběrem **nástrojů** > **správce balíčků NuGet** > **konzole správce balíčků**.
+2. Otevřete konzolu Správce balíčků NuGet tak, že vyberete **nástroje**  >  **Správce balíčků NuGet**  >  **Konzola správce balíčků**.
 3. V konzole správce balíčků zadejte následující příkaz:
 
     [!code-powershell[Main](tutorial-signalr-self-host/samples/sample1.ps1)]
@@ -92,13 +90,13 @@ V tomto kurzu vytvoříte Server, který je hostovaný v konzolové aplikaci, al
 
     Výše uvedený kód zahrnuje tři třídy:
 
-    - **Program**, včetně metody **Main** definující primární cestu provádění. V této metodě se webová aplikace typu **spuštění** spouští na zadané adrese URL (`http://localhost:8080`). Pokud je na koncovém bodu vyžadováno zabezpečení, může být implementován protokol SSL. Další informace najdete v tématu [Postup: Konfigurace portu s certifikátem SSL](https://msdn.microsoft.com/library/ms733791.aspx) .
-    - **Po spuštění**třída obsahující konfiguraci serveru signalizace (jediná konfigurace, kterou tento kurz používá, je volání `UseCors`) a volání `MapSignalR`, které vytváří trasy pro všechny objekty hub v projektu.
+    - **Program**, včetně metody **Main** definující primární cestu provádění. V této metodě se webová aplikace typu **spuštění** spouští na zadané adrese URL ( `http://localhost:8080` ). Pokud je na koncovém bodu vyžadováno zabezpečení, může být implementován protokol SSL. Další informace najdete v tématu [Postup: Konfigurace portu s certifikátem SSL](https://msdn.microsoft.com/library/ms733791.aspx) .
+    - **Po spuštění**třída obsahující konfiguraci serveru signalizace (jediná konfigurace, kterou tento kurz používá, je volání `UseCors` ) a volání `MapSignalR` , které vytváří trasy pro všechny objekty hub v projektu.
     - **MyHub**, třída centra signálů, kterou aplikace bude poskytovat klientům. Tato třída má jedinou metodu, kterou klienti budou **volat, aby**vysílaly zprávu všem ostatním připojeným klientům.
 6. Zkompilujte a spusťte aplikaci. Adresa, na které je spuštěn server, by měla být zobrazena v okně konzoly.
 
     ![](tutorial-signalr-self-host/_static/image2.png)
-7. Pokud spuštění selže s výjimkou `System.Reflection.TargetInvocationException was unhandled`, bude nutné restartovat aplikaci Visual Studio s oprávněními správce.
+7. Pokud spuštění selže s výjimkou `System.Reflection.TargetInvocationException was unhandled` , bude nutné restartovat aplikaci Visual Studio s oprávněními správce.
 8. Než budete pokračovat k další části, zastavte aplikaci.
 
 <a id="js"></a>
@@ -118,7 +116,7 @@ V této části použijete stejného klienta JavaScriptu v [kurzu Začínáme](.
     [!code-powershell[Main](tutorial-signalr-self-host/samples/sample4.ps1)]
 
     Tento příkaz nainstaluje do klienta knihovny pro signalizaci a JQuery, které budete potřebovat.
-4. Klikněte pravým tlačítkem na projekt a vyberte **Přidat**, **Nová položka**. Vyberte uzel **Web** a vyberte stránku HTML. Pojmenujte stránku **Default. html**.
+4. Klikněte pravým tlačítkem na projekt a vyberte **Přidat**, **Nová položka**. Vyberte uzel **Web** a vyberte stránku HTML. Pojmenujte stránku **Default.html**.
 
     ![](tutorial-signalr-self-host/_static/image5.png)
 5. Obsah nové stránky HTML nahraďte následujícím kódem. Ověřte, zda odkazy na skript zde odpovídají skriptům ve složce Scripts v projektu.
@@ -128,9 +126,9 @@ V této části použijete stejného klienta JavaScriptu v [kurzu Začínáme](.
     Následující kód (zvýrazněný výše v ukázce kódu výše) je přidání, které jste provedli pro klienta použitého v kurzu získání vloženého textu (kromě upgradu kódu na Signal verze 2 Beta). Tento řádek kódu explicitně nastavuje základní adresu URL pro signál na serveru.
 
     [!code-javascript[Main](tutorial-signalr-self-host/samples/sample6.js)]
-6. Klikněte pravým tlačítkem na řešení a vyberte **nastavit projekty po spuštění...** . Vyberte přepínač **více projektů po spuštění** a nastavte **akci** u obou projektů na **Spustit**.
+6. Klikněte pravým tlačítkem na řešení a vyberte **nastavit projekty po spuštění...**. Vyberte přepínač **více projektů po spuštění** a nastavte **akci** u obou projektů na **Spustit**.
 
     ![](tutorial-signalr-self-host/_static/image6.png)
-7. Klikněte pravým tlačítkem na Default. html a vyberte **nastavit jako úvodní stránku**.
+7. Klikněte pravým tlačítkem na "Default.html" a vyberte **nastavit jako úvodní stránku**.
 8. Spusťte aplikaci. Spustí se server a stránka. Pokud se stránka načte před spuštěním serveru, může být nutné znovu načíst webovou stránku (nebo v ladicím programu vybrat možnost **pokračovat** ).
 9. Po zobrazení výzvy zadejte v prohlížeči uživatelské jméno. Zkopírujte adresu URL stránky do jiné karty nebo okna prohlížeče a zadejte jiné uživatelské jméno. Můžete odesílat zprávy z jednoho podokna prohlížeče do druhé, jako v kurzu Začínáme.

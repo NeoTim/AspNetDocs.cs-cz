@@ -8,16 +8,16 @@ ms.date: 05/28/2015
 ms.assetid: a36d3bdf-ef1b-47a4-b932-3a0cf4cad716
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/getting-started
 msc.type: authoredcontent
-ms.openlocfilehash: bb863f8605e6f8faca3b285607b63a3e88e83012
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: ac2111980e6393388a0530375fb9ef78dbbfaff6
+ms.sourcegitcommit: 0cf7d06071a8ff986e6c028ac9daf0c0e7490412
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78547101"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240756"
 ---
 # <a name="getting-started"></a>začínáme
 
-tím, že [FitzMacken](https://github.com/tfitzmac)
+, autor: [Tom FitzMacken](https://github.com/tfitzmac)
 
 [!INCLUDE[](~/includes/rp.md)]
 
@@ -62,7 +62,7 @@ Předpokládáme, že jste obeznámeni s:
 - Šablony stylů **CSS**. Stejné jako u formátu HTML.
 - **Základní nápady databáze**. Pokud jste tabulku použili pro data a seřadili a vyfiltrují data, je to úroveň odbornosti, která je obecně předpokladem pro tuto sadu kurzů.
 
-Také předpokládáme, že vás zajímá základní programování. Webové stránky ASP.NET používají programovací jazyk s názvem C#. V programování nemusíte mít žádné pozadí, stačí to jenom na vás. Pokud jste už dříve napsali JavaScript na webové stránce, měli byste mít spoustu na pozadí.
+Také předpokládáme, že vás zajímá základní programování. Webové stránky ASP.NET používají programovací jazyk nazvaný C#. V programování nemusíte mít žádné pozadí, stačí to jenom na vás. Pokud jste už dříve napsali JavaScript na webové stránce, měli byste mít spoustu na pozadí.
 
 Všimněte si, že pokud jste obeznámeni s programováním, může se stát, že tento kurz se zpočátku posouvá pomalu, zatímco nově přinášíme nové programátory do rychlosti. Stejně jako v předchozích několika kurzech se ale bude vysvětlovat méně základních programů, které vám pomohou při seznámení s rychlejším klipem.
 
@@ -133,7 +133,7 @@ Chcete-li použít webové stránky, je nutné mít nainstalován alespoň syst�
 
 Na [stránce webové stránky](../../../index.md) na webu ASP.NET klikněte na **nainstalovat**.
 
-![Web ASP.NET zobrazující tlačítko &quot;nainstalovat&quot; WebMatrixu](getting-started/_static/image3.png)
+![Web ASP.NET s &quot; tlačítkem nainstalovat WebMatrix &quot;](getting-started/_static/image3.png)
 
 Před instalací WebMatrixu se zobrazí výzva, abyste přijali Licenční podmínky a prohlášení o zásadách ochrany osobních údajů.
 
@@ -143,7 +143,7 @@ Kliknutím na **Spustit** spusťte instalaci. (Pokud chcete instalační program
 
 ![](getting-started/_static/image5.png)
 
-Zobrazí se instalace webové platformy, která je připravena k instalaci WebMatrixu. Klikněte na **Nainstalovat**.
+Zobrazí se instalace webové platformy, která je připravena k instalaci WebMatrixu. Klikněte na **nainstalovat**.
 
 ![](getting-started/_static/image6.png)
 
@@ -153,13 +153,13 @@ Instalační proces zobrazí informace o tom, co je potřeba nainstalovat do va�
 
 Až to bude hotové, proces instalace může automaticky spustit WebMatrix. Pokud tomu tak není, v systému Windows v nabídce **Start** spusťte **Microsoft WebMatrix**.
 
-Při prvním spuštění WebMatrixu budete mít možnost se přihlásit k Microsoft Azure pomocí účet Microsoft. Když se přihlásíte, obdržíte 10 bezplatných webových aplikací prostřednictvím Azure. Tyto bezplatné webové aplikace poskytují pohodlný způsob, jak testovat vaše aplikace. Pokud ještě nemáte účet Azure, ale máte předplatné MSDN, můžete [si aktivovat výhody předplatného MSDN](https://www.windowsazure.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A443DD604). V opačném případě můžete během několika minut vytvořit bezplatný zkušební účet. Podrobnosti najdete v tématu [Bezplatná zkušební verze Azure](https://azure.microsoft.com/free/?WT.mc_id=A443DD604).
+Při prvním spuštění WebMatrixu budete mít možnost se přihlásit k Microsoft Azure pomocí účet Microsoft. Když se přihlásíte, obdržíte 10 bezplatných webových aplikací prostřednictvím Azure. Tyto bezplatné webové aplikace poskytují pohodlný způsob, jak testovat vaše aplikace. Pokud ještě nemáte účet Azure, ale máte předplatné MSDN, můžete [si aktivovat výhody předplatného MSDN](https://www.windowsazure.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A443DD604). V opačném případě můžete během několika minut vytvořit bezplatný zkušební účet. Podrobnosti najdete v článku [Bezplatná zkušební verze Azure](https://azure.microsoft.com/free/dotnet/).
 
 K pokračování v tomto kurzu se nemusíte přihlašovat hned. Pokud se teď přihlásíte, budete mít i nadále možnost přihlásit se později. Poslední [téma](publishing.md) v této sérii kurzů se zabývá tím, jak nasadit váš web do Azure. Proto byste se museli přihlašovat k dokončení tohoto tématu.
 
 V tomto okamžiku se buď přihlaste pomocí účet Microsoft nebo v pravém dolním rohu vyberte **ne** .
 
-![Přihlásit se](getting-started/_static/image7.png)
+![Přihlášení](getting-started/_static/image7.png)
 
 Začněte tím, že vytvoříte prázdný web a přidáte stránku. V pozdějším kurzu v této sadě budete hrát s jednou z vestavěných šablon webů.
 
@@ -199,13 +199,13 @@ V selektoru pracovního prostoru vyberte pracovní prostor **soubory** . Tento p
 
 Na pásu karet klikněte na šipku pod položkou **Nový** a pak klikněte na **nový soubor**.
 
-![Vytvoření nového souboru pomocí příkazu &quot;nový&quot; na pásu karet](getting-started/_static/image14.png)
+![&quot; &quot; Vytvoření nového souboru pomocí nového příkazu na pásu karet](getting-started/_static/image14.png)
 
 WebMatrix zobrazí seznam typů souborů. Vyberte **cshtml**a do pole **název** zadejte "HelloWorld". Stránka CSHTML je stránka ASP.NET webové stránky.
 
 ![Vytváří se nová stránka s CSHTML s názvem HelloWorld. cshtml.](getting-started/_static/image15.png)
 
-Klikněte na tlačítko **OK**.
+Klikněte na **OK**.
 
 WebMatrix vytvoří stránku a otevře ji v editoru.
 
@@ -217,9 +217,9 @@ Jak vidíte, stránka obsahuje hlavně běžný kód HTML, s výjimkou bloku v h
 
 To je pro přidání kódu, jak uvidíte za chvíli.
 
-Všimněte si, že různé části stránky &mdash; názvy prvků, atributy a text spolu s blokem v horní části, jsou všechny v různých barvách. To se nazývá *zvýrazňování syntaxe*a usnadňuje tak zachování všeho, co je jasné. Je to jedna z funkcí, která usnadňuje práci s webovými stránkami ve WebMatrixu.
+Všimněte si, že různé části stránky &mdash; názvy elementů, atributy a text spolu s blokem nahoře – jsou všechny v různých barvách. To se nazývá *zvýrazňování syntaxe*a usnadňuje tak zachování všeho, co je jasné. Je to jedna z funkcí, která usnadňuje práci s webovými stránkami ve WebMatrixu.
 
-Přidejte obsah pro prvky `<head>` a `<body>`, jako v následujícím příkladu. (Pokud chcete, můžete pouze zkopírovat následující blok a nahradit celou existující stránku tímto kódem.)
+Přidejte obsah pro `<head>` prvky a `<body>` jako v následujícím příkladu. (Pokud chcete, můžete pouze zkopírovat následující blok a nahradit celou existující stránku tímto kódem.)
 
 [!code-cshtml[Main](getting-started/samples/sample2.cshtml)]
 
@@ -235,13 +235,13 @@ V pracovním prostoru **soubory** klikněte pravým tlačítkem na stránku *Hel
 
 WebMatrix spustí integrovaný webový server (IIS Express), který můžete použít k testování stránek v počítači. (Bez IIS Express ve WebMatrixu byste museli stránku publikovat na webovém serveru ještě předtím, než ji budete moct otestovat.) Stránka se zobrazí ve výchozím prohlížeči.
 
-![Stránka &quot;Hello World&quot; spuštěná v prohlížeči](getting-started/_static/image19.png)
+![&quot;&quot;Stránka Hello World spuštěná v prohlížeči](getting-started/_static/image19.png)
 
-Všimněte si, že při testování stránky v WebMatrix je adresa URL v prohlížeči podobná `http://localhost:33651/HelloWorld.cshtml.` název *localhost* odkazuje na místní server, což znamená, že stránka je obsluhována webovým serverem, který je ve vašem počítači. Jak je uvedeno, WebMatrix obsahuje program webového serveru s názvem IIS Express, který se spouští při spuštění stránky.
+Všimněte si, že když testujete stránku ve WebMatrixu, adresa URL v prohlížeči je podobná `http://localhost:33651/HelloWorld.cshtml.` názvu *localhost* odkazuje na místní server, což znamená, že stránka je obsluhována webovým serverem, který je ve vašem počítači. Jak je uvedeno, WebMatrix obsahuje program webového serveru s názvem IIS Express, který se spouští při spuštění stránky.
 
 Číslo za *localhost* (například *localhost: 33651*) odkazuje na *číslo portu* v počítači. Toto je číslo "kanálu", který IIS Express používá pro tento konkrétní web. Číslo portu je vybráno náhodně z rozsahu 1024 až 65536 při vytváření lokality a je odlišné pro každý web, který vytvoříte. (Při testování vlastního webového serveru bude číslo portu skoro určitě jiné číslo než 33561.) Když pro každý web použijete jiný port, IIS Express může mít přímý odkaz na vaše weby, se kterými se mluví.
 
-Později, když publikujete web na veřejný webový server, na adrese URL se už nezobrazuje *localhost* . V tomto okamžiku se zobrazí podrobnější adresa URL, například `http://myhostingsite/mywebsite/HelloWorld.cshtml` nebo cokoli, co stránka je. V této sérii kurzů se dozvíte více o publikování webu později.
+Později, když publikujete web na veřejný webový server, na adrese URL se už nezobrazuje *localhost* . V tomto okamžiku se zobrazí více typickou adresa URL, například `http://myhostingsite/mywebsite/HelloWorld.cshtml` nebo cokoli, co stránka je. V této sérii kurzů se dozvíte více o publikování webu později.
 
 ## <a name="adding-some-server-side-code"></a>Přidání kódu na straně serveru
 
@@ -251,17 +251,17 @@ Přidejte řádek do bloku kódu tak, aby vypadal jako následující kód:
 
 [!code-cshtml[Main](getting-started/samples/sample3.cshtml)]
 
-Toto je trochu kódu Razor. Je pravděpodobně jasné, že získá aktuální datum a čas a vloží tuto hodnotu do *proměnné* s názvem `currentDateTime`. V dalším kurzu si přečtete Další informace o syntaxe Razor.
+Toto je trochu kódu Razor. Je pravděpodobně jasné, že získá aktuální datum a čas a vloží tuto hodnotu do *proměnné* s názvem `currentDateTime` . V dalším kurzu si přečtete Další informace o syntaxe Razor.
 
-V těle stránky po `<p>Hello World!</p>` elementu přidejte následující:
+V těle stránky za `<p>Hello World!</p>` element přidejte následující:
 
 [!code-html[Main](getting-started/samples/sample4.html)]
 
-Tento kód získá hodnotu, kterou vložíte do proměnné `currentDateTime` v horní části a vloží ji do značky stránky. Znak `@` označuje kód webových stránek ASP.NET na stránce.
+Tento kód získá hodnotu, kterou vložíte do `currentDateTime` proměnné v horní části, a vloží ji do značky stránky. `@`Znak označí kód webových stránek ASP.NET na stránce.
 
 Spusťte znovu stránku (WebMatrix uloží změny, než se stránka spustí). Tentokrát se na stránce zobrazí datum a čas.
 
-![&quot;Hello World&quot; stránky běžící v prohlížeči pomocí dynamicky generovaného zobrazení času](getting-started/_static/image20.png)
+![&quot;Hello World &quot; Stránka běžící v prohlížeči s dynamicky generovaným zobrazením času](getting-started/_static/image20.png)
 
 Chvíli počkejte a pak aktualizujte stránku v prohlížeči. Zobrazuje se aktualizace data a času.
 
@@ -269,7 +269,7 @@ V prohlížeči se podívejte na zdroj stránky. Vypadá to, že se jedná o ná
 
 [!code-html[Main](getting-started/samples/sample5.html)]
 
-Všimněte si, že v horní části není k dispozici blok `@{ }`. Všimněte si také, že zobrazení data a času zobrazuje skutečný řetězec znaků (`1/18/2012 2:49:50 PM` nebo cokoli), ne `@currentDateTime` podobně jako na stránce *. cshtml* . Co se stalo, když jste spustili stránku, ASP.NET zpracoval veškerý kód (velmi malý v tomto případě), který byl označený `@`. Kód vytvoří výstup a tento výstup byl vložen do stránky.
+Všimněte si, že `@{ }` blok v horní části není tam. Všimněte si také, že zobrazení data a času zobrazuje skutečný řetězec znaků ( `1/18/2012 2:49:50 PM` nebo libovolné), a ne `@currentDateTime` jako na stránce *. cshtml* . Co se stalo, když jste spustili stránku, ASP.NET zpracoval veškerý kód (v tomto případě je velmi malý), který byl označen pomocí `@` . Kód vytvoří výstup a tento výstup byl vložen do stránky.
 
 ## <a name="this-is-what-aspnet-web-pages-are-about"></a>To je to, co ASP.NET webové stránky.
 
@@ -283,9 +283,9 @@ Nápad je jednoduchý, ale existuje mnoho zajímavých úkolů, které může k�
 
 V dalším kurzu v této sérii prozkoumáte ASP.NET webové stránky s více dalšími.
 
-## <a name="additional-resources"></a>Další prostředky
+## <a name="additional-resources"></a>Další zdroje
 
 [Vytvořte si zcela nového webu ASP.NET](https://www.microsoft.com/web/post/create-an-aspnet-website-from-scratch). Toto je kurz, který se konkrétně týká použití WebMatrixu (nikoli ASP.NET webových stránek). Obsahuje ještě trochu více podrobností o některých dalších funkcích WebMatrixu, které se v této sadě kurzů nezabývá.
 
 > [!div class="step-by-step"]
-> [Next](intro-to-web-pages-programming.md)
+> [Další](intro-to-web-pages-programming.md)

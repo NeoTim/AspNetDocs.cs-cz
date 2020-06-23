@@ -8,12 +8,12 @@ ms.date: 02/15/2013
 ms.assetid: 416438a1-3b2f-4d27-bf53-6b76223c33bf
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/deploying-to-production
 msc.type: authoredcontent
-ms.openlocfilehash: ddc3d15f0436c4c3a24491cf0377111768da67df
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: ec025e757d00cbfbfbcda9408739d2593908bc07
+ms.sourcegitcommit: 0cf7d06071a8ff986e6c028ac9daf0c0e7490412
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78632781"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240629"
 ---
 # <a name="aspnet-web-deployment-using-visual-studio-deploying-to-production"></a>ASP.NET nasazení webu pomocí sady Visual Studio: nasazení do produkčního prostředí
 
@@ -33,7 +33,7 @@ Připomenutí: Pokud se zobrazí chybová zpráva nebo něco nefunguje při proc
 
 ## <a name="get-a-microsoft-azure-account"></a>Získat účet Microsoft Azure
 
-Pokud ještě nemáte účet Azure, můžete si během několika minut vytvořit bezplatný zkušební účet. Podrobnosti najdete v tématu [Bezplatná zkušební verze Azure](https://azure.microsoft.com/free/?WT.mc_id=A443DD604).
+Pokud ještě nemáte účet Azure, můžete si během několika minut vytvořit bezplatný zkušební účet. Podrobnosti najdete v článku [Bezplatná zkušební verze Azure](https://azure.microsoft.com/free/dotnet/).
 
 ## <a name="create-a-staging-environment"></a>Vytvoření přípravného prostředí
 
@@ -118,7 +118,7 @@ Teď, když jste vytvořili webovou aplikaci a databázi pro testovací prostře
 
     Otevře se průvodce **publikováním webu** .
 2. Klikněte na kartu **profil** .
-3. Klikněte na **Importovat**.
+3. Klikněte na **importovat**.
 4. Přejděte do souboru *. publishsettings* , který jste stáhli dříve, a pak klikněte na **otevřít**.
 
     ![Dialogové okno Importovat nastavení publikování](deploying-to-production/_static/image7.png)
@@ -130,7 +130,7 @@ Teď, když jste vytvořili webovou aplikaci a databázi pro testovací prostře
 6. Klikněte na **Další**.
 
     ![ikona úspěšného připojení a tlačítko Další na kartě připojení](deploying-to-production/_static/image8.png)
-7. Na kartě **Nastavení** rozbalte **možnost publikování souboru**a pak vyberte **vyloučit soubory ze složky\_dat aplikace**.
+7. Na kartě **Nastavení** rozbalte **možnost publikování souboru**a potom vyberte **vyloučit soubory ze \_ složky data aplikací**.
 
     Informace o dalších možnostech v části **Možnosti publikování souborů**najdete v kurzu [nasazení do služby IIS](deploying-to-iis.md) . Snímek obrazovky, který ukazuje výsledek tohoto kroku, a následující kroky konfigurace databáze jsou na konci kroků konfigurace databáze.
 8. V části **DefaultConnection** v části **databáze** nakonfigurujte nasazení databáze pro databázi členství.
@@ -141,9 +141,9 @@ Teď, když jste vytvořili webovou aplikaci a databázi pro testovací prostře
       3. V dialogovém okně **Konfigurovat aktualizace databáze** klikněte na **Přidat skript SQL**.
       4. V poli **Přidat skript SQL** přejděte na skript *ASPNET-data-prod. SQL* , který jste předtím uložili ve složce řešení, a pak klikněte na **otevřít**.
       5. Zavřete dialogové okno **Konfigurovat aktualizace databáze** .
-10. V části **SchoolContext** v části **databáze** vyberte **Spustit migrace Code First (spouští se při spuštění aplikace)** .
+10. V části **SchoolContext** v části **databáze** vyberte **Spustit migrace Code First (spouští se při spuštění aplikace)**.
 
-    Visual Studio zobrazí příkaz **Execute migrace Code First** namísto **aktualizační databáze** pro `DbContext` třídy. Pokud chcete poskytovatele dbDacFx použít místo migrace k nasazení databáze, ke které máte přístup pomocí třídy `DbContext`, přečtěte si téma [návody nasazení Code First databáze bez migrace?](https://msdn.microsoft.com/library/ee942158.aspx#deploy_code_first_without_migrations) v tématu Nejčastější dotazy k nasazení webu pro Visual Studio a ASP.NET na webu MSDN.
+    Visual Studio zobrazí příkaz **Execute migrace Code First** namísto **aktualizační databáze** pro `DbContext` třídy. Pokud chcete poskytovatele dbDacFx použít místo migrace k nasazení databáze, ke které máte přístup pomocí `DbContext` třídy, přečtěte si téma [Návody nasazení Code First databáze bez migrace?](https://msdn.microsoft.com/library/ee942158.aspx#deploy_code_first_without_migrations) v tématu Nejčastější dotazy k nasazení webu pro Visual Studio a ASP.NET na webu MSDN.
 
     Karta **Nastavení** teď vypadá jako v následujícím příkladu:
 
@@ -160,22 +160,22 @@ Teď, když jste vytvořili webovou aplikaci a databázi pro testovací prostře
 ### <a name="configure-a-publish-profile-transform-for-the-environment-indicator"></a>Konfigurace transformace profilu publikování pro indikátor prostředí
 
 > [!NOTE]
-> V této části se dozvíte, jak nastavit transformaci Web. config pro indikátor prostředí. Vzhledem k tomu, že indikátor je v prvku `<appSettings>`, máte další alternativu pro zadání transformace při nasazení do Azure App Service. Další informace najdete v tématu [Určení nastavení souboru Web. config v Azure](web-config-transformations.md#watransforms).
+> V této části se dozvíte, jak nastavit Web.config transformaci pro indikátor prostředí. Vzhledem k tomu, že indikátor je v `<appSettings>` prvku, máte další alternativu k určení transformace při nasazení do Azure App Service. Další informace najdete v tématu [Určení nastavení Web.config v Azure](web-config-transformations.md#watransforms).
 
 1. V **Průzkumník řešení**rozbalte položku **vlastnosti**a potom rozbalte **PublishProfiles**.
 2. Klikněte pravým tlačítkem na *fázování. pubxml*a pak klikněte na **přidat konfigurační transformaci**.
 
     ![Přidat transformaci konfigurace pro přípravu](deploying-to-production/_static/image11.png)
 
-    Visual Studio vytvoří transformační soubor *Web. staging. config* a otevře ho.
-3. V transformačním souboru *Web. staging. config* vložte následující kód hned za úvodní značku `configuration`.
+    Visual Studio vytvoří *Web.Staging.config* transformační soubor a otevře ho.
+3. Do *Web.Staging.config* transformačního souboru vložte následující kód hned za otevírací `configuration` značku.
 
     [!code-xml[Main](deploying-to-production/samples/sample1.xml)]
 
     Když použijete přípravný profil publikování, tato transformace nastaví indikátor prostředí na "prod". V nasazené webové aplikaci se po nadpisu "contoso University" H1 nezobrazí žádná přípona, například "(dev)" nebo "(test)".
-4. Klikněte pravým tlačítkem myši na soubor *Web. staging. config* a klikněte na **Náhled transformovat** , aby se zajistilo, že transformace, kterou jste zakódujete, vytvoří očekávané změny.
+4. Klikněte pravým tlačítkem na soubor *Web.Staging.config* a klikněte na **Náhled transformovat** , aby se zajistilo, že transformace, kterou jste zakódujete, vytvoří očekávané změny.
 
-    V okně **Náhled Web. config** se zobrazí výsledek použití transformací *Web. Release. config* a transformací *Web. staging. config* .
+    V okně **náhledWeb.config** se zobrazuje výsledek použití transformačních *Web.Release.config* a transformačních *Web.Staging.config* .
 
 ### <a name="prevent-public-use-of-the-test-app"></a>Zabránit veřejnému použití testovací aplikace
 
@@ -183,18 +183,18 @@ Důležitým aspektem pro pracovní aplikaci je to, že bude živý na internetu
 
 - Nastavte pravidla brány firewall, která umožňují přístup k pracovní aplikaci jenom z IP adres, které používáte k testování přípravy.
 - Použijte zašifrované URL, které by nebylo možné odhadnout.
-- Vytvořte soubor *robots. txt* , abyste zajistili, že vyhledávací weby nebudou procházet testovací aplikaci a na ni budou odkazy ve výsledcích hledání.
+- Vytvořte soubor *robots.txt* , abyste zajistili, že vyhledávací weby nebudou procházet na testovací aplikaci a odkazy na ně ve výsledcích hledání.
 
 První z těchto metod je nejúčinnější, ale není pokrytá v tomto kurzu, protože by to vyžadovalo nasazení do cloudové služby Azure místo Azure App Service. Další informace o Cloud Services a omezeních IP adres v Azure najdete v tématu [možnosti hostování služby COMPUTE poskytované Azure](https://docs.microsoft.com/azure/cloud-services/cloud-services-choose-me) a [zablokování konkrétních IP adres pro přístup k webové roli](https://msdn.microsoft.com/library/windowsazure/jj154098.aspx). Pokud nasazujete pro poskytovatele hostingu třetí strany, obraťte se na poskytovatele, kde zjistíte, jak implementovat omezení IP adres.
 
-V tomto kurzu vytvoříte soubor *robots. txt* .
+Pro tento kurz vytvoříte soubor *robots.txt* .
 
 1. V **Průzkumník řešení**klikněte pravým tlačítkem na projekt ContosoUniversity a klikněte na **Přidat novou položku**.
-2. Vytvořte nový **textový soubor** s názvem *robots. txt*a vložte do něj následující text:
+2. Vytvořte nový **textový soubor** s názvem *robots.txt*a vložte do něj následující text:
 
     [!code-console[Main](deploying-to-production/samples/sample2.cmd)]
 
-    `User-agent` řádek oznamuje vyhledávacím modulům, že se pravidla v souboru vztahují na všechny webové prohledávací moduly (roboty) a `Disallow` řádek určuje, že by neměly být procházeny žádné stránky na webu.
+    Tato `User-agent` čára oznamuje vyhledávacím modulům, že se pravidla v souboru vztahují na všechny webové prohledávací moduly (roboty), a `Disallow` řádek určuje, že by neměly být procházeny žádné stránky na webu.
 
     Chcete, aby vyhledávací weby mohly zařadit do katalogu produkční aplikace, takže je potřeba tento soubor vyloučit z produkčního nasazení. Uděláte to tak, že nakonfigurujete nastavení v produkčním publikačním profilu při jeho vytváření.
 
@@ -208,7 +208,7 @@ V tomto kurzu vytvoříte soubor *robots. txt* .
 
 ## <a name="test-in-the-staging-environment"></a>Testování v přípravném prostředí
 
-Všimněte si, že indikátor prostředí chybí (není k dispozici "(test)" nebo "(dev)" za nadpisem H1, který ukazuje, že transformace *Web. config* pro indikátor prostředí byla úspěšná.
+Všimněte si, že indikátor prostředí chybí (není k dispozici "(test)" nebo "(dev)" za nadpisem H1, který ukazuje, že transformace *Web.config* pro indikátor prostředí byla úspěšná.
 
 ![Příprava domovské stránky](deploying-to-production/_static/image12.png)
 
@@ -226,7 +226,7 @@ Aplikace, kterou jste vytvořili, je teď spuštěná v cloudu ve webové aplika
 
 ## <a name="deploy-to-production"></a>Nasazení do produkčního prostředí
 
-Proces vytvoření provozní webové aplikace a nasazení do produkčního prostředí je stejný jako pro přípravu, s tím rozdílem, že je potřeba z nasazení vyloučit soubor *robots. txt* . Uděláte to tak, že upravíte soubor profilu publikování.
+Proces vytvoření provozní webové aplikace a nasazení do produkčního prostředí je stejný jako pro přípravu, s tím rozdílem, že je potřeba vyřadit *robots.txt* z nasazení. Uděláte to tak, že upravíte soubor profilu publikování.
 
 ### <a name="create-the-production-environment-and-the-production-publish-profile"></a>Vytvoření produkčního prostředí a produkčního profilu pro publikování
 
@@ -240,9 +240,9 @@ Proces vytvoření provozní webové aplikace a nasazení do produkčního prost
 4. Přejmenujte profil publikování na *produkční*prostředí.
 5. Nakonfigurujte transformaci profilu publikování pro indikátor prostředí za stejným postupem, který jste použili pro přípravu.
 
-### <a name="edit-the-pubxml-file-to-exclude-robotstxt"></a>Upravit soubor. pubxml pro vyloučení souboru robots. txt
+### <a name="edit-the-pubxml-file-to-exclude-robotstxt"></a>Upravte soubor. pubxml, který se má vyloučit robots.txt
 
-Soubory profilu publikování jsou pojmenovány &lt;pronázev&gt; *. pubxml* a nacházejí se ve složce *PublishProfiles* . Složka *PublishProfiles* je ve složce *Properties (vlastnosti* ) projektu C# webové aplikace ve složce *můj projekt* v projektu webové aplikace VB nebo ve složce *aplikace\_data* v projektu webové aplikace. Každý soubor *. pubxml* obsahuje nastavení, která se vztahují na jeden profil publikování. Hodnoty, které zadáte v průvodci publikovat web, jsou uloženy v těchto souborech a lze je upravit pro vytvoření nebo změnu nastavení, která nejsou k dispozici v uživatelském rozhraní sady Visual Studio.
+Soubory profilu publikování mají název &lt; profile &gt; *. pubxml* a nacházejí se ve složce *PublishProfiles* . Složka *PublishProfiles* je ve složce *Properties (vlastnosti* ) v projektu webové aplikace v jazyce C#, ve složce *můj projekt* v projektu webové aplikace VB nebo ve složce * \_ data* aplikace v projektu webové aplikace. Každý soubor *. pubxml* obsahuje nastavení, která se vztahují na jeden profil publikování. Hodnoty, které zadáte v průvodci publikovat web, jsou uloženy v těchto souborech a lze je upravit pro vytvoření nebo změnu nastavení, která nejsou k dispozici v uživatelském rozhraní sady Visual Studio.
 
 Ve výchozím nastavení jsou soubory *. pubxml* zahrnuty do projektu při vytváření profilu publikování, ale můžete je vyloučit z projektu a Visual Studio je stále bude používat. Visual Studio hledá soubory *. pubxml* ve složce *PublishProfiles* bez ohledu na to, jestli jsou zahrnuté v projektu.
 
@@ -267,16 +267,16 @@ Soubor *. pubxml* obsahuje nastavení, která se týkají konkrétního publika�
 
 ### <a name="deploy-to-production"></a>Nasazení do produkčního prostředí
 
-1. Otevřete Průvodce **publikováním webu** se ujistěte, že **je vybraný profil publikování na** webu, a pak klikněte na **Spustit náhled** na kartě **Náhled** a ověřte, jestli se soubor *robots. txt* nezkopíruje do produkční aplikace.
+1. Otevřete Průvodce **publikování webu** , ujistěte se, že je vybraná možnost publikovat **profil publikování a** pak klikněte na tlačítko **Spustit náhled** na kartě **Náhled** , abyste ověřili, že se soubor *robots.txt* do produkční aplikace nezkopíruje.
 
     ![Náhled souborů, které se mají publikovat do produkčního prostředí](deploying-to-production/_static/image14.png)
 
-    Zkontrolujte seznam souborů, které se zkopírují. Uvidíte, že všechny soubory *. cs* , včetně souborů *. aspx.cs*, *. aspx.Designer.cs*, *Master.cs*a *Master.Designer.cs* , jsou vynechány. Veškerý tento kód byl zkompilován do souborů *ContosoUniversity. dll* a *ContosoUniversity. pdb* , které najdete ve složce *bin* . Vzhledem k tomu, že je ke spuštění aplikace nutná pouze *Knihovna DLL* , a zadali jste dříve, že by měly být nasazeny pouze soubory potřebné ke spuštění aplikace, nebyly do cílového prostředí zkopírovány žádné soubory *. cs* . Složka *obj* a soubory *ContosoUniversity. csproj* a *. csproj. User* jsou vynechány ze stejného důvodu.
+    Zkontrolujte seznam souborů, které se zkopírují. Uvidíte, že všechny soubory *. cs* , včetně souborů *. aspx.cs*, *. aspx.Designer.cs*, *Master.cs*a *Master.Designer.cs* , jsou vynechány. Veškerý tento kód byl zkompilován do souborů *ContosoUniversity.dll* a *ContosoUniversity. pdb* , které najdete ve složce *bin* . Vzhledem k tomu, že je ke spuštění aplikace nutná pouze *Knihovna DLL* , a zadali jste dříve, že by měly být nasazeny pouze soubory potřebné ke spuštění aplikace, nebyly do cílového prostředí zkopírovány žádné soubory *. cs* . Složka *obj* a soubory *ContosoUniversity. csproj* a *. csproj. User* jsou vynechány ze stejného důvodu.
 
     Kliknutím na **publikovat** nasadíte do produkčního prostředí.
 2. Otestujte v produkčním prostředí podle stejného postupu, který jste použili pro přípravu.
 
-    Vše je stejné jako u přípravy s výjimkou adresy URL a chybějícího souboru *robots. txt* .
+    Vše je stejné jako u přípravy s výjimkou adresy URL a chybějícího souboru *robots.txt* .
 
 ## <a name="summary"></a>Souhrn
 
@@ -294,5 +294,5 @@ V dalším kurzu aktualizujete kód aplikace a nasadíte změnu do testovacích,
 > V tomto kurzu SQL Server edice, do které nasazujete, Azure SQL Database. I když je proces nasazení podobný jiným verzím SQL Server, skutečná produkční aplikace může vyžadovat speciální kód pro Azure SQL Database v některých scénářích. Další informace najdete v tématu [práce s Azure SQL Database](../../../../whitepapers/aspnet-data-access-content-map.md#ssdb) a [Výběr mezi SQL Server a Azure SQL Database](../../../../whitepapers/aspnet-data-access-content-map.md#ssdbchoosing).
 > 
 > [!div class="step-by-step"]
-> [Předchozí](setting-folder-permissions.md)
-> [Další](deploying-a-code-update.md)
+> [Předchozí](setting-folder-permissions.md) 
+>  [Další](deploying-a-code-update.md)
