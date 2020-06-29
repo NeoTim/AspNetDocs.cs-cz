@@ -9,12 +9,12 @@ ms.topic: tutorial
 ms.assetid: d4dfc435-bda6-4621-9762-9ba270f8de4e
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
-ms.openlocfilehash: 21a3efa865e5b5498dfb0f2adec199800fc70c58
-ms.sourcegitcommit: a4c3c7e04e5f53cf8cd334f036d324976b78d154
+ms.openlocfilehash: 2f3a6d57a7963eb7aafde62e344ae6b970af87e2
+ms.sourcegitcommit: 8d34fb54e790cfba2d64097afc8276da5b22283e
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84172965"
+ms.lasthandoff: 06/27/2020
+ms.locfileid: "85484227"
 ---
 # <a name="tutorial-use-ef-migrations-in-an-aspnet-mvc-app-and-deploy-to-azure"></a>Kurz: použití migrace EF v aplikaci ASP.NET MVC a nasazení do Azure
 
@@ -41,10 +41,10 @@ Při vývoji nové aplikace se datový model často mění a pokaždé, když se
 
 Tato metoda uchování databáze v synchronizaci s datovým modelem funguje dobře, dokud aplikaci nenainstalujete do produkčního prostředí. Když je aplikace spuštěná v produkčním prostředí, obvykle ukládá data, která chcete zachovat, a nechcete přijít o všechny pokaždé, když uděláte změnu, jako je přidání nového sloupce. Funkce [migrace Code First](https://msdn.microsoft.com/data/jj591621) tento problém vyřeší tím, že povolí Code First aktualizaci schématu databáze místo vyřazení a opětovného vytváření databáze. V tomto kurzu nasadíte aplikaci a připravíte ji na to, abyste povolili migrace.
 
-1. Zakažte inicializátor, který jste nastavili dříve, zadáním komentáře nebo odstraněním `contexts` elementu, který jste přidali do souboru Web. config aplikace.
+1. Zakažte inicializátor, který jste nastavili dříve, zadáním komentáře nebo odstraněním `contexts` elementu, který jste přidali do souboru aplikace Web.config.
 
     [!code-xml[Main](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.xml?highlight=2,6)]
-2. V souboru *Web. config* aplikace změňte také název databáze v připojovacím řetězci na ContosoUniversity2.
+2. Také v souboru *Web.config* aplikace změňte název databáze v připojovacím řetězci na ContosoUniversity2.
 
     [!code-xml[Main](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.xml?highlight=2)]
 
@@ -129,7 +129,7 @@ Proto byla aplikace spuštěna místně v IIS Express ve vývojovém počítači
 
 ### <a name="use-code-first-migrations-to-deploy-the-database"></a>Nasazení databáze pomocí Code First migrace
 
-K nasazení databáze budete používat Migrace Code First. Když vytvoříte profil publikování, který použijete ke konfiguraci nastavení pro nasazení ze sady Visual Studio, vyberete zaškrtávací políčko s názvem **aktualizace databáze**. Toto nastavení způsobí, že proces nasazení automaticky konfiguruje soubor *Web. config* aplikace na cílovém serveru tak, aby Code First používal `MigrateDatabaseToLatestVersion` třídu inicializátoru.
+K nasazení databáze budete používat Migrace Code First. Když vytvoříte profil publikování, který použijete ke konfiguraci nastavení pro nasazení ze sady Visual Studio, vyberete zaškrtávací políčko s názvem **aktualizace databáze**. Toto nastavení způsobí, že proces nasazení automaticky nakonfiguruje soubor *Web.config* aplikace na cílovém serveru tak, aby Code First používá `MigrateDatabaseToLatestVersion` třídu inicializátoru.
 
 Visual Studio během procesu nasazování neprovádí žádnou práci s databází, zatímco kopíruje projekt na cílový server. Když spustíte nasazenou aplikaci a přistupuje k databázi poprvé po nasazení, Code First zkontroluje, jestli databáze odpovídá datovému modelu. Pokud dojde k neshodě, Code First automaticky vytvoří databázi (Pokud ještě neexistuje) nebo aktualizuje schéma databáze na nejnovější verzi (Pokud databáze existuje, ale neodpovídá modelu). Pokud aplikace implementuje `Seed` metodu migrace, metoda se spustí po vytvoření databáze nebo aktualizaci schématu.
 
@@ -138,7 +138,7 @@ Visual Studio během procesu nasazování neprovádí žádnou práci s databáz
 ### <a name="get-an-azure-account"></a>Získat účet Azure
 
 Budete potřebovat účet Azure. Pokud ho ještě nemáte, ale máte předplatné sady Visual Studio, můžete si [aktivovat výhody předplatného](https://azure.microsoft.com/pricing/member-offers/credit-for-visual-studio-subscribers/
-). V opačném případě můžete během několika minut vytvořit bezplatný zkušební účet. Podrobnosti najdete v článku [Bezplatná zkušební verze Azure](https://azure.microsoft.com/free/).
+). V opačném případě můžete během několika minut vytvořit bezplatný zkušební účet. Podrobnosti najdete v článku [Bezplatná zkušební verze Azure](https://azure.microsoft.com/free/dotnet/).
 
 ### <a name="create-a-web-site-and-a-sql-database-in-azure"></a>Vytvoření webu a databáze SQL v Azure
 
@@ -196,15 +196,15 @@ Databázi nasadíte do služby Azure SQL Database. SQL Database je cloudová slu
 
     Vaše aplikace je teď spuštěná v cloudu.
 
-V tuto chvíli se databáze *SchoolContext* vytvořila ve službě Azure SQL Database, protože jste vybrali **Execute migrace Code First (spouští se při spuštění aplikace)**. Soubor *Web. config* na nasazeném webu byl změněn tak, aby byl inicializátor [MigrateDatabaseToLatestVersion](https://msdn.microsoft.com/library/hh829476(v=vs.103).aspx) spuštěn při prvním načtení nebo zápisu dat do databáze (ke kterému došlo po výběru karty **Students** ):
+V tuto chvíli se databáze *SchoolContext* vytvořila ve službě Azure SQL Database, protože jste vybrali **Execute migrace Code First (spouští se při spuštění aplikace)**. *Web.config* soubor na nasazeném webu byl změněn tak, aby byl inicializátor [MigrateDatabaseToLatestVersion](https://msdn.microsoft.com/library/hh829476(v=vs.103).aspx) spuštěn při prvním načtení nebo zápisu dat do databáze (ke kterému došlo po výběru karty **Students** ):
 
-![Soubor Web. config – výňatek](https://asp.net/media/4367421/mig.png)
+![Web.config výpis souborů](https://asp.net/media/4367421/mig.png)
 
 Proces nasazení taky vytvořil nový připojovací řetězec *(SchoolContext \_ DatabasePublish*migrace Code First), který se používá k aktualizaci schématu databáze a k osazení databáze.
 
-![Připojovací řetězec v souboru Web. config](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image26.png)
+![Připojovací řetězec v souboru Web.config](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image26.png)
 
-Nasazenou verzi souboru Web. config můžete najít na svém vlastním počítači v *ContosoUniversity\obj\Release\Package\PackageTmp\Web.config*. K nasazenému souboru *Web. config* se můžete dostat pomocí FTP. Pokyny najdete v tématu [nasazení webu ASP.NET pomocí sady Visual Studio: nasazení aktualizace kódu](xref:web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update). Postupujte podle pokynů, které začínají na používání nástroje FTP, potřebujete tři věci: adresa URL serveru FTP, uživatelské jméno a heslo. "
+Nasazenou verzi Web.config souboru můžete najít na svém počítači v *ContosoUniversity\obj\Release\Package\PackageTmp\Web.config*. K nasazenému *Web.config* souboru můžete přistupovat pomocí FTP. Pokyny najdete v tématu [nasazení webu ASP.NET pomocí sady Visual Studio: nasazení aktualizace kódu](xref:web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update). Postupujte podle pokynů, které začínají na používání nástroje FTP, potřebujete tři věci: adresa URL serveru FTP, uživatelské jméno a heslo. "
 
 > [!NOTE]
 > Webová aplikace neimplementuje zabezpečení, takže kdokoli, kdo najde adresu URL, může data změnit. Pokyny k zabezpečení webu najdete v tématu [nasazení zabezpečené aplikace ASP.NET MVC pomocí členství, protokolu OAuth a SQL Database do Azure](/aspnet/core/security/authorization/secure-data). Dalším lidem můžete zabránit v používání webu zastavením služby pomocí Portál pro správu Azure nebo **Průzkumník serveru** v aplikaci Visual Studio.
@@ -213,7 +213,7 @@ Nasazenou verzi souboru Web. config můžete najít na svém vlastním počíta�
 
 ## <a name="advanced-migrations-scenarios"></a>Scénáře pokročilých migrací
 
-Pokud nasadíte databázi tak, že automaticky spustíte migrace, jak je znázorněno v tomto kurzu, a nasazujete na web, který běží na více serverech, můžete získat více serverů, které se pokoušejí spustit migrace současně. Migrace jsou atomické, takže pokud se dva servery pokusí spustit stejnou migraci, bude jedna z nich úspěšná a druhá selže (za předpokladu, že operace nejde udělat dvakrát). V takovém případě, pokud se chcete těmto problémům vyhnout, můžete volat migrace ručně a nastavit vlastní kód tak, aby se stalo pouze jednou. Další informace najdete v tématu [spuštění a skriptování migrace z kódu](http://romiller.com/2012/02/09/running-scripting-migrations-from-code/) na blogu Rowan Miller a [migrace. exe](/ef/ef6/modeling/code-first/migrations/migrate-exe) (pro provádění migrací z příkazového řádku).
+Pokud nasadíte databázi tak, že automaticky spustíte migrace, jak je znázorněno v tomto kurzu, a nasazujete na web, který běží na více serverech, můžete získat více serverů, které se pokoušejí spustit migrace současně. Migrace jsou atomické, takže pokud se dva servery pokusí spustit stejnou migraci, bude jedna z nich úspěšná a druhá selže (za předpokladu, že operace nejde udělat dvakrát). V takovém případě, pokud se chcete těmto problémům vyhnout, můžete volat migrace ručně a nastavit vlastní kód tak, aby se stalo pouze jednou. Další informace najdete v tématu [spuštění a skriptování migrace z kódu](http://romiller.com/2012/02/09/running-scripting-migrations-from-code/) na blogu a [Migrate.exe](/ef/ef6/modeling/code-first/migrations/migrate-exe) Rowan Miller (pro provádění migrací z příkazového řádku).
 
 Informace o dalších scénářích migrace najdete v tématu [migrace datových řad pro záznam dění](https://blogs.msdn.com/b/adonet/archive/2014/03/12/migrations-screencast-series.aspx)v/v.
 

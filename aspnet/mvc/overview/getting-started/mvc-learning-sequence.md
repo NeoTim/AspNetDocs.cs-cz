@@ -8,12 +8,12 @@ ms.date: 05/22/2015
 ms.assetid: 8513a57a-2d45-4d6b-881c-15a01c5cbb1c
 msc.legacyurl: /mvc/overview/getting-started/mvc-learning-sequence
 msc.type: authoredcontent
-ms.openlocfilehash: 46b089a896c6b1b92437ff1f5488214a3a0a9838
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 7dc81cf09309194df4471fedfc74d4051f0fdb78
+ms.sourcegitcommit: 8d34fb54e790cfba2d64097afc8276da5b22283e
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78602513"
+ms.lasthandoff: 06/27/2020
+ms.locfileid: "85484214"
 ---
 # <a name="mvc-recommended-tutorials-and-articles"></a>MVC – doporučené kurzy a články
 
@@ -40,7 +40,7 @@ od [Rick Anderson](https://twitter.com/RickAndMSFT)
 - [Vytvoření zabezpečené webové aplikace ASP.NET MVC 5 s přihlášením, potvrzením e-mailu a resetováním hesla](../security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset.md) V rámci řady na identitě obsahuje kód pro [opětovné odeslání potvrzovacího odkazu](../security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset.md#rsend).
 - [Aplikace ASP.NET MVC 5 s SMS a e-mailovým ověřením](../security/aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication.md) Druhý v řadě identity
 - [Doporučené postupy nasazení hesel a dalších citlivých dat do ASP.NET a služby Azure App Service](../../../identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure.md)
-- [Dvojúrovňové ověřování pomocí SMS a e-mailu s ASP.NET Identity](../../../identity/overview/features-api/two-factor-authentication-using-sms-and-email-with-aspnet-identity.md) `isPersistent` a bezpečnostním souborem cookie, kód, který vyžaduje, aby uživatel měl ověřený e-mailový účet, než se může přihlásit, jak SignInManager vyhledává požadavek 2FA a další.
+- [Dvojúrovňové ověřování pomocí SMS a e-mailu s ASP.NET identity](../../../identity/overview/features-api/two-factor-authentication-using-sms-and-email-with-aspnet-identity.md) `isPersistent` a soubor cookie zabezpečení, kód, který vyžaduje, aby uživatel měl ověřený e-mailový účet, než se může přihlásit, jak SignInManager vyhledává požadavek 2FA a další.
 - [Potvrzení účtu a obnovení hesla pomocí ASP.NET identity](../../../identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity.md) Poskytuje podrobné informace o identitě, která nebyla nalezena v tématu [Vytvoření zabezpečené webové aplikace ASP.NET MVC 5 s přihlášením, potvrzením e-mailu a resetováním hesla,](../security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset.md) jako je například umožnění resetování zapomenutého hesla uživateli.
 
 <a id="da"></a>
@@ -53,3 +53,16 @@ od [Rick Anderson](https://twitter.com/RickAndMSFT)
 ## <a name="performance-and-debugging"></a>Výkon a ladění
 
 - [Profil aplikace ASP.NET MVC a její ladění pomocí balíčku Glimpse](../performance/profile-and-debug-your-aspnet-mvc-app-with-glimpse.md)
+
+## <a name="aspnet-mvc-dropdownlistfor-with-selectlistitem"></a>ASP.NET MVC DropDownListFor s SelectListItem
+
+Při použití <xref:System.Web.Mvc.Html.SelectExtensions.DropDownListFor%2A> pomocné rutiny a jejím předání do kolekce `SelectListItem` , ze které je naplněná, `DropdownListFor` upraví po volání předanou kolekci. `DropdownListFor`změní `SelectListItems` vybrané vlastnosti na vše, co bylo vybráno v rozevíracím seznamu. To vede k neočekávanému chování.
+
+,,, <xref:System.Web.Mvc.Html.SelectExtensions.DropDownListFor%2A> <xref:System.Web.Mvc.Html.SelectExtensions.DropDownList%2A> <xref:System.Web.Mvc.Html.SelectExtensions.EnumDropDownListFor%2A> <xref:System.Web.Mvc.Html.SelectExtensions.ListBox%2A> A <xref:System.Web.Mvc.Html.SelectExtensions.ListBoxFor%2A> aktualizujte vybranou vlastnost všech `IEnumerable<SelectListItem>` předaných nebo nalezených v ViewData.
+
+Alternativním řešením je vytvořit samostatné výčty, které obsahují samostatné `SelectListItem` instance, pro každou vlastnost v modelu.
+
+Další informace najdete v tématu
+
+* [DropdownListFor upraví předanou kolekci SelectListItem.](http://web.archive.org/web/20140902031437/http://aspnetwebstack.codeplex.com/workitem/1913)
+* [GetSelectListWithDefaultValue upraví IEnumerable <SelectListItem> selectList](https://github.com/aspnet/AspNetWebStack/issues/271)

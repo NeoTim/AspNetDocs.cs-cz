@@ -8,12 +8,12 @@ ms.date: 07/30/2013
 ms.assetid: 8af630e0-fffa-4110-9eca-c96e201b2724
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
-ms.openlocfilehash: b1ddb70805dcb07fb60eea895ff572c054bde5c6
-ms.sourcegitcommit: 22fbd8863672c4ad6693b8388ad5c8e753fb41a2
+ms.openlocfilehash: 48938b378a741a0f1c351c2cb1d33b5140c6cf93
+ms.sourcegitcommit: 8d34fb54e790cfba2d64097afc8276da5b22283e
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 11/28/2019
-ms.locfileid: "74595224"
+ms.lasthandoff: 06/27/2020
+ms.locfileid: "85484397"
 ---
 # <a name="sorting-filtering-and-paging-with-the-entity-framework-in-an-aspnet-mvc-application-3-of-10"></a>Řazení, filtrování a stránkování pomocí Entity Framework v aplikaci ASP.NET MVC (3 z 10)
 
@@ -27,7 +27,7 @@ tím, že [Dykstra](https://github.com/tdykstra)
 > > 
 > > Pokud narazíte na problém, který nemůžete vyřešit, [Stáhněte si dokončenou kapitolu](building-the-ef5-mvc4-chapter-downloads.md) a pokuste se problém reprodukován. Řešení problému můžete obecně najít porovnáním kódu s dokončeným kódem. Některé běžné chyby a jejich řešení najdete v tématu [chyby a alternativní řešení.](advanced-entity-framework-scenarios-for-an-mvc-web-application.md#errors)
 
-V předchozím kurzu jste implementovali sadu webových stránek pro základní operace CRUD pro `Student` entit. V tomto kurzu přidáte na stránku indexu **studentů** funkce řazení, filtrování a stránkování. Vytvoří se také stránka, která provede jednoduché seskupení.
+V předchozím kurzu jste implementovali sadu webových stránek pro základní operace CRUD pro `Student` entity. V tomto kurzu přidáte na stránku indexu **studentů** funkce řazení, filtrování a stránkování. Vytvoří se také stránka, která provede jednoduché seskupení.
 
 Na následujícím obrázku vidíte, jak stránka bude vypadat, až budete hotovi. Záhlaví sloupců jsou odkazy, na které může uživatel kliknout pro řazení podle daného sloupce. Kliknutí na záhlaví sloupce se opakovaně přepíná mezi vzestupném a sestupným řazením.
 
@@ -35,23 +35,23 @@ Na následujícím obrázku vidíte, jak stránka bude vypadat, až budete hotov
 
 ## <a name="add-column-sort-links-to-the-students-index-page"></a>Přidat odkazy na řazení sloupců na stránku indexu studentů
 
-Chcete-li přidat řazení na stránku indexu studenta, změňte metodu `Index` řadiče `Student` a přidejte kód do zobrazení indexu `Student`.
+Chcete-li přidat řazení na stránku indexu studenta, změňte `Index` metodu `Student` kontroleru a přidejte kód do `Student` zobrazení index.
 
 ### <a name="add-sorting-functionality-to-the-index-method"></a>Přidání funkcí řazení do metody index
 
-V *Controllers\StudentController.cs*nahraďte metodu `Index` následujícím kódem:
+V *Controllers\StudentController.cs*nahraďte `Index` metodu následujícím kódem:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.cs)]
 
-Tento kód přijímá `sortOrder` parametr z řetězce dotazu v adrese URL. Hodnota řetězce dotazu je poskytnuta ASP.NET MVC jako parametr metody Action. Parametr bude řetězec, který je buď "Name", nebo "date", volitelně následovaný podtržítkem a řetězcem "desc" pro určení sestupného pořadí. Výchozí pořadí řazení je vzestupné.
+Tento kód obdrží `sortOrder` parametr z řetězce dotazu v adrese URL. Hodnota řetězce dotazu je poskytnuta ASP.NET MVC jako parametr metody Action. Parametr bude řetězec, který je buď "Name", nebo "date", volitelně následovaný podtržítkem a řetězcem "desc" pro určení sestupného pořadí. Výchozí pořadí řazení je vzestupné.
 
-Při prvním vyžádání stránky indexu není k dispozici žádný řetězec dotazu. Studenti se zobrazí ve vzestupném pořadí podle `LastName`, což je výchozí nastavení zavedené v případě příkazu `switch`. Když uživatel klikne na hypertextový odkaz záhlaví sloupce, v řetězci dotazu je uvedena odpovídající hodnota `sortOrder`.
+Při prvním vyžádání stránky indexu není k dispozici žádný řetězec dotazu. Studenti se zobrazí ve vzestupném pořadí podle `LastName` , což je výchozí nastavení, které je stanoveno v případu přechodu v `switch` příkazu. Když uživatel klikne na hypertextový odkaz záhlaví sloupce, `sortOrder` v řetězci dotazu je uvedena příslušná hodnota.
 
-Použijí se tyto dvě proměnné `ViewBag`, aby zobrazení mohl konfigurovat hypertextové odkazy záhlaví sloupců pomocí příslušných hodnot řetězce dotazu:
+Použijí se tyto dvě `ViewBag` proměnné, aby zobrazení mohl konfigurovat hypertextové odkazy záhlaví sloupců pomocí příslušných hodnot řetězce dotazu:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.cs)]
 
-Jedná se o Ternární příkazy. První z nich určuje, že pokud parametr `sortOrder` má hodnotu null nebo je prázdný, `ViewBag.NameSortParm` by měl být nastaven na "Name\_desc"; v opačném případě by měl být nastaven na prázdný řetězec. Tyto dva příkazy umožňují zobrazení nastavit hypertextové odkazy záhlaví sloupce následujícím způsobem:
+Jedná se o Ternární příkazy. První z nich určuje, že pokud má `sortOrder` parametr hodnotu null nebo je prázdný, `ViewBag.NameSortParm` měl by být nastaven na "name \_ desc"; v opačném případě by měl být nastaven na prázdný řetězec. Tyto dva příkazy umožňují zobrazení nastavit hypertextové odkazy záhlaví sloupce následujícím způsobem:
 
 | Aktuální pořadí řazení | Hypertextový odkaz na poslední jméno | Hypertextový odkaz na datum |
 | --- | --- | --- |
@@ -60,15 +60,15 @@ Jedná se o Ternární příkazy. První z nich určuje, že pokud parametr `sor
 | Datum vzestupné | ascending | descending |
 | Datum sestupné | ascending | ascending |
 
-Metoda používá [LINQ to Entities](https://msdn.microsoft.com/library/bb386964.aspx) k určení sloupce, podle kterého se má řadit. Kód vytvoří proměnnou [IQueryable](https://msdn.microsoft.com/library/bb351562.aspx) před příkazem `switch`, upraví ji v příkazu `switch` a zavolá metodu `ToList` po `switch` příkaz. Při vytváření a úpravách `IQueryable` proměnných se do databáze neodesílají žádné dotazy. Dotaz není proveden, dokud nepřevedete objekt `IQueryable` do kolekce voláním metody, jako je například `ToList`. Proto tento kód má za následek jeden dotaz, který není proveden do příkazu `return View`.
+Metoda používá [LINQ to Entities](https://msdn.microsoft.com/library/bb386964.aspx) k určení sloupce, podle kterého se má řadit. Kód vytvoří proměnnou [IQueryable](https://msdn.microsoft.com/library/bb351562.aspx) před `switch` příkazem, upraví ji v `switch` příkazu a zavolá `ToList` metodu po `switch` příkazu. Při vytváření a úpravách `IQueryable` proměnných se do databáze neodesílají žádné dotazy. Dotaz není proveden, dokud neprovedete převod `IQueryable` objektu do kolekce voláním metody, jako je například `ToList` . Proto tento kód má za následek jediný dotaz, který není proveden do `return View` příkazu.
 
 ### <a name="add-column-heading-hyperlinks-to-the-student-index-view"></a>Přidat hypertextové odkazy záhlaví sloupce do zobrazení indexu studenta
 
-V *Views\Student\Index.cshtml*nahraďte prvky `<tr>` a `<th>` pro řádek záhlaví zvýrazněným kódem:
+V *Views\Student\Index.cshtml*nahraďte `<tr>` elementy a `<th>` pro řádek záhlaví zvýrazněným kódem:
 
 [!code-cshtml[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.cshtml?highlight=5-15)]
 
-Tento kód používá informace ve vlastnostech `ViewBag` k nastavení hypertextových odkazů s příslušnými hodnotami řetězce dotazu.
+Tento kód používá informace ve `ViewBag` vlastnostech k nastavení hypertextových odkazů s odpovídajícími hodnotami řetězce dotazu.
 
 Spusťte stránku a kliknutím na záhlaví sloupce **Poslední název** a **Datum registrace** ověřte, že řazení funguje.
 
@@ -84,18 +84,18 @@ Chcete-li přidat filtrování na stránku indexu studentů, přidejte do zobraz
 
 ### <a name="add-filtering-functionality-to-the-index-method"></a>Přidání funkce filtrování do metody index
 
-V *Controllers\StudentController.cs*nahraďte metodu `Index` následujícím kódem (změny jsou zvýrazněny):
+V *Controllers\StudentController.cs*nahraďte `Index` metodu následujícím kódem (změny jsou zvýrazněny):
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.cs?highlight=1,7-11)]
 
-Přidali jste do metody `Index` parametr `searchString`. Do příkazu LINQ jste také přidali klauzuli `where`, která vybere pouze studenty, jejichž křestní jméno nebo příjmení obsahuje hledaný řetězec. Hodnota vyhledávacího řetězce je přijímána z textového pole, které přidáte do zobrazení index. Příkaz, který přidá klauzuli [WHERE](https://msdn.microsoft.com/library/bb535040.aspx) , je proveden pouze v případě, že existuje hodnota, která se má vyhledat.
+Přidali jste `searchString` do `Index` metody parametr. Do příkazu LINQ jste přidali také `where` klauzuli, která vybere pouze studenty, jejichž křestní jméno nebo příjmení obsahuje hledaný řetězec. Hodnota vyhledávacího řetězce je přijímána z textového pole, které přidáte do zobrazení index. Příkaz, který přidá klauzuli [WHERE](https://msdn.microsoft.com/library/bb535040.aspx) , je proveden pouze v případě, že existuje hodnota, která se má vyhledat.
 
 > [!NOTE]
-> V mnoha případech můžete zavolat stejnou metodu buď na Entity Framework sadu entit nebo jako metodu rozšíření v kolekci v paměti. Výsledky jsou normálně stejné, ale v některých případech se mohou lišit. Například .NET Framework implementace metody `Contains` vrátí všechny řádky, když do ní předáte prázdný řetězec, ale zprostředkovatel Entity Framework pro SQL Server Compact 4,0 vrátí nulové řádky pro prázdné řetězce. Proto kód v příkladu (vložení příkazu `Where` do příkazu `if`) zajistí, že získáte stejné výsledky pro všechny verze SQL Server. Kromě toho .NET Framework implementace `Contains` metody ve výchozím nastavení provádí porovnávání s rozlišováním velkých a malých písmen, Entity Framework ale zprostředkovatelé SQL Server ve výchozím nastavení nerozlišuje velká a malá písmena. Proto voláním metody `ToUpper` pro zajištění, že test explicitně nerozlišuje velká a malá písmena, zajistí, že se výsledky nezmění při pozdějším změně kódu pro použití úložiště, které vrátí kolekci `IEnumerable` namísto objektu `IQueryable`. (Při volání metody `Contains` v kolekci `IEnumerable`, získáte .NET Framework implementaci. Pokud ji voláte na `IQueryable` objekt, získáte implementaci poskytovatele databáze.)
+> V mnoha případech můžete zavolat stejnou metodu buď na Entity Framework sadu entit nebo jako metodu rozšíření v kolekci v paměti. Výsledky jsou normálně stejné, ale v některých případech se mohou lišit. Například implementace `Contains` metody .NET Framework metoda vrátí všechny řádky, když do ní předáte prázdný řetězec, ale poskytovatel Entity Framework pro SQL Server Compact 4,0 vrátí nulové řádky pro prázdné řetězce. Proto kód v příkladu (vložení `Where` příkazu do `if` příkazu) zajistí, že získáte stejné výsledky pro všechny verze SQL Server. Také .NET Framework implementace `Contains` metody provádí porovnání rozlišovat velká a malá písmena, ale ve výchozím nastavení Entity Framework SQL Server poskytovatelé nerozlišuje velká a malá písmena. Proto volání `ToUpper` metody k tomu, aby test explicitně nerozlišuje malá a velká písmena, zajistí, že se výsledky nezmění při pozdějším změně kódu pro použití úložiště, které vrátí `IEnumerable` kolekci namísto `IQueryable` objektu. (Při volání `Contains` metody v `IEnumerable` kolekci získáte .NET Framework implementaci; při volání na `IQueryable` objekt získáte implementaci poskytovatele databáze.)
 
 ### <a name="add-a-search-box-to-the-student-index-view"></a>Přidání vyhledávacího pole do zobrazení indexu studenta
 
-V *Views\Student\Index.cshtml*přidejte zvýrazněný kód těsně před otevírací značku `table`, aby se vytvořil titulek, textové pole a tlačítko **hledání** .
+V *Views\Student\Index.cshtml*přidejte zvýrazněný kód těsně před počáteční `table` značku, aby se vytvořil titulek, textové pole a tlačítko **hledání** .
 
 [!code-cshtml[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.cshtml?highlight=5-10)]
 
@@ -107,13 +107,13 @@ Všimněte si, že adresa URL neobsahuje hledaný řetězec "a", což znamená, 
 
 ## <a name="add-paging-to-the-students-index-page"></a>Přidat stránkování na stránku indexu studentů
 
-Pokud chcete přidat stránkování na stránku indexu studentů, začněte tím, že nainstalujete balíček NuGet **PagedList. Mvc** . Pak provedete další změny v metodě `Index` a přidáte odkazy na stránkování do zobrazení `Index`. **PagedList. Mvc** je jedním z mnoha dobrých balíčků pro stránkování a seřazení pro ASP.NET MVC a její použití je určeno pouze jako příklad, nikoli jako doporučení pro jiné možnosti. Na následujícím obrázku jsou znázorněny odkazy na stránkování.
+Pokud chcete přidat stránkování na stránku indexu studentů, začněte tím, že nainstalujete balíček NuGet **PagedList. Mvc** . Pak provedete další změny v `Index` metodě a přidáte odkazy na stránkování do `Index` zobrazení. **PagedList. Mvc** je jedním z mnoha dobrých balíčků pro stránkování a seřazení pro ASP.NET MVC a její použití je určeno pouze jako příklad, nikoli jako doporučení pro jiné možnosti. Na následujícím obrázku jsou znázorněny odkazy na stránkování.
 
 ![Students_index_page_with_paging](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image5.png)
 
 ### <a name="install-the-pagedlistmvc-nuget-package"></a>Instalace balíčku NuGet PagedList. MVC
 
-Balíček NuGet **PagedList. Mvc** automaticky nainstaluje balíček **PagedList** jako závislost. Balíček **PagedList** nainstaluje typ kolekce `PagedList` a metody rozšíření pro kolekce `IQueryable` a `IEnumerable`. Metody rozšíření vytvářejí v kolekci `PagedList` jednu stránku dat mimo `IQueryable` nebo `IEnumerable`a kolekce `PagedList` poskytuje několik vlastností a metod, které usnadňují stránkování. Balíček **PagedList. Mvc** nainstaluje pomocný objekt pro stránkování, který zobrazí tlačítka stránkování.
+Balíček NuGet **PagedList. Mvc** automaticky nainstaluje balíček **PagedList** jako závislost. Balíček **PagedList** nainstaluje `PagedList` typ kolekce a metody rozšíření pro `IQueryable` `IEnumerable` kolekce a. Metody rozšíření vytvoří v kolekci jednu stránku dat `PagedList` mimo vaše `IQueryable` nebo `IEnumerable` a `PagedList` kolekce poskytuje několik vlastností a metod, které usnadňují stránkování. Balíček **PagedList. Mvc** nainstaluje pomocný objekt pro stránkování, který zobrazí tlačítka stránkování.
 
 V nabídce **nástroje** vyberte **Správce balíčků NuGet** a pak **spravujte balíčky NuGet pro řešení**.
 
@@ -127,33 +127,33 @@ V poli **Vybrat projekty** klikněte na tlačítko **OK**.
 
 ### <a name="add-paging-functionality-to-the-index-method"></a>Přidání funkce stránkování do metody index
 
-Do *Controllers\StudentController.cs*přidejte příkaz `using` pro obor názvů `PagedList`:
+V *Controllers\StudentController.cs*přidejte `using` příkaz pro `PagedList` obor názvů:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.cs)]
 
-Metodu `Index` nahraďte následujícím kódem:
+Nahraďte metodu `Index` následujícím kódem:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample7.cs)]
 
-Tento kód přidá parametr `page`, aktuální parametr pořadí řazení a aktuální parametr filtru na signaturu metody, jak je znázorněno zde:
+Tento kód přidá `page` parametr, aktuální parametr pořadí řazení a aktuální parametr filtru na signaturu metody, jak je znázorněno zde:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample8.cs)]
 
-Při prvním zobrazení stránky, nebo pokud uživatel neklikl na odkaz na stránkování nebo řazení, všechny parametry budou mít hodnotu null. Pokud se klikne na odkaz na stránkování, proměnná `page` bude obsahovat číslo stránky, které se má zobrazit.
+Při prvním zobrazení stránky, nebo pokud uživatel neklikl na odkaz na stránkování nebo řazení, všechny parametry budou mít hodnotu null. Pokud se klikne na odkaz na stránkování, `page` proměnná bude obsahovat číslo stránky, které se má zobrazit.
 
-vlastnost `A ViewBag` poskytuje zobrazení s aktuálním pořadím řazení, protože musí být součástí odkazů stránkování, aby při stránkování zůstalo stejné pořadí řazení:
+`A ViewBag`vlastnost poskytuje zobrazení s aktuálním pořadím řazení, protože musí být součástí odkazů stránkování, aby pořadí řazení bylo stejné při stránkování:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample9.cs)]
 
-Jiná vlastnost, `ViewBag.CurrentFilter`, poskytuje zobrazení s aktuálním řetězcem filtru. Tato hodnota musí být součástí odkazů stránkování, aby bylo možné zachovat nastavení filtru během stránkování, a při zobrazení stránky musí být obnovena do textového pole. Pokud se hledaný řetězec během stránkování změní, je nutné obnovit stránku na 1, protože nový filtr může mít za následek zobrazení různých dat. Hledaný řetězec se změní, když je v textovém poli vložena hodnota a stisknete tlačítko Odeslat. V takovém případě parametr `searchString` nemá hodnotu null.
+Jiná vlastnost, `ViewBag.CurrentFilter` , poskytuje zobrazení s aktuálním řetězcem filtru. Tato hodnota musí být součástí odkazů stránkování, aby bylo možné zachovat nastavení filtru během stránkování, a při zobrazení stránky musí být obnovena do textového pole. Pokud se hledaný řetězec během stránkování změní, je nutné obnovit stránku na 1, protože nový filtr může mít za následek zobrazení různých dat. Hledaný řetězec se změní, když je v textovém poli vložena hodnota a stisknete tlačítko Odeslat. V takovém případě `searchString` parametr není null.
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample10.cs)]
 
-Na konci metody `ToPagedList` metoda rozšíření na `IQueryable` objekt Students převede dotaz studenta na jednu stránku studentů v typu kolekce, který podporuje stránkování. Tato jediná strana studentů se pak předává do zobrazení:
+Na konci metody `ToPagedList` metoda rozšíření na objektu Students `IQueryable` převede dotaz studenta na jednu stránku studentů v typu kolekce, který podporuje stránkování. Tato jediná strana studentů se pak předává do zobrazení:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample11.cs)]
 
-Metoda `ToPagedList` přebírá číslo stránky. Dvě otazníky reprezentují [operátor slučování s hodnotou null](https://msdn.microsoft.com/library/ms173224.aspx). Operátor slučování null definuje výchozí hodnotu pro typ s možnou hodnotou null. výraz `(page ?? 1)` znamená vrátit hodnotu `page`, pokud má hodnotu, nebo vrátí hodnotu 1, pokud `page` má hodnotu null.
+`ToPagedList`Metoda přebírá číslo stránky. Dvě otazníky reprezentují [operátor slučování s hodnotou null](https://msdn.microsoft.com/library/ms173224.aspx). Operátor slučování null definuje výchozí hodnotu pro typ s možnou hodnotou null. výraz `(page ?? 1)` znamená, že vrátí hodnotu `page` , pokud má hodnotu, nebo vrátí hodnotu 1, pokud `page` má hodnotu null.
 
 ### <a name="add-paging-links-to-the-student-index-view"></a>Přidat odkazy na stránkování do zobrazení indexu studenta
 
@@ -161,9 +161,9 @@ V *Views\Student\Index.cshtml*nahraďte existující kód následujícím kódem
 
 [!code-cshtml[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample12.cshtml?highlight=6,9,14-20,56-58)]
 
-Příkaz `@model` v horní části stránky určuje, že zobrazení nyní Získá objekt `PagedList` namísto objektu `List`.
+`@model`Příkaz v horní části stránky určuje, že zobrazení nyní získá `PagedList` objekt namísto `List` objektu.
 
-Příkaz `using` pro `PagedList.Mvc` poskytuje přístup k Pomocníkovi MVC pro tlačítka stránkování.
+`using`Příkaz pro `PagedList.Mvc` poskytuje přístup k Pomocníkovi MVC pro tlačítka stránkování.
 
 Kód používá přetížení [BeginForm](https://msdn.microsoft.com/library/system.web.mvc.html.formextensions.beginform(v=vs.108).aspx) , které umožňuje určit [FormMethod. Get](https://msdn.microsoft.com/library/system.web.mvc.formmethod(v=vs.100).aspx/css).
 
@@ -183,13 +183,13 @@ Zobrazí se aktuální stránka a celkový počet stránek.
 
 [!code-cshtml[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample16.cshtml)]
 
-Pokud neexistují žádné stránky k zobrazení, zobrazí se hodnota "stránka 0 0". (V takovém případě je číslo stránky větší než počet stránek, protože `Model.PageNumber` 1 a `Model.PageCount` je 0.)
+Pokud neexistují žádné stránky k zobrazení, zobrazí se hodnota "stránka 0 0". (V takovém případě je číslo stránky větší než počet stránek, protože `Model.PageNumber` je 1 a `Model.PageCount` je 0.)
 
-Tlačítka stránkování jsou zobrazena pomocí pomocníka `PagedListPager`:
+Pomocná tlačítka jsou zobrazena `PagedListPager` pomocníkem:
 
 [!code-cshtml[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample17.cshtml)]
 
-Pomocná aplikace `PagedListPager` poskytuje řadu možností, které můžete přizpůsobit, včetně adres URL a stylů. Další informace najdete v tématu [TroyGoode/PagedList](https://github.com/TroyGoode/PagedList) na webu GitHubu.
+`PagedListPager`Pomocná aplikace nabízí řadu možností, které můžete přizpůsobit, včetně adres URL a stylů. Další informace najdete v tématu [TroyGoode/PagedList](https://github.com/TroyGoode/PagedList) na webu GitHubu.
 
 Spusťte stránku.
 
@@ -204,8 +204,8 @@ Kliknutím na odkazy na stránkování v různých pořadích řazení zajistět
 Pro stránku se stránkou společnosti Contoso na univerzitě se zobrazí, kolik studentů se zaregistrovalo pro každé datum registrace. To vyžaduje seskupování a jednoduché výpočty skupin. K tomu je třeba provést následující akce:
 
 - Vytvořte třídu zobrazení modelu pro data, která potřebujete předat zobrazení.
-- V kontroleru `Home` upravte metodu `About`.
-- Upravte zobrazení `About`.
+- Upravte `About` metodu v `Home` kontroleru.
+- Upravte `About` zobrazení.
 
 ### <a name="create-the-view-model"></a>Vytvoření modelu zobrazení
 
@@ -215,7 +215,7 @@ Vytvořte složku *ViewModels* . V této složce přidejte soubor třídy *Enrol
 
 ### <a name="modify-the-home-controller"></a>Úprava domovského kontroleru
 
-V *HomeController.cs*přidejte na začátek souboru následující příkazy `using`:
+V *HomeController.cs*přidejte na `using` začátek souboru následující příkazy:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample19.cs)]
 
@@ -223,11 +223,11 @@ Přidejte proměnnou třídy pro kontext databáze hned za levou složenou závo
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample20.cs?highlight=3)]
 
-Metodu `About` nahraďte následujícím kódem:
+Nahraďte metodu `About` následujícím kódem:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample21.cs)]
 
-Příkaz LINQ seskupuje entity studenta podle data registrace, vypočítá počet entit v každé skupině a ukládá výsledky do kolekce `EnrollmentDateGroup` objektů modelu zobrazení.
+Příkaz LINQ seskupuje entity studenta podle data registrace, vypočítá počet entit v každé skupině a uloží výsledky do kolekce `EnrollmentDateGroup` objektů zobrazení modelu.
 
 Přidejte `Dispose` metodu:
 
@@ -249,15 +249,15 @@ Zatím je vaše aplikace spuštěná místně v IIS Express ve vývojovém poč�
 
 ### <a name="using-code-first-migrations-to-deploy-the-database"></a>Nasazení databáze pomocí Migrace Code First
 
-K nasazení databáze, kterou použijete Migrace Code First. Když vytvoříte profil publikování, který použijete ke konfiguraci nastavení pro nasazení ze sady Visual Studio, zaškrtněte políčko, které je označeno jako spouštěné **migrace Code First (spouští se při spuštění aplikace)** . Toto nastavení způsobí, že proces nasazení automaticky konfiguruje soubor *Web. config* aplikace na cílovém serveru tak, aby Code First používal třídu inicializátoru `MigrateDatabaseToLatestVersion`.
+K nasazení databáze, kterou použijete Migrace Code First. Když vytvoříte profil publikování, který použijete ke konfiguraci nastavení pro nasazení ze sady Visual Studio, zaškrtněte políčko, které je označeno jako spouštěné **migrace Code First (spouští se při spuštění aplikace)**. Toto nastavení způsobí, že proces nasazení automaticky nakonfiguruje soubor *Web.config* aplikace na cílovém serveru tak, aby Code First používá `MigrateDatabaseToLatestVersion` třídu inicializátoru.
 
-Aplikace Visual Studio během procesu nasazení neprovede žádné akce s databází. Když nasazená aplikace přistupuje k databázi poprvé po nasazení, Code First automaticky vytvoří databázi nebo aktualizuje schéma databáze na nejnovější verzi. Pokud aplikace implementuje migrace `Seed` metody, metoda se spustí po vytvoření databáze nebo aktualizaci schématu.
+Aplikace Visual Studio během procesu nasazení neprovede žádné akce s databází. Když nasazená aplikace přistupuje k databázi poprvé po nasazení, Code First automaticky vytvoří databázi nebo aktualizuje schéma databáze na nejnovější verzi. Pokud aplikace implementuje `Seed` metodu migrace, metoda se spustí po vytvoření databáze nebo aktualizaci schématu.
 
-Vaše migrace `Seed` metodu vloží testovací data. Pokud jste nasadili do provozního prostředí, bude nutné změnit metodu `Seed` tak, aby do ní vložila pouze data, která chcete vložit do provozní databáze. Například v aktuálním datovém modelu možná budete chtít mít reálné kurzy, ale fiktivní studenty ve vývojové databázi. Můžete napsat metodu `Seed` pro načtení ve vývoji a pak před nasazením do produkčního prostředí odkomentovat fiktivní studenty. Nebo můžete napsat metodu `Seed` pro načtení pouze kurzů a zadat fiktivní studenty do testovací databáze ručně pomocí uživatelského rozhraní aplikace.
+`Seed`Metoda migrace vloží testovací data. Pokud jste nasadili do provozního prostředí, budete muset změnit metodu tak, aby byla vložena `Seed` pouze data, která chcete vložit do provozní databáze. Například v aktuálním datovém modelu možná budete chtít mít reálné kurzy, ale fiktivní studenty ve vývojové databázi. Můžete napsat `Seed` metodu pro načtení ve vývoji a pak před nasazením do produkčního prostředí odkomentovat fiktivní studenty. Nebo můžete napsat `Seed` metodu pro načtení pouze kurzů a zadat fiktivní studenty do testovací databáze ručně pomocí uživatelského rozhraní aplikace.
 
 ### <a name="get-a-windows-azure-account"></a>Získat účet Windows Azure
 
-Budete potřebovat účet Microsoft Azure. Pokud ho ještě nemáte, můžete si během několika minut vytvořit bezplatný zkušební účet. Podrobnosti najdete v článku [bezplatná zkušební verze Windows Azure](https://azure.microsoft.com/free/?WT.mc_id=A443DD604).
+Budete potřebovat účet Microsoft Azure. Pokud ho ještě nemáte, můžete si během několika minut vytvořit bezplatný zkušební účet. Podrobnosti najdete v článku [bezplatná zkušební verze Windows Azure](https://azure.microsoft.com/free/dotnet/).
 
 ### <a name="create-a-web-site-and-a-sql-database-in-windows-azure"></a>Vytvoření webu a databáze SQL ve Windows Azure
 
@@ -286,7 +286,7 @@ Windows Azure SQL Database je cloudová služba relačních databází, která j
 7. Klikněte na šipku, která odkazuje na pravou stranu v poli. Průvodce přejde do kroku **nastavení databáze** .
 8. Do pole **název** zadejte *ContosoUniversityDB*.
 9. V poli **Server** vyberte **Nový SQL Database Server**. Případně, pokud jste dříve vytvořili server, můžete vybrat tento server z rozevíracího seznamu.
-10. Zadejte **přihlašovací jméno** a **heslo**správce. Pokud jste vybrali **nový SQL Database Server** nevstupujete sem existující jméno a heslo, zadáváte nové jméno a heslo, které teď definujete pro pozdější použití při přístupu k databázi. Pokud jste vybrali Server, který jste vytvořili dříve, zadáte přihlašovací údaje pro tento server. Pro tento kurz nezaškrtněte políčko ***Upřesnit*** . ***Rozšířené*** možnosti umožňují nastavit [kolaci](https://msdn.microsoft.com/library/aa174903(v=SQL.80).aspx)databáze.
+10. Zadejte **přihlašovací jméno** a **heslo**správce. Pokud jste vybrali **Nový server služby SQL Database**, tak nezadáváte existující jméno a heslo, ale nové jméno a heslo, které teď definujete pro pozdější použití při přístupu k databázi. Pokud jste vybrali Server, který jste vytvořili dříve, zadáte přihlašovací údaje pro tento server. Pro tento kurz nezaškrtněte políčko ***Upřesnit*** . ***Rozšířené*** možnosti umožňují nastavit [kolaci](https://msdn.microsoft.com/library/aa174903(v=SQL.80).aspx)databáze.
 11. Zvolte stejnou **oblast** , kterou jste zvolili pro web.
 12. Kliknutím na značku zaškrtnutí v pravém dolním rohu pole označíte, že jste hotovi.   
   
@@ -316,18 +316,18 @@ Windows Azure SQL Database je cloudová služba relačních databází, která j
 
     ![Stáhnout soubor předplatného](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image21.png)
 
-    r. V okně prohlížeče uložte soubor *. publishsettings* .
+    c. V okně prohlížeče uložte soubor *. publishsettings* .
 
     ![Stažení souboru. publishsettings](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image22.png)
 
     > [!WARNING]
-    > Zabezpečení – soubor *publishsettings* obsahuje vaše přihlašovací údaje (nekódované), které se používají ke správě předplatných a služeb Windows Azure. Osvědčeným postupem zabezpečení pro tento soubor je uložit ho dočasně mimo vaše zdrojové adresáře (například ve složce *Libraries\Documents* ) a po dokončení importu ho odstranit. Uživatel se zlými úmysly, který získá přístup k souboru `.publishsettings`, může upravit, vytvořit a odstranit vaše služby Windows Azure.
+    > Zabezpečení – soubor *publishsettings* obsahuje vaše přihlašovací údaje (nekódované), které se používají ke správě předplatných a služeb Windows Azure. Osvědčeným postupem zabezpečení pro tento soubor je uložit ho dočasně mimo vaše zdrojové adresáře (například ve složce *Libraries\Documents* ) a po dokončení importu ho odstranit. Uživatel se zlými úmysly, který získá přístup k `.publishsettings` souboru, může upravit, vytvořit a odstranit vaše služby Windows Azure.
 
-    trojrozměrné. V dialogovém okně **importovat předplatná Windows Azure** klikněte na **Procházet** a přejděte na soubor *. publishsettings* .
+    d. V dialogovém okně **importovat předplatná Windows Azure** klikněte na **Procházet** a přejděte na soubor *. publishsettings* .
 
     ![Stáhnout sub](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image23.png)
 
-    cerebrální. Klikněte na **importovat**.
+    e. Klikněte na **importovat**.
 
     ![import](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image24.png)
 4. V dialogovém okně **Importovat profil publikování** vyberte **importovat z webu Windows Azure**, v rozevíracím seznamu vyberte svůj web a pak klikněte na **OK**.  
@@ -336,15 +336,15 @@ Windows Azure SQL Database je cloudová služba relačních databází, která j
 5. Na kartě **připojení** klikněte na **ověřit připojení** a ujistěte se, že jsou nastavení správná.  
   
     ![Ověřit připojení](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image26.png)
-6. Po ověření připojení se zobrazí zelená značka zaškrtnutí vedle tlačítka **ověřit připojení** . Klikněte na tlačítko **Další**.  
+6. Po ověření připojení se zobrazí zelená značka zaškrtnutí vedle tlačítka **ověřit připojení** . Klikněte na **Další**.  
   
     ![Připojení bylo úspěšně ověřeno.](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image27.png)
 7. V části **SchoolContext** otevřete rozevírací seznam **řetězce vzdáleného připojení** a vyberte připojovací řetězec pro databázi, kterou jste vytvořili.
-8. Vyberte **Execute migrace Code First (spouští se při spuštění aplikace)** .
-9. Zrušte kontrolu **použití tohoto připojovacího řetězce za běhu** pro **userContext (DefaultConnection)** , protože tato aplikace nepoužívá databázi členství.   
+8. Vyberte **Execute migrace Code First (spouští se při spuštění aplikace)**.
+9. Zrušte kontrolu **použití tohoto připojovacího řetězce za běhu** pro **userContext (DefaultConnection)**, protože tato aplikace nepoužívá databázi členství.   
   
-    ![Karta Nastavení](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image28.png)
-10. Klikněte na tlačítko **Další**.
+    ![Karta nastavení](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image28.png)
+10. Klikněte na **Další**.
 11. Na kartě **Náhled** klikněte na možnost **Spustit náhled**.  
   
     ![Tlačítko StartPreview na kartě Preview](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image29.png)  
@@ -352,7 +352,7 @@ Windows Azure SQL Database je cloudová služba relačních databází, která j
     Karta zobrazuje seznam souborů, které se zkopírují na server. Zobrazení náhledu není vyžadováno pro publikování aplikace, ale je užitečnou funkcí, kterou je třeba znát. V takovém případě nemusíte nic dělat se seznamem zobrazených souborů. Při příštím nasazení této aplikace se v tomto seznamu zobrazí pouze soubory, které se změnily.  
   
     ![Výstup souboru StartPreview](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image30.png)
-12. Klikněte na **publikovat**.  
+12. Klikněte na **Publikovat**.  
     Visual Studio zahájí proces kopírování souborů do Windows Azure serveru.
 13. Okno **výstup** zobrazuje, jaké akce nasazení byly provedeny, a oznamuje úspěšné dokončení nasazení.  
   
@@ -362,17 +362,17 @@ Windows Azure SQL Database je cloudová služba relačních databází, která j
   
     ![Students_index_page_with_paging](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image32.png)
 
-V tomto okamžiku byla databáze *SchoolContext* vytvořena ve Windows Azure SQL Database, protože jste vybrali možnost **Spustit migrace Code First (spouští se při spuštění aplikace)** . Soubor *Web. config* na nasazeném webu byl změněn tak, aby byl spuštěn inicializátor [MigrateDatabaseToLatestVersion](https://msdn.microsoft.com/library/hh829476(v=vs.103).aspx) při prvním načtení nebo zápisu dat do databáze (ke kterému došlo po výběru karty **Students** ):
+V tomto okamžiku byla databáze *SchoolContext* vytvořena ve Windows Azure SQL Database, protože jste vybrali možnost **Spustit migrace Code First (spouští se při spuštění aplikace)**. *Web.config* soubor na nasazeném webu byl změněn tak, aby byl spuštěn inicializátor [MigrateDatabaseToLatestVersion](https://msdn.microsoft.com/library/hh829476(v=vs.103).aspx) při prvním načtení nebo zapsání dat v databázi (ke kterému došlo po výběru karty **Students** ):
 
 ![](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image33.png)
 
-Proces nasazení také vytvořil nový připojovací řetězec *(SchoolContext\_DatabasePublish*), který migrace Code First použít k aktualizaci schématu databáze a k osazení databáze.
+Proces nasazení taky vytvořil nový připojovací řetězec *(SchoolContext \_ DatabasePublish*migrace Code First), který se používá k aktualizaci schématu databáze a k osazení databáze.
 
 ![Připojovací řetězec Database_Publish](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image34.png)
 
 Připojovací řetězec *DefaultConnection* je pro databázi členství (kterou v tomto kurzu nepoužíváme). Připojovací řetězec *SchoolContext* je pro databázi ContosoUniversity.
 
-Nasazenou verzi souboru Web. config můžete najít na svém vlastním počítači v *ContosoUniversity\obj\Release\Package\PackageTmp\Web.config*. K nasazenému souboru *Web. config* se můžete dostat pomocí FTP. Pokyny najdete v tématu [nasazení webu ASP.NET pomocí sady Visual Studio: nasazení aktualizace kódu](../../../../web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md). Postupujte podle pokynů, které začínají na používání nástroje FTP, potřebujete tři věci: adresa URL serveru FTP, uživatelské jméno a heslo. "
+Nasazenou verzi Web.config souboru můžete najít na svém počítači v *ContosoUniversity\obj\Release\Package\PackageTmp\Web.config*. K nasazenému *Web.config* souboru můžete přistupovat pomocí FTP. Pokyny najdete v tématu [nasazení webu ASP.NET pomocí sady Visual Studio: nasazení aktualizace kódu](../../../../web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md). Postupujte podle pokynů, které začínají na používání nástroje FTP, potřebujete tři věci: adresa URL serveru FTP, uživatelské jméno a heslo. "
 
 > [!NOTE]
 > Webová aplikace neimplementuje zabezpečení, takže kdokoli, kdo najde adresu URL, může data změnit. Pokyny k zabezpečení webu najdete v tématu [nasazení zabezpečené aplikace ASP.NET MVC pomocí členství, protokolu OAuth a SQL Database na web Windows Azure](https://docs.microsoft.com/aspnet/core/security/authorization/secure-data). Jiným lidem můžete zabránit v používání webu pomocí Portál pro správu Windows Azure nebo **Průzkumník serveru** v aplikaci Visual Studio k zastavení lokality.
@@ -381,14 +381,14 @@ Nasazenou verzi souboru Web. config můžete najít na svém vlastním počíta�
 
 ## <a name="code-first-initializers"></a>Inicializátory Code First
 
-V části nasazení jste viděli, že se používá inicializátor [MigrateDatabaseToLatestVersion](https://msdn.microsoft.com/library/hh829476(v=vs.103).aspx) . Code First také poskytuje další inicializátory, které lze použít, včetně [metodu createdatabaseifnotexists](https://msdn.microsoft.com/library/gg679221(v=vs.103).aspx) (výchozí), [DropCreateDatabaseIfModelChanges](https://msdn.microsoft.com/library/gg679604(v=VS.103).aspx) a [DropCreateDatabaseAlways](https://msdn.microsoft.com/library/gg679506(v=VS.103).aspx). Inicializátor `DropCreateAlways` může být užitečný pro nastavení podmínek pro testování částí. Můžete také napsat vlastní Inicializátory a můžete zavolat inicializátor explicitně, pokud nechcete čekat, dokud aplikace nenačte nebo zapíše do databáze. Komplexní vysvětlení inicializátorů naleznete v části kapitola 6 příručky [programovacího Entity Framework: Code First](http://shop.oreilly.com/product/0636920022220.do) od Julie Lerman a Rowan Miller.
+V části nasazení jste viděli, že se používá inicializátor [MigrateDatabaseToLatestVersion](https://msdn.microsoft.com/library/hh829476(v=vs.103).aspx) . Code First také poskytuje další inicializátory, které lze použít, včetně [metodu createdatabaseifnotexists](https://msdn.microsoft.com/library/gg679221(v=vs.103).aspx) (výchozí), [DropCreateDatabaseIfModelChanges](https://msdn.microsoft.com/library/gg679604(v=VS.103).aspx) a [DropCreateDatabaseAlways](https://msdn.microsoft.com/library/gg679506(v=VS.103).aspx). `DropCreateAlways`Inicializátor může být užitečný pro nastavení podmínek pro testování částí. Můžete také napsat vlastní Inicializátory a můžete zavolat inicializátor explicitně, pokud nechcete čekat, dokud aplikace nenačte nebo zapíše do databáze. Komplexní vysvětlení inicializátorů naleznete v části kapitola 6 příručky [programovacího Entity Framework: Code First](http://shop.oreilly.com/product/0636920022220.do) od Julie Lerman a Rowan Miller.
 
-## <a name="summary"></a>Přehled
+## <a name="summary"></a>Souhrn
 
 V tomto kurzu jste viděli, jak vytvořit datový model a implementovat základní funkce CRUD, řazení, filtrování, stránkování a seskupování. V dalším kurzu začnete seznámení s pokročilejšími tématy tím, že rozšíříte datový model.
 
 Odkazy na další prostředky Entity Framework najdete v [mapě obsahu pro přístup k datům ASP.NET](../../../../whitepapers/aspnet-data-access-content-map.md).
 
 > [!div class="step-by-step"]
-> [Předchozí](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md)
-> [Další](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md)
+> [Předchozí](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md) 
+>  [Další](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md)
