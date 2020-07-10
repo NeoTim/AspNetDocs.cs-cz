@@ -1,222 +1,220 @@
 ---
 uid: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/examining-the-edit-methods-and-edit-view
-title: Zkoumání metod Edit a zobrazení pro úpravy (C#) | Dokumentace Microsoftu
+title: Zkoumání metod Edit a zobrazení pro úpravy (C#) | Microsoft Docs
 author: Rick-Anderson
-description: V tomto kurzu se seznámíte se základy vytváření ASP.NET MVC webovou aplikaci pomocí Microsoft Visual Web Developer 2010 Express Service Pack 1, což je...
+description: V tomto kurzu se seznámíte se základy vytváření webových aplikací ASP.NET MVC pomocí nástroje Microsoft Visual Web Developer 2010 Express Service Pack 1, který je...
 ms.author: riande
 ms.date: 01/12/2011
 ms.assetid: 1d266bf0-a61e-423b-a3d2-13773d7dafe2
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/examining-the-edit-methods-and-edit-view
 msc.type: authoredcontent
-ms.openlocfilehash: aacc9132a71fdd6ceb210c97001e1030d978836e
-ms.sourcegitcommit: 0f1119340e4464720cfd16d0ff15764746ea1fea
+ms.openlocfilehash: 0fb3d3cf6c1f4634834aaac1e9170218ca5730bb
+ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 04/17/2019
-ms.locfileid: "59393103"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "86163681"
 ---
 # <a name="examining-the-edit-methods-and-edit-view-c"></a>Zkoumání metod Edit a zobrazení pro úpravy (C#)
 
-Podle [Rick Anderson]((https://twitter.com/RickAndMSFT))
+od [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 > > [!NOTE]
-> > Je k dispozici aktualizovaná verze tohoto kurzu [tady](../../../getting-started/introduction/getting-started.md) , která používá ASP.NET MVC 5 a Visual Studio 2013. Je bezpečnější, postupujte podle mnohem jednodušší a ukazuje další funkce.
+> > K [dispozici je](../../../getting-started/introduction/getting-started.md) aktualizovaná verze tohoto kurzu, která používá ASP.NET MVC 5 a Visual Studio 2013. Je to bezpečnější, mnohem jednodušší a ukazuje více funkcí.
 > 
 > 
-> V tomto kurzu se seznámíte se základy vytváření ASP.NET MVC webovou aplikaci pomocí Microsoft Visual Web Developer 2010 Express Service Pack 1, což je bezplatná verze sady Microsoft Visual Studio. Než začnete, ujistěte se, že jste nainstalovali požadavky uvedené níže. Kliknutím na následující odkaz můžete nainstalovat všechny z nich: [Web Platform Installer](https://www.microsoft.com/web/gallery/install.aspx?appid=VWD2010SP1Pack). Alternativně můžete nainstalovat jednotlivě požadavky pomocí následujících odkazů:
+> V tomto kurzu se seznámíte se základy vytváření webových aplikací ASP.NET MVC pomocí nástroje Microsoft Visual Web Developer 2010 Express Service Pack 1, což je bezplatná verze Microsoft Visual Studio. Než začnete, ujistěte se, že jste nainstalovali požadavky uvedené níže. Všechny z nich můžete nainstalovat kliknutím na následující odkaz: instalace [webové platformy](https://www.microsoft.com/web/gallery/install.aspx?appid=VWD2010SP1Pack). Případně můžete požadavky jednotlivě nainstalovat pomocí následujících odkazů:
 > 
-> - [Visual Studio Web Developer Express SP1 požadavky](https://www.microsoft.com/web/gallery/install.aspx?appid=VWD2010SP1Pack)
-> - [ASP.NET MVC 3 Tools Update](https://www.microsoft.com/web/gallery/install.aspx?appsxml=&amp;appid=MVC3)
-> - [SQL Server Compact 4.0](https://www.microsoft.com/web/gallery/install.aspx?appid=SQLCE;SQLCEVSTools_4_0)(podpora modulu runtime a nástroje)
+> - [Požadavky sady Visual Studio Web Developer Express SP1](https://www.microsoft.com/web/gallery/install.aspx?appid=VWD2010SP1Pack)
+> - [Aktualizace nástrojů MVC 3 pro ASP.NET](https://www.microsoft.com/web/gallery/install.aspx?appsxml=&amp;appid=MVC3)
+> - [SQL Server Compact 4,0](https://www.microsoft.com/web/gallery/install.aspx?appid=SQLCE;SQLCEVSTools_4_0)(podpora modulu runtime + nástroje)
 > 
-> Pokud používáte Visual Studio 2010 namísto Visual Web Developer 2010, nainstalujte příslušné požadované součásti po kliknutí na následující odkaz: [Visual Studio 2010 požadavky](https://www.microsoft.com/web/gallery/install.aspx?appsxml=&amp;appid=VS2010SP1Pack).
+> Pokud používáte sadu Visual Studio 2010 místo sady Visual Web Developer 2010, nainstalujte požadavky kliknutím na následující odkaz: sady [Visual studio 2010 požadavky](https://www.microsoft.com/web/gallery/install.aspx?appsxml=&amp;appid=VS2010SP1Pack).
 > 
-> Projekt aplikace Visual Web Developer se zdrojovým kódem jazyka C# je k dispozici v tomto tématu. [Stáhněte si verzi C#](https://code.msdn.microsoft.com/Introduction-to-MVC-3-10d1b098). Pokud dáváte přednost jazyka Visual Basic, přejděte [verze jazyka Visual Basic](../vb/intro-to-aspnet-mvc-3.md) tohoto kurzu.
+> Projekt Visual Web Developer se zdrojovým kódem C# je k dispozici pro toto téma. [Stáhněte si verzi jazyka C#](https://code.msdn.microsoft.com/Introduction-to-MVC-3-10d1b098). Pokud dáváte přednost Visual Basic, přepněte se na [Visual Basic verzi](../vb/intro-to-aspnet-mvc-3.md) tohoto kurzu.
 
+V této části proberete vygenerované metody a zobrazení akcí pro kontroler videí. Pak přidáte vlastní vyhledávací stránku.
 
-V této části budete prozkoumat metody generované akce a zobrazení kontroleru video. Potom přidáte vlastní stránku vyhledávání.
-
-Spusťte aplikaci a přejděte `Movies` řadič přidáním */Movies* na adresu URL do adresního řádku prohlížeče. Podržte ukazatel myši nad **upravit** na adresu URL, která odkazuje na odkaz.
+Spusťte aplikaci a přejděte na `Movies` kontroler připojením */Movies* k adrese URL v adresním řádku prohlížeče. Podržte ukazatel myši na odkaz pro **Úpravy** a zobrazte tak adresu URL, na kterou odkazuje.
 
 [![EditLink_sm](examining-the-edit-methods-and-edit-view/_static/image2.png)](examining-the-edit-methods-and-edit-view/_static/image1.png)
 
-**Upravit** byl vytvořen odkaz `Html.ActionLink` metodu *Views\Movies\Index.cshtml* zobrazení:
+Odkaz **Edit** byl vygenerován `Html.ActionLink` metodou v zobrazení *Views\Movies\Index.cshtml* :
 
 [!code-cshtml[Main](examining-the-edit-methods-and-edit-view/samples/sample1.cshtml)]
 
-[![Html.ActionLink](examining-the-edit-methods-and-edit-view/_static/image4.png)](examining-the-edit-methods-and-edit-view/_static/image3.png)
+[![HTML. ActionLink](examining-the-edit-methods-and-edit-view/_static/image4.png)](examining-the-edit-methods-and-edit-view/_static/image3.png)
 
-`Html` Pomocné rutiny, která je vystavena pomocí vlastnosti ve je objekt `WebViewPage` základní třídy. `ActionLink` Metody pomocné rutiny usnadňuje dynamicky generovat hypertextové odkazy HTML, které jsou propojeny do metody akce v řadičích. První argument `ActionLink` metoda je text odkazu pro vykreslení (například `<a>Edit Me</a>`). Druhým argumentem je název metody akce, která se má vyvolat. Konečný argument je [anonymní objekt](https://weblogs.asp.net/scottgu/archive/2007/05/15/new-orcas-language-feature-anonymous-types.aspx) , který generuje data trasy (v tomto případě ID 4).
+`Html`Objekt je pomocník, který je vystaven pomocí vlastnosti `WebViewPage` základní třídy. `ActionLink`Metoda pomocné rutiny usnadňuje dynamické generování hypertextových odkazů HTML, které odkazují na metody akcí na řadičích. Prvním argumentem `ActionLink` metody je text odkazu, který se má vykreslit (například `<a>Edit Me</a>` ). Druhý argument je název metody akce, která má být vyvolána. Konečný argument je [anonymní objekt](https://weblogs.asp.net/scottgu/archive/2007/05/15/new-orcas-language-feature-anonymous-types.aspx) , který generuje data trasy (v tomto případě ID 4).
 
-Vygenerovaný odkaz je vidět na předchozím obrázku je `http://localhost:xxxxx/Movies/Edit/4`. Vzor adresy URL trvá výchozí trasu `{controller}/{action}/{id}`. Proto převede ASP.NET `http://localhost:xxxxx/Movies/Edit/4` do požadavku na `Edit` metody akce `Movies` řadiče s parametrem `ID` rovna 4.
+Vygenerovaný odkaz uvedený na předchozím obrázku je `http://localhost:xxxxx/Movies/Edit/4` . Výchozí trasa přijímá vzor adresy URL `{controller}/{action}/{id}` . Proto ASP.NET převede `http://localhost:xxxxx/Movies/Edit/4` požadavek na `Edit` metodu akce `Movies` kontroleru s parametrem, který se `ID` rovná 4.
 
-Můžete také předat parametry metody akce pomocí řetězce dotazu. Například adresa URL `http://localhost:xxxxx/Movies/Edit?ID=4` také předá parametr `ID` 4 `Edit` metody akce `Movies` kontroleru.
+Můžete také předat parametry metody akce pomocí řetězce dotazu. Například adresa URL `http://localhost:xxxxx/Movies/Edit?ID=4` také předá parametr `ID` 4 `Edit` metodě Action `Movies` kontroleru.
 
 [![EditQueryString](examining-the-edit-methods-and-edit-view/_static/image6.png)](examining-the-edit-methods-and-edit-view/_static/image5.png)
 
-Otevřít `Movies` kontroleru. Dva `Edit` níže jsou uvedené metody akce.
+Otevřete `Movies` kontroler. Následující dvě `Edit` metody akce jsou uvedeny níže.
 
 [!code-csharp[Main](examining-the-edit-methods-and-edit-view/samples/sample2.cs)]
 
-Všimněte si, že druhá `Edit` předchází metody akce `HttpPost` atribut. Tento atribut určuje, že přetížení `Edit` metodu lze vyvolat pouze pro požadavky POST. Můžete použít `HttpGet` atribut na první upravit metodu, ale to není nezbytné vzhledem k tomu, že je výchozí hodnota. (Budeme odkazovat na metody akce, které jsou přiřazeny implicitně `HttpGet` atribut jako `HttpGet` metody.)
+Všimněte si, že druhá `Edit` Metoda Action předchází `HttpPost` atribut. Tento atribut určuje, že přetížení `Edit` metody lze vyvolat pouze pro požadavky post. Můžete použít `HttpGet` atribut na první metodu Edit, ale to není nutné, protože je to výchozí. (Odkazujeme na metody akcí, které implicitně přiřazují `HttpGet` atribut jako `HttpGet` metody.)
 
-`HttpGet` `Edit` Metoda přijímá parametr ID film, vyhledá videa pomocí Entity Frameworku `Find` metoda a vrátí vybraného videa do zobrazení pro úpravy. Když systém generování uživatelského rozhraní zobrazení pro úpravy, prozkoumat `Movie` třídy a vytvořený kód pro vykreslení `<label>` a `<input>` prvky pro každou vlastnost třídy. Následující příklad ukazuje zobrazení pro úpravy, která byla vygenerována:
+`HttpGet` `Edit` Metoda přebírá parametr ID filmu, vyhledá film pomocí `Find` metody Entity Framework a vrátí vybraný film do zobrazení pro úpravy. Když systém generování uživatelského rozhraní vytvořil zobrazení pro úpravy, zkontroloval `Movie` třídu a vytvořil kód pro vykreslení `<label>` a `<input>` prvky pro každou vlastnost třídy. Následující příklad ukazuje zobrazení pro úpravy, které bylo vygenerováno:
 
 [!code-cshtml[Main](examining-the-edit-methods-and-edit-view/samples/sample3.cshtml)]
 
-Všimněte si, jak se má zobrazit šablonu `@model MvcMovie.Models.Movie` příkazu v horní části souboru, toto nastavení určuje, že zobrazení očekává, že model pro zobrazení šablony, která má být typu `Movie`.
+Všimněte si, jak šablona zobrazení obsahuje `@model MvcMovie.Models.Movie` příkaz v horní části souboru – určuje, že zobrazení očekává, že model pro šablonu zobrazení bude typu `Movie` .
 
-Automaticky generovaný kód používá několik *pomocné metody* zjednodušit značka jazyka HTML. [ `Html.LabelFor` ](https://msdn.microsoft.com/library/gg401864(VS.98).aspx) Pomocné rutiny zobrazí název pole ("Title", "ReleaseDate", "Žánr" nebo "Price"). [ `Html.EditorFor` ](https://msdn.microsoft.com/library/system.web.mvc.html.editorextensions.editorfor(VS.98).aspx) HTML zobrazí pomocná `<input>` elementu. [ `Html.ValidationMessageFor` ](https://msdn.microsoft.com/library/system.web.mvc.html.validationextensions.validationmessagefor(VS.98).aspx) Pomocné rutiny zobrazí všechny zprávy ověření přidružené k této vlastnosti.
+Generovaný kód používá několik *pomocných metod* pro zjednodušení značek HTML. [`Html.LabelFor`](https://msdn.microsoft.com/library/gg401864(VS.98).aspx)Pomocník zobrazuje název pole ("title", "ReleaseDate", "Žánr" nebo "Price"). [`Html.EditorFor`](https://msdn.microsoft.com/library/system.web.mvc.html.editorextensions.editorfor(VS.98).aspx)Pomocník zobrazí prvek jazyka HTML `<input>` . [`Html.ValidationMessageFor`](https://msdn.microsoft.com/library/system.web.mvc.html.validationextensions.validationmessagefor(VS.98).aspx)Pomocník zobrazuje všechny ověřovací zprávy přidružené k této vlastnosti.
 
-Spusťte aplikaci a přejděte */Movies* adresy URL. Klikněte na tlačítko **upravit** odkaz. V prohlížeči zobrazte zdroj stránky. HTML na stránce vypadá jako v následujícím příkladu. (Značky nabídky byl vyloučen pro přehlednost).
+Spusťte aplikaci a přejděte na adresu URL */Movies* . Klikněte na odkaz **Upravit** . V prohlížeči zobrazte zdroj stránky. KÓD HTML na stránce vypadá podobně jako v následujícím příkladu. (Pro přehlednost bylo vyloučeno označení nabídky.)
 
 [!code-html[Main](examining-the-edit-methods-and-edit-view/samples/sample4.html)]
 
-`<input>` Prvky jsou v kódu HTML `<form>` elementu jehož `action` atribut je nastaven na Odeslat požadavek POST */filmy/úpravy* adresy URL. Publikuje se data formuláře na serveru při **upravit** po kliknutí na tlačítko.
+`<input>`Prvky jsou v elementu HTML, `<form>` jehož `action` atribut je nastaven na hodnotu post na adresu URL */Movies/Edit* . Po kliknutí na tlačítko pro **Úpravy** budou data formuláře odeslána na server.
 
-## <a name="processing-the-post-request"></a>Zpracování požadavku POST
+## <a name="processing-the-post-request"></a>Zpracovává se žádost POST.
 
-Následující seznam ukazuje `HttpPost` verzi `Edit` metody akce.
+Následující výpis zobrazuje `HttpPost` verzi `Edit` metody Action.
 
 [!code-csharp[Main](examining-the-edit-methods-and-edit-view/samples/sample5.cs)]
 
-Vazač modelu ASP.NET framework vezme hodnoty odeslaného formuláře a vytvoří `Movie` objektu, který je předán jako `movie` parametru. `ModelState.IsValid` Vrácení se změnami kód ověří, že odeslaná data do formuláře je možné upravit `Movie` objektu. Pokud jsou data platná, uloží kód pro data o filmech `Movies` kolekce `MovieDBContext` instance. Kód pak uloží novou data o filmech k databázi pomocí volání `SaveChanges` metoda `MovieDBContext`, které ukládají změny v databázi. Po uložení dat, kód přesměruje uživatele `Index` metody akce `MoviesController` třídy, což způsobí, že aktualizovaný video zobrazí v seznamu videa.
+Pořadač modelu ASP.NET Framework přebírá hodnoty v zaúčtovaném formuláři a vytvoří `Movie` objekt, který se předává jako `movie` parametr. `ModelState.IsValid`Vrácení se změnami v kódu ověřuje, že data odeslaná ve formuláři lze použít k úpravě `Movie` objektu. Pokud jsou data platná, kód uloží filmová data do `Movies` kolekce `MovieDBContext` instancí. Kód pak uloží nová filmová data do databáze voláním `SaveChanges` metody `MovieDBContext` , která uchovává změny v databázi. Po uložení dat kód přesměruje uživatele na `Index` metodu akce `MoviesController` třídy, což způsobí, že se aktualizovaný film zobrazí v seznamu filmů.
 
-Pokud odeslaných hodnot nejsou platné, se zobrazí znovu ve formuláři. `Html.ValidationMessageFor` Pomocné rutiny v *Edit.cshtml* zobrazení šablony postará o zobrazení odpovídající chybové zprávy.
+Pokud nejsou publikované hodnoty platné, budou ve formuláři znovu zobrazeny. U `Html.ValidationMessageFor` pomocníků v šabloně zobrazení *Edit. cshtml* se postará o zobrazení příslušných chybových zpráv.
 
 [![abcNotValid](examining-the-edit-methods-and-edit-view/_static/image8.png)](examining-the-edit-methods-and-edit-view/_static/image7.png)
 
-> **Poznámka o národních prostředích** Pokud pracujete s národním prostředí než v angličtině, přečtěte si téma [podpůrné technologie ASP.NET MVC 3 ověření pomocí jiné než anglické národní prostředí.](https://msdn.microsoft.com/library/gg674880(VS.98).aspx)
+> **Poznámka o národních prostředích** Pokud běžně pracujete s národním prostředím jiným než angličtinu, přečtěte si téma [Podpora ověřování ASP.NET MVC 3 pomocí jiných než anglických národních prostředí.](https://msdn.microsoft.com/library/gg674880(VS.98).aspx)
 
+## <a name="making-the-edit-method-more-robust"></a>Zvýšení odolnosti metody úprav
 
-## <a name="making-the-edit-method-more-robust"></a>Provádění více robustní úpravy – metoda
-
-`HttpGet` `Edit` Metoda systém generování uživatelského rozhraní vygeneruje neprovádí kontrolu, že je platný Identifikátor, který je předán. Pokud uživatel zruší adresa URL ID segmentu (`http://localhost:xxxxx/Movies/Edit`), zobrazí se následující chyba:
+`HttpGet` `Edit` Metoda vygenerovaná systémem generování uživatelského rozhraní nekontroluje, jestli je ID, které je předáno, platné. Pokud uživatel odebere segment ID z adresy URL ( `http://localhost:xxxxx/Movies/Edit` ), zobrazí se následující chyba:
 
 [![Null_ID](examining-the-edit-methods-and-edit-view/_static/image10.png)](examining-the-edit-methods-and-edit-view/_static/image9.png)
 
-Uživatel může také předat ID, která neexistuje v databázi, jako například `http://localhost:xxxxx/Movies/Edit/1234`. Můžete vytvořit dvě změny `HttpGet` `Edit` metody akce k vyřešení tohoto omezení. Nejprve změňte `ID` parametr mít výchozí hodnotu nula, pokud není explicitně předané ID. Můžete také zkontrolovat, který `Find` skutečně nalezena metoda filmu před vrácením video k šabloně zobrazení. Aktualizovaný `Edit` metoda je uveden níže.
+Uživatel může také předat ID, které v databázi neexistuje, například `http://localhost:xxxxx/Movies/Edit/1234` . `HttpGet` `Edit` K vyřešení tohoto omezení můžete provést dvě změny metody Action. Nejprve změňte `ID` parametr tak, aby měl výchozí hodnotu nula, pokud ID není explicitně úspěšné. Můžete také ověřit, že `Find` metoda skutečně našla film před vrácením objektu videa do šablony zobrazení. Aktualizovaná `Edit` Metoda je uvedena níže.
 
 [!code-csharp[Main](examining-the-edit-methods-and-edit-view/samples/sample6.cs)]
 
-Pokud se nenajde žádný film, `HttpNotFound` metoda je volána.
+Pokud se nenajde žádný film, `HttpNotFound` metoda se zavolá.
 
-Všechny `HttpGet` metody podobné tvar. Dostanou video (nebo seznam objektů, v případě `Index`) a předána do zobrazení modelu. `Create` Metoda předává objekt prázdný film zobrazení pro vytváření. Všechny metody, které vytvořit, upravit, odstranit nebo jinak upravit data, proveďte `HttpPost` přetížení metody. Úpravy dat v metodě GET protokolu HTTP je bezpečnostním rizikem, jak je popsáno v příspěvku blogu [ASP.NET MVC Tip #46 – nepoužívejte odstranit odkazy, protože uživatel vytvořit bezpečnostní díry](http://stephenwalther.com/blog/archive/2009/01/21/asp.net-mvc-tip-46-ndash-donrsquot-use-delete-links-because.aspx). Úpravy dat v metodě GET také porušuje HTTP osvědčené postupy a architektury REST vzor, který určuje, že požadavky GET by neměly měnit stav vaší aplikace. Jinými slovy provádění operace GET by měl být bezpečný provoz, který nemá žádné vedlejší účinky.
+Všechny `HttpGet` metody následují podobně jako vzor. Získají filmový objekt (nebo seznam objektů, v případě `Index` ) a předávají model do zobrazení. `Create`Metoda předá prázdný objekt filmu do zobrazení pro vytváření. Všechny metody, které vytvářejí, upravují, odstraňují nebo jinak upravují data, jsou v `HttpPost` přetížení metody. Úprava dat v metodě HTTP GET je bezpečnostní riziko, jak je popsáno v příspěvku na blogu [ASP.NET #46 Tip – nepoužívejte odstranit propojení, protože vytvářejí bezpečnostní otvory](http://stephenwalther.com/blog/archive/2009/01/21/asp.net-mvc-tip-46-ndash-donrsquot-use-delete-links-because.aspx). Úpravy dat v metodě GET také porušují osvědčené postupy HTTP a model REST architektury, který určuje, že požadavky GET by neměly měnit stav aplikace. Jinými slovy, provádění operace GET by mělo být bezpečná operace, která nemá žádné vedlejší účinky.
 
 ## <a name="adding-a-search-method-and-search-view"></a>Přidání vyhledávací metody a zobrazení vyhledávání
 
-V této části přidáte `SearchIndex` metody akce, která umožňuje hledat filmy podle žánru nebo názvu. To bude k dispozici pomocí */filmy/SearchIndex* adresy URL. Žádost se zobrazí formulář HTML, který obsahuje vstupní prvky, které uživatel můžete přejít k vyplnění aby bylo možné hledat videa. Jakmile uživatel formulář odešle, metoda akce získat hodnoty vyhledávání publikovaných uživatelem, který se hodnoty slouží k vyhledání databáze.
+V této části přidáte `SearchIndex` metodu akce, která umožňuje hledat filmy podle žánru nebo názvu. To bude k dispozici pomocí adresy URL */Movies/SearchIndex* . Požadavek zobrazí formulář HTML, který obsahuje vstupní prvky, které může uživatel vyplnit, aby mohl vyhledat film. Když uživatel formulář odešle, metoda Action Získá hodnoty hledání publikované uživatelem a použije hodnoty pro hledání v databázi.
 
 ## <a name="displaying-the-searchindex-form"></a>Zobrazení formuláře SearchIndex
 
-Začněte přidáním `SearchIndex` metody akce ke stávající `MoviesController` třídy. Metoda vrátí zobrazení obsahující formulář HTML. Zde je kód:
+Začněte přidáním `SearchIndex` metody akce do existující `MoviesController` třídy. Metoda vrátí zobrazení, které obsahuje formulář HTML. Zde je kód:
 
 [!code-csharp[Main](examining-the-edit-methods-and-edit-view/samples/sample7.cs)]
 
-První řádek `SearchIndex` metoda vytvoří následující [LINQ](https://msdn.microsoft.com/library/bb397926.aspx) dotaz pro výběr videa:
+První řádek `SearchIndex` metody vytvoří následující dotaz [LINQ](https://msdn.microsoft.com/library/bb397926.aspx) pro výběr filmů:
 
 [!code-csharp[Main](examining-the-edit-methods-and-edit-view/samples/sample8.cs)]
 
-Dotaz je definován v tomto okamžiku, ale nebyl dosud spuštěn proti úložišti.
+V tomto okamžiku je definován dotaz, ale ještě nebyl spuštěn v úložišti dat.
 
-Pokud `searchString` parametr obsahuje řetězec, dotaz filmy je upravit tak, aby filtrování na základě hodnoty hledaný řetězec, pomocí následujícího kódu:
+Pokud `searchString` parametr obsahuje řetězec, dotaz na filmy je upraven pro filtrování podle hodnoty hledaného řetězce, a to pomocí následujícího kódu:
 
 [!code-csharp[Main](examining-the-edit-methods-and-edit-view/samples/sample9.cs)]
 
-Dotazy LINQ nejsou provedeny, když jsou definovány, nebo při jejich změně voláním metody `Where` nebo `OrderBy`. Místo toho provádění dotazu je odloženo, což znamená, že vyhodnocení výrazu je odloženo jeho očekávané hodnoty ve skutečnosti procházen nebo [ `ToList` ](https://msdn.microsoft.com/library/bb342261.aspx) metoda je volána. V `SearchIndex` ukázkové spuštění dotazu v zobrazení SearchIndex. Další informace o odložený dotaz, naleznete v tématu [provádění dotazu](https://msdn.microsoft.com/library/bb738633.aspx).
+Dotazy LINQ nejsou provedeny při jejich definování nebo při jejich úpravě voláním metody, jako je `Where` nebo `OrderBy` . Místo toho je provádění dotazu odloženo, což znamená, že vyhodnocení výrazu je zpožděno, dokud se jeho realizovaná hodnota neopakuje nebo je [`ToList`](https://msdn.microsoft.com/library/bb342261.aspx) volána metoda. V `SearchIndex` ukázce je dotaz spuštěn v zobrazení SearchIndex. Další informace o odložení provádění dotazů naleznete v tématu [provádění dotazů](https://msdn.microsoft.com/library/bb738633.aspx).
 
-Teď můžete implementovat `SearchIndex` zobrazení, které se uživateli zobrazí formulář. Klepněte pravým tlačítkem myši `SearchIndex` metody a pak klikněte na tlačítko **přidat zobrazení**. V **přidat zobrazení** dialogového okna zadejte, že budete předávat `Movie` objektu, který chcete zobrazit šablonu jako jeho třída modelu. V **šablona Scaffold** klikněte na položku **seznamu**, pak klikněte na tlačítko **přidat**.
+Nyní můžete implementovat `SearchIndex` zobrazení, které zobrazí formulář uživateli. Klikněte pravým tlačítkem uvnitř `SearchIndex` metody a pak klikněte na **Přidat zobrazení**. V dialogovém okně **Přidat zobrazení** určete, že budete předávat `Movie` objekt šabloně zobrazení jako třídu modelu. V seznamu **šablon generování uživatelského rozhraní** zvolte **seznam**a pak klikněte na **Přidat**.
 
 [![AddSearchView](examining-the-edit-methods-and-edit-view/_static/image12.png)](examining-the-edit-methods-and-edit-view/_static/image11.png)
 
-Po kliknutí **přidat** tlačítko, *Views\Movies\SearchIndex.cshtml* vytvoření zobrazení šablony. Protože jste vybrali **seznamu** v **šablona Scaffold** seznamu, automaticky vygenerovat aplikaci Visual Web Developer (automaticky) některé výchozí obsah v zobrazení. Základní kostry aplikace vytvořit formuláře HTML. Je zkontrolován `Movie` třídy a vytvořený kód pro vykreslení `<label>` prvky pro každou vlastnost třídy. Seznam níže zobrazuje zobrazení pro vytváření, která byla vygenerována:
+Po kliknutí na tlačítko **Přidat** se vytvoří šablona zobrazení *Views\Movies\SearchIndex.cshtml* . Vzhledem k tomu, že jste vybrali **seznam** v seznamu **šablon generování uživatelského rozhraní** , aplikace Visual Web Developer automaticky vygenerovala (s generováním uživatelského rozhraní) nějaký výchozí obsah v zobrazení. Generování uživatelského rozhraní vytvořilo formulář HTML. Zkoumala `Movie` třídu a vytvořila kód pro vykreslení `<label>` prvků pro každou vlastnost třídy. Následující výpis zobrazuje zobrazení vytvořit, které bylo vygenerováno:
 
 [!code-cshtml[Main](examining-the-edit-methods-and-edit-view/samples/sample10.cshtml)]
 
-Spusťte aplikaci a přejděte do */filmy/SearchIndex*. Připojte řetězec dotazu jako `?searchString=ghost` na adresu URL. Zobrazují se filtrované filmy.
+Spusťte aplikaci a přejděte na */Movies/SearchIndex*. Připojit řetězec dotazu, například `?searchString=ghost` k adrese URL. Zobrazí se filtrované filmy.
 
 [![SearchQryStr](examining-the-edit-methods-and-edit-view/_static/image14.png)](examining-the-edit-methods-and-edit-view/_static/image13.png)
 
-Pokud se změní podpis `SearchIndex` metoda může mít parametr s názvem `id`, `id` parametr budou odpovídat `{id}` zástupný symbol pro výchozí trasy sady v *Global.asax* souboru.
+Pokud změníte podpis `SearchIndex` metody tak, aby měl parametr s názvem `id` , `id` parametr bude odpovídat `{id}` zástupnému symbolu pro výchozí trasy nastavené v souboru *Global. asax* .
 
 [!code-json[Main](examining-the-edit-methods-and-edit-view/samples/sample11.json)]
 
-Upravené `SearchIndex` metoda vypadá takto:
+Upravená `SearchIndex` Metoda by vypadala takto:
 
 [!code-csharp[Main](examining-the-edit-methods-and-edit-view/samples/sample12.cs)]
 
-Nyní lze předat název vyhledávání jako data trasy (segment adresy URL) místo jako hodnotu řetězce dotazu.
+Nyní můžete název hledání předat jako data trasy (segment adresy URL) místo jako hodnotu řetězce dotazu.
 
 [![SearchRouteData](examining-the-edit-methods-and-edit-view/_static/image16.png)](examining-the-edit-methods-and-edit-view/_static/image15.png)
 
-Ale nemůžete očekávat, že uživatelům změnit adresu URL pokaždé, když chtějí hledat videa. Takže teď jste přidáte uživatelské rozhraní umožňující je filtrovat videa. Pokud jste změnili podpis `SearchIndex` metody testování jak předat parametru ID vázané na trasy, změňte ho tak, aby vaše `SearchIndex` metoda použije parametr řetězce s názvem `searchString`:
+Nemůžete ale očekávat, že uživatelé můžou upravovat adresu URL pokaždé, když chtějí hledat film. Takže teď přidáte uživatelské rozhraní, které jim umožní filtrovat filmy. Pokud jste změnili podpis `SearchIndex` metody pro testování způsobu předání parametru ID vázaného na trasu, změňte jej tak, aby `SearchIndex` Metoda přebírá řetězcový parametr s názvem `searchString` :
 
 [!code-csharp[Main](examining-the-edit-methods-and-edit-view/samples/sample13.cs)]
 
-Otevřít *Views\Movies\SearchIndex.cshtml* souboru a jenom po `@Html.ActionLink("Create New", "Create")`, přidejte následující:
+Otevřete soubor *Views\Movies\SearchIndex.cshtml* a hned za `@Html.ActionLink("Create New", "Create")` přidejte následující:
 
 [!code-cshtml[Main](examining-the-edit-methods-and-edit-view/samples/sample14.cshtml)]
 
-Následující příklad ukazuje část *Views\Movies\SearchIndex.cshtml* soubor se přidal filtrování značek.
+Následující příklad ukazuje část souboru *Views\Movies\SearchIndex.cshtml* s přidaným označením filtrování.
 
 [!code-cshtml[Main](examining-the-edit-methods-and-edit-view/samples/sample15.cshtml)]
 
-`Html.BeginForm` Pomocné rutiny vytvoří počáteční `<form>` značky. `Html.BeginForm` Pomocné rutiny způsobí, že formulář ke zveřejnění na sebe sama, jakmile uživatel formulář odešle kliknutím **filtr** tlačítko.
+`Html.BeginForm`Pomocná rutina vytvoří počáteční `<form>` značku. `Html.BeginForm`Pomocná osoba způsobí odeslání formuláře do sebe sama, když ho uživatel odešle kliknutím na tlačítko **Filtr** .
 
-Spusťte aplikaci a zkuste najít videa.
+Spusťte aplikaci a zkuste vyhledat film.
 
 [![SearchIndxIE9_title](examining-the-edit-methods-and-edit-view/_static/image18.png)](examining-the-edit-methods-and-edit-view/_static/image17.png)
 
-Neexistuje žádná `HttpPost` přetížení `SearchIndex` metody. Není nutné, protože metoda není změněn stav aplikace, stačí filtrování dat.
+Neexistuje `HttpPost` přetížení `SearchIndex` metody. Nepotřebujete ho, protože metoda nemění stav aplikace, stačí data filtrovat.
 
-Můžete přidat následující `HttpPost SearchIndex` metody. V takovém případě by odpovídala původce volání akce `HttpPost SearchIndex` metody a `HttpPost SearchIndex` spustili byste metodu, jak je znázorněno na následujícím obrázku.
+Můžete přidat následující `HttpPost SearchIndex` metodu. V takovém případě by se akce původce shodovala s `HttpPost SearchIndex` metodou a `HttpPost SearchIndex` Metoda by běžela, jak je znázorněno na následujícím obrázku.
 
 [!code-csharp[Main](examining-the-edit-methods-and-edit-view/samples/sample16.cs)]
 
 [![SearchPostGhost](examining-the-edit-methods-and-edit-view/_static/image20.png)](examining-the-edit-methods-and-edit-view/_static/image19.png)
 
-Ale i v případě, že přidáte to `HttpPost` verzi `SearchIndex` metoda, existuje omezení v tom, jak to vše implementován. Představte si, že chcete konkrétní hledání (záložky) nebo chcete poslat odkaz s přáteli, mohou kliknout, chcete-li zobrazit stejné filtrovaný seznam videa. Všimněte si, že adresa URL pro odeslání požadavku HTTP POST je stejný jako adresu URL pro požadavek na získání (localhost:xxxxx/filmy/SearchIndex) – není k dispozici žádné informace o vyhledávání v adrese URL samotného. Pravé teď vyhledávací řetězec informace jsou odeslány na server jako hodnotu pole formuláře. To znamená, že nelze zachytit tyto informace vyhledávání (záložky) nebo odeslat přátel v adrese URL.
+Nicméně i v případě, že přidáte tuto `HttpPost` verzi `SearchIndex` metody, existuje omezení, jak je vše implementováno. Představte si, že chcete vytvořit záložku konkrétního hledání nebo chcete poslat odkaz na přátele, na které můžou kliknout, aby se zobrazil stejný filtrovaný seznam filmů. Všimněte si, že adresa URL požadavku HTTP POST je shodná s adresou URL žádosti GET (localhost: xxxxx/video/SearchIndex) – v samotné adrese URL nejsou žádné vyhledávací informace. Nyní jsou informace o hledaném řetězci odesílány na server jako hodnota pole formuláře. To znamená, že nemůžete zachytit informace o hledání do záložky nebo odeslat přátelům v adrese URL.
 
-Řešením je použití přetížení `BeginForm` , která určuje, zda požadavek POST by měla přidat hledání informací na adresu URL a, který by měl být směrovat do třídy MetadataExchangeClientMode verzi `SearchIndex` metoda. Nahraďte existující konstruktor bez parametrů `BeginForm` metoda následujícím kódem:
+Řešením je použití přetížení `BeginForm` , které určuje, že požadavek post by měl přidat informace o hledání do adresy URL a že by měl být směrován do verze HttpGet `SearchIndex` metody. Nahraďte stávající metodu bez parametrů `BeginForm` následujícím způsobem:
 
 [!code-cshtml[Main](examining-the-edit-methods-and-edit-view/samples/sample17.cshtml)]
 
 [![BeginFormPost_SM](examining-the-edit-methods-and-edit-view/_static/image22.png)](examining-the-edit-methods-and-edit-view/_static/image21.png)
 
-Nyní když odešlete vyhledávání, adresa URL obsahuje hledaný řetězec dotazu. Hledání budou také moct `HttpGet SearchIndex` metodě akce, i když máte `HttpPost SearchIndex` metody.
+Když teď odešlete hledání, adresa URL obsahuje řetězec vyhledávacího dotazu. Hledání bude také jít na `HttpGet SearchIndex` metodu Action, i když máte `HttpPost SearchIndex` metodu.
 
 [![SearchIndexWithGetURL](examining-the-edit-methods-and-edit-view/_static/image24.png)](examining-the-edit-methods-and-edit-view/_static/image23.png)
 
-## <a name="adding-search-by-genre"></a>Přidání vyhledávání podle žánru
+## <a name="adding-search-by-genre"></a>Přidávání hledání podle žánru
 
-Pokud jste přidali `HttpPost` verzi `SearchIndex` metoda, odstraňte ji.
+Pokud jste přidali `HttpPost` verzi `SearchIndex` metody, odstraňte ji nyní.
 
-V dalším kroku přidáte funkci, která umožňují uživatelům vyhledat filmy podle žánru. Nahradit `SearchIndex` metodu s následujícím kódem:
+V dalším kroku přidáte funkci, která uživatelům umožní Hledat filmy podle žánru. Nahraďte metodu `SearchIndex` následujícím kódem:
 
 [!code-csharp[Main](examining-the-edit-methods-and-edit-view/samples/sample18.cs)]
 
-Tato verze `SearchIndex` metoda přijímá další parametr, a to `movieGenre`. Vytvoření první několika řádků kódu `List` objekt pro uložení žánry video z databáze.
+Tato verze `SearchIndex` metody přebírá další parametr, konkrétně `movieGenre` . První pár řádků kódu vytvoří `List` objekt pro uchování filmových žánrů z databáze.
 
 Následující kód je dotaz LINQ, který načte všechny žánry z databáze.
 
 [!code-csharp[Main](examining-the-edit-methods-and-edit-view/samples/sample19.cs)]
 
-Tento kód použije `AddRange` metoda Obecné `List` kolekce pro přidání různých žánry do seznamu. (Bez `Distinct` modifikátor, byly přidány duplicitní žánry – například byly přidány komedie dvakrát v naší ukázce). Pak uloží seznam žánry v kódu `ViewBag` objektu.
+Kód používá `AddRange` metodu obecné `List` kolekce k přidání všech různých žánrů do seznamu. (Bez `Distinct` modifikátoru by se přidaly duplicitní žánry – například komedie by se přidalo dvakrát v našem příkladu). Kód pak uloží seznam žánrů v `ViewBag` objektu.
 
-Následující kód ukazuje, jak zkontrolovat `movieGenre` parametru. Pokud není prázdný kód dál omezuje dotaz filmy omezit vybrané videa k zadaným rozšířením podle tematických.
+Následující kód ukazuje, jak ověřit `movieGenre` parametr. Pokud není prázdný, kód dál omezí dotaz na filmy, aby se vybrané filmy omezily na zadaný Žánr.
 
 [!code-csharp[Main](examining-the-edit-methods-and-edit-view/samples/sample20.cs)]
 
-## <a name="adding-markup-to-the-searchindex-view-to-support-search-by-genre"></a>Přidání značek do zobrazení SearchIndex pro podporu vyhledávání podle žánru
+## <a name="adding-markup-to-the-searchindex-view-to-support-search-by-genre"></a>Přidání značek do zobrazení SearchIndex pro podporu hledání podle žánru
 
-Přidat `Html.DropDownList` pomocná rutina pro *Views\Movies\SearchIndex.cshtml* souboru, těsně před `TextBox` pomocné rutiny. Dokončený kód je zobrazena níže:
+Přidejte `Html.DropDownList` pomocníka do souboru *Views\Movies\SearchIndex.cshtml* těsně před `TextBox` pomocnou rutinou. Dokončený kód je uveden níže:
 
 [!code-cshtml[Main](examining-the-edit-methods-and-edit-view/samples/sample21.cshtml)]
 
-Spusťte aplikaci a přejděte do */filmy/SearchIndex*. Zkuste hledat podle žánru, název filmu a obě kritéria.
+Spusťte aplikaci a přejděte na */Movies/SearchIndex*. Zkuste hledat podle žánru, podle názvu filmu a podle obou kritérií.
 
-V této části můžete prozkoumat metody akcí CRUD a vzhled zobrazení vygenerovaných sadou rozhraní framework. Můžete vytvořit metody akce vyhledávání a zobrazení, které umožňují uživatelům vyhledat tak, že název filmu a rozšířením podle tematických. V další části, budete pohledu na tom, jak přidat vlastnost, která má `Movie` modelu a přidání inicializátoru, který se automaticky vytvoří testovací databáze.
+V této části jste prozkoumali metody a pohledy akce CRUD generované rozhraním. Vytvořili jste metodu a zobrazení akce hledání, které umožní uživatelům hledat podle názvu a žánru. V další části se podíváte na postup přidání vlastnosti do `Movie` modelu a postup přidání inicializátoru, který automaticky vytvoří testovací databázi.
 
 > [!div class="step-by-step"]
-> [Předchozí](accessing-your-models-data-from-a-controller.md)
-> [další](adding-a-new-field.md)
+> [Předchozí](accessing-your-models-data-from-a-controller.md) 
+>  [Další](adding-a-new-field.md)
