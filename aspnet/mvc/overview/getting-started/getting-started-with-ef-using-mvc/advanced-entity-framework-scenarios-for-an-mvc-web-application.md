@@ -1,6 +1,6 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/advanced-entity-framework-scenarios-for-an-mvc-web-application
-title: 'Kurz: Přečtěte si o rozšířených scénářích EF pro webovou aplikaci MVC 5.'
+title: 'Kurz: Přečtěte si o rozšířených scénářích EF pro webovou aplikaci MVC 5'
 description: V tomto kurzu se seznámíte s několika tématy, která jsou užitečná, když překročíte základy vývoje webových aplikací ASP.NET, které používají Entity Framework Code First.
 author: tdykstra
 ms.author: riande
@@ -10,13 +10,13 @@ ms.assetid: f35a9b0c-49ef-4cde-b06d-19d1543feb0b
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/advanced-entity-framework-scenarios-for-an-mvc-web-application
 msc.type: authoredcontent
 ms.openlocfilehash: d7cc83a5b78a60f575f5c3065079679189296a0c
-ms.sourcegitcommit: 4b324a11131e38f920126066b94ff478aa9927f8
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 09/16/2019
-ms.locfileid: "58425272"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "86188679"
 ---
-# <a name="tutorial-learn-about-advanced-ef-scenarios-for-an-mvc-5-web-app"></a>Kurz: Přečtěte si o rozšířených scénářích EF pro webovou aplikaci MVC 5.
+# <a name="tutorial-learn-about-advanced-ef-scenarios-for-an-mvc-5-web-app"></a>Kurz: Přečtěte si o rozšířených scénářích EF pro webovou aplikaci MVC 5
 
 V předchozím kurzu jste implementovali dědičnost tabulek na hierarchii. V tomto kurzu se seznámíte s několika tématy, která jsou užitečná, když překročíte základy vývoje webových aplikací ASP.NET, které používají Entity Framework Code First. V prvních několika oddílech najdete podrobné pokyny, které vás provedou kódem a pomocí sady Visual Studio k dokončení úkolů, které následují, zavedou několik témat s stručnými úvody, které následují odkazy na zdroje, kde najdete další informace.
 
@@ -24,7 +24,7 @@ U většiny těchto témat budete pracovat se stránkami, které jste již vytvo
 
 ![Update_Course_Credits_initial_page](advanced-entity-framework-scenarios-for-an-mvc-web-application/_static/image1.png)
 
-V tomto kurzu se naučíte:
+V tomto kurzu jste:
 
 > [!div class="checklist"]
 > * Provádění nezpracovaných dotazů SQL
@@ -41,17 +41,17 @@ Naučíte se také:
 > * Entity Framework nástroje Power Tools
 > * Zdrojový kód Entity Framework
 
-## <a name="prerequisite"></a>Předpoklad
+## <a name="prerequisite"></a>Požadavek
 
 * [Implementace dědičnosti](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application.md)
 
 ## <a name="perform-raw-sql-queries"></a>Provádění nezpracovaných dotazů SQL
 
-Rozhraní API pro Entity Framework Code First obsahuje metody, které umožňují předat příkazy SQL přímo do databáze. Máte následující možnosti:
+Rozhraní API pro Entity Framework Code First obsahuje metody, které umožňují předat příkazy SQL přímo do databáze. Máte tyto možnosti:
 
 - Použijte metodu [negenerickými. SqlQuery](https://msdn.microsoft.com/library/system.data.entity.dbset.sqlquery.aspx) pro dotazy, které vracejí typy entit. Vrácené objekty musí být typu očekávaného `DbSet` objektem a automaticky sledovány pomocí kontextu databáze, pokud nevypnete sledování. (Další informace o metodě [AsNoTracking](https://msdn.microsoft.com/library/system.data.entity.dbextensions.asnotracking.aspx) naleznete v následující části.)
 - Použijte metodu [Database. SqlQuery](https://msdn.microsoft.com/library/system.data.entity.database.sqlquery.aspx) pro dotazy vracející typy, které nejsou entitami. Vrácená data nejsou sledována kontextem databáze, a to i v případě, že použijete tuto metodu k načtení typů entit.
-- Pro příkazy, které nejsou dotazy Query, použijte [Database. ExecuteSqlCommand](https://msdn.microsoft.com/library/gg679456.aspx) .
+- Pro příkazy, které nejsou typu Query, použijte [Database.ExecuteSqlCommand](https://msdn.microsoft.com/library/gg679456.aspx) .
 
 Jednou z výhod používání Entity Framework je, že se vyhnete tomu, že váš kód je příliš úzce k určité metodě ukládání dat. Provede to tím, že vygeneruje dotazy a příkazy SQL za vás, což vám taky zabrání v jejich psaní. Existují však výjimečné scénáře, pokud potřebujete spustit konkrétní dotazy SQL, které jste vytvořili ručně, a tyto metody umožňují zpracovávat takové výjimky.
 
@@ -59,9 +59,9 @@ Jak je vždy true při provádění příkazů SQL ve webové aplikaci, je nutn�
 
 ### <a name="calling-a-query-that-returns-entities"></a>Volání dotazu, který vrací entity
 
-Třída [negenerickými&lt;TEntity&gt; ](https://msdn.microsoft.com/library/gg696460.aspx) poskytuje metodu, kterou lze použít ke spuštění dotazu, který vrací entitu typu `TEntity`. Chcete-li zjistit, jak to funguje, změňte kód v `Details` metodě `Department` kontroleru.
+Třída [negenerickými &lt; TEntity &gt; ](https://msdn.microsoft.com/library/gg696460.aspx) poskytuje metodu, kterou lze použít ke spuštění dotazu, který vrací entitu typu `TEntity` . Chcete-li zjistit, jak to funguje, změňte kód v `Details` metodě `Department` kontroleru.
 
-V *DepartmentController.cs* `Details` `db.Departments.SqlQuery` v`db.Departments.FindAsync` metodě nahraďte volání metody voláním metody, jak je znázorněno v následujícím zvýrazněném kódu:
+V *DepartmentController.cs*v `Details` metodě nahraďte `db.Departments.FindAsync` volání metody `db.Departments.SqlQuery` voláním metody, jak je znázorněno v následujícím zvýrazněném kódu:
 
 [!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample1.cs?highlight=8-14)]
 
@@ -83,27 +83,27 @@ Spusťte stránku o produktu. Ověřte, že se zobrazí stejná data předtím.
 
 ### <a name="calling-an-update-query"></a>Volání aktualizačního dotazu
 
-Předpokládejme, že správci služby contoso University chtějí v databázi provádět hromadné změny, jako je třeba Změna počtu kreditů pro každý kurz. Pokud má univerzita velký počet kurzů, je třeba je neefektivně načíst jako entity a jednotlivě je měnit. V této části implementujete webovou stránku, která uživateli umožní zadat faktor, podle kterého se má změnit počet kreditů pro všechny kurzy, a provedete změnu provedením příkazu SQL `UPDATE` . 
+Předpokládejme, že správci služby contoso University chtějí v databázi provádět hromadné změny, jako je třeba Změna počtu kreditů pro každý kurz. Pokud má univerzita velký počet kurzů, je třeba je neefektivně načíst jako entity a jednotlivě je měnit. V této části implementujete webovou stránku, která uživateli umožní zadat faktor, podle kterého se má změnit počet kreditů pro všechny kurzy, a provedete změnu provedením `UPDATE` příkazu SQL. 
 
-V *CourseController.cs*přidejte `UpdateCourseCredits` metody pro `HttpGet` a `HttpPost`:
+V *CourseController.cs*přidejte `UpdateCourseCredits` metody pro `HttpGet` a `HttpPost` :
 
 [!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample4.cs)]
 
-Když kontroler zpracuje `HttpGet` požadavek, nic se nevrátí `ViewBag.RowsAffected` do proměnné a zobrazení zobrazí prázdné textové pole a tlačítko Odeslat.
+Když kontroler zpracuje `HttpGet` požadavek, nic se nevrátí do `ViewBag.RowsAffected` proměnné a zobrazení zobrazí prázdné textové pole a tlačítko Odeslat.
 
-Po kliknutí `HttpPost` na tlačítko Aktualizovat je metoda volána a `multiplier` má hodnotu zadanou v textovém poli. Kód potom spustí SQL, který aktualizuje kurzy a vrátí počet ovlivněných řádků do zobrazení v `ViewBag.RowsAffected` proměnné. Když zobrazení Získá hodnotu v této proměnné, zobrazuje počet aktualizovaných řádků místo textového pole a tlačítka Odeslat.
+Po kliknutí na tlačítko **aktualizovat** je `HttpPost` metoda volána a `multiplier` má hodnotu zadanou v textovém poli. Kód potom spustí SQL, který aktualizuje kurzy a vrátí počet ovlivněných řádků do zobrazení v `ViewBag.RowsAffected` proměnné. Když zobrazení Získá hodnotu v této proměnné, zobrazuje počet aktualizovaných řádků místo textového pole a tlačítka Odeslat.
 
-V *CourseController.cs*klikněte pravým tlačítkem myši na jednu `UpdateCourseCredits` z metod a pak klikněte na **Přidat zobrazení**. Zobrazí se dialogové okno **Přidat zobrazení** . Ponechte výchozí nastavení a vyberte **Přidat**.
+V *CourseController.cs*klikněte pravým tlačítkem myši na jednu z `UpdateCourseCredits` metod a pak klikněte na **Přidat zobrazení**. Zobrazí se dialogové okno **Přidat zobrazení** . Ponechte výchozí nastavení a vyberte **Přidat**.
 
 V *Views\Course\UpdateCourseCredits.cshtml*nahraďte kód šablony následujícím kódem:
 
 [!code-cshtml[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample5.cshtml)]
 
-Spusťte metodu tak, že vyberete kartu **kurzy** a pak na konec adresy URL v adresním řádku prohlížeče přidáte "/UpdateCourseCredits" (například: `http://localhost:50205/Course/UpdateCourseCredits`). `UpdateCourseCredits` Do textového pole zadejte číslo:
+Spusťte `UpdateCourseCredits` metodu tak, že vyberete kartu **kurzy** a pak na konec adresy URL v adresním řádku prohlížeče přidáte "/UpdateCourseCredits" (například: `http://localhost:50205/Course/UpdateCourseCredits` ). Do textového pole zadejte číslo:
 
 ![Update_Course_Credits_initial_page_with_2_entered](advanced-entity-framework-scenarios-for-an-mvc-web-application/_static/image1.png)
 
-Klikněte na tlačítko **aktualizace**. Zobrazí se počet ovlivněných řádků.
+Klikněte na **Aktualizovat**. Zobrazí se počet ovlivněných řádků.
 
 Kliknutím na **zpět na seznam** zobrazíte seznam kurzů s revidovaným počtem kreditů.
 
@@ -116,15 +116,15 @@ Když kontext databáze načte řádky tabulky a vytvoří objekty entit, které
 Sledování objektů entit v paměti můžete zakázat pomocí metody [AsNoTracking](https://msdn.microsoft.com/library/gg679352(v=vs.103).aspx) . Mezi obvyklé scénáře, které byste mohli chtít udělat, patří následující:
 
 - Dotaz načte takový velký objem dat, který vypne sledování, může výrazně zvýšit výkon.
-- Chcete připojit entitu, abyste ji mohli aktualizovat, ale dříve jste načetli stejnou entitu pro jiný účel. Vzhledem k tomu, že entita je již sledována kontextem databáze, nelze připojit entitu, kterou chcete změnit. Jedním ze `AsNoTracking` způsobů, jak tuto situaci zvládnout, je použití možnosti s dřívějším dotazem.
+- Chcete připojit entitu, abyste ji mohli aktualizovat, ale dříve jste načetli stejnou entitu pro jiný účel. Vzhledem k tomu, že entita je již sledována kontextem databáze, nelze připojit entitu, kterou chcete změnit. Jedním ze způsobů, jak tuto situaci zvládnout, je použití `AsNoTracking` Možnosti s dřívějším dotazem.
 
-Příklad, který ukazuje, jak použít metodu [AsNoTracking](https://msdn.microsoft.com/library/gg679352(v=vs.103).aspx) , najdete v [dřívější verzi tohoto kurzu](../../older-versions/getting-started-with-ef-5-using-mvc-4/advanced-entity-framework-scenarios-for-an-mvc-web-application.md). Tato verze kurzu nenastaví upravený příznak u entity vytvořené pomocí modelu pořadače v metodě Edit, takže to nepotřebuje `AsNoTracking`.
+Příklad, který ukazuje, jak použít metodu [AsNoTracking](https://msdn.microsoft.com/library/gg679352(v=vs.103).aspx) , najdete v [dřívější verzi tohoto kurzu](../../older-versions/getting-started-with-ef-5-using-mvc-4/advanced-entity-framework-scenarios-for-an-mvc-web-application.md). Tato verze kurzu nenastaví upravený příznak u entity vytvořené pomocí modelu pořadače v metodě Edit, takže to nepotřebuje `AsNoTracking` .
 
 ## <a name="examine-sql-sent-to-database"></a>Kontrola odeslání SQL serveru do databáze
 
 Někdy je užitečné, abyste si mohli prohlédnout skutečné dotazy SQL, které se odesílají do databáze. V předchozím kurzu jste zjistili, jak to udělat v kódu pro zachycování. Nyní se zobrazí některé způsoby, jak to provést bez psaní kódu pro zachycování. Pokud to chcete vyzkoušet, podívejte se na jednoduchý dotaz a podívejte se na to, co se děje, když přidáte možnosti, jako je Eager načítání, filtrování a řazení.
 
-V části `Index` *Controllers/CourseController*nahraďte metodu následujícím kódem, aby bylo možné dočasně zastavit načítání Eager:
+V části *Controllers/CourseController*nahraďte `Index` metodu následujícím kódem, aby bylo možné dočasně zastavit načítání Eager:
 
 [!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample6.cs)]
 
@@ -146,9 +146,9 @@ Obnovte zarážku na `return` příkazu.
 
 Metoda přijímá vybranou hodnotu rozevíracího seznamu v `SelectedDepartment` parametru. Pokud není nic vybráno, bude mít tento parametr hodnotu null.
 
-Do zobrazení rozevíracího seznamu se předává kolekceobsahujícívšechnaoddělení.`SelectList` Parametry předané `SelectList` konstruktoru určují název pole hodnoty, název textového pole a vybranou položku.
+`SelectList`Do zobrazení rozevíracího seznamu se předává kolekce obsahující všechna oddělení. Parametry předané `SelectList` konstruktoru určují název pole hodnoty, název textového pole a vybranou položku.
 
-`Get` Pro metodu `Course` úložiště kód určuje výraz filtru, pořadí řazení `Department` a Eager načítání pro navigační vlastnost. Výraz filtru vždy vrátí hodnotu `true` , `SelectedDepartment` Pokud není nic vybráno v rozevíracím seznamu (tj. je null).
+Pro `Get` metodu `Course` úložiště kód určuje výraz filtru, pořadí řazení a Eager načítání pro `Department` navigační vlastnost. Výraz filtru vždy vrátí hodnotu `true` , pokud není nic vybráno v rozevíracím seznamu (tj `SelectedDepartment` . je null).
 
 V *Views\Course\Index.cshtml*bezprostředně před počáteční `table` značkou přidejte následující kód k vytvoření rozevíracího seznamu a tlačítko Odeslat:
 
@@ -156,13 +156,13 @@ V *Views\Course\Index.cshtml*bezprostředně před počáteční `table` značko
 
 Pokud se zarážka pořád nastavuje, spusťte stránku index kurzu. Pokračujte v první době, kdy kód narazí na zarážku, aby se stránka zobrazila v prohlížeči. V rozevíracím seznamu vyberte oddělení a klikněte na **Filtr**.
 
-Tentokrát bude první zarážka pro dotaz oddělení v rozevíracím seznamu. Přeskočí tuto `query` proměnnou a zobrazí se, když kód příště dosáhne zarážky, aby se zobrazila informace `Course` o tom, jaký dotaz teď vypadá jako. Uvidíte něco podobného jako následující:
+Tentokrát bude první zarážka pro dotaz oddělení v rozevíracím seznamu. Přeskočí tuto proměnnou a zobrazí `query` se, když kód příště dosáhne zarážky, aby se zobrazila informace o tom, jaký `Course` dotaz teď vypadá jako. Uvidíte něco podobného jako následující:
 
 [!code-sql[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample10.sql)]
 
-Vidíte, že dotaz je `JOIN` nyní dotazem, který načítá `Department` data společně s `Course` daty a obsahuje `WHERE` klauzuli.
+Vidíte, že dotaz je nyní `JOIN` dotazem, který načítá `Department` data společně s `Course` daty a obsahuje `WHERE` klauzuli.
 
-`var sql = courses.ToString()` Odeberte řádek.
+Odeberte `var sql = courses.ToString()` řádek.
 
 ## <a name="create-an-abstraction-layer"></a>Vytvoření vrstvy abstrakce
 
@@ -193,8 +193,8 @@ Tato třída proxy Přepisuje některé virtuální vlastnosti entity, aby mohl 
 Ve většině případů nemusíte znát použití proxy serverů, ale existují výjimky:
 
 - V některých případech můžete chtít zabránit Entity Framework v vytváření instancí proxy serveru. Například při serializaci entit, které obecně požadujete třídy POCO, nikoli proxy třídy. Jedním ze způsobů, jak zabránit problémům s serializací, je serializace objektů přenosu dat (DTO) místo objektů entit, jak je znázorněno v kurzu [použití webového rozhraní API s Entity Framework](../../../../web-api/overview/data/using-web-api-with-entity-framework/part-1.md) . Další možností je [zakázat vytvoření proxy serveru](https://msdn.microsoft.com/data/jj592886.aspx).
-- Při vytváření instance třídy entity pomocí `new` operátoru nezískáte instanci proxy. To znamená, že nezískáte funkce, jako je opožděné načítání a automatické sledování změn. Obvykle je to v pořádku. obecně nepotřebujete opožděné načítání, protože vytváříte novou entitu, která není v databázi, a obecně nepotřebujete sledování změn, pokud entitu výslovně označíte jako `Added`. Pokud však potřebujete opožděné načítání a potřebujete sledování změn, můžete vytvořit nové instance entit s proxy objekty pomocí metody `DbSet` [Create](https://msdn.microsoft.com/library/gg679504.aspx) třídy.
-- Je možné, že budete chtít z typu proxy získat skutečný typ entity. Pomocí metody `ObjectContext` [GetObjectType](https://msdn.microsoft.com/library/system.data.objects.objectcontext.getobjecttype.aspx) třídy lze získat skutečný typ entity instance typu proxy serveru.
+- Při vytváření instance třídy entity pomocí `new` operátoru nezískáte instanci proxy. To znamená, že nezískáte funkce, jako je opožděné načítání a automatické sledování změn. Obvykle je to v pořádku. obecně nepotřebujete opožděné načítání, protože vytváříte novou entitu, která není v databázi, a obecně nepotřebujete sledování změn, pokud entitu výslovně označíte jako `Added` . Pokud však potřebujete opožděné načítání a potřebujete sledování změn, můžete vytvořit nové instance entit s proxy objekty pomocí metody [Create](https://msdn.microsoft.com/library/gg679504.aspx) `DbSet` třídy.
+- Je možné, že budete chtít z typu proxy získat skutečný typ entity. Pomocí metody [GetObjectType](https://msdn.microsoft.com/library/system.data.objects.objectcontext.getobjecttype.aspx) `ObjectContext` třídy lze získat skutečný typ entity instance typu proxy serveru.
 
 Další informace najdete v tématu [práce se servery proxy](https://msdn.microsoft.com/data/JJ592886.aspx) na webu MSDN.
 
@@ -230,19 +230,19 @@ Zdrojový kód pro Entity Framework 6 je k dispozici na [GitHubu](https://github
 
 I když je zdrojový kód otevřený, Entity Framework je plně podporovaný jako produkt společnosti Microsoft. Tým Microsoft Entity Framework udržuje kontrolu nad tím, které příspěvky jsou přijaty, a testuje všechny změny kódu, aby se zajistila kvalita jednotlivých verzí.
 
-## <a name="acknowledgments"></a>Potvrzení
+## <a name="acknowledgments"></a>Poděkování
 
 - Dykstra napsal původní verzi tohoto kurzu, společně vytvořila aktualizaci EF 5 a napsala aktualizaci EF 6. Je to vedoucí programátor pro programování v týmu obsahu webové platformy a nástrojů Microsoftu.
-- [Rick Anderson](https://blogs.msdn.com/b/rickandy/) (Twitter [@RickAndMSFT](http://twitter.com/RickAndMSFT)) obsahoval většinu práce, které aktualizují kurz pro EF 5 a MVC 4 a společně vytvořil aktualizaci EF 6. Rick je hlavní programovací zapisovač pro zaměření Microsoftu na Azure a MVC.
+- [Rick Anderson](https://blogs.msdn.com/b/rickandy/) (Twitter [@RickAndMSFT](http://twitter.com/RickAndMSFT) ) obsahoval většinu práce, které aktualizují kurz pro EF 5 a MVC 4 a společně vytvořil aktualizaci EF 6. Rick je hlavní programovací zapisovač pro zaměření Microsoftu na Azure a MVC.
 - [Rowan Miller](http://www.romiller.com) a další členové Entity Framework týmu s asistencí revize kódu a pomohli ladit mnoho problémů s migrací, které vznikly během aktualizace kurzu pro EF 5 a EF 6.
 
-## <a name="troubleshoot-common-errors"></a>Řešení běžných chyb
+## <a name="troubleshoot-common-errors"></a>Odstraňování běžných chyb
 
 ### <a name="cannot-createshadow-copy"></a>Nelze vytvořit/stínovou kopii
 
 Chybová zpráva:
 
-> Nelze vytvořit nebo stínovou kopii&lt;souboru&gt;filename, pokud tento soubor již existuje.
+> Nelze vytvořit nebo stínovou kopii &lt; souboru filename &gt; , pokud tento soubor již existuje.
 
 Řešení
 
@@ -266,7 +266,7 @@ Chybová zpráva (z `Update-Database` příkazu v PMC):
 
 Řešení
 
-Jednou z příčin tohoto problému jsou chyby ověření při `Seed` spuštění metody. Tipy k ladění `Seed` metody naleznete v tématu [osazení a ladění Entity Framework (EF) databáze](https://blogs.msdn.com/b/rickandy/archive/2013/02/12/seeding-and-debugging-entity-framework-ef-dbs.aspx) .
+Jednou z příčin tohoto problému jsou chyby ověření při `Seed` spuštění metody. Tipy k ladění metody naleznete v tématu [osazení a ladění Entity Framework (EF) databáze](https://blogs.msdn.com/b/rickandy/archive/2013/02/12/seeding-and-debugging-entity-framework-ef-dbs.aspx) `Seed` .
 
 ### <a name="http-50019-error"></a>Chyba HTTP 500,19
 
@@ -282,17 +282,17 @@ Jedním ze způsobů, jak získat tuto chybu, je použití více kopií řešen�
 
 Chybová zpráva:
 
-> Při navazování připojení k SQL Server došlo k chybě související se sítí nebo instanci. Server nebyl nalezen nebo k němu nelze získat přístup. Ověřte, zda je název instance správný a zda je SQL Server nakonfigurovaná tak, aby povolovala vzdálená připojení. zprostředkovatele Síťová rozhraní SQL, chyba: 26 – Chyba při hledání zadaného serveru/instance)
+> Při navazování připojení k SQL Serveru došlo k chybě související se sítí nebo konkrétní instancí. Server se nenašel nebo nebyl dostupný. Ověřte, zda je název instance správný a zda je SQL Server nakonfigurovaná tak, aby povolovala vzdálená připojení. (poskytovatel: síťová rozhraní SQL, chyba: 26 – Chyba při hledání zadaného serveru nebo instance)
 
 Řešení
 
 Ověřte připojovací řetězec. Pokud jste databázi odstranili ručně, změňte název databáze v řetězci konstrukce.
 
-## <a name="get-the-code"></a>Získat kód
+## <a name="get-the-code"></a>Získání kódu
 
 [Stáhnout dokončený projekt](https://webpifeed.blob.core.windows.net/webpifeed/Partners/ASP.NET%20MVC%20Application%20Using%20Entity%20Framework%20Code%20First.zip)
 
-## <a name="additional-resources"></a>Další zdroje
+## <a name="additional-resources"></a>Další zdroje informací
 
  Další informace o tom, jak pracovat s daty pomocí Entity Framework, najdete na [stránce dokumentace EF na webech MSDN](https://msdn.microsoft.com/data/ee712907) a ASP.NET, které jsou [doporučeny pro přístup k datům](../../../../whitepapers/aspnet-data-access-content-map.md).
 
@@ -302,7 +302,7 @@ Informace o dalších tématech souvisejících s MVC, jako je ověřování a a
 
 ## <a name="next-steps"></a>Další kroky
 
-V tomto kurzu se naučíte:
+V tomto kurzu jste:
 
 > [!div class="checklist"]
 > * Provedené nezpracované dotazy SQL

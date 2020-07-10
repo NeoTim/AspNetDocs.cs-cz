@@ -1,188 +1,187 @@
 ---
 uid: web-api/overview/odata-support-in-aspnet-web-api/supporting-odata-query-options
-title: Podpora možností dotazů OData v rozhraní ASP.NET Web API 2 – ASP.NET 4.x
+title: Podpora možností dotazů OData ve webovém rozhraní API ASP.NET 2 – ASP.NET 4. x
 author: MikeWasson
-description: Přehled s příklady kódu zobrazuje podpůrné možnosti dotazu OData v ASP.NET Web API 2 pro ASP.NET 4.x.
+description: Přehled s příklady kódu ukazuje podporu možností dotazů OData ve webovém rozhraní API 2 v ASP.NET pro ASP.NET 4. x.
 ms.author: riande
 ms.date: 02/04/2013
 ms.custom: seoapril2019
 ms.assetid: 50e6e62b-e72e-4a29-8293-4b67377bd21f
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/supporting-odata-query-options
 msc.type: authoredcontent
-ms.openlocfilehash: 428e4942e42436585049c1e84cd7b07a4a79c0d1
-ms.sourcegitcommit: 0f1119340e4464720cfd16d0ff15764746ea1fea
+ms.openlocfilehash: 96820fab7ac89885058962f44ded86cb0184ee97
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 04/17/2019
-ms.locfileid: "59411563"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "86188613"
 ---
-# <a name="supporting-odata-query-options-in-aspnet-web-api-2"></a>Podpora možností dotazů OData v rozhraní ASP.NET Web API 2
+# <a name="supporting-odata-query-options-in-aspnet-web-api-2"></a>Podpora možností dotazů OData ve webovém rozhraní API 2 ASP.NET
 
-podle [Mike Wasson](https://github.com/MikeWasson)
+o [Jan Wasson](https://github.com/MikeWasson)
 
-Tento přehled s příklady kódu ukazuje podpůrné možnosti dotazu OData v ASP.NET Web API 2 technologie ASP.NET 4.x. 
+Tento přehled s příklady kódu ukazuje podporu možností dotazů OData ve webovém rozhraní API 2 v ASP.NET pro ASP.NET 4. x. 
 
-OData definuje parametry, které lze použít k úpravě dotazu OData. Klient odešle tyto parametry v řetězci dotazu identifikátoru URI požadavku. Například pokud chcete výsledky seřadit, klient použije parametr $orderby:
+OData definuje parametry, které se dají použít k úpravě dotazu OData. Klient odesílá tyto parametry do řetězce dotazu identifikátoru URI požadavku. Například pro seřazení výsledků klient používá parametr $orderby:
 
 `http://localhost/Products?$orderby=Name`
 
-Specifikace prostředí OData volá tyto parametry *možnosti dotazu*. Možnosti dotazu OData pro každý kontroler rozhraní Web API můžete povolit ve vašem projektu &#8212; kontroleru nemusí být koncový bod OData. To umožňuje pohodlný způsob, jak přidat funkce, jako je filtrování a řazení do libovolné aplikace webového rozhraní API.
+Specifikace OData volá tyto parametry *dotazu*parametrů. Můžete povolit možnosti dotazu OData pro libovolný kontroler webového rozhraní API ve vašem projektu &#8212; kontroler nemusí být koncovým bodem OData. Získáte tak pohodlný způsob, jak přidat funkce, jako je filtrování a řazení, do libovolné aplikace webového rozhraní API.
 
-Před povolením možnosti dotazu, přečtěte si prosím téma [doprovodné materiály zabezpečení OData](odata-security-guidance.md).
+Než povolíte možnosti dotazů, přečtěte si téma [pokyny k zabezpečení OData](odata-security-guidance.md).
 
-- [Povolení možnosti dotazu OData](#enable)
+- [Povolení možností dotazů OData](#enable)
 - [Příklady dotazů](#examples)
 - [Stránkování řízené serverem](#server-paging)
-- [Omezení možnosti dotazu](#limiting_query_options)
-- [Přímo vyvoláním možnosti dotazu](#ODataQueryOptions)
-- [Ověření dotazů](#query-validation)
+- [Omezení možností dotazu](#limiting_query_options)
+- [Přímé vyvolání možností dotazu](#ODataQueryOptions)
+- [Ověření dotazu](#query-validation)
 
 <a id="enable"></a>
-## <a name="enabling-odata-query-options"></a>Povolení možnosti dotazu OData
+## <a name="enabling-odata-query-options"></a>Povolení možností dotazů OData
 
-Webové rozhraní API podporuje následující možnosti dotazu OData:
+Webové rozhraní API podporuje následující možnosti dotazů OData:
 
 | Možnost | Popis |
 | --- | --- |
-| $expand | Rozbalí vložené související entity. |
-| $filter | Filtrování výsledků na základě logické podmínky. |
-| $inlinecount | Informuje server zahrnout celkový počet odpovídajících entit v odpovědi. (Užitečné pro stránkování na straně serveru.) |
+| $expand | Rozšíří vložené přidružené entity. |
+| $filter | Filtruje výsledky na základě logické podmínky. |
+| $inlinecount | Oznamuje serveru, aby zahrnoval celkový počet vyhovujících entit v odpovědi. (Hodí se pro stránkování na straně serveru.) |
 | $orderby | Seřadí výsledky. |
-| $select | Vybere vlastnosti, které chcete zahrnout do odpovědi. |
+| $select | Vybere vlastnosti, které se mají zahrnout do odpovědi. |
 | $skip | Přeskočí prvních n výsledků. |
-| $top | Vrací jenom prvních n výsledků. |
+| $top | Vrátí pouze prvních n výsledků. |
 
-Pokud chcete použít možnosti dotazu OData, musíte je povolit explicitně. Můžete povolit globálně pro celou aplikaci nebo je povolit pro konkrétní řadiče nebo konkrétní akce.
+Chcete-li použít možnosti dotazu OData, je nutné je explicitně povolit. Můžete je povolit globálně pro celou aplikaci nebo je povolit pro konkrétní řadiče nebo konkrétní akce.
 
-Chcete-li povolit možnosti dotazu OData globálně, zavolejte **EnableQuerySupport** na **HttpConfiguration** třída při spuštění:
+Chcete-li povolit možnosti dotazu OData globálně, zavolejte **EnableQuerySupport** na třídu **HttpConfiguration** při spuštění:
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample1.cs)]
 
-**EnableQuerySupport** metoda umožňuje využívat možnosti dotazu globálně pro všechny akce kontroleru, který vrátí **IQueryable** typu. Pokud nechcete, aby možnosti dotazu, které jsou povolené pro celou aplikaci, můžete povolit je pro konkrétní ovladač akcí tak, že přidáte **[Queryable]** atributu na metodu akce.
+Metoda **EnableQuerySupport** umožňuje globálně použít možnosti dotazu pro všechny akce kontroleru, které vrací typ **IQueryable** . Pokud nechcete, aby byly možnosti dotazů povoleny pro celou aplikaci, můžete je povolit pro konkrétní akce kontroleru přidáním atributu **[Queryable]** do metody Action.
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample2.cs)]
 
 <a id="examples"></a>
-## <a name="example-queries"></a>Příklady dotazů
+## <a name="example-queries"></a>Ukázky dotazů
 
-Tato část uvádí typy dotazů, které je možné pomocí možností dotazu OData. Pro konkrétní podrobnosti o parametrech dotazů najdete v dokumentaci OData na [www.odata.org](http://www.odata.org/).
+V této části jsou uvedeny typy dotazů, které lze použít v možnostech dotazů OData. Konkrétní podrobnosti o možnostech dotazu najdete v dokumentaci OData na adrese [www.OData.org](http://www.odata.org/).
 
-Informace o $rozbalte a $select, naleznete v tématu [pomocí $select $expand a $value v ASP.NET Web API OData](using-select-expand-and-value.md).
+Informace o $expand a $select najdete v tématu [použití $Select, $expand a $value v ASP.NET Web API OData](using-select-expand-and-value.md).
 
-**Stránkování řízené klienta**
+**Stránkování řízené klientem**
 
-Pro velká entita sady klient může chtít omezit počet výsledků. Klient může například zobrazovat 10 položek současně s "Další" odkazy, chcete-li získat další stránky výsledků. Klient použije k tomu možnosti $top a $skip.
+U rozsáhlých sad entit může klient chtít omezit počet výsledků. Klient může například zobrazit 10 položek najednou a pomocí odkazů Next získat další stránku výsledků. K tomu klient používá $top a $skip možnosti.
 
 `http://localhost/Products?$top=10&$skip=20`
 
-Možnost $top poskytuje maximální počet vrácených položek a možnost $skip poskytuje počet položek pro přeskočení. Předchozí příklad načte položky 21 až 30.
+Možnost $top poskytuje maximální počet položek, které se mají vrátit, a možnost $skip vrací počet položek, které se mají přeskočit. Předchozí příklad načte položky 21 až 30.
 
 **Filtrování**
 
-Možnost $filter umožňuje klientovi filtrování výsledků s použitím logického výrazu. Filtr výrazy jsou velmi výkonné; patří mezi ně aritmetické a logické operátory, řetězce funkce a funkce data.
+Možnost $filter umožňuje klientovi filtrovat výsledky použitím logického výrazu. Výrazy filtru jsou poměrně výkonné; zahrnují logické a aritmetické operátory, funkce pro řetězce a kalendářní data.
 
-| Vrátí všechny produkty s kategorií rovno "Toys". | `http://localhost/Products?$filter=Category` EQ 'Toys. |
+| Vrátí všechny produkty s kategorií rovným "Toys". | `http://localhost/Products?$filter=Category`EQ "Toys" |
 | --- | --- |
-| Vrátí všechny produkty s cenou menší než 10. | `http://localhost/Products?$filter=Price` lt 10 |
-| Logické operátory: Vrátit všechny produkty, kde cena > = 5 a cena < = 15. | `http://localhost/Products?$filter=Price` ge 5 a cena le 15 |
-| Řetězcové funkce: Vrátí všechny produkty s "zz" v názvu. | `http://localhost/Products?$filter=substringof('zz',Name)` |
-| Datové funkce: Vrátí všechny produkty s ReleaseDate po 2005. | `http://localhost/Products?$filter=year(ReleaseDate)` gt 2005 |
+| Vrátí všechny produkty s cenou menší než 10. | `http://localhost/Products?$filter=Price`lt 10 |
+| Logické operátory: vrátí všechny produkty, kde Price >= 5 a Price <= 15. | `http://localhost/Products?$filter=Price`GE 5 a cena Le 15 |
+| Řetězcové funkce: vrátí všechny produkty s "ZZ" v názvu. | `http://localhost/Products?$filter=substringof('zz',Name)` |
+| Date Functions: vrátí všechny produkty s ReleaseDate po 2005. | `http://localhost/Products?$filter=year(ReleaseDate)`gt 2005 |
 
 **Řazení**
 
-Chcete-li seřadit výsledky, použijte filtr $orderby.
+K seřazení výsledků použijte filtr $orderby.
 
-| Seřadit podle cena. | `http://localhost/Products?$orderby=Price` |
+| Seřadit podle ceny | `http://localhost/Products?$orderby=Price` |
 | --- | --- |
-| Seřadit podle: cena v sestupném pořadí (nejvyšší k nejnižší). | `http://localhost/Products?$orderby=Price desc` |
-| Seřadit podle kategorie a pak řazení podle ceny v sestupném pořadí v rámci kategorie. | `http://localhost/odata/Products?$orderby=Category,Price desc` |
+| Řadit podle ceny v sestupném pořadí (od nejvyšších po nejnižší) | `http://localhost/Products?$orderby=Price desc` |
+| Seřadit podle kategorie a pak seřadit podle ceny v sestupném pořadí v rámci kategorií. | `http://localhost/odata/Products?$orderby=Category,Price desc` |
 
 <a id="server-paging"></a>
 ## <a name="server-driven-paging"></a>Stránkování řízené serverem
 
-Pokud databáze obsahuje milióny záznamů, které nechcete posílat je všechny v jedné datové části. Chcete-li tomu zabránit, serveru můžete omezit počet položek, které odešle v jedné odezvě. Chcete-li povolit stránkování na straně serveru, nastavte **PageSize** vlastnost **Queryable** atribut. Hodnota je maximální počet vrácených položek.
+Pokud vaše databáze obsahuje miliony záznamů, nechcete je posílat všem v jedné datové části. Chcete-li tomu zabránit, může server omezit počet položek, které posílá v rámci jedné odpovědi. Pokud chcete povolit stránkování serveru, nastavte vlastnost **PageSize** v atributu **Queryable** . Hodnota je maximální počet položek, které se mají vrátit.
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample3.cs)]
 
-Pokud váš kontroler vrací formátu OData, text odpovědi bude obsahovat odkaz na další stránku dat:
+Pokud váš kontroler vrátí formát OData, text odpovědi bude obsahovat odkaz na další stránku dat:
 
 [!code-json[Main](supporting-odata-query-options/samples/sample4.json?highlight=8)]
 
-Klienta můžete použít tento odkaz k načtení další stránky. Informace o tom celkový počet položek v sadě výsledků, můžete klienta nastavit možnost dotazu $inlinecount s hodnotou "allpages".
+Klient může použít tento odkaz k načtení další stránky. Chcete-li zjistit celkový počet položek v sadě výsledků, může klient nastavit možnost dotazu $inlinecount s hodnotou "AllPages".
 
 `http://localhost/Products?$inlinecount=allpages`
 
-Hodnota "allpages" informuje server zahrnout celkový počet v odpovědi:
+Hodnota "AllPages" oznamuje serveru, aby obsahoval celkový počet v odpovědi:
 
 [!code-json[Main](supporting-odata-query-options/samples/sample5.json?highlight=3)]
 
 > [!NOTE]
-> Odkazy na další stránky i vložený počet, který vyžadují formátu OData. Důvodem je, že OData definuje zvláštní pole v těle odpovědi pro uložení odkazu a počet.
+> Odkazy na další stránku a vložený počet vyžadují formát OData. Důvodem je, že OData definuje speciální pole v těle odpovědi, aby obsahovala odkaz a počet.
 
-
-Protokolu OData formátů, je stále možné podporovat další stránky odkazy a vložený počet, obalením výsledky dotazu v **PageResult&lt;T&gt;**  objektu. To ale vyžaduje trochu další kód. Tady je příklad:
+Pro formáty jiné než OData je stále možné podporovat odkazy na další stránky a vložený počet tím, že se výsledky dotazu zabalí do objektu **PageResult &lt; T &gt; ** . Vyžaduje ale trochu více kódu. Zde naleznete příklad:
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample6.cs)]
 
-Tady je příklad odpověď JSON:
+Tady je příklad odpovědi JSON:
 
 [!code-json[Main](supporting-odata-query-options/samples/sample7.json)]
 
 <a id="limiting_query_options"></a>
-## <a name="limiting-the-query-options"></a>Omezení možnosti dotazu
+## <a name="limiting-the-query-options"></a>Omezení možností dotazu
 
-Možnosti dotazu dát klientům spoustu kontrolu nad dotaz, který běží na serveru. V některých případech můžete chtít omezit dostupné možnosti z důvodů zabezpečení nebo výkon. **[Queryable]** atribut má některé integrované vlastnosti pro toto. Zde je několik příkladů:
+Možnosti dotazu umožňují klientovi velkou kontrolu nad dotazem, který je spuštěn na serveru. V některých případech můžete chtít omezit dostupné možnosti z hlediska zabezpečení nebo výkonu. Atribut **[Queryable]** obsahuje některé předdefinované vlastnosti. Tady je několik příkladů.
 
-Povolit pouze $skip a $top, pro podporu stránkování a nic jiného:
+Povolí pouze $skip a $top, aby podporovaly stránkování a nic jiného:
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample8.cs)]
 
-Povolit řazení jenom podle určité vlastnosti, aby se zabránilo řazení na vlastnosti, které nejsou indexovány v databázi:
+Povoluje řazení pouze pomocí určitých vlastností, aby nedocházelo k řazení vlastností, které nejsou indexovány v databázi:
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample9.cs)]
 
-Povolit funkci logické "eq", ale žádné logické funkce:
+Povolí logickou funkci EQ, ale žádné jiné logické funkce:
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample10.cs)]
 
-Nejsou povoleny všechny aritmetické operátory:
+Nepovolujte žádné aritmetické operátory:
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample11.cs)]
 
-Můžete omezit možnosti globálně tak, že vytváří **položce QueryableAttribute** instance a předá se **EnableQuerySupport** funkce:
+Možnosti lze omezit globálně vytvořením instance **QueryableAttribute** a jejím předáním funkci **EnableQuerySupport** :
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample12.cs)]
 
 <a id="ODataQueryOptions"></a>
-## <a name="invoking-query-options-directly"></a>Přímo vyvoláním možnosti dotazu
+## <a name="invoking-query-options-directly"></a>Přímé vyvolání možností dotazu
 
-Namísto použití **[Queryable]** atribut, možnosti dotazu můžete vyvolat přímo ve vašem řadiči. Chcete-li to provést, přidejte **ODataQueryOptions** parametru k metodě kontroleru. V takovém případě nepotřebujete **[Queryable]** atribut.
+Namísto použití atributu **[Queryable]** lze vyvolat možnosti dotazu přímo v řadiči. Uděláte to tak, že do metody kontroleru přidáte parametr **ODataQueryOptions** . V takovém případě nepotřebujete atribut **[Queryable]** .
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample13.cs)]
 
-Naplní webového rozhraní API **ODataQueryOptions** řetězec dotazu z identifikátoru URI. Použije dotaz, předejte **IQueryable** k **volat metodu** metoda. Metoda vrátí jiný **IQueryable**.
+Webové rozhraní API naplní **ODataQueryOptions** z řetězce dotazu identifikátoru URI. Chcete-li použít dotaz, předejte rozhraní **IQueryable** do metody **ApplyTo** . Metoda vrátí jinou metodu **IQueryable**.
 
-Pro pokročilé scénáře, pokud nemáte **IQueryable** poskytovatele dotazů, můžete zkontrolovat **ODataQueryOptions** a překládat možnosti dotazu do jiného formátu. (Například najdete v příspěvku blogu RaghuRam Nadiminti [dotazů překladu OData na HQL](https://blogs.msdn.com/b/webdev/archive/2013/02/25/translating-odata-queries-to-hql.aspx), kde najdete také [ukázka](http://aspnet.codeplex.com/SourceControl/changeset/view/75a56ec99968#Samples/WebApi/NHibernateQueryableSample/Readme.txt).)
+V případě pokročilých scénářů, pokud nemáte poskytovatele dotazů **IQueryable** , můžete prozkoumávat **ODataQueryOptions** a překládat možnosti dotazu do jiného formuláře. (Příklad: viz Blogový příspěvek RaghuRam Nadiminti [překladu dotazů OData na HQL](https://blogs.msdn.com/b/webdev/archive/2013/02/25/translating-odata-queries-to-hql.aspx), který obsahuje také [ukázku](http://aspnet.codeplex.com/SourceControl/changeset/view/75a56ec99968#Samples/WebApi/NHibernateQueryableSample/Readme.txt).)
 
 <a id="query-validation"></a>
-## <a name="query-validation"></a>Ověření dotazů
+## <a name="query-validation"></a>Ověření dotazu
 
-**[Queryable]** atribut ověří dotaz před jeho provedením. Krok ověření se provádí v **QueryableAttribute.ValidateQuery** metody. Můžete také přizpůsobit proces ověření.
+Atribut **[Queryable]** ověřuje dotaz před jeho provedením. Krok ověřování se provádí v metodě **QueryableAttribute. ValidateQuery** . Můžete také přizpůsobit proces ověřování.
 
-Viz také [doprovodné materiály zabezpečení OData](odata-security-guidance.md).
+Viz také [Průvodce zabezpečením OData](odata-security-guidance.md).
 
-Nejprve přepsání jeden validátoru tříd, který je definovaný v **Web.Http.OData.Query.Validators** oboru názvů. Například následující třídu validátora zakáže možnost "desc" pro možnost $orderby.
+Nejprve přepište jednu z tříd validátoru, která je definována v oboru názvů **Web. http. OData. Query. validátors** . Například následující třída validátoru zakáže možnost ' DESC ' pro možnost $orderby.
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample14.cs)]
 
-Podtřídy **[Queryable]** atribut přepsání **ValidateQuery** metody.
+Podtříd atributu **[Queryable]** pro přepsání metody **ValidateQuery** .
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample15.cs)]
 
-Potom nastavte vlastní atribut buď globálně nebo na řadič:
+Pak vlastní atribut nastavte buď globálně, nebo podle kontroleru:
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample16.cs)]
 
-Pokud používáte **ODataQueryOptions** přímo, nastavte ověřovací modul na možnostech:
+Pokud používáte **ODataQueryOptions** přímo, nastavte ověřovací modul na možnosti:
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample17.cs)]
