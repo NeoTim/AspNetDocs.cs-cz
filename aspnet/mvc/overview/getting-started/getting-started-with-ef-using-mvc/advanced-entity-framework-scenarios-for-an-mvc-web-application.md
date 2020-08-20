@@ -10,10 +10,10 @@ ms.assetid: f35a9b0c-49ef-4cde-b06d-19d1543feb0b
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/advanced-entity-framework-scenarios-for-an-mvc-web-application
 msc.type: authoredcontent
 ms.openlocfilehash: d7cc83a5b78a60f575f5c3065079679189296a0c
-ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
+ms.sourcegitcommit: c9d9210e0d16fbb3829b7688cfb832dc263c79cc
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 04/06/2020
+ms.lasthandoff: 08/20/2020
 ms.locfileid: "86188679"
 ---
 # <a name="tutorial-learn-about-advanced-ef-scenarios-for-an-mvc-5-web-app"></a>Kurz: Přečtěte si o rozšířených scénářích EF pro webovou aplikaci MVC 5
@@ -292,7 +292,7 @@ Ověřte připojovací řetězec. Pokud jste databázi odstranili ručně, změ�
 
 [Stáhnout dokončený projekt](https://webpifeed.blob.core.windows.net/webpifeed/Partners/ASP.NET%20MVC%20Application%20Using%20Entity%20Framework%20Code%20First.zip)
 
-## <a name="additional-resources"></a>Další zdroje informací
+## <a name="additional-resources"></a>Další zdroje
 
  Další informace o tom, jak pracovat s daty pomocí Entity Framework, najdete na [stránce dokumentace EF na webech MSDN](https://msdn.microsoft.com/data/ee712907) a ASP.NET, které jsou [doporučeny pro přístup k datům](../../../../whitepapers/aspnet-data-access-content-map.md).
 
