@@ -8,12 +8,12 @@ ms.date: 10/14/2017
 ms.assetid: 8935bf14-ca6d-4a4e-9dbe-b96ce74cef49
 msc.legacyurl: /ajax/cdn
 msc.type: content
-ms.openlocfilehash: 58e2d62da2181108f34bbf3e1e948977241e1dee
-ms.sourcegitcommit: b3c0e67bb231dbb0db9e8dfccd51cf715481edcc
+ms.openlocfilehash: 9eebe0e52af2a0fca967a51afb58c7db174d9fdb
+ms.sourcegitcommit: feb88edfb01b32f6fc9488f0f0ddb3c5b34e6ff0
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 08/12/2020
-ms.locfileid: "88161354"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88702917"
 ---
 # <a name="microsoft-ajax-content-delivery-network"></a>Microsoft Ajax Content Delivery Network
 
@@ -48,7 +48,7 @@ ms.locfileid: "88161354"
  [Odpověď verze v CDN](#Respond_Releases_on_the_CDN_13)  
  [Bootstrap vydaných verzí na CDN](#Bootstrap_Releases_on_the_CDN_14)  
  [Zavedení TouchCarousel vydání na CDN](#BootstrapTouchCarousel_Releases_on_the_CDN_18)  
- [VerzeHammer.js v CDN](#Hammerjs_Releases_on_the_CDN_19)  
+ [ VerzeHammer.js v CDN](#Hammerjs_Releases_on_the_CDN_19)  
  [ASP.NET webové formuláře a verze AJAX v CDN](#ASPNET_Web_Forms_and_Ajax_Releases_on_the_CDN_15)  
  [Verze ASP.NET MVC na CDN](#ASPNET_MVC_Releases_on_the_CDN_16)  
  [ASP.NET signalizace v CDN](#ASPNET_SignalR_Releases_on_the_CDN_17)
@@ -84,8 +84,8 @@ Pokud chcete odeslat knihovnu JavaScriptu a vaše knihovna je jedním z hlavníc
 
 CDN, který používal název domény microsoft.com, byl změněn tak, aby používal název domény aspnetcdn.com. Tato změna byla provedena kvůli zvýšení výkonu, protože když se prohlížeč odkazuje na doménu microsoft.com, poslal by všechny soubory cookie z této domény v rámci jednotlivých požadavků. Přejmenováním na jiný název domény, než je microsoft.com výkon, se dá zvýšit o až 25%. Poznámka ajax.microsoft.com bude i nadále fungovat, ale doporučuje se ajax.aspnetcdn.com.
 
-- Starý formát:https://ajax.microsoft.com/ajax/jQuery/jquery-1.8.0.js
-- Nový formát:https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js
+- Starý formát: https://ajax.microsoft.com/ajax/jQuery/jquery-1.8.0.js
+- Nový formát: https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js
 
 <a id="Visual_Studio_vsdoc_Support_19"></a>
 
@@ -830,6 +830,21 @@ V CDN jsou hostované následující verze [odpovědi](https://github.com/scottj
 ### <a name="bootstrap-releases-on-the-cdn"></a>Bootstrap vydaných verzí na CDN
 
 Následující verze [getbootstrap.com](http://getbootstrap.com "getbootstrap.com") Bootstrap se hostují v CDN:
+
+#### <a name="bootstrap-version-452"></a>Bootstrap verze 4.5.2
+
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/bootstrap.bundle.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap-grid.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap-grid.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap-grid.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap-reboot.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap-reboot.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap-reboot.css.map
 
 #### <a name="bootstrap-version-450"></a>Bootstrap verze 4.5.0
 
