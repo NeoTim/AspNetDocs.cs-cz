@@ -8,12 +8,12 @@ ms.date: 07/30/2013
 ms.assetid: 64906a1d-f734-41cf-9615-ee95f8740996
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/advanced-entity-framework-scenarios-for-an-mvc-web-application
 msc.type: authoredcontent
-ms.openlocfilehash: f8f079f6d8ea663c6888456be422a2bae93a4b87
-ms.sourcegitcommit: c9d9210e0d16fbb3829b7688cfb832dc263c79cc
+ms.openlocfilehash: 85dd59016d904a9f654c438db977b5ae2c0187d2
+ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "86163453"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045049"
 ---
 # <a name="advanced-entity-framework-scenarios-for-an-mvc-web-application-10-of-10"></a>Pokročilé scénáře Entity Framework pro webovou aplikaci MVC (10 z 10)
 
@@ -191,7 +191,7 @@ V části *Controllers/CourseController*nahraďte `Index` metodu následujícím
 
 Nyní nastavte zarážku v *GenericRepository.cs* na `return query.ToList();` a `return orderBy(query).ToList();` příkazy `Get` metody. Spusťte projekt v režimu ladění a vyberte stránku index kurzu. Když kód dosáhne zarážky, prověřte `query` proměnnou. Zobrazí se dotaz, který se odešle do SQL Server. Jedná se o jednoduchý `Select` příkaz:
 
-[!code-json[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample14.json)]
+[!code-json[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample14.sql)]
 
 ![](advanced-entity-framework-scenarios-for-an-mvc-web-application/_static/image12.png)
 
@@ -219,7 +219,7 @@ I když se zarážky ve třídě pořád nastavují `GenericRepository` , spusť
 
 Tentokrát bude první zarážka pro dotaz oddělení v rozevíracím seznamu. Přeskočí tuto proměnnou a zobrazí `query` se, když kód příště dosáhne zarážky, aby se zobrazila informace o tom, jaký `Course` dotaz teď vypadá jako. Uvidíte něco podobného jako následující:
 
-[!code-json[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample17.json)]
+[!code-json[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample17.sql)]
 
 Vidíte, že dotaz je nyní `JOIN` dotazem, který načítá `Department` data společně s `Course` daty a obsahuje `WHERE` klauzuli.
 
@@ -257,7 +257,7 @@ Pokud sledujete velký počet entit a v rámci smyčky několikrát voláte jedn
 
 Když zavoláte `SaveChanges` metodu, ve výchozím nastavení Entity Framework před aktualizací databáze ověřuje data ve všech vlastnostech všech změněných entit. Pokud jste aktualizovali velký počet entit a již jste ověřili data, je tato práce nepotřebná a je možné, že proces uložení změn trvá méně času tím, že se dočasně vypne ověřování. Můžete to udělat pomocí vlastnosti [ValidateOnSaveEnabled](https://msdn.microsoft.com/library/system.data.entity.infrastructure.dbcontextconfiguration.validateonsaveenabled(VS.103).aspx) . Další informace najdete v tématu [ověření](https://blogs.msdn.com/b/adonet/archive/2010/12/15/ef-feature-ctp5-validation.aspx).
 
-## <a name="summary"></a>Shrnutí
+## <a name="summary"></a>Souhrn
 
 Tím se dokončí Tato série kurzů na používání Entity Framework v aplikaci ASP.NET MVC. Odkazy na další prostředky Entity Framework najdete v [mapě obsahu pro přístup k datům ASP.NET](../../../../whitepapers/aspnet-data-access-content-map.md).
 

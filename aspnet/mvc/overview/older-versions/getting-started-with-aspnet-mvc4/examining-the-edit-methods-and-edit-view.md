@@ -8,12 +8,12 @@ ms.date: 08/28/2012
 ms.assetid: 41eb99ca-e88f-4720-ae6d-49a958da8116
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc4/examining-the-edit-methods-and-edit-view
 msc.type: authoredcontent
-ms.openlocfilehash: 85ad9a5758d70b5fe4ed792efb80217d7b3e2132
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 16ce02ba00e13b4cff2d6e86b2d9e0684aab096e
+ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "86162972"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89044516"
 ---
 # <a name="examining-the-edit-methods-and-edit-view"></a>Zkoumání metod Edit a zobrazení pro úpravy
 
@@ -123,7 +123,7 @@ Spusťte aplikaci a přejděte na */Movies/SearchIndex*. Připojit řetězec dot
 
 Pokud změníte podpis `SearchIndex` metody tak, aby měl parametr s názvem `id` , `id` parametr bude odpovídat `{id}` zástupnému symbolu pro výchozí trasy nastavené v souboru *Global. asax* .
 
-[!code-json[Main](examining-the-edit-methods-and-edit-view/samples/sample13.json)]
+[!code-json[Main](examining-the-edit-methods-and-edit-view/samples/sample13.txt)]
 
 Původní `SearchIndex` metoda vypadá takto::
 

@@ -8,12 +8,12 @@ ms.date: 08/19/2008
 ms.assetid: a106374a-5e74-4fd0-9ac0-1a32280e5d0d
 msc.legacyurl: /mvc/overview/older-versions-1/overview/understanding-models-views-and-controllers-vb
 msc.type: authoredcontent
-ms.openlocfilehash: cc7988e0c9802e8cd376396eb5da15b5393d6088
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: e11487cbb863bae230ccb9dfdaf7172c65ec4d43
+ms.sourcegitcommit: ffd0f59ef9b7d221a5b2010c32aa61c89c14f406
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78600448"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "89042089"
 ---
 # <a name="understanding-models-views-and-controllers-vb"></a>Principy modelů, zobrazení a kontrolerů (VB)
 
@@ -31,13 +31,13 @@ Výchozí šablona sady Visual Studio pro vytváření webových aplikací ASP.N
 
 Vytvoříte novou aplikaci ASP.NET MVC se šablonou MVC spuštěním sady Visual Studio 2008 a výběrem souboru možnosti nabídky, nový projekt (viz obrázek 1). V dialogovém okně Nový projekt vyberte v části typy projektů (Visual Basic nebo C#) svůj oblíbený programovací jazyk a v části šablony vyberte **Webová aplikace ASP.NET MVC** . Klikněte na tlačítko OK.
 
-[Dialog ![nový projekt](understanding-models-views-and-controllers-vb/_static/image1.jpg)](understanding-models-views-and-controllers-vb/_static/image1.png)
+[![Dialog Nový projekt](understanding-models-views-and-controllers-vb/_static/image1.jpg)](understanding-models-views-and-controllers-vb/_static/image1.png)
 
 **Obrázek 01**: dialogové okno Nový projekt ([kliknutím zobrazíte obrázek v plné velikosti](understanding-models-views-and-controllers-vb/_static/image2.png))
 
 Při vytváření nové aplikace ASP.NET MVC se zobrazí dialogové okno **vytvořit projekt testování částí** (viz obrázek 2). Toto dialogové okno umožňuje ve vašem řešení vytvořit samostatný projekt pro testování aplikace ASP.NET MVC. Vyberte možnost **Ne, nevytvářejte projekt testování částí** a klikněte na tlačítko **OK** .
 
-[Dialogové okno pro vytvoření testu jednotek ![](understanding-models-views-and-controllers-vb/_static/image2.jpg)](understanding-models-views-and-controllers-vb/_static/image3.png)
+[![Dialogové okno vytvořit test jednotek](understanding-models-views-and-controllers-vb/_static/image2.jpg)](understanding-models-views-and-controllers-vb/_static/image3.png)
 
 **Obrázek 02**: dialogové okno pro vytvoření testu jednotek ([kliknutím zobrazíte obrázek v plné velikosti](understanding-models-views-and-controllers-vb/_static/image4.png))
 
@@ -45,7 +45,7 @@ Po vytvoření nové aplikace ASP.NET MVC. V okně Průzkumník řešení se zob
 
 Pokud rozbalíte složku Controllers, měl by se zobrazit soubor s názvem AccountController. vb a soubor s názvem HomeController. vb. Pokud rozbalíte složku zobrazení, měli byste vidět tři podsložky s názvem Account, Home a Shared. Pokud rozbalíte domovskou složku, zobrazí se dva další soubory s názvem About. aspx a index. aspx (viz obrázek 3). Tyto soubory tvoří ukázkovou aplikaci, která je součástí výchozí šablony ASP.NET MVC.
 
-[![Průzkumník řešení okně](understanding-models-views-and-controllers-vb/_static/image3.jpg)](understanding-models-views-and-controllers-vb/_static/image5.png)
+[![Okno Průzkumník řešení](understanding-models-views-and-controllers-vb/_static/image3.jpg)](understanding-models-views-and-controllers-vb/_static/image5.png)
 
 **Obrázek 03**: okno Průzkumník řešení ([kliknutím zobrazíte obrázek v plné velikosti](understanding-models-views-and-controllers-vb/_static/image6.png))
 
@@ -53,13 +53,13 @@ Ukázkovou aplikaci můžete spustit výběrem možnosti nabídky **ladění a s
 
 Při prvním spuštění aplikace ASP.NET se zobrazí dialogové okno na obrázku 4, které doporučuje povolit režim ladění. Klikněte na tlačítko OK a aplikace se spustí.
 
-[dialog ![ladění není povolený](understanding-models-views-and-controllers-vb/_static/image4.jpg)](understanding-models-views-and-controllers-vb/_static/image7.png)
+[![Dialogové okno ladění není povoleno](understanding-models-views-and-controllers-vb/_static/image4.jpg)](understanding-models-views-and-controllers-vb/_static/image7.png)
 
 **Obrázek 04**: dialogové okno ladění není povoleno ([kliknutím zobrazíte obrázek v plné velikosti).](understanding-models-views-and-controllers-vb/_static/image8.png)
 
 Když spustíte aplikaci ASP.NET MVC, Visual Studio spustí aplikaci ve webovém prohlížeči. Ukázková aplikace se skládá pouze ze dvou stránek: stránky index a stránka o produktu. Po prvním spuštění aplikace se zobrazí stránka index (viz obrázek 5). Kliknutím na odkaz nabídky v pravém horním rohu aplikace můžete přejít na stránku o aplikaci.
 
-[![stránku indexu](understanding-models-views-and-controllers-vb/_static/image5.jpg)](understanding-models-views-and-controllers-vb/_static/image9.png)
+[![Stránka index](understanding-models-views-and-controllers-vb/_static/image5.jpg)](understanding-models-views-and-controllers-vb/_static/image9.png)
 
 **Obrázek 05**: stránka index ([kliknutím zobrazíte obrázek v plné velikosti](understanding-models-views-and-controllers-vb/_static/image10.png))
 
@@ -85,7 +85,7 @@ ASP.NET směrování používá směrovací tabulku pro zpracování příchozí
 
 [!code-vb[Main](understanding-models-views-and-controllers-vb/samples/sample1.vb)]
 
-Při prvním spuštění aplikace ASP.NET je volána metoda aplikace\_Start (). V výpisu 1 Tato metoda volá metodu RegisterRoutes () a metoda RegisterRoutes () vytvoří výchozí směrovací tabulku.
+Při prvním spuštění aplikace ASP.NET se \_ zavolá metoda Start () aplikace. V výpisu 1 Tato metoda volá metodu RegisterRoutes () a metoda RegisterRoutes () vytvoří výchozí směrovací tabulku.
 
 Výchozí směrovací tabulka se skládá z jedné trasy. Tato výchozí trasa zruší všechny příchozí požadavky na tři segmenty (segment adresy URL je cokoli mezi lomítky). První segment je namapován na název kontroleru, druhý segment je namapován na název akce a konečný segment je namapován na parametr předaný akci s názvem ID.
 
@@ -99,7 +99,7 @@ Controller = produkt
 
 Action = details
 
-Id = 3
+ID = 3
 
 Výchozí trasa definovaná v souboru Global. asax obsahuje výchozí hodnoty pro všechny tři parametry. Výchozí kontroler je Home, výchozí akce je index a výchozí ID je prázdný řetězec. S těmito výchozími nastaveními zvažte, jak se analyzuje následující adresa URL:
 
@@ -111,15 +111,15 @@ Controller = zaměstnanec
 
 Action = index
 
-Id = ��
+ID =?
 
-Nakonec, pokud otevřete aplikaci ASP.NET MVC bez zadání adresy URL (například `http://localhost`), adresa URL bude analyzována takto:
+Nakonec, pokud otevřete aplikaci ASP.NET MVC bez zadání adresy URL (například `http://localhost` ), adresa URL bude analyzována takto:
 
 Controller = domů
 
 Action = index
 
-Id = ��
+ID =?
 
 Požadavek se směruje do akce index () ve třídě HomeController.
 
@@ -127,7 +127,7 @@ Požadavek se směruje do akce index () ve třídě HomeController.
 
 Kontroler je zodpovědný za řízení způsobu, jakým uživatel komunikuje s aplikací MVC. Kontroler obsahuje logiku řízení toku pro aplikaci ASP.NET MVC. Kontroler určuje, jaká odpověď se má poslat zpátky uživateli, když uživatel odešle požadavek na prohlížeč.
 
-Kontroler je pouze třída (například Visual Basic nebo C# třída). Ukázková aplikace ASP.NET MVC obsahuje kontroler s názvem HomeController. vb umístěný ve složce Controllers. Obsah souboru HomeController. vb je reprodukován v seznamu 2.
+Kontroler je pouze třída (například Visual Basic nebo třída C#). Ukázková aplikace ASP.NET MVC obsahuje kontroler s názvem HomeController. vb umístěný ve složce Controllers. Obsah souboru HomeController. vb je reprodukován v seznamu 2.
 
 **Výpis 2 – HomeController.cs**
 

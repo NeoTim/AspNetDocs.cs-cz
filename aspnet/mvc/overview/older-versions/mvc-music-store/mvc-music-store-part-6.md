@@ -1,6 +1,6 @@
 ---
 uid: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6
-title: '6\. část: použití datových poznámek pro ověření modelu | Microsoft Docs'
+title: '6. část: použití datových poznámek pro ověření modelu | Microsoft Docs'
 author: jongalloway
 description: V této sérii kurzů se podrobně povedou všechny kroky, které se provedly při vytváření ukázkové aplikace úložiště ASP.NET MVC pro hudební úložiště. Část 6 pokrývá použití datových poznámek pro model V...
 ms.author: riande
@@ -8,14 +8,14 @@ ms.date: 04/21/2011
 ms.assetid: b3193d33-2d0b-4d98-9712-58bd897c62ec
 msc.legacyurl: /mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6
 msc.type: authoredcontent
-ms.openlocfilehash: bc031dd5be61cc6707c522f85f6af77a420c8b31
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 24d3f028a9a720e5b526518624c9c1c2ce2c37d4
+ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78539275"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89044945"
 ---
-# <a name="part-6-using-data-annotations-for-model-validation"></a>6\. část: Používání datových poznámek k ověření modelu
+# <a name="part-6-using-data-annotations-for-model-validation"></a>Část 6: Používání datových poznámek k ověření modelu
 
 o [Jan Galloway](https://github.com/jongalloway)
 
@@ -34,13 +34,13 @@ Do naší aplikace můžeme snadno přidat ověřování tím, že do našich t�
 Použijeme následující atributy poznámky k datům:
 
 - **Required** – označuje, že vlastnost je povinné pole.
-- **DisplayName** – definuje text, který chceme použít pro pole formuláře a ověřovací zprávy.
+- **DisplayName** – definuje text, který se má použít u polí formuláře a ověřovacích zpráv.
 - **StringLength** – definuje maximální délku pole řetězce.
 - **Rozsah** – poskytuje maximální a minimální hodnotu pro číselné pole.
 - **BIND** – vypíše pole, která se mají vyloučit nebo zahrnout, když jsou parametry vazby nebo hodnoty formulářů na vlastnosti modelu.
 - **ScaffoldColumn** – umožňuje skrývání polí z formulářů editoru.
 
-*Poznámka: Další informace o ověřování modelu pomocí atributů datových poznámek najdete v dokumentaci MSDN na adrese* [`https://go.microsoft.com/fwlink/?LinkId=159063`](https://go.microsoft.com/fwlink/?LinkId=159063)
+*Poznámka: Další informace o ověřování modelu pomocí atributů datových poznámek najdete v dokumentaci MSDN na adrese*[`https://go.microsoft.com/fwlink/?LinkId=159063`](https://go.microsoft.com/fwlink/?LinkId=159063)
 
 Otevřete třídu alba a přidejte následující příkazy *using* do horní části.
 
@@ -77,5 +77,5 @@ Zadáním jednoho písmena v poli název splníte požadavky na ověření, tak�
 ![](mvc-music-store-part-6/_static/image3.png)
 
 > [!div class="step-by-step"]
-> [Předchozí](mvc-music-store-part-5.md)
-> [Další](mvc-music-store-part-7.md)
+> [Předchozí](mvc-music-store-part-5.md) 
+>  [Další](mvc-music-store-part-7.md)

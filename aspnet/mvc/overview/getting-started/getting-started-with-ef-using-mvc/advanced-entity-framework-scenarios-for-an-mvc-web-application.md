@@ -9,12 +9,12 @@ ms.topic: tutorial
 ms.assetid: f35a9b0c-49ef-4cde-b06d-19d1543feb0b
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/advanced-entity-framework-scenarios-for-an-mvc-web-application
 msc.type: authoredcontent
-ms.openlocfilehash: d7cc83a5b78a60f575f5c3065079679189296a0c
-ms.sourcegitcommit: c9d9210e0d16fbb3829b7688cfb832dc263c79cc
+ms.openlocfilehash: 2bfa4401c73b56be87502ffbb189abab3c59c226
+ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "86188679"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89044997"
 ---
 # <a name="tutorial-learn-about-advanced-ef-scenarios-for-an-mvc-5-web-app"></a>Kurz: Přečtěte si o rozšířených scénářích EF pro webovou aplikaci MVC 5
 
@@ -130,7 +130,7 @@ V části *Controllers/CourseController*nahraďte `Index` metodu následujícím
 
 Nyní nastavte zarážku na `return` příkaz (F9 se kurzorem na daném řádku). Stisknutím klávesy **F5** spusťte projekt v režimu ladění a vyberte stránku index kurzu. Když kód dosáhne zarážky, prověřte `sql` proměnnou. Zobrazí se dotaz, který se odešle do SQL Server. Jedná se o jednoduchý `Select` příkaz.
 
-[!code-json[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample7.json)]
+[!code-json[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample7.sql)]
 
 Kliknutím na Lupa zobrazíte dotaz v **Vizualizér textu**.
 

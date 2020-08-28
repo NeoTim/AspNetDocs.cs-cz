@@ -8,12 +8,12 @@ ms.date: 02/16/2008
 ms.assetid: c28ba88d-3a93-47f5-a306-049bd766714d
 msc.legacyurl: /mvc/overview/older-versions-1/views/asp-net-mvc-views-overview-vb
 msc.type: authoredcontent
-ms.openlocfilehash: f02728ed248f29b09d654e509977ed43889cbb83
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: a07d15cb14e9ef90b62c5a8702dee53f1a0a6032
+ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78541305"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89044662"
 ---
 # <a name="aspnet-mvc-views-overview-vb"></a>ASP.NET MVC – přehled zobrazení (VB)
 
@@ -81,15 +81,15 @@ Všimněte si, že tělo stránky HTML v seznamu 2 obsahuje následující skrip
 
 &lt;% Response. Write (DateTime. Now)%&gt;
 
-Pomocí oddělovačů skriptů &lt;% a%&gt; označíte začátek a konec skriptu. Tento skript je napsán v jazyce Visual Basic. Zobrazí aktuální datum a čas voláním metody Response. Write () pro vykreslení obsahu do prohlížeče. Oddělovače skriptů &lt;% a%&gt; lze použít ke spuštění jednoho nebo více příkazů.
+Pomocí oddělovače skriptů &lt; % a% &gt; označíte začátek a konec skriptu. Tento skript je napsán v jazyce Visual Basic. Zobrazí aktuální datum a čas voláním metody Response. Write () pro vykreslení obsahu do prohlížeče. &lt; &gt; K provedení jednoho nebo více příkazů lze použít oddělovače skriptů% a%.
 
-Vzhledem k tomu, že zavoláte Response. Write () tak často, společnost Microsoft poskytuje zástupce pro volání metody Response. Write (). Zobrazení v seznamu 3 používá oddělovače &lt;% = a%&gt; jako zástupce pro volání metody Response. Write ().
+Vzhledem k tomu, že zavoláte Response. Write () tak často, společnost Microsoft poskytuje zástupce pro volání metody Response. Write (). Zobrazení v seznamu 3 používá oddělovače &lt; % = a% &gt; jako zástupce pro volání metody Response. Write ().
 
 **Výpis 3 – Views\Home\Index2.aspx**
 
 [!code-aspx[Main](asp-net-mvc-views-overview-vb/samples/sample3.aspx)]
 
-K vygenerování dynamického obsahu v zobrazení můžete použít libovolný jazyk rozhraní .NET. Za normálních okolností můžete použít buď Visual Basic .NET C# , nebo můžete zapisovat řadiče a zobrazení.
+K vygenerování dynamického obsahu v zobrazení můžete použít libovolný jazyk rozhraní .NET. Normálně použijete Visual Basic .NET nebo C# k zápisu řadičů a zobrazení.
 
 ## <a name="using-html-helpers-to-generate-view-content"></a>Použití pomocníků HTML ke generování obsahu zobrazení
 
@@ -101,13 +101,13 @@ Například zobrazení v seznamu 4 využívá tři pomocníky HTML – BeginForm
 
 [!code-aspx[Main](asp-net-mvc-views-overview-vb/samples/sample4.aspx)]
 
-[![dialogového okna Nový projekt](asp-net-mvc-views-overview-vb/_static/image1.jpg)](asp-net-mvc-views-overview-vb/_static/image1.png)
+[![Dialogové okno New Project (Nový projekt)](asp-net-mvc-views-overview-vb/_static/image1.jpg)](asp-net-mvc-views-overview-vb/_static/image1.png)
 
 **Obrázek 01**: standardní přihlašovací formulář ([kliknutím zobrazíte obrázek v plné velikosti](asp-net-mvc-views-overview-vb/_static/image2.png))
 
 Všechny metody pomocníka HTML jsou volány ve vlastnosti HTML zobrazení. Například můžete vykreslit textové pole voláním metody HTML. TextBox ().
 
-Všimněte si, že používáte oddělovače skriptů &lt;% = a%&gt; při volání pomocníků HTML. TextBox () a HTML. Password (). Tyto pomocníky jednoduše vrátí řetězec. Pro vykreslení řetězce do prohlížeče je nutné zavolat Response. Write ().
+Všimněte si, že používáte oddělovače skriptů &lt; % = a% &gt; při volání pomocníků HTML. TextBox () a HTML. Password (). Tyto pomocníky jednoduše vrátí řetězec. Pro vykreslení řetězce do prohlížeče je nutné zavolat Response. Write ().
 
 Použití pomocných metod jazyka HTML je volitelné. Díky omezení množství HTML a skriptu, který je potřeba napsat, zjednoduší život. Zobrazení v seznamu 5 vykreslí přesně stejný tvar jako zobrazení v seznamu 4 bez použití pomocníků HTML.
 
@@ -133,9 +133,9 @@ Zobrazení v seznamu 7 načte zprávu z dat zobrazení a vykreslí zprávu do pr
 
 [!code-aspx[Main](asp-net-mvc-views-overview-vb/samples/sample7.aspx)]
 
-Všimněte si, že zobrazení při vykreslování zprávy využívá pomocnou metodu HTML. Encode () HTML. Pomocný kód HTML. Encode () HTML kóduje speciální znaky, například &lt; a &gt; do znaků, které jsou bezpečné pro zobrazení na webové stránce. Kdykoli vykreslíte obsah, který uživatel odešle na web, měli byste zakódovat obsah a zabránit tak útokům prostřednictvím injektáže JavaScriptu.
+Všimněte si, že zobrazení při vykreslování zprávy využívá pomocnou metodu HTML. Encode () HTML. Pomocný kód HTML. Encode () HTML kóduje speciální znaky &lt; , jako jsou a &gt; , do znaků, které jsou bezpečné pro zobrazení na webové stránce. Kdykoli vykreslíte obsah, který uživatel odešle na web, měli byste zakódovat obsah a zabránit tak útokům prostřednictvím injektáže JavaScriptu.
 
-(Vzhledem k tomu, že jsme v ProductController vytvořili zprávu dodržovali, nemusíme ji opravdu kódovat. Je však dobrým zvykem při zobrazování obsahu načteného z zobrazení dat načtených v zobrazení, vždy při volání metody HTML. Encode ().)
+(Vzhledem k tomu, že jsme v ProductController vytvořili zprávu dodržovali, nemusíte ve skutečnosti zakódovat zprávu. Je však dobrým zvykem při zobrazování obsahu načteného z zobrazení dat načtených v zobrazení, vždy při volání metody HTML. Encode ().)
 
 V seznamu 7 jsme využili výhod zobrazení dat k předání jednoduché zprávy řetězce z řadiče do zobrazení. Pomocí zobrazení dat můžete také předat další typy dat, jako je například kolekce záznamů databáze, z kontroleru do zobrazení. Například pokud chcete zobrazit obsah tabulky databáze produktů v zobrazení, pak byste měli předat kolekci záznamů databáze v zobrazení dat.
 
@@ -146,5 +146,5 @@ Máte také možnost předat data zobrazení silného typu z kontroleru do zobra
 V tomto kurzu najdete stručný úvod k ASP.NET zobrazením MVC, zobrazení dat a pomocníkům HTML. V první části jste se dozvěděli, jak přidat nová zobrazení do projektu. Zjistili jste, že musíte přidat zobrazení do pravé složky, abyste ho mohli zavolat z konkrétního kontroleru. Dále jsme probrali téma nápovědy HTML. Zjistili jste, jak vám pomocník HTML umožňuje snadno vygenerovat standardní obsah HTML. Nakonec jste zjistili, jak využít výhod zobrazení dat k předávání dat z kontroleru do zobrazení.
 
 > [!div class="step-by-step"]
-> [Předchozí](passing-data-to-view-master-pages-cs.md)
-> [Další](creating-custom-html-helpers-vb.md)
+> [Předchozí](passing-data-to-view-master-pages-cs.md) 
+>  [Další](creating-custom-html-helpers-vb.md)

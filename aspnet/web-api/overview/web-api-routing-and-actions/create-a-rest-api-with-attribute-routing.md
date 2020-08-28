@@ -8,12 +8,12 @@ ms.date: 06/26/2013
 ms.assetid: 23fc77da-2725-4434-99a0-ff872d96336b
 msc.legacyurl: /web-api/overview/web-api-routing-and-actions/create-a-rest-api-with-attribute-routing
 msc.type: authoredcontent
-ms.openlocfilehash: 6eac36767bf34857d5341188d0653e7fec7cade2
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: f6ff5fa18a44b3e6717ec0141ebe101bcdc0bee4
+ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "86188796"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045179"
 ---
 # <a name="create-a-rest-api-with-attribute-routing-in-aspnet-web-api-2"></a>Vytvoření REST API s směrováním atributů ve webovém rozhraní API 2 pro ASP.NET
 
@@ -44,7 +44,7 @@ Pro datovou vrstvu budeme používat Entity Framework. Záznamy o knihách budou
 
 Pro většinu požadavků ale rozhraní API vrátí podmnožinu těchto dat (název, autor a Žánr). Chcete-li získat úplný záznam, požadavky klienta `/api/books/{id}/details` .
 
-## <a name="prerequisites"></a>Požadavky
+## <a name="prerequisites"></a>Předpoklady
 
 [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017) Komunita, edice Professional nebo Enterprise.
 
@@ -238,7 +238,7 @@ Můžete také podporovat oddělovač lomítka ( `/api/books/date/yyyy/mm/dd` ) 
 
 Tady je jen malý, ale důležitý detail. Druhá šablona trasy obsahuje zástupný znak ( \* ) na začátku parametru {pubdate}:
 
-[!code-json[Main](create-a-rest-api-with-attribute-routing/samples/sample21.json)]
+[!code-json[Main](create-a-rest-api-with-attribute-routing/samples/sample21.txt)]
 
 Tím se oznámí směrovacímu modulu, že {pubdate} by se měl shodovat se zbytkem identifikátoru URI. Ve výchozím nastavení je parametr šablony shodný s jedním segmentem identifikátoru URI. V tomto případě chceme, aby {pubdate} zahrnoval několik segmentů identifikátorů URI:
 
@@ -250,6 +250,6 @@ Zde je kompletní kód pro třídu BooksController.
 
 [!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample22.cs)]
 
-## <a name="summary"></a>Shrnutí
+## <a name="summary"></a>Souhrn
 
 Směrování atributů poskytuje větší kontrolu a větší flexibilitu při navrhování identifikátorů URI pro vaše rozhraní API.
