@@ -8,22 +8,24 @@ ms.date: 01/28/2011
 ms.assetid: 1febce65-cdd4-47da-bdb5-1e6022ccd20a
 msc.legacyurl: /mobile
 msc.type: content
-ms.openlocfilehash: 769484ee505599eef48ff4a106ddd4f7ec7d99af
-ms.sourcegitcommit: 0cf7d06071a8ff986e6c028ac9daf0c0e7490412
+ms.openlocfilehash: 41cf393f307808e457e0ab2529129ca8ecbc3b5d
+ms.sourcegitcommit: dfd3ce87ffc9e3a7076f8252abb5d5d6b991333b
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85240726"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89449701"
 ---
 # <a name="mobile-apps--sites-with-aspnet"></a>Mobile Apps & weby pomocí ASP.NET
 
 ## <a name="develop-mobile-apps"></a>Vývoj Mobile Apps
 
-### <a name="cloud-connected-mobile-apps---create-a-web-service-with-azure-web-apps-and-webjobspart-1"></a>[Cloudově připojené Mobile Apps – vytvoření webové služby s využitím Azure Web Apps a WebJobs](https://msdn.microsoft.com/magazine/mt185572)(část 1)
+### <a name="cloud-connected-mobile-apps"></a>Mobile Apps připojená k cloudu
+
+[Část 1 – Vytvoření webové služby s využitím Azure Web Apps a WebJobs](https://msdn.microsoft.com/magazine/mt185572)
 
 V první části článku se dvěma částmi autoři prozkoumali některé problémy, které se podílejí na vytvoření back-endu cloudu, který agreguje a zpracovává data a obsluhuje je mobilním klientům.
 
-### <a name="cloud-connected-mobile-apps---build-a-xamarin-app-with-authentication-and-offline-supportpart-2"></a>[Cloudově připojené Mobile Apps – sestavení aplikace Xamarin s podporou ověřování a offline](https://msdn.microsoft.com/magazine/mt422581.aspx)(část 2)
+[Část 2 – Vytvoření aplikace Xamarin s podporou ověřování a offline podpory](https://msdn.microsoft.com/magazine/mt422581.aspx)
 
 V druhém článku ve své sérii autoři projednávají, jak pomocí Xamarin cílit na několik mobilních klientských platforem a jak implementovat ověřování a udržovat synchronizovanou mezipaměť dat na straně klienta.
 
