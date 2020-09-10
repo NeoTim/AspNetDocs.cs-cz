@@ -8,12 +8,12 @@ ms.date: 08/15/2012
 ms.assetid: c7e4e1ab-4932-4614-9f53-aaf7c706d498
 msc.legacyurl: /mvc/overview/views/using-page-inspector-in-aspnet-mvc
 msc.type: authoredcontent
-ms.openlocfilehash: 5da3e142c52a770f59222c21d9f9a53cbbdbf498
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 42d5683ce75467a159c9d13edf302bd6bf24a11d
+ms.sourcegitcommit: 45754124123403520b9fa2e706a4d1292494159b
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78538015"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89643688"
 ---
 # <a name="using-page-inspector-in-aspnet-mvc"></a>Použití Page Inspectoru v ASP.NET MVC
 
@@ -40,7 +40,7 @@ pomocí Tim Ammann
 
 <a id="_prerequisites"></a><a id="_1_prerequisites"></a>
 
-## <a name="prerequisites"></a>Předpoklady
+## <a name="prerequisites"></a>Požadavky
 
 - [Visual Studio 2012](https://www.microsoft.com/visualstudio/11) nebo [Visual Studio Express 2012 pro web](https://www.microsoft.com/visualstudio/11/downloads#express-web).
 
@@ -53,11 +53,11 @@ Funkce Page Inspector je zabalené pomocí Microsoft Web Developer Tools. Nejnov
 
 ## <a name="create-a-web-application"></a>Vytvoření webové aplikace
 
-Nejprve vytvořte webovou aplikaci, ve které budete používat inspektor stránky. V aplikaci Visual Studio vyberte **soubor** &gt; **Nový projekt**. Na levé straně rozbalte **C#vizuál**, vyberte **Web**a pak vyberte **Webová aplikace ASP.NET MVC4**.
+Nejprve vytvořte webovou aplikaci, ve které budete používat inspektor stránky. V aplikaci Visual Studio vyberte **soubor** &gt; **Nový projekt**. Vlevo rozbalte položku **Visual C#**, vyberte možnost **Web**a pak vyberte možnost **Webová aplikace ASP.NET MVC4**.
 
 ![Nová aplikace ASP.NET MVC](using-page-inspector-in-aspnet-mvc/_static/image2.png)
 
-Klikněte na tlačítko **OK**.
+Klikněte na **OK**.
 
 V dialogovém okně **Nový projekt ASP.NET MVC 4** vyberte **internetovou aplikaci**. Ponechá **Razor** jako výchozí zobrazovací modul.
 
@@ -111,23 +111,23 @@ Page Inspector vám umožní najít značky, jejichž umístění nemusí být z
 
 Pokud to chcete vidět, klikněte na **zkontrolovat** a potom se posuňte do dolní části stránky v okně Inspektor stránky.
 
-Při přesunutí ukazatele myši do oblasti zápatí otevře okno Inspektor stránky soubor \_layout. cshtml a zvýrazní část stránky rozložení, kterou jste vybrali. Jak vidíte, zápatí je definováno v souboru rozložení, a ne v samotném zobrazení.
+Když přesunete ukazatel myši do oblasti zápatí, kontrolor stránky otevře \_ soubor layout. cshtml a zvýrazní část stránky rozložení, kterou jste vybrali. Jak vidíte, oblast zápatí je definována v souboru rozložení a ne v samotném zobrazení.
 
-![Dolní](using-page-inspector-in-aspnet-mvc/_static/image16.png)
+![Zápatí](using-page-inspector-in-aspnet-mvc/_static/image16.png)
 
-Nyní přesuňte ukazatel myši na řádek s oznámením o autorských právech <a id="a"> </a>. Na stránce \_layout. cshtml se zvýrazní odpovídající řádek.
+Nyní přesuňte ukazatel myši na řádek s oznámením o autorských právech <a id="a"></a> . Na \_ stránce layout. cshtml se zvýrazní odpovídající řádek.
 
 ![Zvýrazněný řádek copyrightu pro zápatí](using-page-inspector-in-aspnet-mvc/_static/image18.png)
 
-Přidejte nějaký text na konec řádku v souboru \_layout. cshtml.
+Přidejte nějaký text na konec řádku v \_ souboru layout. cshtml.
 
-&lt;p&gt;&amp;kopie; @DateTime.Now.Year – moje aplikace ASP.NET MVC Rocks&lt;/p&gt;
+&lt;p &gt; &amp; copy; @DateTime.Now.Year – Moje ASP.NET aplikace MVC Rocks. &lt; /p&gt;
 
 Nyní stiskněte kombinaci kláves CTRL + ALT + ENTER nebo kliknutím na panel aktualizace zobrazte výsledky v okně prohlížeče inspektoru stránky.
 
 ![Moje aplikace ASP.NET Rocks!](using-page-inspector-in-aspnet-mvc/_static/image20.png)
 
-Možná jste si mysleli, že se zápatí definované v indexu. cshtml, ale je zavedené v \_layout. cshtml a inspektor stránky ho pro vás našel.
+Možná jste si mysleli, že se zápatí definované v indexu. cshtml, ale jeho funkce je v \_ rozložení. cshtml a vzhled stránky pro vás našel.
 
 <a id="_inspection_mode_and_1"></a><a id="_6_inspection_mode"></a>
 
@@ -143,7 +143,7 @@ Nyní přesuňte ukazatel myši do okna **HTML** . Když přesunete ukazatel my�
 
 ![Okno HTML](using-page-inspector-in-aspnet-mvc/_static/image22.png)
 
-Stejně jako předtím otevře okno \_layout. cshtml pro vás na dočasné kartě. klikněte na položku \_layout. cshtml dočasná karta a odpovídající kód se zvýrazní v&gt; části hlavičky &lt;pro vás:
+Stejně jako předtím otevřela \_ soubor layout. cshtml na dočasné kartě. klikněte na dočasnou \_ kartu layout. cshtml a odpovídající kód se zvýrazní v &lt; &gt; části záhlaví za vás:
 
 ![Zvýrazněný kód](using-page-inspector-in-aspnet-mvc/_static/image24.png)
 
@@ -187,7 +187,7 @@ Okno **styly** zobrazuje všechna pravidla šablony stylů CSS pro tento element
 
 ![](using-page-inspector-in-aspnet-mvc/_static/image32.png)
 
-Nyní změňte hodnotu `background-color` na "Red". Tato změna se zobrazí okamžitě v prohlížeči Inspector stránky.
+Nyní změňte hodnotu pro `background-color` na Red. Tato změna se zobrazí okamžitě v prohlížeči Inspector stránky.
 
 ![](using-page-inspector-in-aspnet-mvc/_static/image34.png)
 
@@ -196,7 +196,7 @@ Nyní změňte hodnotu `background-color` na "Red". Tato změna se zobrazí okam
 
 Editor CSS v aplikaci Visual Studio 2012 má výběr barvy, který usnadňuje výběr a vložení barev. Výběr barvy obsahuje standardní paletu barev, podporuje standardní názvy barev, kódy hash, RGB, RGBA, HSL a HSLA barvy a udržuje seznam barev, které jste naposledy použili v dokumentu.
 
-V předchozí části jste změnili hodnotu vlastnosti `background-color`. Chcete-li vyvolat výběr barvy, umístěte kurzor za název vlastnosti a typ **#** nebo **RGB (** .
+V předchozí části jste změnili hodnotu `background-color` Vlastnosti. Chcete-li vyvolat výběr barvy, umístěte kurzor za název vlastnosti a typ **#** nebo **RGB (**.
 
 ![Panel pro výběr barvy CSS](using-page-inspector-in-aspnet-mvc/_static/image36.png)
 
@@ -236,7 +236,7 @@ S verzí 1,3 teď může inspektor stránky namapovat položky, které se dynami
 > [!NOTE]
 > Šablona zabezpečeného hesla vyžaduje aktualizaci [ASP.NET and Web Tools 2012,2](https://go.microsoft.com/fwlink/?LinkId=282650) .
 
-V aplikaci Visual Studio vyberte **soubor** &gt; **Nový projekt**. Na levé straně rozbalte **C#vizuál**, vyberte **Web**a pak vyberte **Webová aplikace ASP.NET MVC4**. Klikněte na tlačítko **OK**.
+V aplikaci Visual Studio vyberte **soubor** &gt; **Nový projekt**. Vlevo rozbalte položku **Visual C#**, vyberte možnost **Web**a pak vyberte možnost **Webová aplikace ASP.NET MVC4**. Klikněte na **OK**.
 
 V dialogovém okně **Nový projekt ASP.NET MVC 4** vyberte **aplikace s jednou stránkou**.
 
