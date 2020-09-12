@@ -9,10 +9,10 @@ ms.assetid: 3332d6e7-e2e1-4144-b805-e71d51e7e415
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-web-services
 msc.type: authoredcontent
 ms.openlocfilehash: eac3d53fd871d0cb5a2870488ce752c057cc5b1a
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.sourcegitcommit: 45754124123403520b9fa2e706a4d1292494159b
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 09/12/2020
 ms.locfileid: "86162777"
 ---
 # <a name="understanding-aspnet-ajax-web-services"></a>Principy webových služeb technologie ASP.NET AJAX
@@ -289,7 +289,7 @@ Volaná webová služba musí mít atribut ScriptService použit jak je popsáno
 
 ASP.NET AJAX poskytuje skvělou podporu pro volání webových služeb, aniž by bylo potřeba psát spoustu vlastních kódů JavaScriptu pro zpracování žádostí a zpráv odpovědí. V tomto článku jste se naučili, jak AJAX povolit webové služby .NET, aby mohly zpracovávat zprávy JSON a jak definovat proxy JavaScripty pomocí ovládacího prvku ScriptManager. Viděli jste také, jak můžou být proxy servery jazyka JavaScript použity pro volání webových služeb, zpracování jednoduchých a složitých typů a řešení chyb. Nakonec jste viděli, jak lze metody stránky použít ke zjednodušení procesu vytváření a provádění volání webové služby a způsobu, jakým může ovládací prvek AutoCompleteExtender poskytnout uživatelům při psaní lepší informace pro koncové uživatele. I když je ovládací prvek UpdatePanel dostupný v ASP.NET AJAX v důsledku jednoduchosti kontrolou volby pro mnoho programátorů AJAX, je důležité vědět, jak volat webové služby prostřednictvím proxy serverů JavaScriptu může být užitečné v mnoha aplikacích.
 
-## <a name="bio"></a>Dostupnost
+## <a name="bio"></a>Životopis
 
 Dan Wahlin (Microsoft nejvíc Professional for ASP.NET and XML Web Services) je instruktor pro vývoj a architekturu pro vývoj rozhraní .NET na úrovni technického školení ( [http://www.interfacett.com](http://www.interfacett.com) ). Daň ze sady XML for ASP.NET Developers web ([www.XMLforASP.NET](http://www.XMLforASP.NET)) se nachází v kanceláři mluvčího v INETA a mluví na několika konferencích. Specialista na spolupracovníka Windows DNA (Wrox), ASP.NET: tipy, kurzy a Code (Sams), ASP.NET 1,1 řešení Insider, Professional ASP.NET 2,0 AJAX (Wrox), ASP.NET 2,0 MVP Hackatony a vytvořil XML pro vývojáře ASP.NET (Sams). Když není psaní kódu, článků nebo knih, Dan, požívá psaní a zaznamenávání hudby a hraní Golfů a basketbalový s jeho manželkou a dětem.
 
