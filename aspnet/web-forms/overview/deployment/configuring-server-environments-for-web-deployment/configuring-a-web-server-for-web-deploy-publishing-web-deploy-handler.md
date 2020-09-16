@@ -1,6 +1,6 @@
 ---
 uid: web-forms/overview/deployment/configuring-server-environments-for-web-deployment/configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler
-title: Konfigurace webového serveru pro publikování Nasazení webu (obslužná rutina Nasazení webu) | Microsoft Docs
+title: Konfigurace webového serveru pro publikování nasazeného webu (obslužná rutina nasazení webu)
 author: jrjlee
 description: Toto téma popisuje, jak nakonfigurovat webový server Internetová informační služba (IIS) tak, aby podporoval publikování a nasazení webu pomocí služby IIS Nasazení webu Han...
 ms.author: riande
@@ -8,20 +8,20 @@ ms.date: 01/29/2017
 ms.assetid: 90ebf911-1c46-4470-b876-1335bd0f590f
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment/configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler
 msc.type: authoredcontent
-ms.openlocfilehash: baaebd32f08d3c6b861572c5c5a16ec0fb70aaf0
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: af46b5a74309fbae4b5db072363e71d965445f9a
+ms.sourcegitcommit: 4ed0b65ae32d9f35e42ee6296b877747e063df4d
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78568563"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90609691"
 ---
 # <a name="configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler"></a>Konfigurace webového serveru pro publikování nasazeného webu (obslužná rutina nasazení webu)
 
-[Stáhnout PDF](https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/63/56/8130.DeployingWebAppsInEnterpriseScenarios.pdf)
+[Stažení PDF](https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/63/56/8130.DeployingWebAppsInEnterpriseScenarios.pdf)
 
 > Toto téma popisuje, jak nakonfigurovat webový server Internetová informační služba (IIS) tak, aby podporoval publikování a nasazení webu pomocí Nasazení webu obslužné rutiny služby IIS.
 > 
-> Když pracujete s Nasazení webu 2,0 nebo novějším, existují tři hlavní přístupy, pomocí kterých můžete své aplikace nebo weby získat na webový server. Můžete:
+> Když pracujete s Nasazení webu 2,0 nebo novějším, existují tři hlavní přístupy, pomocí kterých můžete své aplikace nebo weby získat na webový server. Další možnosti:
 > 
 > - Použijte *službu nasazení webu Remote Agent*. Tento přístup vyžaduje méně konfigurace webového serveru, ale musíte zadat přihlašovací údaje správce místního serveru, aby bylo možné na server nasadit cokoli.
 > - Použijte *obslužnou rutinu nasazení webu*. Tento přístup je mnohem složitější a vyžaduje při nastavování webového serveru více počátečních úsilí. Pokud však použijete tento přístup, můžete nakonfigurovat službu IIS tak, aby umožňovala uživatelům bez oprávnění správce provádět nasazení. Obslužná rutina Nasazení webu je k dispozici pouze ve službě IIS verze 7 nebo novější.
@@ -72,7 +72,7 @@ V takovém případě je potřeba nainstalovat tyto věci:
 - **Doporučená konfigurace služby IIS 7**. Tím povolíte roli **webový server (IIS)** na webovém serveru a nainstalujete sadu modulů a součástí IIS, které potřebujete k hostování aplikace v ASP.NET.
 - Služba **IIS: Služba správy**. Tím se do služby IIS nainstaluje služba webové správy (WMSvc). Tato služba umožňuje vzdálenou správu webů IIS a zpřístupňuje koncový bod obslužné rutiny Nasazení webu klientům.
 - **Služba IIS: základní ověřování**. Tím se nainstaluje modul pro základní ověřování služby IIS. To umožňuje službě webové správy (WMSvc) ověřit přihlašovací údaje, které zadáte.
-- **Nástroj pro nasazení webu 2,1 nebo novější**. Tím se na váš server nainstaluje Nasazení webu (a jeho základní spustitelný soubor MSDeploy. exe). V rámci tohoto procesu nainstaluje obslužnou rutinu Nasazení webu a integruje ji do služby webové správy.
+- **Nástroj pro nasazení webu 2,1 nebo novější**. Tím se nainstaluje Nasazení webu (a jeho základní spustitelný soubor MSDeploy.exe) na vašem serveru. V rámci tohoto procesu nainstaluje obslužnou rutinu Nasazení webu a integruje ji do služby webové správy.
 - **.NET Framework 4,0**. To je nutné ke spuštění aplikací, které byly vytvořeny v této verzi .NET Framework.
 - **ASP.NET MVC 3**. Tím se nainstaluje sestavení, která potřebujete ke spouštění aplikací MVC 3.
 
@@ -86,7 +86,7 @@ V takovém případě je potřeba nainstalovat tyto věci:
 
     > [!NOTE]
     > V nabídce **Start** teď můžete kdykoli spustit instalační program webové platformy. Provedete to tak, že v nabídce **Start** kliknete na **všechny programy**a pak na **Instalace webové platformy Microsoft**.
-3. V horní části okna **Instalace webové platformy** klikněte na **Produkty**.
+3. V horní části okna **Instalace webové platformy** klikněte na **produkty**.
 4. Na levé straně okna klikněte v navigačním podokně na možnost **architektury**.
 5. Pokud .NET Framework ještě není nainstalovaná, na řádku **Microsoft .NET Framework 4** klikněte na **Přidat**.
 
@@ -100,13 +100,13 @@ V takovém případě je potřeba nainstalovat tyto věci:
 9. V řádku **Nástroje pro nasazení webu 2,1** klikněte na **Přidat**.
 10. V řádku **Služba IIS: základní ověřování** klikněte na **Přidat**.
 11. V řádku **IIS: Management Service** klikněte na **Přidat**.
-12. Klikněte na **Nainstalovat**. Instalační program webové platformy zobrazí seznam produktů&#x2014;spolu s případnými přidruženými závislostmi&#x2014;, které se mají nainstalovat, a zobrazí výzvu k přijetí těchto licenčních podmínek.
+12. Klikněte na **Install** (Nainstalovat). Instalační program webové platformy zobrazí seznam produktů&#x2014;společně s případnými přidruženými závislostmi&#x2014;nainstalovány a zobrazí výzvu k přijetí těchto licenčních podmínek.
 
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image2.png)
 13. Přečtěte si licenční podmínky a pokud souhlasíte s podmínkami **, klikněte na Souhlasím.**
 14. Po dokončení instalace klikněte na **Dokončit**a potom zavřete okno **Instalace webové platformy** .
 
-Pokud jste nainstalovali .NET Framework 4,0 před instalací služby IIS, budete muset spustit [registrační nástroj služby ASP.NET IIS](https://msdn.microsoft.com/library/k6h9cz8h(v=VS.100).aspx) (ASPNET\_regiis. exe) a zaregistrovat nejnovější verzi ASP.NET se službou IIS. Pokud to neuděláte, zjistíte, že služba IIS bude sloužit jako statický obsah (například soubory HTML) bez jakýchkoli problémů, ale při pokusu o procházení obsahu ASP.NET se nenajde **Chyba HTTP 404,0 – nebude Nalezeno** . K zajištění registrace ASP.NET 4,0 můžete použít další postup.
+Pokud jste nainstalovali .NET Framework 4,0 před instalací služby IIS, budete muset spustit [registrační nástroj služby ASP.NET IIS](https://msdn.microsoft.com/library/k6h9cz8h(v=VS.100).aspx) (ASPNET \_regiis.exe) a zaregistrovat nejnovější verzi ASP.NET se službou IIS. Pokud to neuděláte, zjistíte, že služba IIS bude sloužit jako statický obsah (například soubory HTML) bez jakýchkoli problémů, ale při pokusu o procházení obsahu ASP.NET se nenajde **Chyba HTTP 404,0 – nebude Nalezeno** . K zajištění registrace ASP.NET 4,0 můžete použít další postup.
 
 **Registrace ASP.NET 4,0 se službou IIS**
 
@@ -134,7 +134,7 @@ Teď, když jste nainstalovali všechno, co potřebujete, je dalším krokem kon
 
 **Konfigurace služby webové správy**
 
-1. V nabídce **Start** přejděte na **Nástroje pro správu**a potom klikněte na **Správce služby Internetová informační služba (IIS)** .
+1. V nabídce **Start** přejděte na **Nástroje pro správu**a potom klikněte na **Správce služby Internetová informační služba (IIS)**.
 2. Ve Správci služby IIS klikněte v podokně **připojení** na uzel serveru (například **STAGEWEB1**).
 
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image3.png)
@@ -186,7 +186,7 @@ I když se vám nic nezastaví od nasazení obsahu na výchozí web ve službě 
 **Vytvoření webu služby IIS**
 
 1. V místním systému souborů vytvořte složku pro uložení vašeho obsahu (například **C:\DemoSite**).
-2. V nabídce **Start** přejděte na **Nástroje pro správu**a potom klikněte na **Správce služby Internetová informační služba (IIS)** .
+2. V nabídce **Start** přejděte na **Nástroje pro správu**a potom klikněte na **Správce služby Internetová informační služba (IIS)**.
 3. Ve Správci služby IIS rozbalte v podokně **připojení** uzel serveru (například **STAGEWEB1**).
 
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image10.png)
@@ -204,7 +204,7 @@ I když se vám nic nezastaví od nasazení obsahu na výchozí web ve službě 
     > [!NOTE]
     > V produkčním prostředí pravděpodobně budete chtít web hostovat na portu 80 a nakonfigurovat hlavičku hostitele spolu se shodnými záznamy DNS. Další informace o konfiguraci hlaviček hostitele ve službě IIS 7 najdete v tématu [Konfigurace hlavičky hostitele webu (IIS 7)](https://technet.microsoft.com/library/cc753195(WS.10).aspx). Další informace o roli serveru DNS v systému Windows Server najdete v tématu [Přehled serveru DNS](https://technet.microsoft.com/library/cc770392.aspx) a [Server DNS](https://technet.microsoft.com/windowsserver/dd448607).
 9. V podokně **Akce** klikněte v části **Upravit web**na možnost **vazby**.
-10. V dialogu **Vazby webu** klikněte na **Přidat**.
+10. V dialogovém okně **vazby webu** klikněte na **Přidat**.
 
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image12.png)
 11. V dialogovém okně **Přidat vazbu webu** nastavte **IP adresu** a **port** tak, aby odpovídaly vaší stávající konfiguraci lokality.
@@ -213,9 +213,9 @@ I když se vám nic nezastaví od nasazení obsahu na výchozí web ve službě 
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image13.png)
 
     > [!NOTE]
-    > První vazba webu umožňuje přístup k webu místně pomocí IP adresy a portu nebo `http://localhost:85`. Druhá vazba webu umožňuje přístup k webu z jiných počítačů v doméně pomocí názvu počítače (například http://stageweb1:85).
-13. V dialogu **Vazby webu** klikněte na **Zavřít**.
-14. V podokně **připojení** klikněte na **fondy aplikací**.
+    > První vazba webu umožňuje přístup k webu místně pomocí IP adresy a portu nebo `http://localhost:85` . Druhá vazba webu umožňuje přístup k webu z jiných počítačů v doméně pomocí názvu počítače (například http://stageweb1:85) .
+13. V dialogovém okně **vazby webu** klikněte na **Zavřít**.
+14. V podokně **Připojení** klikněte na **Fondy aplikací**.
 15. V podokně **fondy aplikací** klikněte pravým tlačítkem myši na název vašeho fondu aplikací a potom klikněte na **základní nastavení**. Ve výchozím nastavení bude název vašeho fondu aplikací odpovídat názvu vašeho webu (například **DemoSite**).
 16. V seznamu **verze CLR .NET** vyberte **.NET CLR v 4.0.30319**a pak klikněte na **OK**.
 
@@ -224,14 +224,14 @@ I když se vám nic nezastaví od nasazení obsahu na výchozí web ve službě 
     > [!NOTE]
     > Ukázkové řešení vyžaduje .NET Framework 4,0. Nejedná se o požadavek Nasazení webu obecně.
 
-Aby váš web mohl poskytovat obsah, musí mít identita fondu aplikací oprávnění ke čtení v místní složce, ve které je uložený obsah. Ve službě IIS 7,5 se fondy aplikací ve výchozím nastavení spouštějí s jedinečnou identitou fondu aplikací (na rozdíl od předchozích verzí služby IIS, kde by fondy aplikací obvykle běžely pomocí účtu síťové služby). Identita fondu aplikací není reálného uživatelského účtu a nezobrazuje se v žádných seznamech uživatelů nebo skupin&#x2014;, ale je vytvořená dynamicky při spuštění fondu aplikací. Každá identita fondu aplikací se přidá do místní skupiny zabezpečení **služby IIS\_IUSRS** jako skrytá položka.
+Aby váš web mohl poskytovat obsah, musí mít identita fondu aplikací oprávnění ke čtení v místní složce, ve které je uložený obsah. Ve službě IIS 7,5 se fondy aplikací ve výchozím nastavení spouštějí s jedinečnou identitou fondu aplikací (na rozdíl od předchozích verzí služby IIS, kde by fondy aplikací obvykle běžely pomocí účtu síťové služby). Identita fondu aplikací není reálný uživatelský účet, který se nezobrazuje na žádných seznamech uživatelů nebo skupin&#x2014;místo toho je vytvořen dynamicky při spuštění fondu aplikací. Každá identita fondu aplikací se přidá do místní skupiny zabezpečení **služby IIS \_ IUSRS** jako skrytá položka.
 
 Chcete-li udělit oprávnění k identitě fondu aplikací pro soubor nebo složku, máte dvě možnosti:
 
-- Přiřaďte oprávnění k identitě fondu aplikací přímo pomocí formátu <strong>IIS AppPool\</strong ><em>[název fondu aplikací]</em>(například <strong>IIS AppPool\DemoSite</strong>).
-- Přiřaďte oprávnění skupině **IUSRS služby IIS\_** .
+- Přiřaďte oprávnění k identitě fondu aplikací přímo pomocí formátování ** \( názvu fondu aplikací IIS AppPool)** (například **IIS AppPool\DemoSite**).
+- Přiřaďte oprávnění ke **skupině \_ IUSRS služby IIS** .
 
-Nejběžnějším přístupem je přiřazení oprávnění k místní skupině **služby IIS\_IUSRS** , protože tento přístup umožňuje změnit fondy aplikací bez nutnosti znovu nakonfigurovat oprávnění systému souborů. Další postup používá tento přístup založený na skupině.
+Nejběžnějším přístupem je přiřazení oprávnění místní skupině **služby IIS \_ IUSRS** , protože tento přístup umožňuje změnit fondy aplikací bez nutnosti opětovné konfigurace oprávnění systému souborů. Další postup používá tento přístup založený na skupině.
 
 > [!NOTE]
 > Další informace o identitách fondu aplikací ve službě IIS 7,5 najdete v tématu [identity fondů aplikací](https://go.microsoft.com/?linkid=9805123).
@@ -239,14 +239,14 @@ Nejběžnějším přístupem je přiřazení oprávnění k místní skupině *
 **Konfigurace oprávnění složky pro web služby IIS**
 
 1. V Průzkumníku Windows přejděte do umístění místní složky.
-2. Klikněte pravým tlačítkem na složku a pak klikněte na **vlastnosti**.
+2. Pravým tlačítkem na složku klikněte a potom klikněte na **Vlastnosti**.
 3. Na kartě **zabezpečení** klikněte na **Upravit**a pak klikněte na **Přidat**.
 4. Klikněte na **umístění**. V dialogovém okně **umístění** vyberte místní server a klikněte na tlačítko **OK**.
 
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image15.png)
-5. V dialogovém okně **Vybrat uživatele nebo skupiny** zadejte **IIS\_IUSRS**, klikněte na **kontrolovat jména**a pak klikněte na **OK**.
-6. V dialogovém okně <strong>oprávnění pro</strong><em>[název složky]</em> si všimněte, že je ve výchozím nastavení přiřazená k nové skupině oprávnění <strong>číst &amp; spustit</strong>, <strong>Zobrazit obsah složky</strong>a <strong>číst</strong> . Nechejte to beze změny a klikněte na <strong>OK</strong>.
-7. Kliknutím na tlačítko <strong>OK</strong> zavřete dialogové okno<strong>vlastnosti</strong> <em>[název složky]</em>.
+5. V dialogovém okně **Vybrat uživatele nebo skupiny** zadejte **IIS \_ IUSRS**, klikněte na **kontrolovat jména**a pak klikněte na **OK**.
+6. V dialogovém okně **oprávnění pro (název složky)** si všimněte, že ve výchozím nastavení bylo přiřazeno oprávnění **pro &amp; čtení**, **Výpis obsahu složky**a **čtení** této nové skupiny. Nechejte to beze změny a klikněte na **OK**.
+7. Kliknutím na tlačítko **OK** zavřete dialogové okno **vlastnosti (název složky)** .
 
 Jako poslední úkol musíte udělit příslušná oprávnění uživateli bez oprávnění správce, jehož přihlašovací údaje použijete k nasazení obsahu. Tento uživatel vyžaduje oprávnění k nasazování obsahu vzdáleně na váš web.
 
@@ -297,5 +297,5 @@ Váš webový server by teď měl být připravený přijmout vzdálená nasazen
 Pokyny ke konfiguraci vlastních souborů projektu Microsoft Build Engine (MSBuild) pro nasazení webových balíčků do obslužné rutiny Nasazení webu najdete v tématu [Konfigurace vlastností nasazení pro cílové prostředí](configuring-deployment-properties-for-a-target-environment.md).
 
 > [!div class="step-by-step"]
-> [Předchozí](configuring-a-web-server-for-web-deploy-publishing-remote-agent.md)
-> [Další](configuring-a-web-server-for-web-deploy-publishing-offline-deployment.md)
+> [Předchozí](configuring-a-web-server-for-web-deploy-publishing-remote-agent.md) 
+>  [Další](configuring-a-web-server-for-web-deploy-publishing-offline-deployment.md)
