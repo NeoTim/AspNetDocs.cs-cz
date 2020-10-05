@@ -10,10 +10,10 @@ ms.assetid: 50e6e62b-e72e-4a29-8293-4b67377bd21f
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/supporting-odata-query-options
 msc.type: authoredcontent
 ms.openlocfilehash: 96820fab7ac89885058962f44ded86cb0184ee97
-ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
+ms.sourcegitcommit: 4ed0b65ae32d9f35e42ee6296b877747e063df4d
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 04/06/2020
+ms.lasthandoff: 10/05/2020
 ms.locfileid: "86188613"
 ---
 # <a name="supporting-odata-query-options-in-aspnet-web-api-2"></a>Podpora možností dotazů OData ve webovém rozhraní API 2 ASP.NET
@@ -81,12 +81,12 @@ Možnost $top poskytuje maximální počet položek, které se mají vrátit, a 
 
 Možnost $filter umožňuje klientovi filtrovat výsledky použitím logického výrazu. Výrazy filtru jsou poměrně výkonné; zahrnují logické a aritmetické operátory, funkce pro řetězce a kalendářní data.
 
-| Vrátí všechny produkty s kategorií rovným "Toys". | `http://localhost/Products?$filter=Category`EQ "Toys" |
+| Vrátí všechny produkty s kategorií rovným "Toys". | `http://localhost/Products?$filter=Category` EQ "Toys" |
 | --- | --- |
-| Vrátí všechny produkty s cenou menší než 10. | `http://localhost/Products?$filter=Price`lt 10 |
-| Logické operátory: vrátí všechny produkty, kde Price >= 5 a Price <= 15. | `http://localhost/Products?$filter=Price`GE 5 a cena Le 15 |
+| Vrátí všechny produkty s cenou menší než 10. | `http://localhost/Products?$filter=Price` lt 10 |
+| Logické operátory: vrátí všechny produkty, kde Price >= 5 a Price <= 15. | `http://localhost/Products?$filter=Price` GE 5 a cena Le 15 |
 | Řetězcové funkce: vrátí všechny produkty s "ZZ" v názvu. | `http://localhost/Products?$filter=substringof('zz',Name)` |
-| Date Functions: vrátí všechny produkty s ReleaseDate po 2005. | `http://localhost/Products?$filter=year(ReleaseDate)`gt 2005 |
+| Date Functions: vrátí všechny produkty s ReleaseDate po 2005. | `http://localhost/Products?$filter=year(ReleaseDate)` gt 2005 |
 
 **Řazení**
 
@@ -119,7 +119,7 @@ Hodnota "AllPages" oznamuje serveru, aby obsahoval celkový počet v odpovědi:
 > [!NOTE]
 > Odkazy na další stránku a vložený počet vyžadují formát OData. Důvodem je, že OData definuje speciální pole v těle odpovědi, aby obsahovala odkaz a počet.
 
-Pro formáty jiné než OData je stále možné podporovat odkazy na další stránky a vložený počet tím, že se výsledky dotazu zabalí do objektu **PageResult &lt; T &gt; ** . Vyžaduje ale trochu více kódu. Zde naleznete příklad:
+Pro formáty jiné než OData je stále možné podporovat odkazy na další stránky a vložený počet tím, že se výsledky dotazu zabalí do objektu **PageResult &lt; T &gt; ** . Vyžaduje ale trochu více kódu. Tady je příklad:
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample6.cs)]
 
