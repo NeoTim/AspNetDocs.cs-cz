@@ -1,44 +1,44 @@
 ---
 uid: mvc/overview/deployment/docker-aspnetmvc
 title: Migrace aplikací ASP.NET MVC do kontejnerů s Windows
-description: Zjistěte, jak vzít existující ASP.NET aplikaci MVC a spustit ji v kontejneru Windows Dockeru
-keywords: Kontejnery systému Windows,Docker,ASP.NET MVC
+description: Naučte se, jak převzít existující aplikaci ASP.NET MVC a spustit ji v kontejneru Docker ve Windows
+keywords: Kontejnery Windows, Docker, ASP. NET MVC
 author: BillWagner
 ms.author: wiwagn
 ms.date: 12/14/2018
 ms.assetid: c9f1d52c-b4bd-4b5d-b7f9-8f9ceaf778c4
-ms.openlocfilehash: 2c3aefab16673f4d4dd28c74319903fbd25a9e7e
-ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
+ms.openlocfilehash: 1c5e6af79c87123891ddd4d30c60e3a427910e9d
+ms.sourcegitcommit: 09a34635ed0e74d6c2625f6a485c78f201c689ee
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80675186"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91763490"
 ---
 # <a name="migrating-aspnet-mvc-applications-to-windows-containers"></a>Migrace aplikací ASP.NET MVC do kontejnerů s Windows
 
-Spuštění existující aplikace založené na rozhraní .NET Framework v kontejneru windows nevyžaduje žádné změny vaší aplikace. Chcete-li aplikaci spustit v kontejneru windows, vytvořte bitovou kopii Dockeru obsahující vaši aplikaci a spusťte kontejner. Toto téma vysvětluje, jak vzít existující [ASP.NET aplikace MVC](http://www.asp.net/mvc) a nasadit ji v kontejneru systému Windows.
+Spuštění existující aplikace založené na .NET Framework v kontejneru Windows nevyžaduje žádné změny aplikace. Pokud chcete aplikaci spustit v kontejneru Windows, vytvořte image Docker obsahující vaši aplikaci a spusťte kontejner. Toto téma vysvětluje, jak přijmout existující [aplikaci ASP.NET MVC](http://www.asp.net/mvc) a jak ji nasadit do kontejneru Windows.
 
-Začnete s existující aplikací ASP.NET MVC a pak publikujete publikované datové zdroje pomocí sady Visual Studio. Docker uděláte k vytvoření bitové kopie, která obsahuje a spouští vaši aplikaci. Přejdete na web spuštěný v kontejneru windows a ověříte, že aplikace funguje.
+Začnete s existující aplikací ASP.NET MVC a pak sestavíte publikované assety pomocí sady Visual Studio. Pomocí Docker vytvoříte image, která obsahuje a spustí vaši aplikaci. Přejdete na web běžící v kontejneru Windows a ověříte, že aplikace funguje.
 
 Tento článek předpokládá základní znalost Dockeru. Informace o Dockeru najdete v článku [Docker Overview](https://docs.docker.com/engine/understanding-docker/) (Přehled Dockeru).
 
-Aplikace, kterou spustíte v kontejneru, je jednoduchý web, který odpovídá na otázky náhodně. Tato aplikace je základní MVC aplikace bez ověřování nebo databázové úložiště; umožňuje zaměřit se na přesunutí webové vrstvy do kontejneru. Budoucí témata ukáží, jak přesunout a spravovat trvalé úložiště v kontejnerizovaných aplikacích.
+Aplikace, kterou spouštíte v kontejneru, je jednoduchý web, který je náhodně zodpovězený na otázky. Tato aplikace je základní aplikace MVC bez ověřování nebo úložiště databáze. Díky tomu se můžete zaměřit na přesun webové vrstvy do kontejneru. V budoucích tématech se dozvíte, jak přesunout a spravovat trvalé úložiště v kontejnerových aplikacích.
 
-Přesunutí aplikace zahrnuje následující kroky:
+Přesunutí aplikace zahrnuje tyto kroky:
 
-1. [Vytvoření úlohy publikování k vytvoření datových zdrojů pro bitovou kopii.](#publish-script)
-1. [Vytváření image Dockeru, který bude spuštěn a aplikace.](#build-the-image)
-1. [Spuštění kontejneru Dockeru, který spouští vaši image.](#start-a-container)
-1. [Ověření aplikace pomocí prohlížeče.](#verify-in-the-browser)
+1. [Vytvoření úlohy publikování pro sestavení assetů pro obrázek.](#publish-script)
+1. [Sestavení image Docker, která spustí vaši aplikaci.](#build-the-image)
+1. [Spouští se kontejner Docker, který spouští vaši image.](#start-a-container)
+1. [Ověřuje se aplikace v prohlížeči.](#verify-in-the-browser)
 
-[Dokončená aplikace](https://github.com/dotnet/samples/tree/master/framework/docker/MVCRandomAnswerGenerator) je na GitHubu.
+[Dokončená aplikace](https://github.com/dotnet/AspNetDocs/tree/master/aspnet/mvc/overview/deployment/docker-aspnetmvc/samples/MVCRandomAnswerGenerator) je na GitHubu.
 
-## <a name="prerequisites"></a>Požadavky
+## <a name="prerequisites"></a>Předpoklady
 
-Vývojový stroj musí mít následující software:
+Vývojový počítač musí mít následující software:
 
-- [Aktualizace Windows 10 Anniversary Update](https://www.microsoft.com/software-download/windows10/) (nebo vyšší) nebo [Windows Server 2016](https://www.microsoft.com/cloud-platform/windows-server) (nebo vyšší)
-- [Docker pro Windows](https://docs.docker.com/docker-for-windows/) - verze Stable 1.13.0 nebo 1.12 Beta 26 (nebo novější verze)
+- [Windows 10 – aktualizace pro výročí](https://www.microsoft.com/software-download/windows10/) (nebo vyšší) nebo [Windows Server 2016](https://www.microsoft.com/cloud-platform/windows-server) (nebo vyšší)
+- [Docker for Windows](https://docs.docker.com/docker-for-windows/) – stabilní verze 1.13.0 nebo 1,12 beta 26 (nebo novější verze)
 - [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017)
 
 > [!IMPORTANT]
@@ -46,34 +46,34 @@ Vývojový stroj musí mít následující software:
 
 Po nainstalování a spuštění Dockeru klikněte pravým tlačítkem myši na ikonu na hlavním panelu a vyberte **Switch to Windows containers** (Přepnout na kontejnery Windows). To se vyžaduje pro spuštění imagí Dockeru založených na Windows. Spuštění tohoto příkazu trvá několik sekund:
 
-![Kontejner systému Windows][windows-container]
+![Kontejner Windows][windows-container]
 
 ## <a name="publish-script"></a>Publikovat skript
 
-Shromážděte na jednom místě všechny prostředky, které potřebujete nahrát do image Dockeru. Pomocí příkazu **Publikování** v sadě Visual Studio můžete vytvořit profil publikování pro vaši aplikaci. Tento profil vloží všechny datové zdroje do jednoho adresářového stromu, který zkopírujete do cílovébitové bitové kopie později v tomto kurzu.
+Shromážděte na jednom místě všechny prostředky, které potřebujete nahrát do image Dockeru. Pomocí příkazu **publikovat** v aplikaci Visual Studio můžete pro svou aplikaci vytvořit profil publikování. Tento profil vloží všechny prostředky do jednoho adresářového stromu, které zkopírujete do cílové image později v tomto kurzu.
 
 **Kroky publikování**
 
-1. Klikněte pravým tlačítkem myši na webový projekt v sadě Visual Studio a vyberte **publikovat**.
-1. Klepněte na **tlačítko Vlastní profil**a potom jako metodu vyberte Systém **souborů.**
-1. Zvolte adresář. Podle konvence používá `bin\Release\PublishOutput`stažená ukázka .
+1. Klikněte pravým tlačítkem na webový projekt v aplikaci Visual Studio a vyberte **publikovat**.
+1. Klikněte na **tlačítko vlastní profil**a pak jako metodu vyberte **systém souborů** .
+1. Vyberte adresář. Podle konvence používá stažená ukázka `bin\Release\PublishOutput` .
 
 ![Publikovat připojení][publish-connection]
 
-Otevřete část **Precompile during publishing** **Možnosti publikování souboru** na kartě **Nastavení.** Tato optimalizace znamená, že budete kompilaci zobrazení v kontejneru Dockeru, kopírujete předkompilovaná zobrazení.
+Otevřete část **Možnosti publikování souboru** na kartě **Nastavení** . Vyberte **předkompilovat během publikování**. Tato optimalizace znamená, že budete kompilovat zobrazení v kontejneru Docker, kopírujete Předkompilovaná zobrazení.
 
 ![Nastavení publikování][publish-settings]
 
-Klepněte na tlačítko **Publikovat**a Visual Studio zkopíruje všechny potřebné datové zdroje do cílové složky.
+Klikněte na **publikovat**a Visual Studio zkopíruje všechny potřebné prostředky do cílové složky.
 
 ## <a name="build-the-image"></a>Sestavení image
 
-Vytvořte nový soubor s názvem *Dockerfile* k definování image Dockeru. *Dockerfile* obsahuje pokyny k vytvoření konečné image a obsahuje všechny základní image názvy, požadované součásti, aplikace, kterou chcete spustit, a další image konfigurace. *Dockerfile* je vstup `docker build` do příkazu, který vytvoří image.
+Vytvořte nový soubor s názvem *souboru Dockerfile* a definujte image Docker. *Souboru Dockerfile* obsahuje pokyny pro sestavení finální image a zahrnuje všechny základní názvy imagí, požadované komponenty, aplikaci, kterou chcete spustit, a další konfigurační image. *Souboru Dockerfile* je vstup k `docker build` příkazu, který vytvoří obrázek.
 
-Pro toto cvičení vytvoříte bitovou `microsoft/aspnet` kopii na základě image umístěné v [Docker Hubu](https://hub.docker.com/r/microsoft/aspnet/).
-Základní bitová `microsoft/aspnet`kopie , bitová kopie systému Windows Server. Obsahuje windows server core, službu IIS a ASP.NET 4.7.2. Když spustíte tuto bitovou kopii v kontejneru, automaticky spustí iis a nainstalované weby.
+Pro toto cvičení sestavíte image na základě image, která se `microsoft/aspnet` nachází v [Docker Hub](https://hub.docker.com/r/microsoft/aspnet/).
+Základní image `microsoft/aspnet` je image Windows serveru. Obsahuje Windows Server Core, IIS a ASP.NET 4.7.2. Když spustíte tuto image ve vašem kontejneru, automaticky se spustí IIS a nainstalují weby.
 
-Dockerfile, který vytvoří obrázek vypadá takto:
+Souboru Dockerfile, který vytváří obrázek, vypadá takto:
 
 ```console
 # The `FROM` instruction specifies the base image. You are
@@ -85,69 +85,69 @@ FROM microsoft/aspnet
 COPY ./bin/Release/PublishOutput/ /inetpub/wwwroot
 ```
 
-V tomto souboru Dockerfile není žádný příkaz `ENTRYPOINT`. Žádný nepotřebujete. Při spuštění systému Windows Server se službou IIS je proces služby IIS vstupním bodem, který je nakonfigurován tak, aby se spouštěl v základní bitové kopii aspnet.
+V tomto souboru Dockerfile není žádný příkaz `ENTRYPOINT`. Žádný nepotřebujete. Při spuštění Windows serveru se službou IIS je proces IIS vstupním parametrem, který je nakonfigurovaný tak, aby se spouštěl v základní imagi ASPNET.
 
-Spusťte příkaz sestavení Dockeru a vytvořte bitovou kopii, která spustí vaši ASP.NET aplikaci. Chcete-li to provést, otevřete okno Prostředí PowerShell v adresáři projektu a do adresáře řešení zadejte následující příkaz:
+Spuštěním příkazu Docker Build vytvořte image, která spustí vaši aplikaci ASP.NET. Provedete to tak, že otevřete okno prostředí PowerShell v adresáři projektu a v adresáři řešení zadáte následující příkaz:
 
 ```console
 docker build -t mvcrandomanswers .
 ```
 
-Tento příkaz vytvoří novou bitovou kopii pomocí pokynů v souboru Dockerfile a pojmenuje (-t tagging) bitovou kopii jako mvcrandomanswers. To může zahrnovat vytažení základní image z [Docker Hubu](http://hub.docker.com)a přidání aplikace do této image.
+Tento příkaz sestaví novou image pomocí instrukcí ve vašem souboru Dockerfile, pojmenovávání (-t označení) obrázku jako mvcrandomanswers. To může zahrnovat přijetí základní image z [Docker Hub](http://hub.docker.com)a přidání vaší aplikace do této image.
 
-Po dokončení tohoto příkazu můžete `docker images` příkaz spustit a zobrazit informace o novém obrázku:
+Po dokončení tohoto příkazu můžete spustit `docker images` příkaz pro zobrazení informací o nové imagi:
 
 ```console
 REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
 mvcrandomanswers              latest              86838648aab6        2 minutes ago       10.1 GB
 ```
 
-ID obrázku se bude v počítači lišit. Teď spusťme aplikaci.
+ID IMAGE se na vašem počítači liší. Teď aplikaci spusťte.
 
 ## <a name="start-a-container"></a>Spuštění kontejneru
 
-Spusťte kontejner provedením `docker run` následujícího příkazu:
+Spusťte kontejner spuštěním následujícího `docker run` příkazu:
 
 ```console
 docker run -d --name randomanswers mvcrandomanswers
 ```
 
-Argument `-d` říká Docker spustit image v odpojeném režimu. To znamená, že image Dockeru běží odpojenod aktuálního prostředí.
+`-d`Argument dává Docker pokyn ke spuštění obrázku v odpojeném režimu. To znamená, že se image Docker spustí odpojený od aktuálního prostředí.
 
-V mnoha příkladech dockeru se může zobrazit -p pro mapování kontejneru a hostitelských portů. Výchozí bitová kopie aspnet již nakonfigurovala kontejner tak, aby naslouchal na portu 80 a zpřístupnioval jej.
+V mnoha ukázkách Docker se může zobrazit – p pro mapování kontejneru a hostitelských portů. Výchozí image ASPNET již nakonfigurovala kontejner pro naslouchání na portu 80 a zpřístupňuje ho.
 
-Poskytuje `--name randomanswers` název spuštěného kontejneru. Tento název můžete použít místo ID kontejneru ve většině příkazů.
+`--name randomanswers`Název získá běžícímu kontejneru. Ve většině příkazů můžete použít tento název místo ID kontejneru.
 
-Je `mvcrandomanswers` název obrázku, který má být zahájen.
+`mvcrandomanswers`Je název obrázku, který se má spustit.
 
-## <a name="verify-in-the-browser"></a>Ověřit v prohlížeči
+## <a name="verify-in-the-browser"></a>Ověření v prohlížeči
 
-Po spuštění kontejneru se připojte `http://localhost` k běžícímu kontejneru pomocí uvedeného příkladu. Zadejte tuto adresu URL do prohlížeče a měli byste vidět spuštěný web.
+Po spuštění kontejneru se připojte ke spuštěnému kontejneru pomocí `http://localhost` v zobrazeném příkladu. Zadejte tuto adresu URL do prohlížeče a měli byste vidět běžící Web.
 
 > [!NOTE]
-> Některé VPN nebo proxy software vám může zabránit v navigaci na vaše stránky.
-> Můžete jej dočasně zakázat, abyste se ujistili, že kontejner funguje.
+> Některé software VPN nebo proxy serveru vám může bránit v přechodu na váš web.
+> Můžete ho dočasně zakázat, abyste se ujistili, že váš kontejner funguje.
 
-Ukázkový adresář na GitHubu obsahuje [skript PowerShellu,](https://github.com/dotnet/samples/blob/master/framework/docker/MVCRandomAnswerGenerator/run.ps1) který tyto příkazy provede za vás. Otevřete okno PowerShellu, změňte adresář do adresáře řešení a zadejte:
+Ukázkový adresář na GitHubu obsahuje [skript PowerShellu](https://github.com/dotnet/samples/blob/master/framework/docker/MVCRandomAnswerGenerator/run.ps1) , který tyto příkazy spouští za vás. Otevřete okno PowerShellu, změňte adresář na adresář řešení a zadejte:
 
 ```console
 ./run.ps1
 ```
 
-Výše uvedený příkaz vytvoří bitovou kopii, zobrazí seznam obrázků v počítači a spustí kontejner.
+Výše uvedený příkaz sestaví image, zobrazí seznam imagí na vašem počítači a spustí kontejner.
 
-Chcete-li kontejner zastavit, vydejte `docker stop` příkaz:
+Pokud chcete kontejner zastavit, vydejte `docker stop` příkaz:
 
 ```console
 docker stop randomanswers
 ```
 
-Chcete-li kontejner odebrat, vydejte `docker rm` příkaz:
+Pokud chcete kontejner odebrat, vydejte `docker rm` příkaz:
 
 ```console
 docker rm randomanswers
 ```
 
-[windows-container]: media/aspnetmvc/SwitchContainer.png "Přepnutí do kontejneru Windows"
+[windows-container]: media/aspnetmvc/SwitchContainer.png "Přepnout do kontejneru Windows"
 [publish-connection]: media/aspnetmvc/PublishConnection.png "Publikovat do systému souborů"
 [publish-settings]: media/aspnetmvc/PublishSettings.png "Nastavení publikování"
